@@ -565,6 +565,13 @@ body, html {
   .gallery .section-header h2 {
     text-align: center !important;
   }
+
+  .hero-buttons-overlay .btn {
+    background-color: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
 }
 
 /* Portfolio page with dark background like services */
@@ -1262,7 +1269,7 @@ header.nav .brand img {
 }
 
 .portfolio .info-box .body, .portfolio .card .body, .portfolio .panel .body,
-.portfolio .info-box p, .portfolio .card p, .portfolio .panel p {
+.portfolio .info-box p, .portfolio .card p, .panel p {
   color: var(--color-body); /* Slate for body text */
 }
 

@@ -967,7 +967,13 @@
   <!-- Page Content -->
   <main class="page-content">
     <!-- Contact Form -->
-    <form class="contact-form" action="#" method="POST">
+    <form class="contact-form" action="https://formsubmit.co/Interiorillusionsllc@outlook.com" method="POST">
+      <!-- FormSubmit configuration -->
+      <input type="hidden" name="_subject" value="New Quote Request - Interior Illusions" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value="thank-you.html" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
       <div class="form-row">
         <div class="form-group">
           <label for="firstName">First Name *</label>
@@ -1222,10 +1228,7 @@
     });
 
     // Form submission
-    document.querySelector('.contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you for your quote request! We will contact you within 24 hours to discuss your project.');
-    });
+    
 
     // Lightbox Functions
     function openLightbox(imageSrc, clickedElement) {
