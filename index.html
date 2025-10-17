@@ -16,27 +16,27 @@
     /* Satoshi Font Faces */
     @font-face {
       font-family: 'Satoshi';
-      src: url('assets/fonts/Satoshi-Regular.woff2') format('woff2'),
-           url('assets/fonts/Satoshi-Regular.woff') format('woff'),
-           url('assets/fonts/Satoshi-Regular.ttf') format('truetype');
+      src: url('assets/images/05_Typography/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2') format('woff2'),
+            url('assets/images/05_Typography/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff') format('woff'),
+            url('assets/images/05_Typography/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.ttf') format('truetype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Satoshi';
-      src: url('assets/fonts/Satoshi-Medium.woff2') format('woff2'),
-           url('assets/fonts/Satoshi-Medium.woff') format('woff'),
-           url('assets/fonts/Satoshi-Medium.ttf') format('truetype');
+      src: url('assets/images/05_Typography/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff2') format('woff2'),
+            url('assets/images/05_Typography/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff') format('woff'),
+            url('assets/images/05_Typography/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.ttf') format('truetype');
       font-weight: 500;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Satoshi';
-      src: url('assets/fonts/Satoshi-Bold.woff2') format('woff2'),
-           url('assets/fonts/Satoshi-Bold.woff') format('woff'),
-           url('assets/fonts/Satoshi-Bold.ttf') format('truetype');
+      src: url('assets/images/05_Typography/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff2') format('woff2'),
+            url('assets/images/05_Typography/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff') format('woff'),
+            url('assets/images/05_Typography/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.ttf') format('truetype');
       font-weight: 600;
       font-style: normal;
       font-display: swap;
@@ -244,6 +244,11 @@
       .mobile-dropdown-section.active .mobile-dropdown-content { max-height: 220px; }
       .mobile-dropdown-section.active .mobile-arrow { transform: rotate(180deg); }
     }
+
+    /* Hero Section Visibility */
+    .hero-desktop { display: none; } /* Hide desktop hero by default */
+    .hero-mobile { display: block; } /* Show mobile hero by default */
+    @media (min-width: 769px) { .hero-desktop { display: block; } .hero-mobile { display: none; } } /* Swap visibility on desktop */
 
     /* Hero */
     .hero {
@@ -528,6 +533,38 @@
     }
     /* Enlarge Services width beyond other sections */
     #services.section { padding: 120px 16px; }
+
+    /* Remove all padding from services section on mobile */
+    @media (max-width: 768px) {
+      #services.section { padding: 0px; }
+    }
+
+    /* Mobile specific spacing for services section header */
+    @media (max-width: 768px) {
+      #services .section-header {
+        margin-bottom: 0px;
+        padding-top: 0px;
+        margin-top: -400px;
+        position: relative;
+        z-index: 10;
+        background: rgba(11,14,20,0.8);
+        backdrop-filter: blur(10px);
+        padding: 10px 20px;
+        border-radius: 12px;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: calc(100% - 40px);
+      }
+      #services .section-subtitle {
+        margin-bottom: 0px;
+      }
+      /* Pull up the service cards too */
+      #services .services-grid {
+        margin-top: -200px;
+        position: relative;
+        z-index: 5;
+      }
+    }
     #services .section-header {
       max-width: calc(1920px + 2cm);
       margin: 0 auto 80px;
@@ -1215,7 +1252,9 @@
       .nav .links { gap: 20px; font-size: 14px; }
       .taglines { top: 4cm; left: 1cm; }
       .cta { right: 5%; }
+      .hero-mobile { margin-top: 200px; }
       .section { padding: 80px 20px; }
+      #services.section { padding: 0px 20px 80px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .about-content { min-height: auto; }
       .services-grid { grid-template-columns: 1fr; }
@@ -1431,26 +1470,38 @@
     </div>
   </div>
 
-  <!-- CINEMATIC HERO -->
-  <section class="hero" aria-label="Luxury Interior Design">
+  <!-- CINEMATIC HERO (Desktop) -->
+  <section class="hero hero-desktop" aria-label="Luxury Interior Design">
     <!-- Sliding track with luxury home images -->
     <div class="track" aria-hidden="true">
       <div class="slide" data-footnote="Tile install at Primary Bathroom, custom home by Luxe Custom Builders">
-        <img src="assets/images/SLIDER  HOMEPAGE/IMG_7545.jpeg" alt="Project Slide 1">
+        <img loading="lazy" decoding="async" src="assets/images/slider-homepage/IMG_7545.jpeg" alt="Project Slide 1">
         <div class="slide-footnote" role="note" aria-hidden="false">
           <div class="slide-footnote-desc">Tile install at Primary Bathroom, custom home by Luxe Custom Builders</div>
         </div>
       </div>
       <div class="slide" data-footnote="Tile install at Primary Bathroom, custom home by Luxe Custom Builders">
-        <img src="assets/images/SLIDER  HOMEPAGE/SLIDE 1.jpeg" alt="Project Slide 2">
+        <img loading="lazy" decoding="async" src="assets/images/slider-homepage/SLIDE 1.jpeg" alt="Project Slide 2">
         <div class="slide-footnote" role="note" aria-hidden="false">
           <div class="slide-footnote-desc">Tile install at Primary Bathroom, custom home by Luxe Custom Builders</div>
         </div>
       </div>
       <div class="slide" data-footnote="Tile install at Primary Bathroom. Custom home by Build Paragon Construction">
-        <img src="assets/images/SLIDER  HOMEPAGE/SLIDE 2.jpeg" alt="Project Slide 3">
+        <img loading="lazy" decoding="async" src="assets/images/slider-homepage/SLIDE 2.jpeg" alt="Project Slide 3">
         <div class="slide-footnote" role="note" aria-hidden="false">
           <div class="slide-footnote-desc">Tile install at Primary Bathroom. Custom home by Build Paragon Construction</div>
+        </div>
+      </div>
+      <div class="slide" data-footnote="Full home remodel with custom flooring and finishes">
+        <img loading="lazy" decoding="async" src="assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG" alt="Project Slide 4">
+        <div class="slide-footnote" role="note" aria-hidden="false">
+          <div class="slide-footnote-desc">Full home remodel with custom flooring and finishes</div>
+        </div>
+      </div>
+      <div class="slide" data-footnote="Guest bath with custom marble tile installation">
+        <img loading="lazy" decoding="async" src="assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG" alt="Project Slide 5">
+        <div class="slide-footnote" role="note" aria-hidden="false">
+          <div class="slide-footnote-desc">Guest bath with custom marble tile installation</div>
         </div>
       </div>
     </div>
@@ -1462,12 +1513,117 @@
       <h1 class="tagline">DESIGN<br>BUILD<br>PRECISELY</h1>
     </div>
 
-    <!-- Calls to action -->
+    <!-- Calls to action (desktop) -->
     <div class="cta">
       <a class="btn" href="#work">View Portfolio</a>
       <a class="btn secondary" href="contact/get-quote.html">Start Your Project</a>
     </div>
   </section>
+
+  <!-- HERO (Mobile) - visible on small viewports only -->
+  <section class="hero-mobile" aria-label="Interior Illusions - Mobile Hero" role="region">
+    <div class="hero-mobile-wrapper">
+
+        <!-- Rotating taglines with subtitles -->
+        <div class="taglines" aria-live="polite">
+          <h1 class="tagline active">QUIETLY<br>EXCEPTIONAL<br>INTERIORS</h1>
+          <h1 class="tagline">PLANS<br>CRAFT<br>CLARITY</h1>
+          <h1 class="tagline">DESIGN<br>BUILD<br>PRECISELY</h1>
+        </div>
+
+        <div class="hero-slider-container">
+            <div class="slider-track" id="mobileSliderTrack">
+
+                <div class="slide">
+                    <img src="assets/images/slider-homepage/IMG_7545.jpeg" alt="Slide 1" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="slide-content">
+                        <p class="slide-hero-text">DESIGN<br>BUILD<br>PRECISELY</p>
+                        <span class="slide-tag">Tile Install at Primary Bathroom for a Custom Home Builder</span>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <img src="assets/images/slider-homepage/SLIDE 1.jpeg" alt="Slide 2" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="slide-content">
+                        <p class="slide-hero-text">QUIETLY<br>EXCEPTIONAL<br>INTERIORS</p>
+                        <span class="slide-tag">Tile Install at Primary Bathroom for a Custom Home Builder</span>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <img src="assets/images/slider-homepage/SLIDE 2.jpeg" alt="Slide 3" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="slide-content">
+                        <p class="slide-hero-text">PLANS<br>CRAFT<br>CLARITY</p>
+                        <span class="slide-tag">Tile Install at Primary Bathroom for a Custom Home Builder</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="hero-buttons-overlay">
+            <a href="#work" class="btn btn-primary view-portfolio-btn">View Portfolio</a>
+            <a href="contact/get-quote.html" class="btn secondary start-project-btn">Start Your Project</a>
+        </div>
+    </div>
+  </section>
+
+  <script src="assets/js/slider.js"></script>
+
+  <!-- Mobile slider behavior: auto-slide right->left on small viewports -->
+  <script>
+  (function(){
+    // Only enable on small screens
+    const mq = window.matchMedia('(max-width: 768px)');
+    let intervalId = null;
+
+    function initSlider(){
+      const track = document.querySelector('[data-mobile-slider]');
+      if (!track) return;
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      if (total < 2) return; // nothing to slide
+
+      let index = 0;
+      // ensure slide sizing
+      slides.forEach((s)=>{ s.setAttribute('aria-hidden', 'true'); s.setAttribute('role','group'); });
+      slides[0].setAttribute('aria-hidden', 'false');
+
+      function go(i){
+        track.style.transform = `translateX(-${i * 100}%)`;
+        // update aria-hidden for slides
+        slides.forEach((s, idx)=> s.setAttribute('aria-hidden', idx===i ? 'false' : 'true'));
+      }
+
+      function start(){
+        if (intervalId) return;
+        intervalId = setInterval(()=>{ index = (index + 1) % total; go(index); }, 4000);
+      }
+      function stop(){ if (intervalId){ clearInterval(intervalId); intervalId = null; } }
+
+      // Start when initialized
+      start();
+
+      // Pause on touch interactions so users can swipe manually
+      let touchStartX = null;
+      track.addEventListener('touchstart', (e)=>{ stop(); touchStartX = e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchmove', (e)=>{ if (touchStartX == null) return; const dx = e.touches[0].clientX - touchStartX; if (Math.abs(dx) > 50){ stop(); } }, {passive:true});
+      track.addEventListener('touchend', (e)=>{ touchStartX = null; start(); }, {passive:true});
+
+      // Reset on visibility change
+      document.addEventListener('visibilitychange', ()=>{ if (document.hidden) stop(); else start(); });
+
+      // Clean up on resize/change of media query
+      mq.addEventListener('change', (ev)=>{
+        if (ev.matches) { start(); } else { stop(); track.style.transform = 'translateX(0)'; slides.forEach((s, idx)=> s.setAttribute('aria-hidden', idx===0 ? 'false' : 'true')); }
+      });
+    }
+
+    if (mq.matches) initSlider();
+    // also init on DOMContentLoaded in case this script runs early
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ()=>{ if (mq.matches) initSlider(); });
+  })();
+  </script>
 
   <!-- SERVICES SECTION -->
   <section id="services" class="section">
@@ -1475,7 +1631,7 @@
       <p class="section-subtitle text-azure">SERVICES</p>
       <h2 class="section-title">What We Offer</h2>
     </div>
-    
+
     <div class="services-grid">
       <!-- 01 Full home remodels -->
       <div class="service-card reveal">
@@ -1937,10 +2093,11 @@
 
     /* Synchronized taglines and background slides (guarded: legacy hero) */
     const taglines = Array.from(document.querySelectorAll(".tagline"));
-    const track = document.querySelector(".track");
+    const track = document.querySelector(".hero-desktop .track");
+    console.log('track found:', track);
     const subtitles = [
       "Luxury Interior Design",
-      "Emotional Space Creation", 
+      "Emotional Space Creation",
       "Artistic Living Environments"
     ];
     const descriptions = [
@@ -1951,10 +2108,14 @@
 
     let tagIndex = 0;
     let slideIndex = 0;
-    const totalSlides = 3; // Total number of slides in the track
+    const totalSlides = 5; // Total number of slides in the track
     
     function updateSlide() {
-      if (!track || taglines.length === 0) return;
+      console.log('updateSlide called, slideIndex:', slideIndex, 'tagIndex:', tagIndex);
+      if (!track || taglines.length === 0) {
+        console.log('track or taglines not found');
+        return;
+      }
       // Remove active classes from current tagline
       taglines[tagIndex].classList.remove("active");
       // Update indices
@@ -1962,13 +2123,14 @@
       slideIndex = (slideIndex + 1) % totalSlides;
       // Synchronize background slide with tagline
       track.className = `track slide-${slideIndex}`;
+      console.log('set track class to:', track.className);
       // Add active classes and update content after slide transition
       setTimeout(() => { taglines[tagIndex].classList.add("active"); }, 600);
     }
 
     // Start the synchronized transitions (only if legacy elements exist)
     if (track && taglines.length > 0) {
-      setInterval(updateSlide, 4500);
+      setInterval(updateSlide, 4000);
     }
 
     /* Reveal on scroll */
@@ -2130,6 +2292,48 @@
     }
 
     // Close lightbox with Escape key
+// Enhanced debug logs for mobile spacing
+if (window.matchMedia('(max-width: 768px)').matches) {
+  setTimeout(() => {
+    const hero = document.querySelector('.hero-mobile');
+    const services = document.querySelector('#services');
+    const sectionHeader = document.querySelector('#services .section-header');
+    const sectionTitle = document.querySelector('#services .section-title');
+
+    if (hero && services) {
+      const heroRect = hero.getBoundingClientRect();
+      const servicesRect = services.getBoundingClientRect();
+      const headerRect = sectionHeader ? sectionHeader.getBoundingClientRect() : null;
+      const titleRect = sectionTitle ? sectionTitle.getBoundingClientRect() : null;
+
+      console.log('=== MOBILE SPACING DEBUG ===');
+      console.log('Mobile Hero top:', heroRect.top, 'bottom:', heroRect.bottom);
+      console.log('Mobile Services top:', servicesRect.top, 'bottom:', servicesRect.bottom);
+      console.log('Gap between hero bottom and services top:', servicesRect.top - heroRect.bottom, 'px');
+
+      if (headerRect) {
+        console.log('Section header top:', headerRect.top, 'bottom:', headerRect.bottom);
+        console.log('Gap hero bottom to header top:', headerRect.top - heroRect.bottom, 'px');
+      }
+
+      if (titleRect) {
+        console.log('Section title top:', titleRect.top);
+        console.log('Gap hero bottom to title top:', titleRect.top - heroRect.bottom, 'px');
+      }
+
+      // Check computed styles
+      const servicesStyle = window.getComputedStyle(services);
+      console.log('Services padding-top:', servicesStyle.paddingTop);
+      console.log('Services margin-top:', servicesStyle.marginTop);
+
+      if (sectionHeader) {
+        const headerStyle = window.getComputedStyle(sectionHeader);
+        console.log('Section header margin-top:', headerStyle.marginTop);
+        console.log('Section header padding-top:', headerStyle.paddingTop);
+      }
+    }
+  }, 1500); // Wait longer for layout to settle
+}
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         const modal = document.getElementById('lightboxModal');
@@ -2141,6 +2345,20 @@
         }
       }
     });
+// Debug logs for mobile spacing
+if (window.matchMedia('(max-width: 768px)').matches) {
+  setTimeout(() => {
+    const hero = document.querySelector('.hero-mobile');
+    const services = document.querySelector('#services');
+    if (hero && services) {
+      const heroRect = hero.getBoundingClientRect();
+      const servicesRect = services.getBoundingClientRect();
+      console.log('Mobile Hero top:', heroRect.top, 'bottom:', heroRect.bottom);
+      console.log('Mobile Services top:', servicesRect.top, 'bottom:', servicesRect.bottom);
+      console.log('Gap between hero bottom and services top:', servicesRect.top - heroRect.bottom, 'px');
+    }
+  }, 1000); // Wait for layout to settle
+}
   </script>
 </body>
 <script src="assets/js/nav-active.js"></script>

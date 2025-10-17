@@ -114,6 +114,89 @@
       transform: none !important;
     }
 
+    /* Gallery Styles */
+    .gallery {
+      padding: 120px 40px;
+      background: var(--color-light);
+    }
+    .gallery .section-header {
+      text-align: left !important;
+    }
+    .gallery-grid {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .gallery-item {
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      transition: all 400ms ease;
+      cursor: pointer;
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 80px rgba(29,78,216,0.18);
+    }
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0);
+      transition: all 400ms ease;
+    }
+    .gallery-item:hover::before {
+      background: rgba(0,0,0,0.1);
+    }
+    .gallery-item.reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: reveal 0.6s ease forwards;
+    }
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 1024px) {
+      .gallery {
+        padding: 100px 20px;
+      }
+      .gallery-grid {
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      .gallery-item {
+        height: 300px;
+      }
+    }
+    @media (max-width: 768px) {
+      .gallery {
+        padding: 80px 20px;
+      }
+      .gallery-grid {
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+      .gallery-item {
+        height: 250px;
+      }
+    }
+    @media (max-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-item {
+        height: 300px;
+      }
+    }
+
     /* Lightbox Modal */
     .lightbox-modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -490,31 +573,22 @@
     </div>
 
     <!-- Portfolio Section -->
-    <section class="portfolio-section" style="margin-top: 80px; background: var(--color-bg-primary); padding: 80px 0;">
-      <div class="section-header" style="max-width: 1400px; margin: 0 auto 60px; padding: 0 20px; text-align: left;">
+    <section class="gallery" style="margin-top: 80px; background: var(--color-bg-primary);">
+      <div class="section-header" style="max-width: 1400px; margin: 0 auto 60px; padding: 0 20px;">
         <p class="section-subtitle" style="color: var(--color-accent); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 12px;">PORTFOLIO</p>
         <h2 class="section-title" style="color: var(--color-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin: 0;">Our Latest Work</h2>
       </div>
-      
-      <div class="portfolio-grid-1x1">
-        <div class="tile" data-footnote="Custom tile in Primary Bathroom" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG" alt="Luxury Bathroom with Freestanding Tub">
-        </div>
-        <div class="tile" data-footnote="LVP flooring install throughout" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG" alt="Contemporary Living Room with Fireplace">
-        </div>
-        <div class="tile" data-footnote="Nail down install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG" alt="Modern Kitchen with Dark Cabinets">
-        </div>
-        <div class="tile" data-footnote="Full home remodel" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG" alt="Modern Kitchen with Island">
-        </div>
-        <div class="tile" data-footnote="Custom tile in Primary Bathroom" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG" alt="Luxury Bathroom with Glass Shower">
-        </div>
-        <div class="tile" data-footnote="Custom Tile" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7928.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7928.JPG" alt="Modern Bathroom with Round Mirror">
-        </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG');" data-footnote="Custom tile in Primary Bathroom" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)"></div>
+        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG');" data-footnote="LVP flooring install throughout" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)"></div>
+        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG');" data-footnote="Nail down install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)"></div>
+        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG');" data-footnote="Full home remodel" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)"></div>
+        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG');" data-footnote="Custom tile in Primary Bathroom" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)"></div>
+        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG');" data-footnote="Custom Tile" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG', this)"></div>
+        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG');" data-footnote="Guest Bath Marble Tile Install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG', this)"></div>
+        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG');" data-footnote="Red Oak HardwoodFloor Install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG', this)"></div>
+        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG');" data-footnote="Primary Bath Tile Install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG', this)"></div>
       </div>
     </section>
 
@@ -650,12 +724,11 @@
       const modal = document.getElementById('lightboxModal');
       const image = document.getElementById('lightboxImage');
       image.src = imageSrc;
-      const footnoteEl = document.getElementById('lightboxFootnote');
-      const srcEl = clickedElement || window.__lastClickedTile || null;
-      if (footnoteEl) {
-        const note = srcEl && srcEl.getAttribute ? srcEl.getAttribute('data-footnote') : '';
-        footnoteEl.textContent = note || '';
-        if (note) footnoteEl.focus();
+      const footnote = document.getElementById('lightboxFootnote');
+      if (footnote) {
+        const desc = clickedElement && clickedElement.dataset && clickedElement.dataset.footnote ? clickedElement.dataset.footnote : '';
+        footnote.innerHTML = desc ? `<span class="footnote-desc">${desc}</span>` : '';
+        if (desc) footnote.focus();
       }
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';

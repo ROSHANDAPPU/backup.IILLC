@@ -240,6 +240,262 @@
   --color-light: #FAF7F2;     /* Ivory */
 }
 
+/* ------------------ HERO: Desktop & Mobile ------------------ */
+
+.hero { position: relative; overflow: hidden; background: var(--color-bg-primary); }
+
+/* Desktop hero: full viewport (image sits under the nav) */
+.hero-desktop { display: block; height: 100vh; margin-top: 0; position: relative; }
+.track, .desktop-slider-track { position: absolute; inset: 0; display: flex; height: 100%; width: 300%; transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
+.desktop-slide, .track > .slide { min-width: 100vw; height: 100%; position: relative; }
+.slide img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; transform: scale(1.1); animation: slowZoom 15s ease-in-out infinite alternate; }
+
+@keyframes slowZoom {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1.12); }
+}
+
+/* Hero overlay content and CTA (desktop) */
+.hero-overlay { position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: flex-start; }
+.hero-content { padding-left: 64px; padding-right: 24px; max-width: 720px; width: clamp(360px, 48vw, 720px); text-align: left; }
+.hero-title { color: var(--color-heading); font-size: clamp(64px, 11vw, 140px); line-height: 0.92; margin: 0 0 8px; letter-spacing: -0.02em; font-weight: 900; }
+.hero-sub { color: var(--color-body); margin: 0 0 8px; font-size: clamp(16px, 2.2vw, 20px); }
+.hero-cta { position: absolute; bottom: 24px; right: 24px; z-index: 30; background: rgba(11,14,20,0.6); color: var(--color-heading); border: none; padding: 8px 12px; border-radius: 8px; display: flex; gap: 16px; }
+.hero-cta .btn { min-width: 160px; }
+
+/* Mobile hero */
+.hero-mobile { display: none; }
+.mobile-hero-container { 
+  padding: 0; 
+  width: 100%;
+  height: 75vh;
+  overflow: hidden; 
+  position: relative;
+  background: var(--color-bg-primary);
+}
+
+.mobile-slider-track { 
+  display: flex; 
+  width: 300%; 
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Mobile slides: rectangular format matching screenshot */
+.mobile-slide { 
+  width: 100%; 
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Images inside mobile slides: maintain 16:9 rectangular shape */
+.mobile-slide-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  display: block;
+  transform: none;
+  z-index: 1;
+}
+
+/* Put slide text/content above the image */
+.mobile-slide-inner { position: relative; z-index: 2; padding: 28px 20px 56px; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none; }
+.mobile-slide-inner * { pointer-events: auto; }
+.slide-content { padding: 24px; width: 100%; }
+.slide-hero-text { color: var(--color-heading); font-size: clamp(28px, 8vw, 48px); line-height: 1.05; margin: 0; }
+.mobile-slide-footnote, .slide-footnote { position: absolute; left: 16px; bottom: 16px; font-size: 11px; color: var(--color-heading); background: rgba(11,14,20,0.6); padding: 8px 10px; border-radius: 10px; }
+
+.mobile-cta-buttons { display: none; position: fixed; left: 50%; transform: translateX(-50%); bottom: 20px; z-index: 9999; gap: 16px; }
+.mobile-cta-buttons .btn { width: 180px; }
+
+/* Hide desktop CTAs on mobile */
+@media (max-width: 768px) {
+  .hero-desktop .hero-cta, .hero-desktop .hero-overlay .hero-cta { display: none !important; }
+  .mobile-cta-buttons { display: flex; }
+}
+/* --- New: Explicit desktop/mobile hero visibility and collision-avoidance --- */
+.hero-desktop { display: block; }
+.hero-mobile  { display: none; }
+
+/* Mobile (<=768px): hide desktop hero, show mobile hero + fixed CTAs */
+@media (max-width: 768px) {
+  /* ensure header stays above mobile CTAs but below hero overlay where necessary */
+  header.nav { z-index: 2000; position: fixed; top: 0; left: 0; right: 0; }
+
+  .hero-desktop { display: none !important; }
+  .hero-mobile  { display: block !important; height: calc(100vh - 70px); margin-top: 70px; }
+
+  /* Mobile CTA container fixed at bottom center, high z-index but under mobile menu overlay */
+  .mobile-cta-fixed { display: flex !important; position: fixed; left: 50%; transform: translateX(-50%); bottom: 18px; gap: 12px; z-index: 3000; }
+  .mobile-cta-fixed .mobile-cta { width: 44vw; min-width: 140px; max-width: 220px; }
+
+  /* Prevent hero elements from overlapping nav (give hero a safe-top padding) */
+  .hero-mobile .mobile-hero-container { padding-top: 8px; }
+
+  /* Make sure hero overlays / slides are layered under nav and mobile overlay */
+  .hero-mobile, .hero-desktop { z-index: 100; }
+  .hero-mobile .mobile-hero-container, .hero-desktop .track { z-index: 100; }
+
+  /* Ensure mobile slides are full-width and track starts at 0 */
+  .mobile-slider-track { transform: translateX(0); will-change: transform; }
+  .mobile-slide { min-width: 100%; }
+
+  /* Slight elevation for footnotes so they appear above slides but below CTAs */
+  .mobile-footnote { z-index: 120; }
+}
+
+/* Accessibility: ensure that only one hero is reachable by assistive tech */
+.hero-desktop[aria-hidden="true"], .hero-mobile[aria-hidden="true"] { display: none !important; }
+
+.slide-footnote { position: absolute; left: 16px; bottom: 16px; font-size: 10px; color: var(--color-heading); background: rgba(11,14,20,0.6); padding: 8px 10px; border-radius: 10px; }
+
+/* Spacing between nav and hero */
+.page-home header.nav + .hero { margin-top: 0; }
+
+/* Media queries */
+@media (max-width: 768px) {
+  .hero-desktop { display: none; }
+  .hero-mobile { display: block; margin-top: 8px; height: calc(100vh - 88px); }
+  .hero-overlay { padding-left: 24px; }
+  .mobile-cta-fixed { display: flex; }
+}
+
+/* ================================================= */
+/* FIX 1: Reset Slider/Hero Containers & Fix Overflow */
+/* ================================================= */
+
+@media (max-width: 768px) {
+    /* Main wrapper for mobile hero, ensuring 4:3 aspect ratio for the image */
+    .hero-mobile-wrapper {
+        position: relative;
+        width: 100vw;
+        overflow: hidden;
+        margin-top: 0;
+    }
+
+    /* Slider container with a fixed 4:3 aspect ratio */
+    .hero-slider-container {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        height: auto;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Buttons are fixed to the bottom-center of the viewport */
+    .hero-buttons-overlay {
+        position: fixed;
+        bottom: 30px; /* A bit more space from the bottom edge */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000; /* High z-index to be on top of everything */
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    /* FIX 2: Slider Track Dimensions */
+    .hero-slider-container .slider-track {
+        display: flex;
+        height: 100%;
+        width: 300%; /* Total width for 3 slides */
+        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* FIX 3: Individual Slide Dimensions */
+    .hero-slider-container .slide {
+        width: 100vw; /* Each slide must be exactly viewport width */
+        flex-shrink: 0;
+        height: 100%;
+        position: relative !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    /* Text Overlay Styling (Ensure it covers the image perfectly) */
+    .slide-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .slide-content * {
+        pointer-events: auto;
+    }
+
+    /* Style the text itself */
+    .slide-hero-text {
+        color: var(--color-heading);
+        font-size: clamp(24px, 6vw, 36px);
+        line-height: 1.1;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        font-weight: 700;
+        text-align: left;
+        position: absolute;
+        left: 24px;
+        bottom: 80px;
+    }
+
+    .slide-tag {
+        background: linear-gradient(90deg, rgba(11, 14, 20, 0.8), rgba(147, 197, 253, 0.3));
+        color: var(--color-heading);
+        font-size: 10px;
+        padding: 6px 8px;
+        border-radius: 10px;
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
+        display: inline-block;
+        font-weight: 500;
+        text-transform: none;
+        letter-spacing: 0.05em;
+        border: 1px solid rgba(147, 197, 253, 0.3);
+        box-shadow: 0 2px 8px rgba(11,14,20,0.15);
+    }
+}
+    @media (max-width: 1024px){
+      .slide-footnote{ left: 18px; bottom: 24px; padding: 8px 10px; border-radius: 12px; }
+      .slide-footnote-desc{ font-size: 12px; }
+    }
+    @media (max-width: 480px) {
+      .slide-footnote { left: 12px; right: 12px; bottom: 16px; font-size: 11px; padding: 6px 8px; }
+      .slide-footnote-desc { font-size: 11px; }
+    }
+
+/* Navigation breakpoints */
+@media (max-width: 992px) {
+  .nav .links { gap: 12px; }
+}
+@media (min-width: 769px) and (max-width: 992px) {
+  /* Tablet specific adjustments */
+  .hero-desktop { height: calc(100vh - 80px); }
+}
+
+/* Footer responsive */
+@media (max-width: 1000px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .footer-inner { grid-template-columns: 1fr; padding: 24px; text-align: center; }
+}
+
 /* Global Background - Deep Navy for all pages */
 body, html {
   background-color: var(--color-bg-primary); /* Deep Navy */
@@ -248,6 +504,60 @@ body, html {
   /* Enforce numeric styles site-wide */
   font-variant-numeric: lining-nums tabular-nums; /* Prefer lining/tabular numbers */
   font-feature-settings: 'lnum' 1, 'tnum' 1; /* Fallback for browsers without font-variant support */
+}
+
+/* Intro overlay now shows on both desktop and mobile */
+@media (min-width: 769px) {
+  .track { display: flex !important; }
+}
+
+/* DESKTOP SLIDE FIX: ensure each slide contains its own image (no heavy zoom or track translation) */
+@media (min-width: 769px) {
+  /* make track a normal flex container across the page */
+  .track {
+    position: relative !important;
+    width: 100% !important;
+    display: flex !important;
+    gap: 0;
+    transform: none !important; /* prevent JS/CSS translations from shifting the track */
+  }
+
+  /* each slide is one third of the track */
+  .track > .slide {
+    flex: 0 0 33.333% !important;
+    width: 33.333% !important;
+    /* full viewport height so image reaches edge-to-edge under header */
+    height: 100vh !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: block !important;
+  }
+
+  /* images fill the slide without extra scaling animation */
+  .track > .slide img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  /* nudge image down ~2.5cm on desktop so composition shows lower area */
+  object-position: center calc(50% + 2.5cm) !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* disable any slide-index translation rules that use vw units */
+  .track[class*="slide-"] { transform: none !important; }
+}
+
+/* Soften the cinematic dark overlay on desktop so the image shows to the bottom */
+@media (min-width: 769px) {
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11,14,20,0.22) 0%, rgba(11,14,20,0.32) 60%, rgba(11,14,20,0.35) 100%);
+    pointer-events: none;
+    z-index: 5;
+  }
 }
 
 /* Page sections with Deep Navy background */
@@ -397,6 +707,164 @@ h3, .eyebrow, .section-subtitle {
   outline: none;
   box-shadow: 0 0 0 2px var(--color-accent); /* 2px Azure ring */
 }
+
+/* ----------------------------- */
+/* Hero: Desktop & Mobile Styles */
+/* ----------------------------- */
+
+/* Base hero spacing between nav and hero */
+.hero {
+  position: relative;
+  height: calc(100vh - 80px);
+  margin-top: 80px;
+  overflow: hidden;
+  background: var(--color-bg-primary);
+}
+
+
+
+/* Desktop hero (default) */
+.hero-desktop { height: calc(100vh - 80px); margin-top: 0; display: block; }
+.desktop-slider-track { position: absolute; inset: 0; display: flex; height: 100%; width: 300%; transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
+.desktop-slide { min-width: 100vw; height: 100%; position: relative; }
+.desktop-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; transform: scale(1.1); animation: slowZoom 15s ease-in-out infinite alternate; }
+
+/* Track & Slide (desktop hero) - ensure these rules are present in stylesheet */
+.track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  height: 100%;
+  will-change: transform;
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.slide {
+  position: relative;
+  min-width: 100vw;
+  height: 100%;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transform: scale(1.1);
+  animation: slowZoom 15s ease-in-out infinite alternate;
+  filter: saturate(1.1) contrast(1.05) brightness(0.9);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slowZoom {
+  0% { transform: scale(1.1); }
+  100% { transform: scale(1.0); }
+}
+
+/* Desktop overlay content and CTAs */
+.hero-overlay { position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: flex-start; }
+.hero-content { padding-left: 64px; padding-right: 24px; max-width: 720px; width: clamp(360px, 48vw, 720px); text-align: left; }
+.hero-title { color: var(--color-heading); font-size: clamp(64px, 11vw, 140px); line-height: 0.92; margin: 0 0 8px; letter-spacing: -0.02em; font-weight: 900; }
+.hero-sub { color: var(--color-body); margin: 0 0 8px; font-size: clamp(16px, 2.2vw, 20px); }
+.hero-cta { display: flex; gap: 16px; align-items: center; }
+.hero-cta .btn { min-width: 160px; }
+
+.hero-nav { position: absolute; bottom: 24px; right: 24px; z-index: 30; background: rgba(11,14,20,0.6); color: var(--color-heading); border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 22px; }
+.hero-nav.prev { right: 96px; }
+
+/* Desktop footnote styles (reuse slide-footnote) */
+.desktop-footnote { position: absolute; left: 24px; bottom: 32px; z-index: 30; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); padding: 14px 16px; border-radius: 18px; font-size: 14px; color: #F8FAFC; max-width: min(680px, calc(100% - 64px)); box-shadow: 0 10px 30px rgba(2,6,23,0.45); border: 1px solid rgba(255,255,255,0.06); }
+.desktop-footnote-desc { font-weight: 600; }
+
+/* Mobile hero */
+.hero-mobile { display: none; }
+.mobile-hero-container { padding: 0; aspect-ratio: 4 / 3; width: 100%; overflow: hidden; position: relative; }
+.mobile-slider-track { display: flex; width: 300%; height: 100%; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.mobile-slide { width: 100%; background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; align-items: flex-end; }
+.mobile-slide-inner { background: none; padding: 40px 20px 80px; width: 100%; }
+.mobile-hero-title { font-size: clamp(28px, 8vw, 48px); line-height: 1.2; color: var(--color-heading); margin: 0 0 8px; }
+.mobile-hero-sub { color: var(--color-body); margin: 0 0 4px; }
+.mobile-footnote { position: absolute; left: 12px; bottom: 12px; font-size: 10px; color: rgba(231,234,238,0.9); }
+
+/* Mobile CTA fixed bottom-center */
+.mobile-cta-fixed { display: none; position: fixed; left: 50%; transform: translateX(-50%); bottom: 16px; z-index: 9999; display: flex; gap: 16px; }
+.mobile-cta { width: 180px; text-align: center; }
+
+/* Spacing between nav and hero for mobile */
+@media (max-width: 768px) {
+  .hero-desktop { display: none; }
+  .hero-mobile { display: block; margin-top: 8px; height: calc(100vh - 88px); }
+  /* On small viewports, remove fixed aspect-ratio and let the container fill the hero height */
+  .mobile-hero-container { aspect-ratio: auto; height: 100%; min-height: calc(100vh - 88px); }
+  .mobile-cta-fixed { display: flex; }
+  /* adjust mobile footnote sizes if needed */
+  .mobile-footnote { font-size: 10px; }
+}
+
+/* Desktop-specific hero layout tweaks */
+@media (min-width: 1000px) {
+  .hero-overlay { padding-left: 40px; }
+  .hero-content { max-width: 720px; }
+  .hero-cta { position: absolute; right: 60px; bottom: 48px; z-index: 30; }
+}
+
+/* Exact desktop sizing to match screenshots (large displays) */
+@media (min-width: 1400px) {
+  .hero-overlay { padding-left: 120px; }
+  .hero-content { max-width: 520px; width: 520px; }
+  .hero-title { font-size: 180px; line-height: 0.88; }
+  .hero-cta { right: 80px; bottom: 56px; }
+}
+
+/* Smaller desktops/tablets: reduce headline so it doesn't overflow */
+@media (max-width: 1199px) {
+  .hero-title { font-size: clamp(48px, 9.5vw, 110px); }
+  .hero-content { width: clamp(320px, 46vw, 640px); }
+}
+
+@media (max-width: 899px) {
+  .hero-title { font-size: clamp(36px, 9vw, 72px); line-height: 1.02; }
+  .hero-cta { position: static; margin: 20px 0 0 64px; }
+}
+
+/* Small screens adjustments */
+@media (max-width: 480px) {
+  .mobile-footnote { font-size: 9px; left: 8px; bottom: 8px; }
+  .mobile-slide-inner { padding: 24px; }
+}
+
+/* Ensure the intro overlay is visible on mobile as well (show full-screen brand intro) */
+@media (max-width: 768px) {
+  /* Show the full-screen intro overlay with a solid black background so the logo and intro video
+    display as a brand moment on both desktop and mobile. */
+  .intro-overlay { background: #000 !important; pointer-events: auto; }
+  /* Keep the overlay background element hidden (we use the overlay's solid black color instead)
+    to avoid an extra gradient on top of the video. */
+  .intro-overlay-bg { display: none !important; opacity: 0 !important; pointer-events: none !important; }
+  .hero::after { background: none !important; }
+}
+
+/* Navigation breakpoints: adjust at 992px and tablet fix 769-992px */
+@media (max-width: 992px) {
+  .nav { padding: 0 24px; }
+}
+@media (min-width: 769px) and (max-width: 992px) {
+  /* Tablet specific adjustments */
+  .hero-desktop { height: calc(100vh - 80px); }
+}
+
+/* Footer responsive adjustments */
+@media (max-width: 1000px) {
+  .site-footer .footer-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+@media (max-width: 640px) {
+  .site-footer .footer-inner { grid-template-columns: 1fr; padding: 24px; gap: 12px; }
+}
+
+/* Spacing override for home page when header.nav is present */
+.page-home header.nav + .hero {
+  margin-top: 0;
+  height: calc(100vh - 80px);
+}
+
 
 /* Secondary Button Disabled State */
 .btn-secondary:disabled {
@@ -1169,6 +1637,14 @@ p, a, li, label, input, select, textarea, button, small, .eyebrow, .section-subt
   }
 }
 
+  /* Hide desktop-only elements that may visually duplicate content on small screens */
+  @media (max-width: 768px) {
+    .track { display: none !important; }
+    .taglines { display: none !important; }
+    /* Ensure the mobile track doesn't overflow and shows exactly 1 slide at a time */
+    .mobile-hero-container { overflow: hidden; }
+    .mobile-slider-track { width: calc(100% * 3); }
+  }
 /* 6) Mobile-friendly typography */
 body {
   font-size: clamp(15px, 1.6vw, 18px);

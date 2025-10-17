@@ -1,0 +1,45 @@
+### Rewrite Rules Added by CyberPanel Rewrite Rule Generator
+
+RewriteEngine On
+RewriteCond %{HTTPS}  !=on
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+
+### End CyberPanel Generated Rules.
+
+# -------------------------------
+# FORCE HTTPS
+# -------------------------------
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# -------------------------------
+# SECURITY HEADERS
+# -------------------------------
+# Prevent Clickjacking
+Header always append X-Frame-Options SAMEORIGIN
+
+# Prevent MIME type sniffing
+Header set X-Content-Type-Options nosniff
+
+# Enable XSS Protection in browsers
+Header set X-XSS-Protection "1; mode=block"
+
+# HSTS - Force HTTPS for browsers
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+# -------------------------------
+# BASIC PROTECTION
+# -------------------------------
+# Disable directory listing
+Options -Indexes
+
+# Protect .htaccess itself
+<Files ".htaccess">
+  Require all denied
+</Files>
+
+# Protect sensitive files
+<FilesMatch "(^\.|wp-config\.php|config\.php)">
+  Require all denied
+</FilesMatch>

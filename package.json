@@ -4,7 +4,7 @@
   "description": "Interior Illusions LLC Website",
   "main": "index.html",
   "scripts": {
-    "start": "live-server --port=3000",
+    "start": "node node_modules/live-server/live-server.js --port=3000",
     "format": "prettier --write .",
     "build": "echo 'Build process - minify CSS/JS here'"
   },

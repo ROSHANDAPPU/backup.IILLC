@@ -104,14 +104,35 @@
     }
     * { cursor: none !important; }
 
-    /* Override portfolio grid hover effects */
-    .portfolio-grid-1x1 .tile:hover {
-      border-color: rgba(147, 197, 253, 0.1) !important;
-      transform: none !important;
-      box-shadow: none !important;
+    /* Gallery styles for services page portfolio */
+    .gallery {
+      padding: 120px 40px; background: var(--color-light);
     }
-    .portfolio-grid-1x1 .tile:hover img {
-      transform: none !important;
+
+    .gallery .section-header {
+      max-width: 1400px; margin: 0 auto; margin-bottom: 80px;
+      text-align: left !important;
+    }
+    .gallery-grid {
+      display: grid; gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      max-width: 1400px; margin: 0 auto;
+    }
+    .gallery-item {
+      height: 400px; background-size: cover; background-position: center;
+      border-radius: 0px; transition: all 400ms ease; cursor: pointer;
+      position: relative; overflow: hidden;
+    }
+    .gallery-item::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(29,78,216,0); transition: all 400ms ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 80px rgba(29,78,216,0.18);
+    }
+    .gallery-item:hover::before {
+      background: rgba(29,78,216,0.08);
     }
 
     /* Lightbox Modal */
@@ -487,31 +508,57 @@
     </div>
 
     <!-- Portfolio Section -->
-    <section class="portfolio-section" style="margin-top: 80px; background: var(--color-bg-primary); padding: 80px 0;">
+    <section class="gallery" style="margin-top: 80px;">
       <div class="section-header" style="max-width: 1400px; margin: 0 auto 60px; padding: 0 20px; text-align: left;">
         <p class="section-subtitle" style="color: var(--color-accent); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 12px;">PORTFOLIO</p>
         <h2 class="section-title" style="color: var(--color-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin: 0;">Our Latest Work</h2>
       </div>
       
-      <div class="portfolio-grid-1x1">
-        <div class="tile" data-footnote="Custom cabinetry and soft-close drawers" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG" alt="Luxury Bathroom with Freestanding Tub">
-        </div>
-        <div class="tile" data-footnote="LVP flooring install throughout" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG" alt="Contemporary Living Room with Fireplace">
-        </div>
-        <div class="tile" data-footnote="Nail down install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG" alt="Modern Kitchen with Dark Cabinets">
-        </div>
-        <div class="tile" data-footnote="Full home remodel" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG" alt="Modern Kitchen with Island">
-        </div>
-        <div class="tile" data-footnote="Quartz countertops and waterfall edge" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG" alt="Luxury Bathroom with Glass Shower">
-        </div>
-        <div class="tile" data-footnote="Tile backsplash and undercabinet lighting" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7928.JPG', this)">
-          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7928.JPG" alt="Modern Bathroom with Round Mirror">
-        </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal"
+          style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG');"
+          data-footnote="Custom cabinetry and soft-close drawers"
+          onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)"></div>
+
+        <div class="gallery-item reveal"
+          style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG');"
+          data-footnote="LVP flooring install throughout"
+          onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)"></div>
+
+        <div class="gallery-item reveal"
+          style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG');"
+          data-footnote="Nail down install"
+          onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)"></div>
+
+        <div class="gallery-item reveal"
+          style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG');"
+          data-footnote="Full home remodel"
+          onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)"></div>
+
+        <div class="gallery-item reveal"
+          style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG');"
+          data-footnote="Custom tile in Primary Bathroom"
+          onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)"></div>
+
+        <div class="gallery-item reveal"
+          style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG');"
+          data-footnote="Custom Tile"
+          onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG', this)"></div>
+
+        <div class="gallery-item reveal"
+          style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG');"
+          data-footnote="Guest Bath Marble Tile Install"
+          onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG', this)"></div>
+
+        <div class="gallery-item reveal"
+          style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG');"
+          data-footnote="Red Oak HardwoodFloor Install"
+          onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG', this)"></div>
+
+        <div class="gallery-item reveal"
+          style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG');"
+          data-footnote="Primary Bath Tile Install"
+          onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG', this)"></div>
       </div>
     </section>
 
