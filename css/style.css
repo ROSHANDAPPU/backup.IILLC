@@ -365,6 +365,7 @@
   .hero-mobile { display: block; margin-top: 8px; height: calc(100vh - 88px); }
   .hero-overlay { padding-left: 24px; }
   .mobile-cta-fixed { display: flex; }
+  #services.section { padding: 0px; margin-top: -50px; }
 }
 
 /* ================================================= */
@@ -421,6 +422,10 @@
         align-items: center;
         justify-content: center;
         padding: 20px;
+    }
+
+    .hero-mobile .slide img {
+      transform: scale(1.1);
     }
 
     /* Text Overlay Styling (Ensure it covers the image perfectly) */
@@ -511,42 +516,7 @@ body, html {
   .track { display: flex !important; }
 }
 
-/* DESKTOP SLIDE FIX: ensure each slide contains its own image (no heavy zoom or track translation) */
-@media (min-width: 769px) {
-  /* make track a normal flex container across the page */
-  .track {
-    position: relative !important;
-    width: 100% !important;
-    display: flex !important;
-    gap: 0;
-    transform: none !important; /* prevent JS/CSS translations from shifting the track */
-  }
 
-  /* each slide is one third of the track */
-  .track > .slide {
-    flex: 0 0 33.333% !important;
-    width: 33.333% !important;
-    /* full viewport height so image reaches edge-to-edge under header */
-    height: 100vh !important;
-    overflow: hidden !important;
-    position: relative !important;
-    display: block !important;
-  }
-
-  /* images fill the slide without extra scaling animation */
-  .track > .slide img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-  /* nudge image down ~2.5cm on desktop so composition shows lower area */
-  object-position: center calc(50% + 2.5cm) !important;
-    transform: none !important;
-    animation: none !important;
-  }
-
-  /* disable any slide-index translation rules that use vw units */
-  .track[class*="slide-"] { transform: none !important; }
-}
 
 /* Soften the cinematic dark overlay on desktop so the image shows to the bottom */
 @media (min-width: 769px) {
@@ -583,6 +553,18 @@ body, html {
 
 .gallery .section-header {
   color: var(--color-heading); /* Off-white */
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: 120px 0;
+  }
+
+  .gallery .section-header,
+  .gallery .section-header p,
+  .gallery .section-header h2 {
+    text-align: center !important;
+  }
 }
 
 /* Portfolio page with dark background like services */
