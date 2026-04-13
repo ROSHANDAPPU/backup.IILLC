@@ -25,10 +25,15 @@ const AssistantApp = () => {
     const [step, setStep] = useState<"assign" | "live" | "inventory" | "evidence" | "issue">("assign");
     const [submitting, setSubmitting] = useState(false);
     const [elapsed, setElapsed] = useState(0);
+    const [clockedOut, setClockedOut] = useState(false);
+    const [showClockOutConfirm, setShowClockOutConfirm] = useState(false);
 
     // States for verification
     const [inventoryForm, setInventoryForm] = useState({ frames: "", brokenFrames: "", paper: "", brokenPaper: "" });
     const [activeTab, setActiveTab] = useState<"stats" | "verify" | "issues">("stats");
+    const [issueModal, setIssueModal] = useState<"equipment" | "lead" | "discrepancy" | null>(null);
+    const [issueNote, setIssueNote] = useState("");
+    const [submittingIssue, setSubmittingIssue] = useState(false);
 
     useEffect(() => {
         if (!user) return;
@@ -44,7 +49,12 @@ const AssistantApp = () => {
 
             if (data) {
                 setActiveShift(data as unknown as Shift);
-                if ((data as Record<string, unknown>).assistant_clock_in) {
+                const d = data as Record<string, unknown>;
+                if (d.assistant_clock_in) {
+                    setStep("live");
+                }
+                if (d.assistant_clock_out) {
+                    setClockedOut(true);
                     setStep("live");
                 }
             }
@@ -125,6 +135,84 @@ const AssistantApp = () => {
         setSubmitting(false);
     };
 
+    const submitIssue = async (type: "equipment" | "lead" | "discrepancy") => {
+        if (!activeShift || !issueNote.trim()) return;
+        setSubmittingIssue(true);
+
+        try {
+            if (type === "discrepancy") {
+                // Creates a real discrepancy ticket managers can see
+                // @ts-expect-error schema dynamically updated
+                await supabase.from("discrepancy_tickets").insert({
+                    shift_id: activeShift.id,
+                    venue_id: activeShift.venue_id,
+                    status: "open",
+                    notes: issueNote
+                });
+            } else {
+                // Logs equipment or lead issues as assistant logs
+                // @ts-expect-error schema dynamically updated
+                await supabase.from("assistant_logs").insert({
+                    shift_id: activeShift.id,
+                    assistant_id: user?.id,
+                    event_type: type === "equipment" ? "equipment_issue" : "lead_issue",
+                    payload: { note: issueNote }
+                });
+            }
+
+            setIssueNote("");
+            setIssueModal(null);
+            alert(`${type.charAt(0).toUpperCase() + type.slice(1)} issue reported successfully.`);
+        } catch (err: unknown) {
+            alert(err instanceof Error ? err.message : String(err));
+        }
+
+        setSubmittingIssue(false);
+    };
+
+    const handleClockOut = async () => {
+        if (!activeShift || !user) return;
+        setSubmitting(true);
+
+        const timestamp = new Date().toISOString();
+        const clockInTime = new Date(activeShift.assistant_clock_in!).getTime();
+        const clockOutTime = new Date(timestamp).getTime();
+        const hoursWorked = ((clockOutTime - clockInTime) / 1000 / 3600).toFixed(2);
+
+        try {
+            await supabase
+                .from("shifts")
+                .update({
+                    assistant_clock_out: timestamp,
+                    helper_ratio: parseFloat(hoursWorked)
+                })
+                .eq("id", activeShift.id);
+
+            // @ts-expect-error schema dynamically updated
+            await supabase.from("assistant_logs").insert({
+                shift_id: activeShift.id,
+                assistant_id: user.id,
+                event_type: "clock_out",
+                payload: {
+                    hours_worked: hoursWorked,
+                    clock_in: activeShift.assistant_clock_in,
+                    clock_out: timestamp
+                }
+            });
+
+            setActiveShift({
+                ...activeShift,
+                assistant_clock_out: timestamp
+            });
+            setClockedOut(true);
+            setShowClockOutConfirm(false);
+        } catch (err: unknown) {
+            alert(err instanceof Error ? err.message : String(err));
+        }
+
+        setSubmitting(false);
+    };
+
     if (loading) return <div className="min-h-screen flex items-center justify-center bg-background"><div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" /></div>;
 
     return (
@@ -194,6 +282,25 @@ const AssistantApp = () => {
                                             {activeShift.total_sales || 0}
                                         </p>
                                         <p className="text-xs text-muted-foreground mt-4 italic">Led by: {activeShift.photographer?.full_name}</p>
+                                        
+                                        {!clockedOut ? (
+                                            <button
+                                                onClick={() => setShowClockOutConfirm(true)}
+                                                className="mt-8 w-full glass-card py-4 rounded-lg font-mono text-[10px] uppercase tracking-[0.2em] text-destructive hover:bg-destructive/10 transition-all border-destructive/20"
+                                            >
+                                                End Shift & Clock Out
+                                            </button>
+                                        ) : (
+                                            <div className="mt-8 text-center">
+                                                <CheckCircle size={28} className="mx-auto text-green-500 mb-2" />
+                                                <p className="font-mono text-[10px] uppercase tracking-widest text-green-500">
+                                                    Shift Complete
+                                                </p>
+                                                <p className="font-mono text-xs text-muted-foreground mt-1">
+                                                    {(elapsed / 3600).toFixed(2)} hours logged
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
                                 </motion.div>
                             )}
@@ -226,15 +333,24 @@ const AssistantApp = () => {
                             {activeTab === 'issues' && (
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
                                     <div className="grid grid-cols-2 gap-4">
-                                        <button className="glass-card p-4 rounded-xl text-center border-destructive/20 hover:bg-destructive/10 transition-colors group">
+                                        <button
+                                            onClick={() => setIssueModal("equipment")}
+                                            className="glass-card p-4 rounded-xl text-center border-destructive/20 hover:bg-destructive/10 transition-colors group"
+                                        >
                                             <Camera className="mx-auto mb-2 text-muted-foreground group-hover:text-destructive" size={24} />
                                             <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground group-hover:text-foreground">Equipment Issue</span>
                                         </button>
-                                        <button className="glass-card p-4 rounded-xl text-center border-destructive/20 hover:bg-destructive/10 transition-colors group">
+                                        <button
+                                            onClick={() => setIssueModal("lead")}
+                                            className="glass-card p-4 rounded-xl text-center border-destructive/20 hover:bg-destructive/10 transition-colors group"
+                                        >
                                             <AlertTriangle className="mx-auto mb-2 text-muted-foreground group-hover:text-destructive" size={24} />
                                             <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground group-hover:text-foreground">Lead Issue</span>
                                         </button>
-                                        <button className="glass-card p-4 rounded-xl text-center border-amber-500/20 hover:bg-amber-500/10 transition-colors group col-span-2">
+                                        <button
+                                            onClick={() => setIssueModal("discrepancy")}
+                                            className="glass-card p-4 rounded-xl text-center border-amber-500/20 hover:bg-amber-500/10 transition-colors group col-span-2"
+                                        >
                                             <Package className="mx-auto mb-2 text-muted-foreground group-hover:text-amber-500" size={24} />
                                             <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground group-hover:text-foreground">Force Discrepancy Ticket</span>
                                         </button>
@@ -245,6 +361,165 @@ const AssistantApp = () => {
                     </>
                 )}
             </div>
+
+            {/* CLOCK OUT CONFIRMATION MODAL */}
+            {showClockOutConfirm && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-background/80 backdrop-blur-md">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="glass-card rounded-2xl w-full max-w-sm p-8"
+                    >
+                        <div className="text-center mb-8">
+                            <Clock size={40} className="mx-auto text-primary mb-4" />
+                            <h2 className="font-display italic text-2xl mb-2">
+                                End Your Shift?
+                            </h2>
+                            <p className="font-mono text-xs text-muted-foreground">
+                                This will log your clock-out time and finalize your hours.
+                            </p>
+                        </div>
+
+                        {/* Summary */}
+                        <div className="glass-card rounded-xl p-4 mb-8 bg-black/20 space-y-3">
+                            <div className="flex justify-between">
+                                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                                    Venue
+                                </span>
+                                <span className="font-mono text-xs text-foreground">
+                                    {activeShift?.venues?.name}
+                                </span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                                    Time Worked
+                                </span>
+                                <span className="font-mono text-xs text-primary glow-text">
+                                    {formatTime(elapsed)}
+                                </span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                                    Hours
+                                </span>
+                                <span className="font-mono text-xs text-foreground">
+                                    {(elapsed / 3600).toFixed(2)} hrs
+                                </span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                                    Photographer
+                                </span>
+                                <span className="font-mono text-xs text-foreground">
+                                    {activeShift?.photographer?.full_name}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Buttons */}
+                        <div className="flex flex-col gap-3">
+                            <button
+                                onClick={handleClockOut}
+                                disabled={submitting}
+                                className="w-full glass-card py-4 rounded-lg font-mono text-[10px] uppercase tracking-[0.2em] text-destructive hover:bg-destructive/10 transition-all border-destructive/20 disabled:opacity-40"
+                            >
+                                {submitting ? "Clocking Out..." : "Yes, End Shift"}
+                            </button>
+                            <button
+                                onClick={() => setShowClockOutConfirm(false)}
+                                className="w-full py-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </motion.div>
+                </div>
+            )}
+
+            {/* ISSUE MODAL */}
+            {issueModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-background/80 backdrop-blur-md">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="glass-card rounded-2xl w-full max-w-sm p-8"
+                    >
+                        {/* Header */}
+                        <div className="flex justify-between items-start mb-6">
+                            <div>
+                                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
+                                    Report Issue
+                                </p>
+                                <h2 className="font-display italic text-xl capitalize">
+                                    {issueModal === "equipment" && "Equipment Issue"}
+                                    {issueModal === "lead" && "Lead Issue"}
+                                    {issueModal === "discrepancy" && "Force Discrepancy Ticket"}
+                                </h2>
+                            </div>
+                            <button
+                                onClick={() => {
+                                    setIssueModal(null);
+                                    setIssueNote("");
+                                }}
+                                className="text-muted-foreground hover:text-foreground transition-colors font-mono text-xs"
+                            >
+                                ✕ Close
+                            </button>
+                        </div>
+
+                        {/* Context */}
+                        <div className="glass-card rounded-xl p-4 mb-6 bg-black/20">
+                            <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
+                                Venue
+                            </p>
+                            <p className="font-mono text-sm text-primary">
+                                {activeShift?.venues?.name}
+                            </p>
+
+                            {issueModal === "discrepancy" && (
+                                <p className="font-mono text-[10px] text-amber-500 mt-3 uppercase tracking-widest">
+                                    ⚠ This will create a visible ticket on the Manager Dashboard
+                                </p>
+                            )}
+                        </div>
+
+                        {/* Note input */}
+                        <div className="mb-6">
+                            <label className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">
+                                Describe the Issue
+                            </label>
+                            <textarea
+                                value={issueNote}
+                                onChange={(e) => setIssueNote(e.target.value)}
+                                rows={4}
+                                placeholder={
+                                    issueModal === "equipment"
+                                        ? "e.g. Printer jammed, camera won't focus..."
+                                        : issueModal === "lead"
+                                        ? "e.g. Photographer left early, unresponsive..."
+                                        : "e.g. Physical count doesn't match system count..."
+                                }
+                                className="w-full bg-background border border-muted focus:border-primary rounded-lg px-4 py-3 font-mono text-sm resize-none transition-colors"
+                            />
+                        </div>
+
+                        {/* Submit */}
+                        <button
+                            onClick={() => submitIssue(issueModal)}
+                            disabled={submittingIssue || !issueNote.trim()}
+                            className={`w-full glass-card py-4 rounded-lg font-mono text-[10px] uppercase tracking-[0.2em] transition-all disabled:opacity-40 disabled:cursor-not-allowed ${
+                                issueModal === "discrepancy"
+                                    ? "text-amber-500 hover:bg-amber-500/10 border-amber-500/20"
+                                    : "text-destructive hover:bg-destructive/10 border-destructive/20"
+                            }`}
+                        >
+                            {submittingIssue ? "Submitting..." : "Submit Report"}
+                        </button>
+                    </motion.div>
+                </div>
+            )}
         </div>
     );
 };
