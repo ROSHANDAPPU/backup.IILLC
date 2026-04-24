@@ -572,18 +572,18 @@ const PhotographerApp = () => {
               <button
                 onClick={() => handleAddSale('online')}
                 disabled={submitting}
-                className="glass-card py-4 rounded-xl flex flex-col items-center gap-2 hover:bg-primary/10 transition-all border border-blue-500/20 group active:scale-95 text-muted-foreground hover:text-blue-500"
+                className="glass-card py-4 px-4 min-h-[44px] rounded-xl flex flex-col items-center gap-2 hover:bg-primary/10 transition-all border border-blue-500/20 group active:scale-95 text-muted-foreground hover:text-blue-500"
               >
                 <span className="text-2xl group-hover:scale-110 transition-transform">💳</span>
-                <span className="font-mono text-[9px] uppercase tracking-widest transition-colors">Digital</span>
+                <span className="font-mono text-[10px] uppercase tracking-widest transition-colors">Digital</span>
               </button>
               <button
                 onClick={() => handleAddSale('cash')}
                 disabled={submitting}
-                className="glass-card py-4 rounded-xl flex flex-col items-center gap-2 hover:bg-primary/10 transition-all border border-green-500/20 group active:scale-95 text-muted-foreground hover:text-green-500"
+                className="glass-card py-4 px-4 min-h-[44px] rounded-xl flex flex-col items-center gap-2 hover:bg-primary/10 transition-all border border-green-500/20 group active:scale-95 text-muted-foreground hover:text-green-500"
               >
                 <span className="text-2xl group-hover:scale-110 transition-transform">💵</span>
-                <span className="font-mono text-[9px] uppercase tracking-widest transition-colors">Cash</span>
+                <span className="font-mono text-[10px] uppercase tracking-widest transition-colors">Cash</span>
               </button>
             </div>
           </div>
@@ -657,13 +657,13 @@ const PhotographerApp = () => {
             <div className="flex gap-3">
               <button
                 onClick={() => handleCheckIn(true)}
-                className="flex-1 glass-card py-3 rounded-lg font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors"
+                className="flex-1 glass-card py-3 px-4 min-h-[44px] rounded-lg font-mono text-[12px] uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors"
               >
                 Dismiss
               </button>
               <button
                 onClick={() => handleCheckIn(false)}
-                className="flex-1 glass-card py-3 rounded-lg font-mono text-[10px] uppercase tracking-[0.2em] text-primary hover:bg-primary/10 transition-all"
+                className="flex-1 glass-card py-3 px-4 min-h-[44px] rounded-lg font-mono text-[12px] uppercase tracking-[0.2em] text-primary hover:bg-primary/10 transition-all"
               >
                 Submit
               </button>
@@ -708,7 +708,7 @@ const PhotographerApp = () => {
           {error && <p className="text-destructive text-xs font-mono mt-4">{error}</p>}
 
           <div className="flex gap-3 mt-8">
-            <button onClick={() => setStep("active")} className="flex-1 glass-card py-4 rounded-lg font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            <button onClick={() => setStep("active")} className="flex-1 glass-card py-4 px-4 min-h-[44px] rounded-lg font-mono text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
               Cancel
             </button>
             <motion.button
@@ -882,24 +882,24 @@ const PhotographerApp = () => {
         <div className="container max-w-md mx-auto flex justify-between items-center px-4">
           <button
             onClick={() => setActiveTab("dashboard")}
-            className={`flex flex-col items-center gap-1.5 p-2 transition-colors ${activeTab === "dashboard" ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+            className={`flex flex-col items-center gap-1.5 p-3 px-4 min-h-[44px] transition-colors ${activeTab === "dashboard" ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
           >
             <LayoutDashboard size={20} className={activeTab === "dashboard" ? "glow-text" : ""} />
-            <span className="font-mono text-[9px] uppercase tracking-wider">Dash</span>
+            <span className="font-mono text-[10px] uppercase tracking-wider">Dash</span>
           </button>
           <button
             onClick={() => setActiveTab("wallet")}
-            className={`flex flex-col items-center gap-1.5 p-2 transition-colors ${activeTab === "wallet" ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+            className={`flex flex-col items-center gap-1.5 p-3 px-4 min-h-[44px] transition-colors ${activeTab === "wallet" ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
           >
             <Wallet size={20} className={activeTab === "wallet" ? "glow-text" : ""} />
-            <span className="font-mono text-[9px] uppercase tracking-wider">Wallet</span>
+            <span className="font-mono text-[10px] uppercase tracking-wider">Wallet</span>
           </button>
           <button
             onClick={() => setActiveTab("chat")}
-            className={`flex flex-col items-center gap-1.5 p-2 transition-colors ${activeTab === "chat" ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+            className={`flex flex-col items-center gap-1.5 p-3 px-4 min-h-[44px] transition-colors ${activeTab === "chat" ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
           >
             <MessageSquare size={20} className={activeTab === "chat" ? "glow-text" : ""} />
-            <span className="font-mono text-[9px] uppercase tracking-wider">Chat</span>
+            <span className="font-mono text-[10px] uppercase tracking-wider">Chat</span>
           </button>
         </div>
       </div>

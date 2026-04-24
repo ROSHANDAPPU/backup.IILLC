@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, LogIn, LogOut } from "lucide-react";
@@ -20,6 +20,7 @@ const opsNav = [
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
   const location = useLocation();
   const { user, signOut, isAdmin, isManager, roles = [] } = useAuth();
 
@@ -34,12 +35,27 @@ const Navigation = () => {
     ...(isAdmin ? [{ path: "/admin", label: "Admin" }] : []),
   ];
 
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       <div className="glass-card border-t-0 border-x-0">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
             <img src="/logo-text.png" alt="Aaliyah Illusions" className="h-6 md:h-8 w-auto mix-blend-screen" />
+            <div 
+              className={`w-2 h-2 rounded-full transition-colors duration-300 ${isOnline ? "bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" : "bg-destructive shadow-[0_0_8px_rgba(239,68,68,0.6)] animate-pulse"}`} 
+              title={isOnline ? "Online - Synced" : "Offline - Queuing Actions"} 
+            />
           </Link>
 
           {/* Desktop Nav */}

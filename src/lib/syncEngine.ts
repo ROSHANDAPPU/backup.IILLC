@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import localforage from "localforage";
 
 export type SyncAction = "increment_sales" | "insert_log" | "insert_message" | "update_shift";
 
@@ -13,19 +14,35 @@ export interface QueuedOperation {
 
 const QUEUE_KEY = "aaliyah_offline_queue";
 
+// Configure localforage
+localforage.config({
+    name: "AaliyahIllusions",
+    storeName: "offline_sync_queue",
+    description: "Offline operations queue"
+});
+
 export class SyncEngine {
-    static getQueue(): QueuedOperation[] {
-        const raw = localStorage.getItem(QUEUE_KEY);
-        return raw ? JSON.parse(raw) : [];
+    static async getQueue(): Promise<QueuedOperation[]> {
+        try {
+            const queue = await localforage.getItem<QueuedOperation[]>(QUEUE_KEY);
+            return queue || [];
+        } catch (err) {
+            console.error("LocalForage getQueue error:", err);
+            return [];
+        }
     }
 
-    static saveQueue(queue: QueuedOperation[]) {
-        localStorage.setItem(QUEUE_KEY, JSON.stringify(queue));
-        window.dispatchEvent(new Event("sync_queue_updated"));
+    static async saveQueue(queue: QueuedOperation[]): Promise<void> {
+        try {
+            await localforage.setItem(QUEUE_KEY, queue);
+            window.dispatchEvent(new Event("sync_queue_updated"));
+        } catch (err) {
+            console.error("LocalForage saveQueue error:", err);
+        }
     }
 
-    static enqueue(type: SyncAction, payload: any) {
-        const queue = this.getQueue();
+    static async enqueue(type: SyncAction, payload: any): Promise<void> {
+        const queue = await this.getQueue();
         queue.push({
             id: crypto.randomUUID(),
             timestamp: Date.now(),
@@ -34,7 +51,7 @@ export class SyncEngine {
             retryCount: 0,
             failed: false
         });
-        this.saveQueue(queue);
+        await this.saveQueue(queue);
 
         // Attempt immediate drain if online
         if (navigator.onLine) {
@@ -42,10 +59,10 @@ export class SyncEngine {
         }
     }
 
-    static async drainQueue() {
+    static async drainQueue(): Promise<void> {
         if (!navigator.onLine) return;
 
-        let queue = this.getQueue();
+        let queue = await this.getQueue();
         // Only attempt items that haven't permanently failed
         let activeItems = queue.filter(item => !item.failed);
 
@@ -81,11 +98,11 @@ export class SyncEngine {
         }
 
         if (queueChanged) {
-            this.saveQueue(queue);
+            await this.saveQueue(queue);
         }
     }
 
-    static async executeOperation(item: QueuedOperation) {
+    static async executeOperation(item: QueuedOperation): Promise<void> {
         if (item.type === "increment_sales") {
             const { error } = await supabase.rpc('increment_shift_sales', {
                 target_shift_id: item.payload.shift_id,
@@ -110,16 +127,16 @@ export class SyncEngine {
         }
     }
 
-    static wipeFailures() {
-        let queue = this.getQueue();
+    static async wipeFailures(): Promise<void> {
+        let queue = await this.getQueue();
         queue = queue.filter(item => !item.failed);
-        this.saveQueue(queue);
+        await this.saveQueue(queue);
     }
 
-    static resetFailuresAndRetry() {
-        let queue = this.getQueue();
+    static async resetFailuresAndRetry(): Promise<void> {
+        let queue = await this.getQueue();
         queue = queue.map(item => ({ ...item, failed: false, retryCount: 0 }));
-        this.saveQueue(queue);
+        await this.saveQueue(queue);
         this.drainQueue();
     }
 }
