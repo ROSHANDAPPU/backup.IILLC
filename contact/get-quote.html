@@ -920,6 +920,32 @@
       }
     }
   </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z0F0X2TWW4');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1273059444474707');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+  /></noscript>
+
 </head>
 <body>
   <!-- Custom Floating Cursor -->
@@ -967,7 +993,10 @@
   <!-- Page Content -->
   <main class="page-content">
     <!-- Contact Form -->
-    <form class="contact-form" action="#" method="POST">
+    <form id="remodel-estimate-form" class="contact-form" action="#" method="POST">
+      <input type="hidden" id="fbp_field" name="fbp" value="">
+      <input type="hidden" id="fbc_field" name="fbc" value="">
+      <input type="hidden" id="fbclid_raw" name="fbc.lid_raw" value="">
       <div class="form-row">
         <div class="form-group">
           <label for="firstName">First Name *</label>
@@ -1221,11 +1250,7 @@
       });
     });
 
-    // Form submission
-    document.querySelector('.contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you for your quote request! We will contact you within 24 hours to discuss your project.');
-    });
+    // Form submission handled by tracking.js
 
     // Lightbox Functions
     function openLightbox(imageSrc, clickedElement) {
@@ -1529,5 +1554,6 @@
   </script>
 </main>
 <script src="../assets/js/nav-active.js"></script>
+<script src="../scripts/tracking.js"></script>
 </body>
 </html>

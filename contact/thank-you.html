@@ -30,6 +30,32 @@
     * { cursor: none !important; }
     @media (max-width: 768px) { .cursor, .cursor-follower { display: none; } * { cursor: auto !important; } }
   </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z0F0X2TWW4');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1273059444474707');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+  /></noscript>
+
 </head>
 <body>
   <!-- Custom Floating Cursor -->
@@ -44,8 +70,8 @@
   </header>
 
   <main class="wrap">
-    <h1>Thank You</h1>
-    <p class="lead">We received your service request. Our team will reach out within 2 business days.</p>
+    <h1>Thank You - We've Received Your Request</h1>
+    <p class="lead">Your request has been successfully submitted. Our team is currently reviewing your details, and one of our specialists will be in touch with you shortly...</p>
     <p>In the meantime, you can review our <a href="../our-process.html#postcare">Post-Project Care</a> information or contact us if your situation is urgent.</p>
     <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
       <a class="btn" href="../our-process.html#postcare"><i class="fa-solid fa-screwdriver-wrench"></i> Post-Project Care</a>
