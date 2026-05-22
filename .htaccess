@@ -14,6 +14,23 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # -------------------------------
+# REMOVE HTML EXTENSION / CLEAN URLs
+# -------------------------------
+<IfModule mod_rewrite.c>
+  # Disable MultiViews to prevent conflicts with extensionless URL rewriting
+  Options -MultiViews
+
+  # Redirect direct GET requests for *.html to the extensionless version
+  RewriteCond %{THE_REQUEST} ^GET\ (.*)\.html\ HTTP [NC]
+  RewriteRule ^(.*)\.html$ $1 [R=301,L]
+
+  # Internally rewrite clean URLs back to .html if the file exists
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# -------------------------------
 # SECURITY HEADERS
 # -------------------------------
 # Prevent Clickjacking
