@@ -1492,18 +1492,7 @@
           <div class="slide-footnote-desc">Tile install at Primary Bathroom. Custom home by Build Paragon Construction</div>
         </div>
       </div>
-      <div class="slide" data-footnote="Full home remodel with custom flooring and finishes">
-        <img loading="lazy" decoding="async" src="assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG" alt="Project Slide 4">
-        <div class="slide-footnote" role="note" aria-hidden="false">
-          <div class="slide-footnote-desc">Full home remodel with custom flooring and finishes</div>
-        </div>
-      </div>
-      <div class="slide" data-footnote="Guest bath with custom marble tile installation">
-        <img loading="lazy" decoding="async" src="assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG" alt="Project Slide 5">
-        <div class="slide-footnote" role="note" aria-hidden="false">
-          <div class="slide-footnote-desc">Guest bath with custom marble tile installation</div>
-        </div>
-      </div>
+
     </div>
 
     <!-- Rotating taglines with subtitles -->
@@ -1569,6 +1558,7 @@
   </section>
 
   <script src="assets/js/slider.js"></script>
+  <script src="assets/js/desktop-slider.js"></script>
 
   <!-- Mobile slider behavior: auto-slide right->left on small viewports -->
   <script>
@@ -2091,47 +2081,7 @@
       observer.observe(el);
     });
 
-    /* Synchronized taglines and background slides (guarded: legacy hero) */
-    const taglines = Array.from(document.querySelectorAll(".tagline"));
-    const track = document.querySelector(".hero-desktop .track");
-    console.log('track found:', track);
-    const subtitles = [
-      "Luxury Interior Design",
-      "Emotional Space Creation",
-      "Artistic Living Environments"
-    ];
-    const descriptions = [
-      "At Interior Illustrations, we transform spaces into living art, creating environments that inspire, comfort, and reflect your unique story.",
-      "We craft spaces that evoke emotion and create meaningful connections, turning every room into a canvas for life's beautiful moments.",
-      "Where design meets soul, we paint with light, texture, and form to create living spaces that tell your story and inspire your future."
-    ];
 
-    let tagIndex = 0;
-    let slideIndex = 0;
-    const totalSlides = 5; // Total number of slides in the track
-    
-    function updateSlide() {
-      console.log('updateSlide called, slideIndex:', slideIndex, 'tagIndex:', tagIndex);
-      if (!track || taglines.length === 0) {
-        console.log('track or taglines not found');
-        return;
-      }
-      // Remove active classes from current tagline
-      taglines[tagIndex].classList.remove("active");
-      // Update indices
-      tagIndex = (tagIndex + 1) % taglines.length;
-      slideIndex = (slideIndex + 1) % totalSlides;
-      // Synchronize background slide with tagline
-      track.className = `track slide-${slideIndex}`;
-      console.log('set track class to:', track.className);
-      // Add active classes and update content after slide transition
-      setTimeout(() => { taglines[tagIndex].classList.add("active"); }, 600);
-    }
-
-    // Start the synchronized transitions (only if legacy elements exist)
-    if (track && taglines.length > 0) {
-      setInterval(updateSlide, 4000);
-    }
 
     /* Reveal on scroll */
     const io = new IntersectionObserver((entries) => {
