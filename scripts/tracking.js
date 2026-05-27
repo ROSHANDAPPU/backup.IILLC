@@ -1,9 +1,12 @@
 // tracking.js - Interior Illusions LLC Tracking & HubSpot Form Mapping Helper
-(function() {
-  // HubSpot API Keys Configuration
-  const portalId = 'YOUR_PORTAL_ID';       // Replace with your 7-8 digit HubID
-  const formGuid = 'YOUR_FORM_GUID';       // Replace with your alphanumeric HubSpot Form ID
-  const accessToken = 'YOUR_ACCESS_TOKEN'; // Replace with your long private app access token
+(function () {
+  // ==========================================
+  // ADD YOUR PRIVATE API KEYS HERE (Lines 4-6)
+  // ==========================================
+  const portalId = 'YOUR_PORTAL_ID';       // <-- CHANGE THIS (Line 4)
+  const formGuid = 'YOUR_FORM_GUID';       // <-- CHANGE THIS (Line 5)
+  const accessToken = 'YOUR_ACCESS_TOKEN'; // <-- CHANGE THIS (Line 6)
+  // ==========================================
 
   // Helper to extract cookies
   function getCookie(name) {
@@ -23,16 +26,14 @@
   var fbp = getCookie("_fbp");
   var fbc = getCookie("_fbc");
   var fbclid = getQueryParam("fbclid");
-  var hutk = getCookie("hubspotutk");
 
   // Construct _fbc from fbclid if _fbc cookie doesn't exist
   if (!fbc && fbclid) {
-    // Standard format for _fbc: fb.1.[timestamp].[fbclid]
     fbc = "fb.1." + Date.now() + "." + fbclid;
   }
 
   // Wait for DOM content to load to process forms
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     var form = document.getElementById("remodel-estimate-form");
     if (!form) return;
 
@@ -45,88 +46,75 @@
     if (fbcField && fbc) fbcField.value = fbc;
     if (fbclidRaw && fbclid) fbclidRaw.value = fbclid;
 
-    // Normalization and Background Transmission on Submit
-    form.addEventListener("submit", function(event) {
-      // Prevent default form submission to allow fetch to complete first
-      event.preventDefault();
+    // Intercept form submission to send securely to HubSpot API
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // Stop page from reloading instantly to process background payload
 
-      // Collect all fields
+      // Collect field values safely mapping to strict lowercase HubSpot defaults
       var fields = [];
       
-      function addField(name, value) {
-        if (value !== undefined && value !== null) {
-          fields.push({ name: name, value: String(value) });
-        }
-      }
-
-      // Extract form input values
       var firstNameVal = form.querySelector('[name="firstName"]')?.value || "";
       var lastNameVal = form.querySelector('[name="lastName"]')?.value || "";
       var emailVal = form.querySelector('[name="email"]')?.value || "";
       var phoneVal = form.querySelector('[name="phone"]')?.value || "";
       var messageVal = form.querySelector('[name="message"]')?.value || "";
-      var projectLocationVal = form.querySelector('[name="projectLocation"]')?.value || "";
+      var locationVal = form.querySelector('[name="projectLocation"]')?.value || "";
       var projectTypeVal = form.querySelector('[name="projectType"]:checked')?.value || form.querySelector('[name="projectType"]')?.value || "";
       var timelineVal = form.querySelector('[name="timeline"]')?.value || "";
       var referralVal = form.querySelector('[name="referral"]')?.value || "";
 
-      // Map to HubSpot lowercased defaults
-      addField("firstname", firstNameVal);
-      addField("lastname", lastNameVal);
-      addField("email", emailVal);
-      addField("phone", phoneVal);
-      addField("message", messageVal);
-      addField("projectlocation", projectLocationVal);
-      addField("projecttype", projectTypeVal);
-      addField("timeline", timelineVal);
-      addField("referral", referralVal);
-      
-      // Also map Facebook Pixel parameters to HubSpot properties for attribution
-      addField("fbp", fbp);
-      addField("fbc", fbc);
-      addField("fbclid", fbclid);
+      // Push mapped key-value pairs into HubSpot payload format
+      fields.push({ name: "firstname", value: firstNameVal });
+      fields.push({ name: "lastname", value: lastNameVal });
+      fields.push({ name: "email", value: emailVal });
+      fields.push({ name: "phone", value: phoneVal });
+      fields.push({ name: "message", value: messageVal });
+      fields.push({ name: "address", value: locationVal }); 
+      fields.push({ name: "service", value: projectTypeVal }); 
+      fields.push({ name: "preferred_timeline", value: timelineVal });
+      fields.push({ name: "hear_about_us", value: referralVal });
+      fields.push({ name: "fbp", value: fbpField?.value || fbp || "" });
+      fields.push({ name: "fbc", value: fbcField?.value || fbc || "" });
 
-      // Build HubSpot Form Submission API Payload
+      // Build context data packet
+      var context = {
+        hutk: getCookie("hubspotutk"),
+        pageUri: window.location.href,
+        pageName: document.title
+      };
+
+      // Construct final JSON object payload
       var payload = {
         fields: fields,
-        context: {
-          hutk: hutk,
-          pageUri: window.location.href,
-          pageName: document.title
-        }
+        context: context
       };
 
-      // HubSpot Submissions endpoint
-      var url = "https://api.hsforms.com/submissions/v3/integration/submit/" + portalId + "/" + formGuid;
+      // Construct API submission endpoint URL
+      var endpoint = "https://api.hsforms.com/submissions/v3/integration/secure/submit/" + portalId + "/" + formGuid;
 
-      // Build headers
-      var headers = {
-        "Content-Type": "application/json"
-      };
-
-      // If client is using private app authentication
-      if (accessToken && accessToken !== 'YOUR_ACCESS_TOKEN') {
-        headers["Authorization"] = "Bearer " + accessToken;
-      }
-
-      // Execute background transmission to HubSpot
-      fetch(url, {
+      // Execute Secure API Transport
+      fetch(endpoint, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + accessToken
+        },
         body: JSON.stringify(payload),
-        headers: headers,
-        keepalive: true // keeps request alive if navigation is fast
+        keepalive: true
       })
       .then(function(response) {
-        if (!response.ok) {
-          console.warn("HubSpot submission returned status: " + response.status);
+        if (response.ok) {
+          console.log("Success! Lead data sent to HubSpot.");
+          // Execute redirect to approved thank-you page copy
+          window.location.href = "https://interiorillusionsconstruction.com/thank-you";
+        } else {
+          console.error("HubSpot API Submission Error status code:", response.status);
+          alert("There was an issue sending your request. Please try again.");
         }
-        // Proceed with original FormSubmit.co action
-        form.submit();
       })
       .catch(function(error) {
-        console.error("Error submitting to HubSpot:", error);
-        // Fallback: proceed to FormSubmit.co anyway so no leads are lost
-        form.submit();
+        console.error("Network connectivity issue:", error);
+        alert("Network error. Please check your internet connection.");
       });
     });
   });
