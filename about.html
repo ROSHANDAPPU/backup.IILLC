@@ -6,6 +6,7 @@
   <title>About Us - Interior Illusions LLC</title>
   <meta name="description" content="Learn about Interior Illusions LLC - luxury interior design and home remodeling services in Colorado.">
   <link rel="icon" type="image/x-icon" href="assets/images/06_Favicon/favicon-high.png">
+  <link rel="stylesheet" href="css/style.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -276,23 +277,19 @@
     
     .dropdown-menu a {
       display: block;
-      padding: 10px 16px; /* compact */
-      color: #FFFFFF; /* white */
+      padding: 12px 20px;
+      color: #93C5FD; /* Azure text color */
       text-decoration: none;
-      transition: background 0.25s ease, color 0.25s ease;
-      border-radius: 10px; /* rounded buttons */
-      margin: 4px 8px; /* more spacing */
-      background: #007FFF; /* azure button */
-      font-size: 15px;
-      line-height: 1.2;
-      letter-spacing: 0.01em;
-      white-space: nowrap; /* prevent wrapping */
-      text-align: center;
+      transition: all 0.3s ease;
+      border-radius: 20px;
+      margin: 4px 8px;
+      background: transparent;
     }
     
     .dropdown-menu a:hover {
-      background: #1D4ED8; /* cobalt */
-      color: #FAF7F2; /* ivory */
+      background: #1D4ED8;
+      color: #E7EAEE;
+      transform: scale(0.95);
     }
     
     /* Large desktop responsive */
@@ -488,7 +485,7 @@
       margin-bottom: 24px;
     }
     .footer-description {
-      color: #93C5FD; /* Azure text color */ /* Slate */
+      color: var(--color-body); /* Slate */
       font-size: 16px;
       line-height: 1.6;
       margin-bottom: 32px;
@@ -561,7 +558,7 @@
       gap: 20px;
     }
     .footer-legal p {
-      color: #93C5FD; /* Azure text color */ /* Slate */
+      color: var(--color-body); /* Slate */
       font-size: 14px;
       margin: 0;
     }
@@ -1209,8 +1206,7 @@
     <p>One team. Clear scope. Flawless handover.</p>
   </section>
 
-  <!-- External CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- External CSS (loaded in head) -->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
