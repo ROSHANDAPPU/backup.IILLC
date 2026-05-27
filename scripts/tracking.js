@@ -1,5 +1,10 @@
 // tracking.js - Interior Illusions LLC Tracking & HubSpot Form Mapping Helper
 (function() {
+  // HubSpot API Keys Configuration
+  const portalId = 'YOUR_PORTAL_ID';       // Replace with your 7-8 digit HubID
+  const formGuid = 'YOUR_FORM_GUID';       // Replace with your alphanumeric HubSpot Form ID
+  const accessToken = 'YOUR_ACCESS_TOKEN'; // Replace with your long private app access token
+
   // Helper to extract cookies
   function getCookie(name) {
     var value = "; " + document.cookie;
@@ -18,6 +23,7 @@
   var fbp = getCookie("_fbp");
   var fbc = getCookie("_fbc");
   var fbclid = getQueryParam("fbclid");
+  var hutk = getCookie("hubspotutk");
 
   // Construct _fbc from fbclid if _fbc cookie doesn't exist
   if (!fbc && fbclid) {
@@ -39,69 +45,89 @@
     if (fbcField && fbc) fbcField.value = fbc;
     if (fbclidRaw && fbclid) fbclidRaw.value = fbclid;
 
-    // Normalization on form submit to HubSpot lowercased defaults
-    form.addEventListener("submit", function() {
-      // Map 'firstName' input to 'firstname' for HubSpot integration
-      var firstNameInput = form.querySelector('[name="firstName"]');
-      if (firstNameInput) {
-        createOrUpdateHiddenInput(form, "firstname", firstNameInput.value);
+    // Normalization and Background Transmission on Submit
+    form.addEventListener("submit", function(event) {
+      // Prevent default form submission to allow fetch to complete first
+      event.preventDefault();
+
+      // Collect all fields
+      var fields = [];
+      
+      function addField(name, value) {
+        if (value !== undefined && value !== null) {
+          fields.push({ name: name, value: String(value) });
+        }
       }
 
-      // Map 'lastName' input to 'lastname'
-      var lastNameInput = form.querySelector('[name="lastName"]');
-      if (lastNameInput) {
-        createOrUpdateHiddenInput(form, "lastname", lastNameInput.value);
+      // Extract form input values
+      var firstNameVal = form.querySelector('[name="firstName"]')?.value || "";
+      var lastNameVal = form.querySelector('[name="lastName"]')?.value || "";
+      var emailVal = form.querySelector('[name="email"]')?.value || "";
+      var phoneVal = form.querySelector('[name="phone"]')?.value || "";
+      var messageVal = form.querySelector('[name="message"]')?.value || "";
+      var projectLocationVal = form.querySelector('[name="projectLocation"]')?.value || "";
+      var projectTypeVal = form.querySelector('[name="projectType"]:checked')?.value || form.querySelector('[name="projectType"]')?.value || "";
+      var timelineVal = form.querySelector('[name="timeline"]')?.value || "";
+      var referralVal = form.querySelector('[name="referral"]')?.value || "";
+
+      // Map to HubSpot lowercased defaults
+      addField("firstname", firstNameVal);
+      addField("lastname", lastNameVal);
+      addField("email", emailVal);
+      addField("phone", phoneVal);
+      addField("message", messageVal);
+      addField("projectlocation", projectLocationVal);
+      addField("projecttype", projectTypeVal);
+      addField("timeline", timelineVal);
+      addField("referral", referralVal);
+      
+      // Also map Facebook Pixel parameters to HubSpot properties for attribution
+      addField("fbp", fbp);
+      addField("fbc", fbc);
+      addField("fbclid", fbclid);
+
+      // Build HubSpot Form Submission API Payload
+      var payload = {
+        fields: fields,
+        context: {
+          hutk: hutk,
+          pageUri: window.location.href,
+          pageName: document.title
+        }
+      };
+
+      // HubSpot Submissions endpoint
+      var url = "https://api.hsforms.com/submissions/v3/integration/submit/" + portalId + "/" + formGuid;
+
+      // Build headers
+      var headers = {
+        "Content-Type": "application/json"
+      };
+
+      // If client is using private app authentication
+      if (accessToken && accessToken !== 'YOUR_ACCESS_TOKEN') {
+        headers["Authorization"] = "Bearer " + accessToken;
       }
 
-      // Map 'email'
-      var emailInput = form.querySelector('[name="email"]');
-      if (emailInput) {
-        createOrUpdateHiddenInput(form, "email", emailInput.value);
-      }
-
-      // Map 'phone'
-      var phoneInput = form.querySelector('[name="phone"]');
-      if (phoneInput) {
-        createOrUpdateHiddenInput(form, "phone", phoneInput.value);
-      }
-
-      // Map other fields to lowercased values if needed
-      var messageInput = form.querySelector('[name="message"]');
-      if (messageInput) {
-        createOrUpdateHiddenInput(form, "message", messageInput.value);
-      }
-
-      var projectLocationInput = form.querySelector('[name="projectLocation"]');
-      if (projectLocationInput) {
-        createOrUpdateHiddenInput(form, "projectlocation", projectLocationInput.value);
-      }
-
-      var projectTypeInput = form.querySelector('[name="projectType"]:checked') || form.querySelector('[name="projectType"]');
-      if (projectTypeInput) {
-        createOrUpdateHiddenInput(form, "projecttype", projectTypeInput.value);
-      }
-
-      var timelineInput = form.querySelector('[name="timeline"]');
-      if (timelineInput) {
-        createOrUpdateHiddenInput(form, "timeline", timelineInput.value);
-      }
-
-      var referralInput = form.querySelector('[name="referral"]');
-      if (referralInput) {
-        createOrUpdateHiddenInput(form, "referral", referralInput.value);
-      }
+      // Execute background transmission to HubSpot
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: headers,
+        keepalive: true // keeps request alive if navigation is fast
+      })
+      .then(function(response) {
+        if (!response.ok) {
+          console.warn("HubSpot submission returned status: " + response.status);
+        }
+        // Proceed with original FormSubmit.co action
+        form.submit();
+      })
+      .catch(function(error) {
+        console.error("Error submitting to HubSpot:", error);
+        // Fallback: proceed to FormSubmit.co anyway so no leads are lost
+        form.submit();
+      });
     });
   });
-
-  function createOrUpdateHiddenInput(form, name, value) {
-    // If the input already exists as a hidden or regular field with that exact lowercased name, update it
-    var input = form.querySelector('input[name="' + name + '"][type="hidden"]');
-    if (!input) {
-      input = document.createElement("input");
-      input.type = "hidden";
-      input.name = name;
-      form.appendChild(input);
-    }
-    input.value = value;
-  }
 })();
