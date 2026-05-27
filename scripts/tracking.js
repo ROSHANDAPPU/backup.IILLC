@@ -3,9 +3,9 @@
   // ==========================================
   // ADD YOUR PRIVATE API KEYS HERE (Lines 4-6)
   // ==========================================
-  const portalId = 'YOUR_PORTAL_ID';       // <-- CHANGE THIS (Line 4)
-  const formGuid = 'YOUR_FORM_GUID';       // <-- CHANGE THIS (Line 5)
-  const accessToken = 'YOUR_ACCESS_TOKEN'; // <-- CHANGE THIS (Line 6)
+  const portalId = '51388633';       // <-- CHANGE THIS (Line 4)
+  const formGuid = 'f47c4f3d-4891-4c48-a1a1-80a4240f5b51';       // <-- CHANGE THIS (Line 5)
+  const accessToken = 'pat-na1-92f05fa5-2818-4e52-a7b8-e9b4b43d9674'; // <-- CHANGE THIS (Line 6)
   // ==========================================
 
   // Helper to extract cookies
