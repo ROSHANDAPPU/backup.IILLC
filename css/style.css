@@ -232,13 +232,14 @@
 }
 /* Brand Color Variables */
 :root {
-  --color-bg-primary: #0B0E14; /* Deep Navy */
-  --color-action: #1D4ED8;    /* Cobalt */
-  --color-accent: #93C5FD;    /* Azure */
-  --color-heading: #E7EAEE;   /* Off-white */
-  --color-body: #A3AAB4;      /* Slate */
+  --color-bg-primary: #07090e; /* Velvet Obsidian Navy */
+  --color-action: #2563EB;    /* Upgraded Cobalt */
+  --color-accent: #38BDF8;    /* Upgraded Azure */
+  --color-heading: #F8FAFC;   /* Premium high-contrast off-white */
+  --color-body: #94A3B8;      /* Clean slate grey */
   --color-light: #FAF7F2;     /* Ivory */
 }
+
 
 /* ------------------ HERO: Desktop & Mobile ------------------ */
 
@@ -1811,4 +1812,149 @@ button:hover::after,
 @keyframes glassSheen {
   0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+/* ==================================================== */
+/* PREMIUM ULTRA-LUXURY DESIGN SYSTEM OVERRIDES         */
+/* ==================================================== */
+
+/* 1. Subtle, high-end tactile canvas grain noise */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.02; /* extremely subtle tactile touch */
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* 2. Soft, organic radial lighting layers on the body background */
+body {
+  background-color: #07090e !important;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(9, 11, 15, 0.98) 0px, transparent 50%) !important;
+  background-attachment: fixed !important;
+}
+
+/* 3. High-end glassmorphism for header navbar */
+.nav, header.nav {
+  background: rgba(7, 9, 14, 0.72) !important;
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* 4. Glassmorphism & custom spacing for dropdown menus */
+.dropdown-menu, header.nav .links .dropdown-menu {
+  background: rgba(7, 9, 14, 0.9) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(56, 189, 248, 0.15) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+  border-radius: 12px !important;
+  margin-top: 8px !important;
+  transform-origin: top center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.dropdown-menu a {
+  background: rgba(37, 99, 235, 0.15) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  color: #F8FAFC !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.dropdown-menu a:hover {
+  background: #2563EB !important;
+  border-color: #38BDF8 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.45) !important;
+}
+
+/* 5. Tactile, premium button updates (same colors/sizes, high-end feel) */
+.btn, .btn-primary, .cta-button {
+  background: linear-gradient(135deg, #1d4ed8, #2563EB) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(29, 78, 216, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn:hover, .btn-primary:hover, .cta-button:hover {
+  background: linear-gradient(135deg, #2563EB, #3b82f6) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.btn:active, .btn-primary:active, .cta-button:active {
+  transform: translateY(0) scale(0.96) !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Secondary / Ghost button upgrades */
+.btn.secondary, .btn-secondary {
+  background: rgba(255, 255, 255, 0.01) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  color: #38BDF8 !important;
+  backdrop-filter: blur(8px) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn.secondary:hover, .btn-secondary:hover {
+  background: rgba(56, 189, 248, 0.08) !important;
+  border-color: #38BDF8 !important;
+  color: #F8FAFC !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.18) !important;
+}
+
+.btn.secondary:active, .btn-secondary:active {
+  transform: translateY(0) scale(0.96) !important;
+}
+
+/* 6. Soft, luxury tactile panels for grids and cards */
+.service-card, .team-member, .tile, .portfolio-grid-1x1 .tile, .portfolio-grid-2col .tile, .portfolio-grid-masonry .tile {
+  background: rgba(13, 17, 27, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(8px) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22) !important;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.service-card:hover, .team-member:hover, .tile:hover, .portfolio-grid-1x1 .tile:hover, .portfolio-grid-2col .tile:hover, .portfolio-grid-masonry .tile:hover {
+  background: rgba(17, 24, 39, 0.85) !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 16px rgba(56, 189, 248, 0.1) !important;
+  transform: translateY(-4px) !important;
+}
+
+/* 7. Image slow zoom for portfolio tiles */
+.portfolio-grid-1x1 .tile img, .portfolio-grid-2col .tile img, .portfolio-grid-masonry .tile img, .gallery-item img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.portfolio-grid-1x1 .tile:hover img, .portfolio-grid-2col .tile:hover img, .portfolio-grid-masonry .tile:hover img, .gallery-item:hover img {
+  transform: scale(1.06) !important;
+}
+
+/* 8. Thin, elegant separation lines */
+hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.08) 50%, rgba(255,255,255,0)) !important;
+  margin: 40px 0 !important;
 }
