@@ -43,3 +43,14 @@ Options -Indexes
 <FilesMatch "(^\.|wp-config\.php|config\.php)">
   Require all denied
 </FilesMatch>
+# -------------------------------
+# CLEAN URLS — Strip .html extension
+# -------------------------------
+# Redirect /page.html → /page (301 permanent)
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# Serve /page as /page.html internally
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]

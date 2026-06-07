@@ -1,1134 +1,2372 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Interior Design Process | Interior Illusions</title>
-  <meta name="description" content="Discover Interior Illusions' proven design process. From consultation to completion, learn how we transform spaces into extraordinary environments." />
-  <link rel="icon" type="image/x-icon" href="assets/images/06_Favicon/favicon-high.png" />
-  <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <!-- Shared Stylesheet -->
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    @font-face {
-      font-family: 'Satoshi';
-      src: url('assets/fonts/Satoshi-Variable.woff2') format('woff2');
-      font-weight: 300 900;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    :root {
-      --color-bg-primary: #0B0E14; /* Deep Navy */
-      --color-action: #1D4ED8;    /* Cobalt */
-      --color-accent: #93C5FD;    /* Azure */
-      --color-heading: #E7EAEE;   /* Off-white */
-      --color-body: #A3AAB4;      /* Slate */
-      --color-light: #FAF7F2;     /* Ivory */
-    }
-
-    body, html { font-family: 'Satoshi', 'Inter', system-ui, -apple-system, sans-serif; background: var(--color-bg-primary); color: var(--color-heading); height: 100%; }
-    body { display: flex; flex-direction: column; min-height: 100vh; }
-
-    /* Local page styles */
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-
-    /* Hero */
-    .process-hero { padding: 100px 0 40px; position: relative; overflow: hidden; }
-    .process-hero::before {
-      content: ""; position: absolute; inset: 0; background: radial-gradient(1200px 600px at 80% -10%, rgba(29,78,216,0.18), rgba(11,14,20,0) 60%);
-      pointer-events: none; opacity: 0.7;
-    }
-    .process-eyebrow { color: var(--color-accent); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
-    .process-title { font-size: clamp(36px, 5.5vw, 72px); font-weight: 900; letter-spacing: -0.02em; line-height: 0.98; margin-top: 0; margin-bottom: 12px; }
-    .process-subtitle { font-size: clamp(18px, 3.2vw, 24px); color: var(--color-body); max-width: 900px; }
-
-    /* Navigation */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; height: 80px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px; z-index: 2000;
-      background: #0B0E14; /* Deep Navy background */
-    }
-
-    .nav .brand img { height: 200px; width: auto; }
-    .nav .links { display: flex; gap: 32px; align-items: center; }
-    .nav .links a {
-      color: var(--color-heading); text-decoration: none; font-weight: 500;
-      font-size: 15px; padding: 8px 16px; border-radius: 20px;
-      transition: all 0.3s ease;
-    }
-    .nav .links a:hover { color: #93C5FD; background: rgba(147,197,253,0.1); }
-
-    /* Dropdown styles */
-    .dropdown { position: relative; }
-    .dropdown-toggle { display: inline-flex; align-items: center; gap: 8px; }
-    .dropdown-arrow { transition: transform 0.3s ease; font-size: 12px; }
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 10px);
-      left: 0;
-      min-width: 220px;
-      background: #0B0E14;
-      backdrop-filter: none;
-      border: 1px solid rgba(147, 197, 253, 0.25);
-      border-radius: 12px;
-      padding: 10px;
-      z-index: 1000;
-    }
-    .dropdown.active .dropdown-menu { display: block; }
-    .dropdown.active .dropdown-arrow { transform: rotate(180deg); }
-    .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
-
-    /* Hamburger Menu Styles */
-    .hamburger-menu {
-      display: none;
-      position: relative;
-      z-index: 9999;
-      pointer-events: auto !important;
-    }
-
-    .hamburger-icon {
-      width: 30px;
-      height: 24px;
-      cursor: pointer !important;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.4s ease;
-      position: relative;
-      z-index: 10000;
-      pointer-events: auto !important;
-    }
-
-    .line {
-      width: 100%;
-      height: 3px;
-      background: #1D4ED8;
-      border-radius: 2px;
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      transform-origin: center;
-    }
-
-    .hamburger-menu.active .line1 { transform: rotate(45deg) translate(6px, 6px) !important; }
-    .hamburger-menu.active .line2 { opacity: 0 !important; transform: scaleX(0) !important; }
-    .hamburger-menu.active .line3 { transform: rotate(-45deg) translate(6px, -6px) !important; }
-
-    /* Mobile Overlay */
-    .mobile-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #0B0E14;
-      backdrop-filter: none;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-      z-index: 9998;
-    }
-    .hamburger-menu.active .mobile-overlay { display: flex; opacity: 1; visibility: visible; }
-    .mobile-nav {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      padding: 40px;
-    }
-
-    .mobile-link {
-      font-size: 20px !important;
-      font-weight: 500;
-      color: #E7EAEE;
-      text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-      text-align: center;
-      min-width: 200px;
-    }
-
-    .mobile-link:hover {
-      background: rgba(29, 78, 216, 0.2);
-      color: #1D4ED8;
-      transform: translateY(-2px);
-    }
-    .mobile-dropdown-section { display: flex; flex-direction: column; align-items: center; }
-    .mobile-dropdown-btn { font-size: 24px; font-weight: 500; color: #E7EAEE; background: none; border: none; padding: 15px 30px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease; min-width: 200px; justify-content: center; }
-    .mobile-arrow { transition: transform 0.3s ease; font-size: 16px; }
-    .mobile-dropdown-section.active .mobile-arrow { transform: rotate(180deg); }
-    .mobile-dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 10px; }
-    .mobile-dropdown-section.active .mobile-dropdown-content { max-height: 200px; }
-    .mobile-sublink { font-size: 18px; color: #1D4ED8; text-decoration: none; padding: 10px 20px; border-radius: 8px; transition: all 0.3s ease; text-align: center; }
-
-    @media (max-width: 480px) {
-      .mobile-link {
-        font-size: 18px !important;
-        min-width: 180px;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Interior Design Process | Interior Illusions</title>
+    <meta
+      name="description"
+      content="Discover Interior Illusions' proven design process. From consultation to completion, learn how we transform spaces into extraordinary environments."
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="assets/images/06_Favicon/favicon-high.png"
+    />
+    <!-- Fonts & Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      @font-face {
+        font-family: "Satoshi";
+        src: url("assets/fonts/Satoshi-Variable.woff2") format("woff2");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
       }
-      
-      .mobile-nav {
-        gap: 25px;
-        padding: 30px;
+
+      :root {
+        --color-bg-primary: #0b0e14; /* Deep Navy */
+        --color-action: #1d4ed8; /* Cobalt */
+        --color-accent: #93c5fd; /* Azure */
+        --color-heading: #e7eaee; /* Off-white */
+        --color-body: #a3aab4; /* Slate */
+        --color-light: #faf7f2; /* Ivory */
       }
-    }
 
-    @media (max-width: 1400px) { .nav { padding: 0 30px; } .nav .brand img { height: 180px; } .nav .links { gap: 24px; } .nav .links a { font-size: 15px; padding: 8px 14px; } }
-    @media (max-width: 1024px) { 
-      .process-hero { padding: 90px 0 80px; }
-    }
-    @media (max-width: 1200px) { 
-      .nav { padding: 0 20px; }
-      .nav .brand img { height: 150px; }
-      .hamburger-menu { display: block !important; }
-      /* Force-hide desktop links to avoid wrapping/overlap on narrow widths */
-      .nav .links { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }
-      .nav .links { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }
-      .nav .links { display: none !important; }
-    }
-
-    /* Steps */
-    .steps { padding: 100px 0; }
-    .steps .section-header { text-align: left; margin-bottom: 40px; }
-    .steps .section-title { font-size: clamp(26px, 5vw, 42px); font-weight: 800; letter-spacing: 0.0em; }
-    .steps .section-subtitle { color: var(--color-accent); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px; margin-bottom: 6px; }
-
-    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 60px; max-width: 1200px; margin-left: auto; margin-right: auto; }
-    .step-card { background: #0D111B; border: 1px solid rgba(163,170,180,0.25); padding: 40px 32px; border-radius: 12px; transition: border-color .25s ease, background .25s ease, transform .25s ease; min-height: 280px; display: flex; flex-direction: column; justify-content: space-between; }
-    .step-card:hover { border-color: var(--color-accent); background: #111827; transform: translateY(-2px); }
-    .step-icon { width: 72px; height: 72px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; background: rgba(147, 197, 253, 0.12); color: var(--color-accent); font-size: 32px; margin-bottom: 20px; }
-    .step-title { font-size: 26px; font-weight: 800; letter-spacing: 0.01em; margin-bottom: 16px; line-height: 1.2; }
-    .step-desc { color: var(--color-body); font-size: 18px; line-height: 1.6; }
-    .step-desc { color: var(--color-body); font-size: 16px; line-height: 1.6; }
-
-    /* FAQ */
-    .faq { padding: 80px 0; }
-    /* Match 'How We Work' width */
-    .faq .container { max-width: 1400px; }
-    
-    /* Process (moved) minimal accordion styles */
-    /* Constrain process width */
-  .process-section { padding: 40px 0 80px; }
-  /* Responsive grid layout */
-    @media (max-width: 1024px) {
-      .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
-    }
-    @media (max-width: 768px) {
-      .steps-grid { grid-template-columns: 1fr; gap: 24px; }
-      .step-card { padding: 32px 24px; min-height: 240px; }
-    }
-
-    .process-section .container > h2 { margin-bottom: 20px; }
-    .process-section .process-eyebrow { text-align: left; }
-    .process-section .container > p { margin-bottom: 40px; }
-    /* Match 'How We Work' header styling */
-    .process-section .section-header { text-align: left; margin-bottom: 40px; }
-    .process-section .section-title { font-size: clamp(26px, 5vw, 42px); font-weight: 800; letter-spacing: 0.0em; }
-    .process-section .section-subtitle { color: var(--color-accent); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px; margin-bottom: 6px; }
-    .process-section .container .process-accordion { max-width: 900px; margin: 0 auto; padding: 0 10px; }
-    /* Spacing between dropdown boxes */
-    .process-accordion .accordion-item { margin-bottom: 20px; }
-    .process-accordion .accordion-item:last-child { margin-bottom: 0; }
-    .process-accordion .accordion-content { max-height: 0; overflow: hidden; transition: max-height .3s ease; padding: 4px 10px 0 44px; }
-    .process-accordion .accordion-description { margin: 0 0 8px; color: var(--color-body); line-height: 1.62; }
-    .process-accordion .sub-services { margin: 0; padding-left: 18px; color: var(--color-body); }
-    .process-accordion .sub-services li { margin: 4px 0; }
-    .process-accordion .accordion-item.open .accordion-content { max-height: 800px; }
-    .process-accordion .accordion-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; cursor: pointer; }
-    .process-accordion .accordion-arrow { width: 12px; height: 12px; border: 2px solid var(--color-accent); border-left: 0; border-top: 0; transform: rotate(45deg); transition: transform .25s ease; }
-    .process-accordion .accordion-item.open .accordion-arrow { transform: rotate(225deg); }
-    .faq .section-header { text-align: left; margin-bottom: 40px; }
-    .faq .section-title { font-size: clamp(26px, 5vw, 42px); font-weight: 800; }
-    .faq .section-subtitle { color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.10em; font-weight: 600; font-size: 12px; margin-bottom: 6px; }
-    /* Modern FAQ accordion */
-    .accordion { display: grid; gap: 14px; }
-    .accordion-item { position: relative; border: 1px solid rgba(147,197,253,0.18); background: #0D111B; border-radius: 12px; overflow: hidden; transition: border-color .25s ease; }
-    .accordion-item:hover { border-color: rgba(147,197,253,0.35); }
-    .accordion-header { width: 100%; text-align: left; background: transparent; color: var(--color-heading); padding: 18px 20px; font-size: 16px; font-weight: 800; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; cursor: pointer; }
-    .faq-chip { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: rgba(147,197,253,0.15); color: var(--color-accent); font-size: 14px; font-weight: 800; letter-spacing: 0.06em; }
-    .accordion-title { line-height: 1.3; letter-spacing: 0.01em; }
-    .chevron { width: 22px; height: 22px; border: 2px solid var(--color-accent); border-left: 0; border-top: 0; transform: rotate(45deg); transition: transform .25s ease, border-color .25s ease; }
-    .accordion-item.active .chevron { transform: rotate(225deg); border-color: #334155; }
-    .accordion-item.active .accordion-header { background: transparent; color: var(--color-heading); }
-    .accordion-item.active .faq-chip { background: var(--color-action); color: var(--color-heading); }
-    .accordion-panel { max-height: 0; overflow: hidden; transition: max-height .35s ease; background: transparent; color: var(--color-body); }
-    .accordion-inner { padding: 0 20px 20px; }
-
-    /* CTA Blocks */
-    .cta-row { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 24px; }
-    .btn { background: #1D4ED8; color: #E7EAEE; border: none; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; letter-spacing: 0.02em; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all .25s ease; }
-    .btn:hover { background: #1E40AF; }
-    .btn:active { transform: scale(0.96); }
-
-    /* Responsive tweaks */
-    @media (max-width: 768px) {
-      .container { padding: 0 20px; }
-      .process-hero { padding: 130px 0 60px; }
-      
-      .footer-content { padding: 0 20px !important; }
-      .footer-grid { 
-        grid-template-columns: 1fr !important; 
-        gap: 40px !important; 
-        margin-bottom: 40px !important; 
+      body,
+      html {
+        font-family:
+          "Satoshi",
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: var(--color-bg-primary);
+        color: var(--color-heading);
+        height: 100%;
       }
-      .footer-legal { 
-        flex-direction: column !important; 
-        text-align: center !important; 
-        gap: 16px !important; 
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
       }
-    }
 
-    /* Footer Styles (consistent site-wide) */
-    .footer { background: var(--color-bg-primary); padding: 80px 0 40px; border-top: 1px solid rgba(163, 170, 180, 0.2); }
-    .footer-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
-    .footer-section { display: flex; flex-direction: column; }
-    .footer-logo { margin-bottom: 24px; }
-    .footer-description { color: var(--color-body); font-size: 16px; line-height: 1.6; margin-bottom: 32px; max-width: 300px; }
-    .footer-social { display: flex; gap: 16px; }
-    .footer-social a { color: var(--color-accent); font-size: 20px; transition: color 0.3s ease; }
-    .footer-social a:hover { color: var(--color-heading); }
-    .footer-label { color: var(--color-accent) !important; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 8px; }
-    .footer-heading { color: var(--color-heading) !important; font-size: 20px; font-weight: 700; margin-bottom: 24px; letter-spacing: 0.02em; }
-    .footer-links { list-style: none; padding: 0; margin: 0; }
-    .footer-links li { margin-bottom: 12px; color: var(--color-accent); font-size: 16px; }
-    .footer-links a { color: var(--color-accent); font-size: 16px; text-decoration: none; transition: all 0.3s ease; }
-    .footer-links a:hover { color: var(--color-accent); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
-    .footer-links strong { color: var(--color-accent); font-weight: 400; }
-    .footer-bottom { border-top: 1px solid rgba(163, 170, 180, 0.2); padding-top: 32px; }
-    .footer-legal { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-    .footer-legal p { color: var(--color-body); font-size: 14px; margin: 0; }
-    .footer-legal-links { display: flex; align-items: center; gap: 16px; }
-    .footer-legal-links a { color: var(--color-accent); font-size: 14px; text-decoration: none; transition: all 0.3s ease; }
-    .footer-legal-links a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
-    .footer-divider { color: rgba(163, 170, 180, 0.3); font-size: 14px; }
-
-    /* Post-Project Care */
-    .postcare { padding: 80px 0; }
-    .postcare .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-    .postcare .section-header { text-align: left; margin-bottom: 24px; }
-    .postcare .section-title { font-size: clamp(26px, 5vw, 42px); font-weight: 800; letter-spacing: 0.0em; }
-    .postcare .section-subtitle { color: var(--color-accent); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px; margin-bottom: 6px; }
-    .postcare .content { max-width: 900px; margin: 0 auto; padding: 0 10px; }
-    .postcare .subheading { color: var(--color-heading); font-size: 20px; font-weight: 700; margin: 8px 0 12px; letter-spacing: 0.01em; }
-    .postcare p { color: var(--color-body); font-size: 17px; line-height: 1.7; }
-    .postcare-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 16px; }
-    .postcare-card { background: #0D111B; border: 1px solid rgba(163,170,180,0.25); padding: 24px; border-radius: 8px; transition: border-color .25s ease, background .25s ease, transform .25s ease; }
-    .postcare-card:hover { border-color: var(--color-accent); background: #111827; transform: translateY(-2px); }
-    .postcare-card h4 { color: var(--color-heading); font-size: 18px; font-weight: 800; margin: 0 0 10px; letter-spacing: 0.01em; }
-    .postcare-card ul { margin: 0; padding-left: 18px; color: var(--color-body); line-height: 1.7; }
-    .postcare .cta-row { margin-top: 24px; }
-    /* Custom Floating Cursor (azure) */
-    .cursor { position: fixed; width: 20px; height: 20px; background: rgba(147, 197, 253, 0.6); border: 2px solid rgba(147, 197, 253, 0.8); border-radius: 50%; pointer-events: none; z-index: 99999; transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .cursor-follower { position: fixed; width: 40px; height: 40px; border: 2px solid rgba(147, 197, 253, 0.3); border-radius: 50%; pointer-events: none; z-index: 99998; background: rgba(147, 197, 253, 0.1); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    body.cursor-hover .cursor { transform: scale(1.5); background: rgba(147, 197, 253, 0.3); border: 2px solid rgba(147, 197, 253, 1); box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4); }
-    body.cursor-click .cursor { transform: scale(0.8); background: rgba(0,0,0,0.8); }
-    body.cursor-text .cursor { transform: scaleX(0.3) scaleY(1.5); background: rgba(147,197,253,0.4); border: 1px solid rgba(147,197,253,0.9); border-radius: 2px; }
-    body.cursor-view .cursor { transform: scale(2); background: rgba(147, 197, 253, 0.2); border: 2px solid rgba(147, 197, 253, 0.8); }
-    * { cursor: none !important; }
-    @media (max-width: 768px) { .cursor, .cursor-follower { display: none; } * { cursor: auto !important; } }
-
-    /* Gallery Styles */
-    .gallery {
-      padding: 120px 40px;
-      background: var(--color-light);
-    }
-    .gallery .section-header {
-      text-align: left !important;
-    }
-    .gallery-grid {
-      display: grid;
-      gap: 32px;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .gallery-item {
-      height: 400px;
-      background-size: cover;
-      background-position: center;
-      transition: all 400ms ease;
-      cursor: pointer;
-    }
-    .gallery-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 25px 80px rgba(29,78,216,0.18);
-    }
-    .gallery-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0);
-      transition: all 400ms ease;
-    }
-    .gallery-item:hover::before {
-      background: rgba(0,0,0,0.1);
-    }
-    .gallery-item.reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: reveal 0.6s ease forwards;
-    }
-    @keyframes reveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      /* Local page styles */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
       }
-    }
-    @media (max-width: 1024px) {
-      .gallery {
-        padding: 100px 20px;
-      }
-      .gallery-grid {
-        gap: 24px;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      }
-      .gallery-item {
-        height: 300px;
-      }
-    }
-    @media (max-width: 768px) {
-      .gallery {
-        padding: 80px 20px;
-      }
-      .gallery-grid {
-        gap: 20px;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
-      .gallery-item {
-        height: 250px;
-      }
-    }
-    @media (max-width: 640px) {
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-      .gallery-item {
-        height: 300px;
-      }
-    }
 
-    .lightbox-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(11, 14, 20, 0.95);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-    }
+      /* Hero */
+      .process-hero {
+        padding: 100px 0 40px;
+        position: relative;
+        overflow: hidden;
+      }
+      .process-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          1200px 600px at 80% -10%,
+          rgba(29, 78, 216, 0.18),
+          rgba(11, 14, 20, 0) 60%
+        );
+        pointer-events: none;
+        opacity: 0.7;
+      }
+      .process-eyebrow {
+        color: var(--color-accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .process-title {
+        font-size: clamp(36px, 5.5vw, 72px);
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        line-height: 0.98;
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+      .process-subtitle {
+        font-size: clamp(18px, 3.2vw, 24px);
+        color: var(--color-body);
+        max-width: 900px;
+      }
 
-    .lightbox-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
+      /* Navigation */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        z-index: 2000;
+        background: #0b0e14; /* Deep Navy background */
+      }
 
-    .lightbox-content {
-      position: relative;
-      width: 80vw;
-      max-width: 1200px;
-      max-height: 85vh;
-      animation: lightboxZoom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
+      .nav .brand img {
+        height: 200px;
+        width: auto;
+      }
+      .nav .links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+      .nav .links a {
+        color: var(--color-heading);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+      }
+      .nav .links a:hover {
+        color: #93c5fd;
+        background: rgba(147, 197, 253, 0.1);
+      }
 
-    .lightbox-content img {
-      width: 100%;
-      height: auto;
-      max-height: 85vh;
-      object-fit: contain;
-      border: 2px solid rgba(147, 197, 253, 0.3);
-      border-radius: 8px;
-      display: block;
-    }
+      /* Dropdown styles */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .dropdown-arrow {
+        transition: transform 0.3s ease;
+        font-size: 12px;
+      }
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        min-width: 220px;
+        background: #0b0e14;
+        backdrop-filter: none;
+        border: 1px solid rgba(147, 197, 253, 0.25);
+        border-radius: 12px;
+        padding: 10px;
+        z-index: 1000;
+      }
+      .dropdown.active .dropdown-menu {
+        display: block;
+      }
+      .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .dropdown:hover .dropdown-arrow {
+        transform: rotate(180deg);
+      }
 
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: -70px;
-      background: rgba(147, 197, 253, 0.2);
-      border: 2px solid rgba(147, 197, 253, 0.5);
-      color: #93C5FD;
-      font-size: 32px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 300;
-      line-height: 1;
-      z-index: 10001;
-    }
+      /* Hamburger Menu Styles */
+      .hamburger-menu {
+        display: none;
+        position: relative;
+        z-index: 9999;
+        pointer-events: auto !important;
+      }
 
-    .lightbox-close:hover {
-      background: rgba(147, 197, 253, 0.3);
-      border-color: #93C5FD;
-      transform: rotate(90deg);
-    }
+      .hamburger-icon {
+        width: 30px;
+        height: 24px;
+        cursor: pointer !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 10000;
+        pointer-events: auto !important;
+      }
 
-    @keyframes lightboxZoom {
-      0% {
-        transform: scale(0.8);
+      .line {
+        width: 100%;
+        height: 3px;
+        background: #1d4ed8;
+        border-radius: 2px;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: center;
+      }
+
+      .hamburger-menu.active .line1 {
+        transform: rotate(45deg) translate(6px, 6px) !important;
+      }
+      .hamburger-menu.active .line2 {
+        opacity: 0 !important;
+        transform: scaleX(0) !important;
+      }
+      .hamburger-menu.active .line3 {
+        transform: rotate(-45deg) translate(6px, -6px) !important;
+      }
+
+      /* Mobile Overlay */
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #0b0e14;
+        backdrop-filter: none;
+        display: none;
+        align-items: center;
+        justify-content: center;
         opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 9998;
       }
-      100% {
-        transform: scale(1);
+      .hamburger-menu.active .mobile-overlay {
+        display: flex;
         opacity: 1;
+        visibility: visible;
       }
-    }
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 40px;
+      }
 
-  </style>
+      .mobile-link {
+        font-size: 20px !important;
+        font-weight: 500;
+        color: #e7eaee;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 200px;
+      }
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Z0F0X2TWW4');
-  </script>
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1273059444474707');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
-  /></noscript>
+      .mobile-link:hover {
+        background: rgba(29, 78, 216, 0.2);
+        color: #1d4ed8;
+        transform: translateY(-2px);
+      }
+      .mobile-dropdown-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .mobile-dropdown-btn {
+        font-size: 24px;
+        font-weight: 500;
+        color: #e7eaee;
+        background: none;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        min-width: 200px;
+        justify-content: center;
+      }
+      .mobile-arrow {
+        transition: transform 0.3s ease;
+        font-size: 16px;
+      }
+      .mobile-dropdown-section.active .mobile-arrow {
+        transform: rotate(180deg);
+      }
+      .mobile-dropdown-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .mobile-dropdown-section.active .mobile-dropdown-content {
+        max-height: 200px;
+      }
+      .mobile-sublink {
+        font-size: 18px;
+        color: #1d4ed8;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
 
-</head>
-<body>
-  <!-- Custom Floating Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-  <!-- Navigation -->
-  <header class="nav">
-    <div class="brand">
-      <a href="index.html">
-        <img src="assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" />
-      </a>
-    </div>
+      @media (max-width: 480px) {
+        .mobile-link {
+          font-size: 18px !important;
+          min-width: 180px;
+        }
 
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-      <div class="hamburger-icon">
-        <div class="line line1"></div>
-        <div class="line line2"></div>
-        <div class="line line3"></div>
-      </div>
-      <div class="mobile-overlay">
-        <nav class="mobile-nav">
-          <a href="about.html" class="mobile-link">About</a>
-          <a href="services/interior-design.html" class="mobile-link">Services</a>
-          <a href="our-process.html" class="mobile-link">Our Process</a>
-          <a href="contact/get-quote.html" class="mobile-link">Contact</a>
-        </nav>
-      </div>
-    </div>
+        .mobile-nav {
+          gap: 25px;
+          padding: 30px;
+        }
+      }
 
-    <nav class="links">
-      <a href="our-process.html" class="active">Our Process</a>
-      <a href="services/interior-design.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="contact/get-quote.html">Contact</a>
-    </nav>
-  </header>
-  
-  <!-- Hero -->
-  <section style="padding: 140px 0 40px; background: #0B0E14;">
-    <div class="container">
-      <div style="color: #93C5FD; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px; margin-bottom: 6px; font-family: 'Satoshi', 'Inter', system-ui, sans-serif;">OUR PROCESS</div>
-      <h1 style="font-size: clamp(26px, 5vw, 42px); font-weight: 800; letter-spacing: 0.0em; color: #E7EAEE; margin: 0 0 16px 0; font-family: 'Satoshi', 'Inter', system-ui, sans-serif;">Client Journey</h1>
-      <p style="color: #A3AAB4; font-size: 18px; line-height: 1.6; max-width: 900px; margin: 0; font-family: 'Satoshi', 'Inter', system-ui, sans-serif;">We follow a proven process to ensure your project exceeds expectations</p>
-    </div>
-  </section>
+      @media (max-width: 1400px) {
+        .nav {
+          padding: 0 30px;
+        }
+        .nav .brand img {
+          height: 180px;
+        }
+        .nav .links {
+          gap: 24px;
+        }
+        .nav .links a {
+          font-size: 15px;
+          padding: 8px 14px;
+        }
+      }
+      @media (max-width: 1024px) {
+        .process-hero {
+          padding: 90px 0 80px;
+        }
+      }
+      @media (max-width: 1200px) {
+        .nav {
+          padding: 0 20px;
+        }
+        .nav .brand img {
+          height: 150px;
+        }
+        .hamburger-menu {
+          display: block !important;
+        }
+        /* Force-hide desktop links to avoid wrapping/overlap on narrow widths */
+        .nav .links {
+          display: none !important;
+          visibility: hidden !important;
+          height: 0 !important;
+          overflow: hidden !important;
+        }
+        .nav .links {
+          display: none !important;
+          visibility: hidden !important;
+          height: 0 !important;
+          overflow: hidden !important;
+        }
+        .nav .links {
+          display: none !important;
+        }
+      }
 
-  <!-- Steps -->
-  <section class="steps" style="padding: 60px 0 40px;">
-    <div class="container">
+      /* Steps */
+      .steps {
+        padding: 100px 0;
+      }
+      .steps .section-header {
+        text-align: left;
+        margin-bottom: 40px;
+      }
+      .steps .section-title {
+        font-size: clamp(26px, 5vw, 42px);
+        font-weight: 800;
+        letter-spacing: 0em;
+      }
+      .steps .section-subtitle {
+        color: var(--color-accent);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
 
-      <div class="steps-grid">
-        <!-- Step 1 -->
-        <div class="step-card">
-          <div class="step-number">Step 1</div>
-          <div class="step-icon"><i class="fa-solid fa-handshake"></i></div>
-          <h3 class="step-title">Initial Consultation</h3>
-          <p class="step-desc">We begin with an in-depth discussion about your vision, lifestyle, budget, and project goals. This collaborative session helps us understand your unique needs and preferences.</p>
-        </div>
-        <!-- Step 2 -->
-        <div class="step-card">
-          <div class="step-number">Step 2</div>
-          <div class="step-icon"><i class="fa-solid fa-ruler-combined"></i></div>
-          <h3 class="step-title">Space Assessment & Measurements</h3>
-          <p class="step-desc">Our team conducts a thorough analysis of your space, taking precise measurements and evaluating structural elements, lighting, and existing features.</p>
-        </div>
-        <!-- Step 3 -->
-        <div class="step-card">
-          <div class="step-number">Step 3</div>
-          <div class="step-icon"><i class="fa-solid fa-lightbulb"></i></div>
-          <h3 class="step-title">Design Development</h3>
-          <p class="step-desc">We create detailed design concepts, mood boards, and 3D visualizations that bring your vision to life, incorporating your feedback at every stage.</p>
-        </div>
-        <!-- Step 4 -->
-        <div class="step-card">
-          <div class="step-number">Step 4</div>
-          <div class="step-icon"><i class="fa-solid fa-palette"></i></div>
-          <h3 class="step-title">Material Selection & Sourcing</h3>
-          <p class="step-desc">We curate premium materials, finishes, furniture, and fixtures that align with your design aesthetic and quality standards.</p>
-        </div>
-        <!-- Step 5 -->
-        <div class="step-card">
-          <div class="step-number">Step 5</div>
-          <div class="step-icon"><i class="fa-solid fa-calendar-check"></i></div>
-          <h3 class="step-title">Project Planning & Coordination</h3>
-          <p class="step-desc">Detailed project timelines, contractor coordination, and permit management ensure smooth execution from start to finish.</p>
-        </div>
-        <!-- Step 6 -->
-        <div class="step-card">
-          <div class="step-number">Step 6</div>
-          <div class="step-icon"><i class="fa-solid fa-house-circle-check"></i></div>
-          <h3 class="step-title">Installation & Final Reveal</h3>
-          <p class="step-desc">Professional installation, styling, and final walkthrough to ensure every detail exceeds your expectations.</p>
-        </div>
-      </div>
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        margin-bottom: 60px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .step-card {
+        background: #0d111b;
+        border: 1px solid rgba(163, 170, 180, 0.25);
+        padding: 40px 32px;
+        border-radius: 12px;
+        transition:
+          border-color 0.25s ease,
+          background 0.25s ease,
+          transform 0.25s ease;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .step-card:hover {
+        border-color: var(--color-accent);
+        background: #111827;
+        transform: translateY(-2px);
+      }
+      .step-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(147, 197, 253, 0.12);
+        color: var(--color-accent);
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+      .step-title {
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+      .step-desc {
+        color: var(--color-body);
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      .step-desc {
+        color: var(--color-body);
+        font-size: 16px;
+        line-height: 1.6;
+      }
 
-    </div>
-  </section>
+      /* FAQ */
+      .faq {
+        padding: 80px 0;
+      }
+      /* Match 'How We Work' width */
+      .faq .container {
+        max-width: 1400px;
+      }
 
-  <!-- Post-Project Care -->
-  <section class="postcare" id="postcare" style="padding-top: 40px;">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-subtitle">Post-Project Care</div>
-        <h2 class="section-title">Aftercare & Customer Service</h2>
-      </div>
-      <div class="content">
-        <h3 class="subheading">One-Year Workmanship Correction (Callback) Period</h3>
-        <p>
-          After your project is completed, we stand behind our workmanship for one year. If something we
-          installed isn’t performing as intended, we return to correct it—calmly, promptly, and with minimal
-          disruption.
-        </p>
-      </div>
+      /* Process (moved) minimal accordion styles */
+      /* Constrain process width */
+      .process-section {
+        padding: 40px 0 80px;
+      }
+      /* Responsive grid layout */
+      @media (max-width: 1024px) {
+        .steps-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 28px;
+        }
+      }
+      @media (max-width: 768px) {
+        .steps-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .step-card {
+          padding: 32px 24px;
+          min-height: 240px;
+        }
+      }
 
-      <div class="accordion" id="postcareAccordion" role="tablist">
-        <!-- Q1: What's covered? -->
-        <div class="accordion-item" role="tabpanel" aria-expanded="false">
-          <button class="accordion-header" type="button" aria-controls="faq-1" aria-expanded="false">
-            <span class="faq-chip">Q1</span>
-            <span class="accordion-title">What’s covered?</span>
-            <span class="chevron" aria-hidden="true"></span>
-          </button>
-          <div class="accordion-panel" id="faq-1"><div class="accordion-inner">
-            <ul>
-              <li>Corrections to our workmanship (fit, finish, installation quality).</li>
-              <li>Adjustments that naturally settle after use (door alignment, cabinet reveals, caulk touch-ups).</li>
-              <li>Warranty support coordination for covered items we installed.</li>
-            </ul>
-          </div></div>
-        </div>
+      .process-section .container > h2 {
+        margin-bottom: 20px;
+      }
+      .process-section .process-eyebrow {
+        text-align: left;
+      }
+      .process-section .container > p {
+        margin-bottom: 40px;
+      }
+      /* Match 'How We Work' header styling */
+      .process-section .section-header {
+        text-align: left;
+        margin-bottom: 40px;
+      }
+      .process-section .section-title {
+        font-size: clamp(26px, 5vw, 42px);
+        font-weight: 800;
+        letter-spacing: 0em;
+      }
+      .process-section .section-subtitle {
+        color: var(--color-accent);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      .process-section .container .process-accordion {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 10px;
+      }
+      /* Spacing between dropdown boxes */
+      .process-accordion .accordion-item {
+        margin-bottom: 20px;
+      }
+      .process-accordion .accordion-item:last-child {
+        margin-bottom: 0;
+      }
+      .process-accordion .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 4px 10px 0 44px;
+      }
+      .process-accordion .accordion-description {
+        margin: 0 0 8px;
+        color: var(--color-body);
+        line-height: 1.62;
+      }
+      .process-accordion .sub-services {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--color-body);
+      }
+      .process-accordion .sub-services li {
+        margin: 4px 0;
+      }
+      .process-accordion .accordion-item.open .accordion-content {
+        max-height: 800px;
+      }
+      .process-accordion .accordion-header {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+      }
+      .process-accordion .accordion-arrow {
+        width: 12px;
+        height: 12px;
+        border: 2px solid var(--color-accent);
+        border-left: 0;
+        border-top: 0;
+        transform: rotate(45deg);
+        transition: transform 0.25s ease;
+      }
+      .process-accordion .accordion-item.open .accordion-arrow {
+        transform: rotate(225deg);
+      }
+      .faq .section-header {
+        text-align: left;
+        margin-bottom: 40px;
+      }
+      .faq .section-title {
+        font-size: clamp(26px, 5vw, 42px);
+        font-weight: 800;
+      }
+      .faq .section-subtitle {
+        color: var(--color-accent);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      /* Modern FAQ accordion */
+      .accordion {
+        display: grid;
+        gap: 14px;
+      }
+      .accordion-item {
+        position: relative;
+        border: 1px solid rgba(147, 197, 253, 0.18);
+        background: #0d111b;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: border-color 0.25s ease;
+      }
+      .accordion-item:hover {
+        border-color: rgba(147, 197, 253, 0.35);
+      }
+      .accordion-header {
+        width: 100%;
+        text-align: left;
+        background: transparent;
+        color: var(--color-heading);
+        padding: 18px 20px;
+        font-size: 16px;
+        font-weight: 800;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 14px;
+        cursor: pointer;
+      }
+      .faq-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: rgba(147, 197, 253, 0.15);
+        color: var(--color-accent);
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+      }
+      .accordion-title {
+        line-height: 1.3;
+        letter-spacing: 0.01em;
+      }
+      .chevron {
+        width: 22px;
+        height: 22px;
+        border: 2px solid var(--color-accent);
+        border-left: 0;
+        border-top: 0;
+        transform: rotate(45deg);
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .accordion-item.active .chevron {
+        transform: rotate(225deg);
+        border-color: #334155;
+      }
+      .accordion-item.active .accordion-header {
+        background: transparent;
+        color: var(--color-heading);
+      }
+      .accordion-item.active .faq-chip {
+        background: var(--color-action);
+        color: var(--color-heading);
+      }
+      .accordion-panel {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+        background: transparent;
+        color: var(--color-body);
+      }
+      .accordion-inner {
+        padding: 0 20px 20px;
+      }
 
-        <!-- Q2: What's not covered? -->
-        <div class="accordion-item" role="tabpanel" aria-expanded="false">
-          <button class="accordion-header" type="button" aria-controls="faq-2" aria-expanded="false">
-            <span class="faq-chip">Q2</span>
-            <span class="accordion-title">What’s not covered?</span>
-            <span class="chevron" aria-hidden="true"></span>
-          </button>
-          <div class="accordion-panel" id="faq-2"><div class="accordion-inner">
-            <ul>
-              <li>Normal wear and tear, owner-caused damage, or lack of maintenance.</li>
-              <li>Issues tied to manufacturer defects (handled under the product’s own warranty; we’ll help coordinate).</li>
-              <li>Changes in scope or new work requests (quoted separately).</li>
-              <li>Environmental movement beyond industry tolerances (e.g., seasonal wood movement, building settlement).</li>
-            </ul>
-          </div></div>
-        </div>
+      /* CTA Blocks */
+      .cta-row {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin-top: 24px;
+      }
+      .btn {
+        background: #1d4ed8;
+        color: #e7eaee;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.25s ease;
+      }
+      .btn:hover {
+        background: #1e40af;
+      }
+      .btn:active {
+        transform: scale(0.96);
+      }
 
-        <!-- Q3: How to request service? -->
-        <div class="accordion-item" role="tabpanel" aria-expanded="false">
-          <button class="accordion-header" type="button" aria-controls="faq-3" aria-expanded="false">
-            <span class="faq-chip">Q3</span>
-            <span class="accordion-title">How to request service?</span>
-            <span class="chevron" aria-hidden="true"></span>
-          </button>
-          <div class="accordion-panel" id="faq-3"><div class="accordion-inner">
-            <ul>
-              <li>Email or call with a brief description, photos/video, and your availability.</li>
-              <li>We acknowledge within 1 business day and schedule a visit if needed.</li>
-              <li>A tech or project lead assesses on site and performs the correction or orders parts.</li>
-              <li>If a manufacturer claim applies, we assist with documentation and coordinate next steps.</li>
-            </ul>
-          </div></div>
-        </div>
+      /* Responsive tweaks */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 20px;
+        }
+        .process-hero {
+          padding: 130px 0 60px;
+        }
 
-        <!-- Q4: Typical response & scheduling -->
-        <div class="accordion-item" role="tabpanel" aria-expanded="false">
-          <button class="accordion-header" type="button" aria-controls="faq-4" aria-expanded="false">
-            <span class="faq-chip">Q4</span>
-            <span class="accordion-title">Typical response & scheduling</span>
-            <span class="chevron" aria-hidden="true"></span>
-          </button>
-          <div class="accordion-panel" id="faq-4"><div class="accordion-inner">
-            <ul>
-              <li>Assessment visit: 3–7 business days (availability may vary).</li>
-              <li>Minor adjustments: Often resolved during the visit.</li>
-              <li>Parts-dependent items: Scheduled upon arrival of materials.</li>
-            </ul>
-          </div></div>
-        </div>
+        .footer-content {
+          padding: 0 20px !important;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr !important;
+          gap: 40px !important;
+          margin-bottom: 40px !important;
+        }
+        .footer-legal {
+          flex-direction: column !important;
+          text-align: center !important;
+          gap: 16px !important;
+        }
+      }
 
-        <!-- Q5: Manufacturer warranties -->
-        <div class="accordion-item" role="tabpanel" aria-expanded="false">
-          <button class="accordion-header" type="button" aria-controls="faq-5" aria-expanded="false">
-            <span class="faq-chip">Q5</span>
-            <span class="accordion-title">Manufacturer warranties</span>
-            <span class="chevron" aria-hidden="true"></span>
-          </button>
-          <div class="accordion-panel" id="faq-5"><div class="accordion-inner">
-            <ul>
-              <li>Many products carry their own warranties (tile membranes, fixtures, appliances, flooring).</li>
-              <li>We register/record details where applicable and assist you in initiating claims.</li>
-              <li>Decisions and timelines are set by the manufacturer. We keep you informed.</li>
-            </ul>
-          </div></div>
-        </div>
-      </div>
+      /* Footer Styles (consistent site-wide) */
+      .footer {
+        background: var(--color-bg-primary);
+        padding: 80px 0 40px;
+        border-top: 1px solid rgba(163, 170, 180, 0.2);
+      }
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 60px;
+      }
+      .footer-section {
+        display: flex;
+        flex-direction: column;
+      }
+      .footer-logo {
+        margin-bottom: 24px;
+      }
+      .footer-description {
+        color: var(--color-body);
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 32px;
+        max-width: 300px;
+      }
+      .footer-social {
+        display: flex;
+        gap: 16px;
+      }
+      .footer-social a {
+        color: var(--color-accent);
+        font-size: 20px;
+        transition: color 0.3s ease;
+      }
+      .footer-social a:hover {
+        color: var(--color-heading);
+      }
+      .footer-label {
+        color: var(--color-accent) !important;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .footer-heading {
+        color: var(--color-heading) !important;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        letter-spacing: 0.02em;
+      }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footer-links li {
+        margin-bottom: 12px;
+        color: var(--color-accent);
+        font-size: 16px;
+      }
+      .footer-links a {
+        color: var(--color-accent);
+        font-size: 16px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .footer-links a:hover {
+        color: var(--color-accent);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .footer-links strong {
+        color: var(--color-accent);
+        font-weight: 400;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(163, 170, 180, 0.2);
+        padding-top: 32px;
+      }
+      .footer-legal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .footer-legal p {
+        color: var(--color-body);
+        font-size: 14px;
+        margin: 0;
+      }
+      .footer-legal-links {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .footer-legal-links a {
+        color: var(--color-accent);
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .footer-legal-links a:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .footer-divider {
+        color: rgba(163, 170, 180, 0.3);
+        font-size: 14px;
+      }
 
-      <!-- Service Request Button -->
-      <div style="text-align: center; margin-top: 40px;">
-        <a href="contact/service-request.html" class="btn" style="background: #1D4ED8; color: #E7EAEE; padding: 16px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 18px; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
-          <i class="fa-solid fa-wrench"></i>
-          Request Service
+      /* Post-Project Care */
+      .postcare {
+        padding: 80px 0;
+      }
+      .postcare .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      .postcare .section-header {
+        text-align: left;
+        margin-bottom: 24px;
+      }
+      .postcare .section-title {
+        font-size: clamp(26px, 5vw, 42px);
+        font-weight: 800;
+        letter-spacing: 0em;
+      }
+      .postcare .section-subtitle {
+        color: var(--color-accent);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      .postcare .content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 10px;
+      }
+      .postcare .subheading {
+        color: var(--color-heading);
+        font-size: 20px;
+        font-weight: 700;
+        margin: 8px 0 12px;
+        letter-spacing: 0.01em;
+      }
+      .postcare p {
+        color: var(--color-body);
+        font-size: 17px;
+        line-height: 1.7;
+      }
+      .postcare-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin-top: 16px;
+      }
+      .postcare-card {
+        background: #0d111b;
+        border: 1px solid rgba(163, 170, 180, 0.25);
+        padding: 24px;
+        border-radius: 8px;
+        transition:
+          border-color 0.25s ease,
+          background 0.25s ease,
+          transform 0.25s ease;
+      }
+      .postcare-card:hover {
+        border-color: var(--color-accent);
+        background: #111827;
+        transform: translateY(-2px);
+      }
+      .postcare-card h4 {
+        color: var(--color-heading);
+        font-size: 18px;
+        font-weight: 800;
+        margin: 0 0 10px;
+        letter-spacing: 0.01em;
+      }
+      .postcare-card ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--color-body);
+        line-height: 1.7;
+      }
+      .postcare .cta-row {
+        margin-top: 24px;
+      }
+      /* Custom Floating Cursor (azure) */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(147, 197, 253, 0.6);
+        border: 2px solid rgba(147, 197, 253, 0.8);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+        transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .cursor-follower {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(147, 197, 253, 0.3);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99998;
+        background: rgba(147, 197, 253, 0.1);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      body.cursor-hover .cursor {
+        transform: scale(1.5);
+        background: rgba(147, 197, 253, 0.3);
+        border: 2px solid rgba(147, 197, 253, 1);
+        box-shadow:
+          0 0 15px rgba(147, 197, 253, 0.8),
+          0 0 30px rgba(147, 197, 253, 0.4);
+      }
+      body.cursor-click .cursor {
+        transform: scale(0.8);
+        background: rgba(0, 0, 0, 0.8);
+      }
+      body.cursor-text .cursor {
+        transform: scaleX(0.3) scaleY(1.5);
+        background: rgba(147, 197, 253, 0.4);
+        border: 1px solid rgba(147, 197, 253, 0.9);
+        border-radius: 2px;
+      }
+      body.cursor-view .cursor {
+        transform: scale(2);
+        background: rgba(147, 197, 253, 0.2);
+        border: 2px solid rgba(147, 197, 253, 0.8);
+      }
+      * {
+        cursor: none !important;
+      }
+      @media (max-width: 768px) {
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+        * {
+          cursor: auto !important;
+        }
+      }
+
+      /* Gallery Styles */
+      .gallery {
+        padding: 120px 40px;
+        background: var(--color-light);
+      }
+      .gallery .section-header {
+        text-align: left !important;
+      }
+      .gallery-grid {
+        display: grid;
+        gap: 32px;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .gallery-item {
+        height: 400px;
+        background-size: cover;
+        background-position: center;
+        transition: all 400ms ease;
+        cursor: pointer;
+      }
+      .gallery-item:hover {
+        transform: scale(1.02);
+        box-shadow: 0 25px 80px rgba(29, 78, 216, 0.18);
+      }
+      .gallery-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0);
+        transition: all 400ms ease;
+      }
+      .gallery-item:hover::before {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .gallery-item.reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: reveal 0.6s ease forwards;
+      }
+      @keyframes reveal {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 1024px) {
+        .gallery {
+          padding: 100px 20px;
+        }
+        .gallery-grid {
+          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .gallery-item {
+          height: 300px;
+        }
+      }
+      @media (max-width: 768px) {
+        .gallery {
+          padding: 80px 20px;
+        }
+        .gallery-grid {
+          gap: 20px;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .gallery-item {
+          height: 250px;
+        }
+      }
+      @media (max-width: 640px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+        .gallery-item {
+          height: 300px;
+        }
+      }
+
+      .lightbox-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(11, 14, 20, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+      }
+
+      .lightbox-modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .lightbox-content {
+        position: relative;
+        width: 80vw;
+        max-width: 1200px;
+        max-height: 85vh;
+        animation: lightboxZoom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .lightbox-content img {
+        width: 100%;
+        height: auto;
+        max-height: 85vh;
+        object-fit: contain;
+        border: 2px solid rgba(147, 197, 253, 0.3);
+        border-radius: 8px;
+        display: block;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: -70px;
+        background: rgba(147, 197, 253, 0.2);
+        border: 2px solid rgba(147, 197, 253, 0.5);
+        color: #93c5fd;
+        font-size: 32px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 300;
+        line-height: 1;
+        z-index: 10001;
+      }
+
+      .lightbox-close:hover {
+        background: rgba(147, 197, 253, 0.3);
+        border-color: #93c5fd;
+        transform: rotate(90deg);
+      }
+
+      @keyframes lightboxZoom {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0F0X2TWW4");
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1273059444474707");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+    /></noscript>
+  </head>
+  <body>
+    <!-- Custom Floating Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <!-- Navigation -->
+    <header class="nav">
+      <div class="brand">
+        <a href="index.html">
+          <img
+            src="assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+            alt="Interior Illusions Logo"
+          />
         </a>
       </div>
 
-    </div>
-  </section>
-
-  <!-- Portfolio Section -->
-  <section class="gallery" style="padding: 120px 40px; background: var(--color-light);">
-    <div style="max-width: 1400px; margin: 0 auto;">
-      <div class="section-header" style="text-align: left !important; margin-bottom: 60px;">
-        <p style="color: var(--color-accent); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 12px;">PORTFOLIO</p>
-        <h2 style="color: var(--color-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin: 0;">Our Latest Work</h2>
+      <!-- Hamburger Menu -->
+      <div class="hamburger-menu" id="hamburgerMenu">
+        <div class="hamburger-icon">
+          <div class="line line1"></div>
+          <div class="line line2"></div>
+          <div class="line line3"></div>
+        </div>
+        <div class="mobile-overlay">
+          <nav class="mobile-nav">
+            <a href="about.html" class="mobile-link">About</a>
+            <a href="services/interior-design.html" class="mobile-link"
+              >Services</a
+            >
+            <a href="our-process.html" class="mobile-link">Our Process</a>
+            <a href="contact/get-quote.html" class="mobile-link">Contact</a>
+          </nav>
+        </div>
       </div>
-      <div class="gallery-grid">
-        <div class="gallery-item reveal" style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG');" data-footnote="Custom tile in Primary Bathroom" onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG');" data-footnote="LVP flooring install throughout" onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG');" data-footnote="Nail down install" onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG');" data-footnote="Full home remodel" onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG');" data-footnote="Custom tile in Primary Bathroom" onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG');" data-footnote="Custom Tile" onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG');" data-footnote="Guest Bath Marble Tile Install" onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG');" data-footnote="Red Oak HardwoodFloor Install" onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG');" data-footnote="Primary Bath Tile Install" onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG', this)"></div>
+
+      <nav class="links">
+        <a href="our-process.html" class="active">Our Process</a>
+        <a href="services/interior-design.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact/get-quote.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section style="padding: 140px 0 40px; background: #0b0e14">
+      <div class="container">
+        <div
+          style="
+            color: #93c5fd;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-bottom: 6px;
+            font-family:
+              &quot;Satoshi&quot;, &quot;Inter&quot;, system-ui, sans-serif;
+          "
+        >
+          OUR PROCESS
+        </div>
+        <h1
+          style="
+            font-size: clamp(26px, 5vw, 42px);
+            font-weight: 800;
+            letter-spacing: 0em;
+            color: #e7eaee;
+            margin: 0 0 16px 0;
+            font-family:
+              &quot;Satoshi&quot;, &quot;Inter&quot;, system-ui, sans-serif;
+          "
+        >
+          Client Journey
+        </h1>
+        <p
+          style="
+            color: #a3aab4;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0;
+            font-family:
+              &quot;Satoshi&quot;, &quot;Inter&quot;, system-ui, sans-serif;
+          "
+        >
+          We follow a proven process to ensure your project exceeds expectations
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Lightbox Modal -->
-  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
-    <div class="lightbox-content">
-      <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
-      <img id="lightboxImage" src="" alt="Portfolio Image" />
-      <div id="lightboxFootnote" class="lightbox-footnote" aria-live="polite" tabindex="0" role="complementary" aria-label="Image details" onclick="event.stopPropagation()"></div>
-    </div>
-  </div>
-
-  <!-- CTA Banner -->
-  <div style="max-width: 1400px; margin: 80px auto; padding: 0 40px;">
-    <section class="cta-banner" style="background: #0D111B; padding: 100px 90px; text-align: center; border-radius: 12px; transition: background 0.4s ease, transform 0.3s ease; box-shadow: 0 6px 18px rgba(11,14,20,0.06);">
-      <div style="max-width: 800px; margin: 0 auto;">
-        <h2 class="cta-banner-title" style="color: var(--color-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin-bottom: 24px; transition: color 0.4s ease;">Ready to Start Your Project?</h2>
-        <p class="cta-banner-text" style="color: var(--color-accent); font-size: clamp(16px, 2.5vw, 20px); margin-bottom: 40px; line-height: 1.6; transition: color 0.4s ease;">Let's discuss how we can transform your space into something extraordinary.</p>
-        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-          <a href="contact/get-quote.html" class="btn" style="min-width: 180px;">Get a Quote</a>
-          <a href="portfolio/residential-projects.html" class="btn secondary" style="min-width: 180px;">View Our Work</a>
+    <!-- Steps -->
+    <section class="steps" style="padding: 60px 0 40px">
+      <div class="container">
+        <div class="steps-grid">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-number">Step 1</div>
+            <div class="step-icon"><i class="fa-solid fa-handshake"></i></div>
+            <h3 class="step-title">Initial Consultation</h3>
+            <p class="step-desc">
+              We begin with an in-depth discussion about your vision, lifestyle,
+              budget, and project goals. This collaborative session helps us
+              understand your unique needs and preferences.
+            </p>
+          </div>
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-number">Step 2</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-ruler-combined"></i>
+            </div>
+            <h3 class="step-title">Space Assessment & Measurements</h3>
+            <p class="step-desc">
+              Our team conducts a thorough analysis of your space, taking
+              precise measurements and evaluating structural elements, lighting,
+              and existing features.
+            </p>
+          </div>
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-number">Step 3</div>
+            <div class="step-icon"><i class="fa-solid fa-lightbulb"></i></div>
+            <h3 class="step-title">Design Development</h3>
+            <p class="step-desc">
+              We create detailed design concepts, mood boards, and 3D
+              visualizations that bring your vision to life, incorporating your
+              feedback at every stage.
+            </p>
+          </div>
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="step-number">Step 4</div>
+            <div class="step-icon"><i class="fa-solid fa-palette"></i></div>
+            <h3 class="step-title">Material Selection & Sourcing</h3>
+            <p class="step-desc">
+              We curate premium materials, finishes, furniture, and fixtures
+              that align with your design aesthetic and quality standards.
+            </p>
+          </div>
+          <!-- Step 5 -->
+          <div class="step-card">
+            <div class="step-number">Step 5</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h3 class="step-title">Project Planning & Coordination</h3>
+            <p class="step-desc">
+              Detailed project timelines, contractor coordination, and permit
+              management ensure smooth execution from start to finish.
+            </p>
+          </div>
+          <!-- Step 6 -->
+          <div class="step-card">
+            <div class="step-number">Step 6</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-house-circle-check"></i>
+            </div>
+            <h3 class="step-title">Installation & Final Reveal</h3>
+            <p class="step-desc">
+              Professional installation, styling, and final walkthrough to
+              ensure every detail exceeds your expectations.
+            </p>
+          </div>
         </div>
       </div>
     </section>
-  </div>
-  <style>
-    .cta-banner:hover {
-      background: #FAF7F2 !important;
-      transform: translateY(-4px);
-      box-shadow: 0 10px 40px rgba(147, 197, 253, 0.3);
-    }
-    .cta-banner:hover .cta-banner-title {
-      color: #0B0E14 !important;
-    }
-    .cta-banner:hover .cta-banner-text {
-      color: #1D4ED8 !important;
-    }
-  </style>
 
-  <!-- Footer (reuse global styles) -->
-  <footer class="footer" style="margin-top:auto;">
-    <div class="footer-content">
-      <div class="footer-grid">
-        <div class="footer-section">
-          <div class="footer-logo">
-            <img src="assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" style="height: 120px; width: auto;" />
+    <!-- Post-Project Care -->
+    <section class="postcare" id="postcare" style="padding-top: 40px">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-subtitle">Post-Project Care</div>
+          <h2 class="section-title">Aftercare & Customer Service</h2>
+        </div>
+        <div class="content">
+          <h3 class="subheading">
+            One-Year Workmanship Correction (Callback) Period
+          </h3>
+          <p>
+            After your project is completed, we stand behind our workmanship for
+            one year. If something we installed isn’t performing as intended, we
+            return to correct it—calmly, promptly, and with minimal disruption.
+          </p>
+        </div>
+
+        <div class="accordion" id="postcareAccordion" role="tablist">
+          <!-- Q1: What's covered? -->
+          <div class="accordion-item" role="tabpanel" aria-expanded="false">
+            <button
+              class="accordion-header"
+              type="button"
+              aria-controls="faq-1"
+              aria-expanded="false"
+            >
+              <span class="faq-chip">Q1</span>
+              <span class="accordion-title">What’s covered?</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-1">
+              <div class="accordion-inner">
+                <ul>
+                  <li>
+                    Corrections to our workmanship (fit, finish, installation
+                    quality).
+                  </li>
+                  <li>
+                    Adjustments that naturally settle after use (door alignment,
+                    cabinet reveals, caulk touch-ups).
+                  </li>
+                  <li>
+                    Warranty support coordination for covered items we
+                    installed.
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <p class="footer-description">Transforming spaces into extraordinary experiences through innovative design and superior craftsmanship.</p>
-          <div class="footer-social">
-            <a href="https://instagram.com/interior_illusions_llc" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="mailto:interiorillusionsllc@outlook.com" aria-label="Gmail"><i class="fas fa-envelope"></i></a>
+
+          <!-- Q2: What's not covered? -->
+          <div class="accordion-item" role="tabpanel" aria-expanded="false">
+            <button
+              class="accordion-header"
+              type="button"
+              aria-controls="faq-2"
+              aria-expanded="false"
+            >
+              <span class="faq-chip">Q2</span>
+              <span class="accordion-title">What’s not covered?</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-2">
+              <div class="accordion-inner">
+                <ul>
+                  <li>
+                    Normal wear and tear, owner-caused damage, or lack of
+                    maintenance.
+                  </li>
+                  <li>
+                    Issues tied to manufacturer defects (handled under the
+                    product’s own warranty; we’ll help coordinate).
+                  </li>
+                  <li>
+                    Changes in scope or new work requests (quoted separately).
+                  </li>
+                  <li>
+                    Environmental movement beyond industry tolerances (e.g.,
+                    seasonal wood movement, building settlement).
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3: How to request service? -->
+          <div class="accordion-item" role="tabpanel" aria-expanded="false">
+            <button
+              class="accordion-header"
+              type="button"
+              aria-controls="faq-3"
+              aria-expanded="false"
+            >
+              <span class="faq-chip">Q3</span>
+              <span class="accordion-title">How to request service?</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-3">
+              <div class="accordion-inner">
+                <ul>
+                  <li>
+                    Email or call with a brief description, photos/video, and
+                    your availability.
+                  </li>
+                  <li>
+                    We acknowledge within 1 business day and schedule a visit if
+                    needed.
+                  </li>
+                  <li>
+                    A tech or project lead assesses on site and performs the
+                    correction or orders parts.
+                  </li>
+                  <li>
+                    If a manufacturer claim applies, we assist with
+                    documentation and coordinate next steps.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4: Typical response & scheduling -->
+          <div class="accordion-item" role="tabpanel" aria-expanded="false">
+            <button
+              class="accordion-header"
+              type="button"
+              aria-controls="faq-4"
+              aria-expanded="false"
+            >
+              <span class="faq-chip">Q4</span>
+              <span class="accordion-title">Typical response & scheduling</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-4">
+              <div class="accordion-inner">
+                <ul>
+                  <li>
+                    Assessment visit: 3–7 business days (availability may vary).
+                  </li>
+                  <li>Minor adjustments: Often resolved during the visit.</li>
+                  <li>
+                    Parts-dependent items: Scheduled upon arrival of materials.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5: Manufacturer warranties -->
+          <div class="accordion-item" role="tabpanel" aria-expanded="false">
+            <button
+              class="accordion-header"
+              type="button"
+              aria-controls="faq-5"
+              aria-expanded="false"
+            >
+              <span class="faq-chip">Q5</span>
+              <span class="accordion-title">Manufacturer warranties</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-5">
+              <div class="accordion-inner">
+                <ul>
+                  <li>
+                    Many products carry their own warranties (tile membranes,
+                    fixtures, appliances, flooring).
+                  </li>
+                  <li>
+                    We register/record details where applicable and assist you
+                    in initiating claims.
+                  </li>
+                  <li>
+                    Decisions and timelines are set by the manufacturer. We keep
+                    you informed.
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="footer-section">
-          <h3 class="footer-label">Services</h3>
-          <h4 class="footer-heading">What We Do</h4>
-          <ul class="footer-links">
-            <li><a href="services/full-home-remodels.html">Full home remodels</a></li>
-            <li><a href="services/kitchens.html">Kitchens</a></li>
-            <li><a href="services/bathrooms.html">Bathrooms</a></li>
-            <li><a href="services/flooring.html">Flooring</a></li>
-            <li><a href="services/general-construction.html">General construction and framing</a></li>
-            <li><a href="services/custom-cabinetry.html">Custom cabinetry and millwork</a></li>
-            <li><a href="services/painting-finishes.html">Interior painting</a></li>
-            <li><a href="services/selective-demolition.html">Demolition</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3 class="footer-label">Portfolio</h3>
-          <h4 class="footer-heading">Our Work</h4>
-          <ul class="footer-links">
-            <li><a href="portfolio/residential-projects.html">Residential Projects</a></li>
-            <li><a href="portfolio/commercial-projects.html">Commercial Projects</a></li>
-            <li><a href="portfolio/before-after-gallery.html">Before & After Gallery</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3 class="footer-label">Contact</h3>
-          <h4 class="footer-heading">Get In Touch</h4>
-          <ul class="footer-links">
-            <li><strong>Dallas, TX, United States</strong></li>
-            <li><a href="tel:+19723704873">(972) 370-4873</a></li>
-            <li><a href="mailto:interiorillusionsllc@outlook.com">interiorillusionsllc@outlook.com</a></li>
-            <li><a href="https://instagram.com/interior_illusions_llc">@interior_illusions_llc</a></li>
-            <li><strong>Service Area:</strong> DFW Metroplex, North Texas, McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco</li>
-          </ul>
+        <!-- Service Request Button -->
+        <div style="text-align: center; margin-top: 40px">
+          <a
+            href="contact/service-request.html"
+            class="btn"
+            style="
+              background: #1d4ed8;
+              color: #e7eaee;
+              padding: 16px 40px;
+              border-radius: 8px;
+              text-decoration: none;
+              font-weight: 700;
+              font-size: 18px;
+              display: inline-flex;
+              align-items: center;
+              gap: 10px;
+              transition: all 0.3s ease;
+            "
+          >
+            <i class="fa-solid fa-wrench"></i>
+            Request Service
+          </a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div class="footer-legal">
-          <p>&copy; 2024 Interior Illusions. All rights reserved.</p>
-          <div class="footer-legal-links">
-            <a href="#">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Terms of Service</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Cookie Policy</a>
-          </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section
+      class="gallery"
+      style="padding: 120px 40px; background: var(--color-light)"
+    >
+      <div style="max-width: 1400px; margin: 0 auto">
+        <div
+          class="section-header"
+          style="text-align: left !important; margin-bottom: 60px"
+        >
+          <p
+            style="
+              color: var(--color-accent);
+              font-size: 14px;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.1em;
+              margin-bottom: 12px;
+            "
+          >
+            PORTFOLIO
+          </p>
+          <h2
+            style="
+              color: var(--color-heading);
+              font-size: clamp(32px, 5vw, 48px);
+              font-weight: 700;
+              margin: 0;
+            "
+          >
+            Our Latest Work
+          </h2>
         </div>
+        <div class="gallery-grid">
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG&quot;);
+            "
+            data-footnote="Custom tile in Primary Bathroom"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG&quot;);
+            "
+            data-footnote="LVP flooring install throughout"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG&quot;);
+            "
+            data-footnote="Nail down install"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG&quot;);
+            "
+            data-footnote="Full home remodel"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG&quot;);
+            "
+            data-footnote="Custom tile in Primary Bathroom"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG&quot;);
+            "
+            data-footnote="Custom Tile"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG&quot;);
+            "
+            data-footnote="Guest Bath Marble Tile Install"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG&quot;);
+            "
+            data-footnote="Red Oak HardwoodFloor Install"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG&quot;);
+            "
+            data-footnote="Primary Bath Tile Install"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG', this)"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div
+      class="lightbox-modal"
+      id="lightboxModal"
+      onclick="closeLightbox(event)"
+    >
+      <div class="lightbox-content">
+        <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
+        <img id="lightboxImage" src="" alt="Portfolio Image" />
+        <div
+          id="lightboxFootnote"
+          class="lightbox-footnote"
+          aria-live="polite"
+          tabindex="0"
+          role="complementary"
+          aria-label="Image details"
+          onclick="event.stopPropagation()"
+        ></div>
       </div>
     </div>
-  </footer>
 
-  <!-- FAQ Schema Markup -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"How do I begin a project with Interior Illusions?","acceptedAnswer":{"@type":"Answer","text":"Start by scheduling an initial consultation through our contact form. We'll discuss your goals, timeline, and budget to determine the best approach."}},
-      {"@type":"Question","name":"What information should I prepare for our initial consultation?","acceptedAnswer":{"@type":"Answer","text":"Any inspiration images, floor plans, measurements (if available), preferred styles, must-haves, and your target budget are helpful."}},
-      {"@type":"Question","name":"Do you offer virtual consultations?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer virtual consultations for convenience and flexibility."}},
-      {"@type":"Question","name":"How long does a typical project take?","acceptedAnswer":{"@type":"Answer","text":"Timelines vary by scope. Smaller rooms may take 4–8 weeks; whole-home projects can take several months. We provide a detailed schedule after design development."}},
-      {"@type":"Question","name":"What factors can affect project timelines?","acceptedAnswer":{"@type":"Answer","text":"Material lead times, permitting, contractor availability, and scope changes can affect the timeline. We communicate proactively about any changes."}},
-      {"@type":"Question","name":"How do you handle project delays?","acceptedAnswer":{"@type":"Answer","text":"We maintain contingency plans, track milestones, and coordinate closely with all parties to minimize delays and keep you informed."}},
-      {"@type":"Question","name":"How do you structure your pricing?","acceptedAnswer":{"@type":"Answer","text":"We offer transparent pricing aligned to scope—typically a design fee plus procurement and project management as needed."}},
-      {"@type":"Question","name":"What's included in your design fees?","acceptedAnswer":{"@type":"Answer","text":"Concept development, space planning, selections, and documentation. Rendering, procurement, and installation management can be added based on scope."}},
-      {"@type":"Question","name":"Do you work with specific budget ranges?","acceptedAnswer":{"@type":"Answer","text":"Yes, we tailor our recommendations to your budget while ensuring quality and design integrity."}},
-      {"@type":"Question","name":"How many design revisions are included?","acceptedAnswer":{"@type":"Answer","text":"We include rounds of revisions at key milestones. The exact number depends on scope and is defined at project start."}},
-      {"@type":"Question","name":"Can I see 3D renderings of my space?","acceptedAnswer":{"@type":"Answer","text":"Yes. We can provide 3D visuals to help you envision the final result during design development."}},
-      {"@type":"Question","name":"How do you incorporate my existing furniture?","acceptedAnswer":{"@type":"Answer","text":"We evaluate which pieces complement the new design and can integrate them to maintain sentimental and budgetary value."}},
-      {"@type":"Question","name":"Do you handle contractor coordination?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. We coordinate with vetted contractors, manage schedules, and oversee execution for a seamless experience."}},
-      {"@type":"Question","name":"How often will we communicate during the project?","acceptedAnswer":{"@type":"Answer","text":"We establish a communication cadence that suits you, with regular updates at milestones and proactive outreach as needed."}},
-      {"@type":"Question","name":"What happens if I'm not satisfied with something?","acceptedAnswer":{"@type":"Answer","text":"We address concerns quickly and collaboratively, proposing solutions that align with the design vision and your expectations."}},
-      {"@type":"Question","name":"Do you offer both residential and commercial services?","acceptedAnswer":{"@type":"Answer","text":"Yes. We serve both residential and commercial clients with tailored solutions."}},
-      {"@type":"Question","name":"Can you work on just one room?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. We frequently work on focused spaces like kitchens, bathrooms, or living rooms."}},
-      {"@type":"Question","name":"Do you provide furniture procurement services?","acceptedAnswer":{"@type":"Answer","text":"Yes, we can handle sourcing, ordering, and logistics to streamline your experience."}}
-    ]
-  }
-  </script>
-
-  <!-- Minimal JS for accordion and mobile nav toggle -->
-  <script>
-    // Hamburger Menu Functionality - Wrapped in DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded, initializing hamburger menu...'); // Debug log
-      
-      const hamburgerMenu = document.getElementById('hamburgerMenu');
-      const hamburgerIcon = hamburgerMenu ? hamburgerMenu.querySelector('.hamburger-icon') : null;
-      const mobileOverlay = hamburgerMenu ? hamburgerMenu.querySelector('.mobile-overlay') : null;
-      const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-sublink');
-
-      console.log('Hamburger menu found:', !!hamburgerMenu); // Debug log
-      console.log('Hamburger icon found:', !!hamburgerIcon); // Debug log
-
-      // Toggle hamburger menu (opens and closes)
-      if (hamburgerIcon) {
-        hamburgerIcon.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          console.log('Hamburger clicked!'); // Debug log
-          hamburgerMenu.classList.toggle('active');
-          document.body.style.overflow = hamburgerMenu.classList.contains('active') ? 'hidden' : 'auto';
-          console.log('Menu active:', hamburgerMenu.classList.contains('active')); // Debug log
-        });
-      } else {
-        console.log('Hamburger icon not found!'); // Debug log
+    <!-- CTA Banner -->
+    <div style="max-width: 1400px; margin: 80px auto; padding: 0 40px">
+      <section
+        class="cta-banner"
+        style="
+          background: #0d111b;
+          padding: 100px 90px;
+          text-align: center;
+          border-radius: 12px;
+          transition:
+            background 0.4s ease,
+            transform 0.3s ease;
+          box-shadow: 0 6px 18px rgba(11, 14, 20, 0.06);
+        "
+      >
+        <div style="max-width: 800px; margin: 0 auto">
+          <h2
+            class="cta-banner-title"
+            style="
+              color: var(--color-heading);
+              font-size: clamp(32px, 5vw, 48px);
+              font-weight: 700;
+              margin-bottom: 24px;
+              transition: color 0.4s ease;
+            "
+          >
+            Ready to Start Your Project?
+          </h2>
+          <p
+            class="cta-banner-text"
+            style="
+              color: var(--color-accent);
+              font-size: clamp(16px, 2.5vw, 20px);
+              margin-bottom: 40px;
+              line-height: 1.6;
+              transition: color 0.4s ease;
+            "
+          >
+            Let's discuss how we can transform your space into something
+            extraordinary.
+          </p>
+          <div
+            style="
+              display: flex;
+              gap: 20px;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              href="contact/get-quote.html"
+              class="btn"
+              style="min-width: 180px"
+              >Get a Quote</a
+            >
+            <a
+              href="portfolio/residential-projects.html"
+              class="btn secondary"
+              style="min-width: 180px"
+              >View Our Work</a
+            >
+          </div>
+        </div>
+      </section>
+    </div>
+    <style>
+      .cta-banner:hover {
+        background: #faf7f2 !important;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 40px rgba(147, 197, 253, 0.3);
       }
-
-      // Close menu when clicking on overlay
-      if (mobileOverlay) {
-        mobileOverlay.addEventListener('click', function(e) {
-          if (e.target === mobileOverlay) {
-            hamburgerMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-          }
-        });
+      .cta-banner:hover .cta-banner-title {
+        color: #0b0e14 !important;
       }
+      .cta-banner:hover .cta-banner-text {
+        color: #1d4ed8 !important;
+      }
+    </style>
 
-      // Close menu when clicking on links
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          if (hamburgerMenu) {
-            hamburgerMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
+    <!-- Footer (reuse global styles) -->
+    <footer class="footer" style="margin-top: auto">
+      <div class="footer-content">
+        <div class="footer-grid">
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img
+                src="assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+                alt="Interior Illusions Logo"
+                style="height: 120px; width: auto"
+              />
+            </div>
+            <p class="footer-description">
+              Transforming spaces into extraordinary experiences through
+              innovative design and superior craftsmanship.
+            </p>
+            <div class="footer-social">
+              <a
+                href="https://instagram.com/interior_illusions_llc"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="mailto:interiorillusionsllc@outlook.com"
+                aria-label="Gmail"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-label">Services</h3>
+            <h4 class="footer-heading">What We Do</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="services/full-home-remodels.html"
+                  >Full home remodels</a
+                >
+              </li>
+              <li><a href="services/kitchens.html">Kitchens</a></li>
+              <li><a href="services/bathrooms.html">Bathrooms</a></li>
+              <li><a href="services/flooring.html">Flooring</a></li>
+              <li>
+                <a href="services/general-construction.html"
+                  >General construction and framing</a
+                >
+              </li>
+              <li>
+                <a href="services/custom-cabinetry.html"
+                  >Custom cabinetry and millwork</a
+                >
+              </li>
+              <li>
+                <a href="services/painting-finishes.html">Interior painting</a>
+              </li>
+              <li>
+                <a href="services/selective-demolition.html">Demolition</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-label">Portfolio</h3>
+            <h4 class="footer-heading">Our Work</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="portfolio/residential-projects.html"
+                  >Residential Projects</a
+                >
+              </li>
+              <li>
+                <a href="portfolio/commercial-projects.html"
+                  >Commercial Projects</a
+                >
+              </li>
+              <li>
+                <a href="portfolio/before-after-gallery.html"
+                  >Before & After Gallery</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-label">Contact</h3>
+            <h4 class="footer-heading">Get In Touch</h4>
+            <ul class="footer-links">
+              <li><strong>Dallas, TX, United States</strong></li>
+              <li><a href="tel:+19723704873">(972) 370-4873</a></li>
+              <li>
+                <a href="mailto:interiorillusionsllc@outlook.com"
+                  >interiorillusionsllc@outlook.com</a
+                >
+              </li>
+              <li>
+                <a href="https://instagram.com/interior_illusions_llc"
+                  >@interior_illusions_llc</a
+                >
+              </li>
+              <li>
+                <strong>Service Area:</strong> DFW Metroplex, North Texas,
+                McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <p>&copy; 2024 Interior Illusions. All rights reserved.</p>
+            <div class="footer-legal-links">
+              <a href="#">Privacy Policy</a>
+              <span class="footer-divider">|</span>
+              <a href="#">Terms of Service</a>
+              <span class="footer-divider">|</span>
+              <a href="#">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- FAQ Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I begin a project with Interior Illusions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start by scheduling an initial consultation through our contact form. We'll discuss your goals, timeline, and budget to determine the best approach."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What information should I prepare for our initial consultation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Any inspiration images, floor plans, measurements (if available), preferred styles, must-haves, and your target budget are helpful."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer virtual consultations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we offer virtual consultations for convenience and flexibility."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does a typical project take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Timelines vary by scope. Smaller rooms may take 4–8 weeks; whole-home projects can take several months. We provide a detailed schedule after design development."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What factors can affect project timelines?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Material lead times, permitting, contractor availability, and scope changes can affect the timeline. We communicate proactively about any changes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you handle project delays?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We maintain contingency plans, track milestones, and coordinate closely with all parties to minimize delays and keep you informed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you structure your pricing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We offer transparent pricing aligned to scope—typically a design fee plus procurement and project management as needed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's included in your design fees?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Concept development, space planning, selections, and documentation. Rendering, procurement, and installation management can be added based on scope."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you work with specific budget ranges?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we tailor our recommendations to your budget while ensuring quality and design integrity."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many design revisions are included?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We include rounds of revisions at key milestones. The exact number depends on scope and is defined at project start."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I see 3D renderings of my space?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We can provide 3D visuals to help you envision the final result during design development."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you incorporate my existing furniture?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We evaluate which pieces complement the new design and can integrate them to maintain sentimental and budgetary value."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you handle contractor coordination?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. We coordinate with vetted contractors, manage schedules, and oversee execution for a seamless experience."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How often will we communicate during the project?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We establish a communication cadence that suits you, with regular updates at milestones and proactive outreach as needed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if I'm not satisfied with something?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We address concerns quickly and collaboratively, proposing solutions that align with the design vision and your expectations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer both residential and commercial services?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We serve both residential and commercial clients with tailored solutions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you work on just one room?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. We frequently work on focused spaces like kitchens, bathrooms, or living rooms."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide furniture procurement services?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we can handle sourcing, ordering, and logistics to streamline your experience."
+            }
           }
-        });
-      });
+        ]
+      }
+    </script>
 
-      // Handle escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && hamburgerMenu && hamburgerMenu.classList.contains('active')) {
-          hamburgerMenu.classList.remove('active');
-          document.body.style.overflow = 'auto';
+    <!-- Minimal JS for accordion and mobile nav toggle -->
+    <script>
+      // Hamburger Menu Functionality - Wrapped in DOMContentLoaded
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM loaded, initializing hamburger menu..."); // Debug log
+
+        const hamburgerMenu = document.getElementById("hamburgerMenu");
+        const hamburgerIcon = hamburgerMenu
+          ? hamburgerMenu.querySelector(".hamburger-icon")
+          : null;
+        const mobileOverlay = hamburgerMenu
+          ? hamburgerMenu.querySelector(".mobile-overlay")
+          : null;
+        const mobileLinks = document.querySelectorAll(
+          ".mobile-link, .mobile-sublink",
+        );
+
+        console.log("Hamburger menu found:", !!hamburgerMenu); // Debug log
+        console.log("Hamburger icon found:", !!hamburgerIcon); // Debug log
+
+        // Toggle hamburger menu (opens and closes)
+        if (hamburgerIcon) {
+          hamburgerIcon.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("Hamburger clicked!"); // Debug log
+            hamburgerMenu.classList.toggle("active");
+            document.body.style.overflow = hamburgerMenu.classList.contains(
+              "active",
+            )
+              ? "hidden"
+              : "auto";
+            console.log(
+              "Menu active:",
+              hamburgerMenu.classList.contains("active"),
+            ); // Debug log
+          });
+        } else {
+          console.log("Hamburger icon not found!"); // Debug log
         }
-      });
-    }); // Close DOMContentLoaded
 
-    // Mobile dropdown toggle
-    const mobileDropdown = document.getElementById('mobileDropdown');
-    if (mobileDropdown) {
-      const btn = mobileDropdown.querySelector('.mobile-dropdown-btn');
-      btn.addEventListener('click', () => mobileDropdown.classList.toggle('active'));
-    }
-
-    // Accordion logic with ARIA & smooth height (scoped to postcare accordion)
-    const accordionItems = document.querySelectorAll('#postcareAccordion .accordion-item');
-    function collapseAll() {
-      accordionItems.forEach((i) => {
-        i.classList.remove('active');
-        i.setAttribute('aria-expanded', 'false');
-        const btn = i.querySelector('.accordion-header');
-        const p = i.querySelector('.accordion-panel');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
-        if (p) p.style.maxHeight = null;
-      });
-    }
-    accordionItems.forEach((item) => {
-      const header = item.querySelector('.accordion-header');
-      const panel = item.querySelector('.accordion-panel');
-      if (!header || !panel) return;
-      header.addEventListener('click', () => {
-        const opening = !item.classList.contains('active');
-        collapseAll();
-        if (opening) {
-          item.classList.add('active');
-          item.setAttribute('aria-expanded', 'true');
-          header.setAttribute('aria-expanded', 'true');
-          // Smooth expand with next frame
-          requestAnimationFrame(() => {
-            panel.style.maxHeight = panel.scrollHeight + 'px';
+        // Close menu when clicking on overlay
+        if (mobileOverlay) {
+          mobileOverlay.addEventListener("click", function (e) {
+            if (e.target === mobileOverlay) {
+              hamburgerMenu.classList.remove("active");
+              document.body.style.overflow = "auto";
+            }
           });
         }
-      });
-    });
 
-    // Process Section Accordion logic (for moved section)
-    function toggleAccordion(el) {
-      const item = el.closest('.accordion-item');
-      if (!item) return;
-      const content = item.querySelector('.accordion-content');
-      const isOpen = item.classList.contains('open');
-      // close others in this component only
-      const container = item.closest('.process-accordion');
-      if (container) {
-        container.querySelectorAll('.accordion-item.open').forEach((i) => {
-          if (i !== item) {
-            i.classList.remove('open');
-            const c = i.querySelector('.accordion-content');
-            if (c) c.style.maxHeight = null;
+        // Close menu when clicking on links
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            if (hamburgerMenu) {
+              hamburgerMenu.classList.remove("active");
+              document.body.style.overflow = "auto";
+            }
+          });
+        });
+
+        // Handle escape key
+        document.addEventListener("keydown", function (e) {
+          if (
+            e.key === "Escape" &&
+            hamburgerMenu &&
+            hamburgerMenu.classList.contains("active")
+          ) {
+            hamburgerMenu.classList.remove("active");
+            document.body.style.overflow = "auto";
           }
         });
+      }); // Close DOMContentLoaded
+
+      // Mobile dropdown toggle
+      const mobileDropdown = document.getElementById("mobileDropdown");
+      if (mobileDropdown) {
+        const btn = mobileDropdown.querySelector(".mobile-dropdown-btn");
+        btn.addEventListener("click", () =>
+          mobileDropdown.classList.toggle("active"),
+        );
       }
-      if (!isOpen) {
-        item.classList.add('open');
-        if (content) content.style.maxHeight = content.scrollHeight + 'px';
-      } else {
-        item.classList.remove('open');
-        if (content) content.style.maxHeight = null;
-      }
-    }
 
-    // Desktop dropdown click behavior for "Our Projects"
-    (function() {
-      const dropdown = document.querySelector('.nav .links .dropdown');
-      const toggle = dropdown ? dropdown.querySelector('.dropdown-toggle') : null;
-      const menu = dropdown ? dropdown.querySelector('.dropdown-menu') : null;
-
-      function isDesktop() { return window.matchMedia('(min-width: 1201px)').matches; }
-
-      if (toggle && dropdown && menu) {
-        // Open/close on click for desktop
-        toggle.addEventListener('click', function(e) {
-          if (!isDesktop()) return; // let mobile handle via overlay
-          e.preventDefault();
-          e.stopPropagation();
-          dropdown.classList.toggle('active');
+      // Accordion logic with ARIA & smooth height (scoped to postcare accordion)
+      const accordionItems = document.querySelectorAll(
+        "#postcareAccordion .accordion-item",
+      );
+      function collapseAll() {
+        accordionItems.forEach((i) => {
+          i.classList.remove("active");
+          i.setAttribute("aria-expanded", "false");
+          const btn = i.querySelector(".accordion-header");
+          const p = i.querySelector(".accordion-panel");
+          if (btn) btn.setAttribute("aria-expanded", "false");
+          if (p) p.style.maxHeight = null;
         });
-
-        // Close on outside click
-        document.addEventListener('click', function(e) {
-          if (!isDesktop()) return;
-          if (!dropdown.contains(e.target)) {
-            dropdown.classList.remove('active');
+      }
+      accordionItems.forEach((item) => {
+        const header = item.querySelector(".accordion-header");
+        const panel = item.querySelector(".accordion-panel");
+        if (!header || !panel) return;
+        header.addEventListener("click", () => {
+          const opening = !item.classList.contains("active");
+          collapseAll();
+          if (opening) {
+            item.classList.add("active");
+            item.setAttribute("aria-expanded", "true");
+            header.setAttribute("aria-expanded", "true");
+            // Smooth expand with next frame
+            requestAnimationFrame(() => {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            });
           }
         });
-
-        // Close on resize to mobile
-        window.addEventListener('resize', function() {
-          if (!isDesktop()) dropdown.classList.remove('active');
-        });
-      }
-    })();
-  </script>
-  <!-- Custom Floating Cursor JS (mirrors index.html) -->
-  <script>
-    (function() {
-      const cursor = document.querySelector('.cursor');
-      const cursorFollower = document.querySelector('.cursor-follower');
-      if (!cursor || !cursorFollower) return;
-
-      let mouseX = 0, mouseY = 0;
-      let cursorX = 0, cursorY = 0;
-      let followerX = 0, followerY = 0;
-
-      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-
-      function animateCursor() {
-        const ease = 0.2;
-        cursorX += (mouseX - cursorX) * ease;
-        cursorY += (mouseY - cursorY) * ease;
-        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-        requestAnimationFrame(animateCursor);
-      }
-      function animateFollower() {
-        const ease = 0.15;
-        followerX += (mouseX - followerX) * ease;
-        followerY += (mouseY - followerY) * ease;
-        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
-        requestAnimationFrame(animateFollower);
-      }
-      animateCursor();
-      animateFollower();
-
-      const hoverElements = document.querySelectorAll('a, button, .service-card, .gallery-item, .accordion-header');
-      const textElements = document.querySelectorAll('h1, h2, h3, p, span');
-      const clickableElements = document.querySelectorAll('button, .btn');
-      const viewElements = document.querySelectorAll('.gallery-item');
-
-      hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-      });
-      clickableElements.forEach(el => {
-        el.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
-        el.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
-      });
-      textElements.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text'));
-      });
-      viewElements.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-view'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-view'));
       });
 
-      document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; cursorFollower.style.opacity = '0'; });
-      document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; cursorFollower.style.opacity = '1'; });
-    })();
-
-    // Lightbox Functions
-    function openLightbox(imageSrc, clickedElement) {
-      const modal = document.getElementById('lightboxModal');
-      const image = document.getElementById('lightboxImage');
-      const footnote = document.getElementById('lightboxFootnote');
-      image.src = imageSrc;
-      if (footnote) {
-        const desc = clickedElement && clickedElement.dataset && clickedElement.dataset.footnote ? clickedElement.dataset.footnote : '';
-        footnote.innerHTML = desc ? `<span class="footnote-desc">${desc}</span>` : '';
-        if (desc) footnote.focus();
-      }
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox(event) {
-      if (event.target.id === 'lightboxModal' || event.target.classList.contains('lightbox-close')) {
-        const modal = document.getElementById('lightboxModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
-
-    // Close lightbox with Escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        const modal = document.getElementById('lightboxModal');
-        if (modal.classList.contains('active')) {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
+      // Process Section Accordion logic (for moved section)
+      function toggleAccordion(el) {
+        const item = el.closest(".accordion-item");
+        if (!item) return;
+        const content = item.querySelector(".accordion-content");
+        const isOpen = item.classList.contains("open");
+        // close others in this component only
+        const container = item.closest(".process-accordion");
+        if (container) {
+          container.querySelectorAll(".accordion-item.open").forEach((i) => {
+            if (i !== item) {
+              i.classList.remove("open");
+              const c = i.querySelector(".accordion-content");
+              if (c) c.style.maxHeight = null;
+            }
+          });
+        }
+        if (!isOpen) {
+          item.classList.add("open");
+          if (content) content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          item.classList.remove("open");
+          if (content) content.style.maxHeight = null;
         }
       }
-    });
-  </script>
-  <script src="assets/js/nav-active.js"></script>
-</body>
+
+      // Desktop dropdown click behavior for "Our Projects"
+      (function () {
+        const dropdown = document.querySelector(".nav .links .dropdown");
+        const toggle = dropdown
+          ? dropdown.querySelector(".dropdown-toggle")
+          : null;
+        const menu = dropdown ? dropdown.querySelector(".dropdown-menu") : null;
+
+        function isDesktop() {
+          return window.matchMedia("(min-width: 1201px)").matches;
+        }
+
+        if (toggle && dropdown && menu) {
+          // Open/close on click for desktop
+          toggle.addEventListener("click", function (e) {
+            if (!isDesktop()) return; // let mobile handle via overlay
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle("active");
+          });
+
+          // Close on outside click
+          document.addEventListener("click", function (e) {
+            if (!isDesktop()) return;
+            if (!dropdown.contains(e.target)) {
+              dropdown.classList.remove("active");
+            }
+          });
+
+          // Close on resize to mobile
+          window.addEventListener("resize", function () {
+            if (!isDesktop()) dropdown.classList.remove("active");
+          });
+        }
+      })();
+    </script>
+    <!-- Custom Floating Cursor JS (mirrors index.html) -->
+    <script>
+      (function () {
+        const cursor = document.querySelector(".cursor");
+        const cursorFollower = document.querySelector(".cursor-follower");
+        if (!cursor || !cursorFollower) return;
+
+        let mouseX = 0,
+          mouseY = 0;
+        let cursorX = 0,
+          cursorY = 0;
+        let followerX = 0,
+          followerY = 0;
+
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+          const ease = 0.2;
+          cursorX += (mouseX - cursorX) * ease;
+          cursorY += (mouseY - cursorY) * ease;
+          cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+          requestAnimationFrame(animateCursor);
+        }
+        function animateFollower() {
+          const ease = 0.15;
+          followerX += (mouseX - followerX) * ease;
+          followerY += (mouseY - followerY) * ease;
+          cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+          requestAnimationFrame(animateFollower);
+        }
+        animateCursor();
+        animateFollower();
+
+        const hoverElements = document.querySelectorAll(
+          "a, button, .service-card, .gallery-item, .accordion-header",
+        );
+        const textElements = document.querySelectorAll("h1, h2, h3, p, span");
+        const clickableElements = document.querySelectorAll("button, .btn");
+        const viewElements = document.querySelectorAll(".gallery-item");
+
+        hoverElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-hover"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-hover"),
+          );
+        });
+        clickableElements.forEach((el) => {
+          el.addEventListener("mousedown", () =>
+            document.body.classList.add("cursor-click"),
+          );
+          el.addEventListener("mouseup", () =>
+            document.body.classList.remove("cursor-click"),
+          );
+        });
+        textElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-text"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-text"),
+          );
+        });
+        viewElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-view"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-view"),
+          );
+        });
+
+        document.addEventListener("mouseleave", () => {
+          cursor.style.opacity = "0";
+          cursorFollower.style.opacity = "0";
+        });
+        document.addEventListener("mouseenter", () => {
+          cursor.style.opacity = "1";
+          cursorFollower.style.opacity = "1";
+        });
+      })();
+
+      // Lightbox Functions
+      function openLightbox(imageSrc, clickedElement) {
+        const modal = document.getElementById("lightboxModal");
+        const image = document.getElementById("lightboxImage");
+        const footnote = document.getElementById("lightboxFootnote");
+        image.src = imageSrc;
+        if (footnote) {
+          const desc =
+            clickedElement &&
+            clickedElement.dataset &&
+            clickedElement.dataset.footnote
+              ? clickedElement.dataset.footnote
+              : "";
+          footnote.innerHTML = desc
+            ? `<span class="footnote-desc">${desc}</span>`
+            : "";
+          if (desc) footnote.focus();
+        }
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox(event) {
+        if (
+          event.target.id === "lightboxModal" ||
+          event.target.classList.contains("lightbox-close")
+        ) {
+          const modal = document.getElementById("lightboxModal");
+          modal.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      }
+
+      // Close lightbox with Escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const modal = document.getElementById("lightboxModal");
+          if (modal.classList.contains("active")) {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }
+      });
+    </script>
+    <script src="assets/js/nav-active.js"></script>
+  </body>
 </html>

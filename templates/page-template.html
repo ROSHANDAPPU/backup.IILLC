@@ -1,65 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>[PAGE_TITLE] - Interior Illusions LLC</title>
-    <meta name="description" content="[PAGE_DESCRIPTION]">
-    <link rel="stylesheet" href="../css/style.css">
+    <meta name="description" content="[PAGE_DESCRIPTION]" />
+    <link rel="stylesheet" href="../css/style.css" />
     <!-- responsive.css not present in repo; omitted -->
-    <link rel="icon" type="image/png" href="../assets/images/06_Favicon/favicon-high.png">
+    <link
+      rel="icon"
+      type="image/png"
+      href="../assets/images/06_Favicon/favicon-high.png"
+    />
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Z0F0X2TWW4');
-  </script>
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1273059444474707');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
-  /></noscript>
-
-</head>
-<body>
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0F0X2TWW4");
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1273059444474707");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+    /></noscript>
+  </head>
+  <body>
     <header>
-        <!-- Navigation will go here -->
+      <!-- Navigation will go here -->
     </header>
-    
+
     <main>
-        <section class="page-hero">
-            <div class="container">
-                <h1>[PAGE_HEADING]</h1>
-                <p>[PAGE_SUBTITLE]</p>
-            </div>
-        </section>
-        
-        <section class="page-content">
-            <div class="container">
-                <!-- Page content goes here -->
-            </div>
-        </section>
+      <section class="page-hero">
+        <div class="container">
+          <h1>[PAGE_HEADING]</h1>
+          <p>[PAGE_SUBTITLE]</p>
+        </div>
+      </section>
+
+      <section class="page-content">
+        <div class="container">
+          <!-- Page content goes here -->
+        </div>
+      </section>
     </main>
-    
+
     <footer>
-        <!-- Footer content -->
+      <!-- Footer content -->
     </footer>
-    
+
     <!-- main.js not present; using nav-active helper that exists -->
     <script src="../assets/js/nav-active.js"></script>
-</body>
+  </body>
 </html>

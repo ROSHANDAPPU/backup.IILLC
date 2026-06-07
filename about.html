@@ -1,1688 +1,2125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About Us - Interior Illusions LLC</title>
-  <meta name="description" content="Learn about Interior Illusions LLC - luxury interior design and home remodeling services in Colorado.">
-  <link rel="icon" type="image/x-icon" href="assets/images/06_Favicon/favicon-high.png">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
-    :root {
-      --color-bg-primary: #0B0E14; /* Deep Navy */
-      --color-action: #1D4ED8;    /* Cobalt */
-      --color-accent: #93C5FD;    /* Azure */
-      --color-heading: #E7EAEE;   /* Off-white */
-      --color-body: #A3AAB4;      /* Slate */
-      --color-light: #FAF7F2;     /* Ivory */
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Us - Interior Illusions LLC</title>
+    <meta
+      name="description"
+      content="Learn about Interior Illusions LLC - luxury interior design and home remodeling services in Colorado."
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="assets/images/06_Favicon/favicon-high.png"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-    body, html {
-      font-family: 'Satoshi', 'Inter', 'SF Pro Display', system-ui, sans-serif;
-      color: var(--color-body);
-      background: var(--color-bg-primary);
-      height: 100%;
-      margin: 0;
-      line-height: 1.6;
-    }
+    <style>
+      :root {
+        --color-bg-primary: #0b0e14; /* Deep Navy */
+        --color-action: #1d4ed8; /* Cobalt */
+        --color-accent: #93c5fd; /* Azure */
+        --color-heading: #e7eaee; /* Off-white */
+        --color-body: #a3aab4; /* Slate */
+        --color-light: #faf7f2; /* Ivory */
+      }
 
-    /* Navigation */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; height: 80px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px; z-index: 30;
-      background: #0B0E14; /* Deep Navy background */
-    }
-    
-    /* Hamburger Menu Styles */
-    .hamburger-menu {
-      display: none;
-      position: relative;
-      z-index: 9999;
-      pointer-events: auto !important;
-    }
+      body,
+      html {
+        font-family:
+          "Satoshi", "Inter", "SF Pro Display", system-ui, sans-serif;
+        color: var(--color-body);
+        background: var(--color-bg-primary);
+        height: 100%;
+        margin: 0;
+        line-height: 1.6;
+      }
 
-    .hamburger-icon {
-      width: 30px;
-      height: 24px;
-      cursor: pointer !important;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.4s ease;
-      position: relative;
-      z-index: 10000;
-      pointer-events: auto !important;
-    }
-
-    .line {
-      width: 100%;
-      height: 3px;
-      background: #1D4ED8;
-      border-radius: 2px;
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      transform-origin: center;
-    }
-
-    .hamburger-menu.active .line1 { transform: rotate(45deg) translate(6px, 6px) !important; }
-    .hamburger-menu.active .line2 { opacity: 0 !important; transform: scaleX(0) !important; }
-    .hamburger-menu.active .line3 { transform: rotate(-45deg) translate(6px, -6px) !important; }
-
-    /* Mobile Overlay */
-    .mobile-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(11, 14, 20, 0.95);
-      backdrop-filter: blur(20px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-      z-index: 9998;
-    }
-
-    .hamburger-menu.active .mobile-overlay {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Mobile Navigation */
-    .mobile-nav {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      padding: 40px;
-    }
-
-    .mobile-link {
-      font-size: 20px;
-      font-weight: 500;
-      color: #E7EAEE;
-      text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-      text-align: center;
-      min-width: 200px;
-    }
-
-    .mobile-link:hover {
-      background: rgba(29, 78, 216, 0.2);
-      color: #1D4ED8;
-      transform: translateY(-2px);
-    }
-
-    /* Mobile Dropdown */
-    .mobile-dropdown-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .mobile-dropdown-btn {
-      font-size: 24px;
-      font-weight: 500;
-      color: #E7EAEE;
-      background: none;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-      min-width: 200px;
-      justify-content: center;
-    }
-
-    .mobile-dropdown-btn:hover {
-      background: rgba(29, 78, 216, 0.2);
-      color: #1D4ED8;
-    }
-
-    .mobile-arrow {
-      transition: transform 0.3s ease;
-      font-size: 16px;
-    }
-
-    .mobile-dropdown-section.active .mobile-arrow {
-      transform: rotate(180deg);
-    }
-
-    .mobile-dropdown-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .mobile-dropdown-section.active .mobile-dropdown-content {
-      max-height: 200px;
-    }
-
-    .mobile-sublink {
-      font-size: 18px;
-      color: #1D4ED8;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .mobile-sublink:hover {
-      background: rgba(29, 78, 216, 0.1);
-      color: #60A5FA;
-    }
-
-    /* Mobile Close Button - REMOVED (using hamburger icon instead) */
-
-    .nav a, .nav .brand { 
-      color: #E7EAEE; /* Off-white color for consistency */
-      text-decoration: none; 
-      font-weight: 500; 
-      letter-spacing: 0.02em; 
-      font-size: 16px;
-      transition: color 0.3s ease;
-    }
-    .nav .brand { 
-      font-size: 24px; 
-      letter-spacing: 0.1em; 
-      color: #1D4ED8; /* Cobalt color for brand */
-    }
-    .nav .links { 
-      display: flex; 
-      gap: 32px; 
-    }
-    .nav .links a { 
-      color: #E7EAEE; /* Off-white default */
-      padding: 8px 16px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-    }
-    .nav .links a:hover { 
-      color: #93C5FD; /* Azure hover color */
-      text-decoration: underline;
-      text-decoration-color: #93C5FD;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 2px;
-    }
-    .nav .links a:active { 
-      background: #1D4ED8; /* Cobalt background on click */
-      color: #FAF7F2; /* Ivory text on click */
-      transform: scale(0.95);
-    }
-    
-    /* Dropdown Navigation Styles */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    
-    .dropdown-toggle {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-    
-    .dropdown-arrow {
-      font-size: 12px;
-      transition: transform 0.3s ease;
-    }
-    
-    .dropdown.active .dropdown-arrow {
-      transform: rotate(180deg);
-    }
-    
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 240px; /* ensure single-line items */
-      background: #0B0E14; /* deep navy */
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 6px 0;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      z-index: 1001;
-      border: 1px solid rgba(147, 197, 253, 0.2);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.3); /* soft depth */
-    }
-    
-    .dropdown:hover .dropdown-menu,
-    .dropdown.active .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    
-    .dropdown-menu a {
-      display: block;
-      padding: 10px 16px; /* compact */
-      color: #FFFFFF; /* white */
-      text-decoration: none;
-      transition: background 0.25s ease, color 0.25s ease;
-      border-radius: 10px; /* rounded buttons */
-      margin: 4px 8px; /* more spacing */
-      background: #007FFF; /* azure button */
-      font-size: 15px;
-      line-height: 1.2;
-      letter-spacing: 0.01em;
-      white-space: nowrap; /* prevent wrapping */
-      text-align: center;
-    }
-    
-    .dropdown-menu a:hover {
-      background: #1D4ED8; /* cobalt */
-      color: #FAF7F2; /* ivory */
-    }
-    
-    /* Large desktop responsive */
-    @media (max-width: 1400px) {
+      /* Navigation */
       .nav {
-        padding: 0 30px;
-      }
-      
-      .nav .brand {
-        font-size: 22px;
-      }
-      
-      .nav .links {
-        gap: 24px;
-      }
-      
-      .nav .links a {
-        font-size: 15px;
-        padding: 8px 14px;
-      }
-    }
-    
-    /* Tablet and smaller desktop responsive */
-    @media (max-width: 1024px) {
-      .hamburger-menu {
-        display: block;
-      }
-      
-      /* Hide desktop navigation */
-      .nav .links {
-        display: none;
-      }
-      
-      .nav {
-        padding: 0 20px;
-      }
-      
-      .nav .brand {
-        font-size: 20px;
-      }
-      
-      .nav .links a {
-        font-size: 14px;
-        padding: 6px 10px;
-      }
-    }
-    
-    /* Mobile Responsive Styles */
-    @media (max-width: 1024px) {
-      .hamburger-menu {
-        display: block;
-      }
-      
-      /* Hide desktop navigation */
-      .nav .links {
-        display: none;
-      }
-      
-      .nav .brand img {
-        height: 60px;
-      }
-      
-      .nav .links {
         position: fixed;
         top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
-        background: rgba(11, 14, 20, 0.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
+        left: 0;
+        right: 0;
+        height: 80px;
+        display: flex;
         align-items: center;
-        gap: 40px;
-        transition: left 0.3s ease;
-        z-index: 1000;
+        justify-content: space-between;
+        padding: 0 40px;
+        z-index: 30;
+        background: #0b0e14; /* Deep Navy background */
       }
-      
-    }
 
-    @media (max-width: 480px) {
-      .mobile-link,
-      .mobile-dropdown-btn {
-        font-size: 18px;
-        min-width: 180px;
+      /* Hamburger Menu Styles */
+      .hamburger-menu {
+        display: none;
+        position: relative;
+        z-index: 9999;
+        pointer-events: auto !important;
       }
-      
-      .mobile-sublink {
+
+      .hamburger-icon {
+        width: 30px;
+        height: 24px;
+        cursor: pointer !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 10000;
+        pointer-events: auto !important;
+      }
+
+      .line {
+        width: 100%;
+        height: 3px;
+        background: #1d4ed8;
+        border-radius: 2px;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: center;
+      }
+
+      .hamburger-menu.active .line1 {
+        transform: rotate(45deg) translate(6px, 6px) !important;
+      }
+      .hamburger-menu.active .line2 {
+        opacity: 0 !important;
+        transform: scaleX(0) !important;
+      }
+      .hamburger-menu.active .line3 {
+        transform: rotate(-45deg) translate(6px, -6px) !important;
+      }
+
+      /* Mobile Overlay */
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(11, 14, 20, 0.95);
+        backdrop-filter: blur(20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 9998;
+      }
+
+      .hamburger-menu.active .mobile-overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Mobile Navigation */
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 40px;
+      }
+
+      .mobile-link {
+        font-size: 20px;
+        font-weight: 500;
+        color: #e7eaee;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 200px;
+      }
+
+      .mobile-link:hover {
+        background: rgba(29, 78, 216, 0.2);
+        color: #1d4ed8;
+        transform: translateY(-2px);
+      }
+
+      /* Mobile Dropdown */
+      .mobile-dropdown-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .mobile-dropdown-btn {
+        font-size: 24px;
+        font-weight: 500;
+        color: #e7eaee;
+        background: none;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        min-width: 200px;
+        justify-content: center;
+      }
+
+      .mobile-dropdown-btn:hover {
+        background: rgba(29, 78, 216, 0.2);
+        color: #1d4ed8;
+      }
+
+      .mobile-arrow {
+        transition: transform 0.3s ease;
         font-size: 16px;
       }
-      
-      .mobile-nav {
-        gap: 25px;
-        padding: 30px;
+
+      .mobile-dropdown-section.active .mobile-arrow {
+        transform: rotate(180deg);
       }
-      
-      .nav .links a {
+
+      .mobile-dropdown-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .mobile-dropdown-section.active .mobile-dropdown-content {
+        max-height: 200px;
+      }
+
+      .mobile-sublink {
         font-size: 18px;
-        padding: 12px 24px;
-        width: 200px;
+        color: #1d4ed8;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
         text-align: center;
       }
-      
-      /* Hide desktop dropdown in mobile */
-      .dropdown {
-        display: none;
+
+      .mobile-sublink:hover {
+        background: rgba(29, 78, 216, 0.1);
+        color: #60a5fa;
       }
-      
-      /* Mobile dropdown styling */
-      .mobile-dropdown-toggle {
-        display: flex !important;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 18px;
-        padding: 12px 24px;
-        width: 200px;
-        text-align: left;
-        color: #93C5FD; /* Azure text color */
+
+      /* Mobile Close Button - REMOVED (using hamburger icon instead) */
+
+      .nav a,
+      .nav .brand {
+        color: #e7eaee; /* Off-white color for consistency */
         text-decoration: none;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        font-size: 16px;
+        transition: color 0.3s ease;
+      }
+      .nav .brand {
+        font-size: 24px;
+        letter-spacing: 0.1em;
+        color: #1d4ed8; /* Cobalt color for brand */
+      }
+      .nav .links {
+        display: flex;
+        gap: 32px;
+      }
+      .nav .links a {
+        color: #e7eaee; /* Off-white default */
+        padding: 8px 16px;
+        border-radius: 20px;
         transition: all 0.3s ease;
       }
-      
-      .mobile-dropdown-arrow {
+      .nav .links a:hover {
+        color: #93c5fd; /* Azure hover color */
+        text-decoration: underline;
+        text-decoration-color: #93c5fd;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .nav .links a:active {
+        background: #1d4ed8; /* Cobalt background on click */
+        color: #faf7f2; /* Ivory text on click */
+        transform: scale(0.95);
+      }
+
+      /* Dropdown Navigation Styles */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-toggle {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .dropdown-arrow {
         font-size: 12px;
         transition: transform 0.3s ease;
       }
-      
-      .mobile-dropdown-arrow.active {
+
+      .dropdown.active .dropdown-arrow {
         transform: rotate(180deg);
       }
-      
-      .mobile-dropdown {
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height 0.3s ease;
-        background: rgba(11, 14, 20, 0.8);
-      }
-      
-      .mobile-dropdown.active {
-        max-height: 300px;
-      }
-      
-      .mobile-dropdown a {
-        display: block;
-        padding: 8px 40px;
-        font-size: 16px;
-        color: var(--color-accent);
-        text-decoration: none;
-        text-align: left;
-        transition: all 0.3s ease;
-      }
-      
-      .mobile-dropdown a:hover {
-        background: rgba(29, 78, 216, 0.2);
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .nav {
-        height: 70px;
-      }
-      
-      .nav .brand {
-        font-size: 16px;
-      }
-    }
 
-    /* Footer Styles */
-    .footer {
-      background: var(--color-bg-primary); /* Deep Navy */
-      padding: 80px 0 40px;
-      border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
-    }
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 60px;
-    }
-    .footer-section {
-      display: flex;
-      flex-direction: column;
-    }
-    .footer-logo {
-      margin-bottom: 24px;
-    }
-    .footer-description {
-      color: #93C5FD; /* Azure text color */ /* Slate */
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 32px;
-      max-width: 300px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 16px;
-    }
-    .footer-social a {
-      color: var(--color-accent); /* Azure */
-      font-size: 20px;
-      transition: color 0.3s ease;
-    }
-    .footer-social a:hover {
-      color: var(--color-heading); /* Off-white on hover */
-    }
-    .footer-label {
-      color: var(--color-accent) !important; /* Azure for H3 labels */
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      margin-bottom: 8px;
-    }
-    .footer-heading {
-      color: var(--color-heading) !important; /* Off-white for section headings */
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
-    }
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .footer-links li {
-      margin-bottom: 12px;
-    }
-    .footer-links a {
-      color: var(--color-accent); /* Azure */
-      font-size: 16px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .footer-links a:hover {
-      color: var(--color-accent);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 2px;
-    }
-    .footer-links strong {
-      color: var(--color-accent); /* Azure */
-      font-weight: 400;
-    }
-    .footer-links li {
-      color: var(--color-accent); /* Azure */
-      font-size: 16px;
-    }
-    .footer-bottom {
-      border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
-      padding-top: 32px;
-    }
-    .footer-legal {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .footer-legal p {
-      color: #93C5FD; /* Azure text color */ /* Slate */
-      font-size: 14px;
-      margin: 0;
-    }
-    .footer-legal-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .footer-legal-links a {
-      color: var(--color-accent); /* Azure */
-      font-size: 14px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .footer-legal-links a:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 2px;
-    }
-    .footer-divider {
-      color: rgba(163, 170, 180, 0.3); /* Slate 30% */
-      font-size: 14px;
-    }
-
-    /* Page Content */
-    .page-hero {
-      padding: 120px 40px 80px;
-      background: var(--color-bg-primary);
-      text-align: center;
-    }
-    .page-hero h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight: 600;
-      color: var(--color-heading);
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
-    }
-    .page-hero p {
-      font-size: clamp(18px, 3vw, 24px);
-      color: var(--color-accent);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .page-content {
-      padding: 80px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .content-section {
-      margin-bottom: 60px;
-    }
-    .content-section h2 {
-      font-size: clamp(28px, 4vw, 36px);
-      font-weight: 600;
-      color: var(--color-heading);
-      margin-bottom: 24px;
-      letter-spacing: 0.01em;
-    }
-    .content-section p {
-      font-size: 18px;
-      color: #93C5FD; /* Azure text color */
-      margin-bottom: 20px;
-      line-height: 1.7;
-    }
-
-    /* Team Section */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 40px;
-    }
-    .team-member {
-      background: rgba(255, 255, 255, 0.02);
-      padding: 40px;
-      border-radius: 8px;
-      border: 1px solid rgba(147, 197, 253, 0.1);
-      transition: all 0.3s ease;
-    }
-    .team-member:hover {
-      transform: translateY(-5px);
-      border-color: var(--color-accent);
-      box-shadow: 0 10px 30px rgba(29, 78, 216, 0.2);
-    }
-    .team-member h3 {
-      color: var(--color-heading);
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
-    .team-member .role {
-      color: var(--color-accent);
-      font-size: 16px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    /* Values Section */
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    .value-item {
-      text-align: center;
-      padding: 30px;
-    }
-    .value-item h3 {
-      color: var(--color-accent);
-      font-size: 20px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    .value-item p {
-      color: #93C5FD; /* Azure text color */
-      font-size: 16px;
-    }
-
-    /* Buttons */
-    .btn {
-      background: #1D4ED8; /* Cobalt background */
-      color: #E7EAEE; /* Off-white text */
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 300ms ease;
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: 0.02em;
-      line-height: 1.0;
-      text-transform: none;
-      min-height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-    .btn:hover {
-      background: #1E40AF; /* Cobalt darken ~8% */
-      color: #E7EAEE;
-    }
-    .btn:active {
-      background: #1E3A8A; /* Cobalt darken ~12% */
-      color: #E7EAEE;
-      transform: scale(0.95);
-    }
-    .btn.secondary {
-      background: transparent;
-      color: #93C5FD;
-      border: 2px solid #93C5FD;
-    }
-    .btn.secondary:hover {
-      background: #0B0E14;
-      color: #93C5FD;
-      border-color: #93C5FD;
-    }
-    .btn.secondary:active {
-      background: #0B0E14;
-      color: #7DD3FC;
-      border-color: #7DD3FC;
-      transform: scale(0.95);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav { padding: 0 20px; height: 70px; }
-      .nav .links { gap: 20px; }
-      .nav .links a { font-size: 14px; padding: 6px 12px; }
-      .page-hero { padding: 100px 20px 60px; }
-      .page-content { padding: 60px 20px; }
-      .team-grid { grid-template-columns: 1fr; }
-      .values-grid { grid-template-columns: 1fr; }
-      .founder-section { grid-template-columns: 1fr !important; gap: 40px !important; }
-      .founder-image { height: 400px !important; }
-      
-      .footer-content { padding: 0 20px; }
-      .footer-grid { 
-        grid-template-columns: 1fr; 
-        gap: 40px; 
-        margin-bottom: 40px; 
-      }
-      .footer-legal { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 16px; 
-      }
-    }
-
-    /* Custom Floating Cursor */
-    .cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: rgba(147, 197, 253, 0.6); /* Azure - semi-transparent */
-      border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 10002;
-      transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .cursor-follower {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      border: 2px solid rgba(147, 197, 253, 0.3); /* Azure */
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 10001;
-      background: rgba(147, 197, 253, 0.1); /* Azure */
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    /* Cursor hover states */
-    body.cursor-hover .cursor {
-      transform: scale(1.5);
-      background: rgba(147, 197, 253, 0.3); /* Azure - very transparent */
-      border: 2px solid rgba(147, 197, 253, 1); /* Solid Azure border */
-      box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4); /* Bright glow */
-      animation: cursorShine 0.6s ease-out;
-    }
-
-    body.cursor-hover .cursor-follower {
-      transform: translate(-50%, -50%) scale(1.5);
-      border-color: rgba(147, 197, 253, 0.6); /* Azure */
-      background: rgba(147, 197, 253, 0.05); /* Azure */
-    }
-
-    /* Cursor shine animation */
-    @keyframes cursorShine {
-      0% {
-        box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 25px rgba(147, 197, 253, 1), 0 0 50px rgba(147, 197, 253, 0.6);
-      }
-      100% {
-        box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
-      }
-    }
-
-    /* Special cursor for clickable elements */
-    body.cursor-click .cursor {
-      transform: scale(0.8);
-      background: rgba(0, 0, 0, 0.8);
-    }
-
-    body.cursor-click .cursor-follower {
-      transform: translate(-50%, -50%) scale(2);
-      border-color: rgba(0, 0, 0, 0.4);
-      background: transparent;
-    }
-
-    /* Text cursor effect */
-    body.cursor-text .cursor {
-      transform: scaleX(0.3) scaleY(1.5);
-      background: rgba(147, 197, 253, 0.4); /* Azure - transparent */
-      border: 1px solid rgba(147, 197, 253, 0.9); /* Azure border */
-      border-radius: 2px;
-    }
-
-    body.cursor-text .cursor-follower {
-      opacity: 0;
-    }
-
-    /* Gallery */
-    .gallery {
-      padding: 120px 40px; background: var(--color-light);
-    }
-    
-    .gallery .section-header {
-      max-width: 1400px; margin: 0 auto; margin-bottom: 80px;
-      text-align: left !important;
-    }
-    .gallery-grid {
-      display: grid; gap: 32px; 
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      max-width: 1400px; margin: 0 auto;
-    }
-    .gallery-item {
-      height: 400px; background-size: cover; background-position: center;
-      border-radius: 0px; transition: all 400ms ease; cursor: pointer;
-      position: relative; overflow: hidden;
-    }
-    .gallery-item::before {
-      content: ''; position: absolute; inset: 0;
-      background: rgba(29,78,216,0); transition: all 400ms ease;
-    }
-    .gallery-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 25px 80px rgba(29,78,216,0.18);
-    }
-    .gallery-item:hover::before {
-      background: rgba(29,78,216,0.08);
-    }
-
-    /* Gallery hover effect */
-    body.cursor-view .cursor {
-      transform: scale(2);
-      background: rgba(147, 197, 253, 0.2); /* Azure - very transparent */
-      border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
-    }
-
-    body.cursor-view .cursor-follower {
-      transform: translate(-50%, -50%) scale(2.5);
-      border-color: rgba(147, 197, 253, 0.6); /* Azure */
-    }
-
-    body.cursor-view .cursor::after {
-      content: 'VIEW';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 10px;
-      font-weight: 600;
-      color: rgba(147, 197, 253, 1); /* Azure */
-      letter-spacing: 0.5px;
-    }
-
-    /* Dropdown Navigation Styles */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    
-    .dropdown-toggle {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-    
-    .dropdown-arrow {
-      font-size: 12px;
-      transition: transform 0.3s ease;
-    }
-    
-    .dropdown.active .dropdown-arrow {
-      transform: rotate(180deg);
-    }
-    
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 200px;
-      background: #0B0E14;
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 8px 0;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      z-index: 1001;
-      border: 1px solid rgba(147, 197, 253, 0.2);
-    }
-    
-    .dropdown:hover .dropdown-menu,
-    .dropdown.active .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    
-    .dropdown-menu a {
-      display: block;
-      padding: 12px 20px;
-      color: #93C5FD; /* Azure text color */
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border-radius: 20px;
-      margin: 4px 8px;
-      background: transparent;
-    }
-    
-    .dropdown-menu a:hover {
-      background: #1D4ED8;
-      color: #E7EAEE;
-      transform: scale(0.95);
-    }
-
-    /* Hide default cursor */
-    * {
-      cursor: none !important;
-    }
-
-    /* Responsive - hide custom cursor on touch devices */
-    @media (max-width: 768px) {
-      .cursor,
-      .cursor-follower {
-        display: none;
-      }
-      
-      * {
-        cursor: auto !important;
-      }
-      
-      /* Mobile dropdown behavior */
-      .dropdown:hover .dropdown-menu {
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 240px; /* ensure single-line items */
+        background: #0b0e14; /* deep navy */
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 6px 0;
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1001;
+        border: 1px solid rgba(147, 197, 253, 0.2);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3); /* soft depth */
       }
-    }
 
-    /* Portfolio Grid & Lightbox Styles */
-    @keyframes portfolioSheen {
-      0%   { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    .portfolio-grid-1x1 {
-      max-width: 1400px !important;
-      margin: 0 auto !important;
-      display: grid !important;
-      gap: 24px !important;
-      grid-template-columns: repeat(3, 1fr) !important;
-      padding: 0 20px !important;
-    }
-
-    .portfolio-grid-1x1 .tile {
-      position: relative !important;
-      display: block !important;
-      overflow: hidden !important;
-      border: 1px solid rgba(255, 255, 255, 0.05) !important;
-      background: #0D111B !important;
-      cursor: pointer !important;
-      aspect-ratio: 1 / 1 !important;
-    }
-
-    .portfolio-grid-1x1 .tile img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block !important;
-      transform: none !important;
-    }
-
-    .portfolio-grid-1x1 .tile::after {
-      content: "" !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      pointer-events: none !important;
-      background: linear-gradient(120deg, rgba(255,255,255,0.00) 10%, rgba(255,255,255,0.25) 30%, rgba(255,255,255,0.40) 40%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.00) 70%) !important;
-      background-size: 240% 100% !important;
-      background-position: 200% 0 !important;
-      mix-blend-mode: screen !important;
-      opacity: 0 !important;
-      transition: opacity 0.3s ease !important;
-      z-index: 2 !important;
-    }
-
-    .portfolio-grid-1x1 .tile:hover::after {
-      opacity: 1 !important;
-      animation: portfolioSheen 1.6s ease-out forwards !important;
-    }
-
-    .lightbox-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(11, 14, 20, 0.95);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .lightbox-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .lightbox-content {
-      position: relative;
-      width: 80vw;
-      max-width: 1200px;
-      max-height: 85vh;
-      animation: lightboxZoom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .lightbox-content img {
-      width: 100%;
-      height: auto;
-      max-height: 85vh;
-      object-fit: contain;
-      border: 2px solid rgba(147, 197, 253, 0.3);
-      border-radius: 8px;
-      display: block;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: -70px;
-      background: rgba(147, 197, 253, 0.2);
-      border: 2px solid rgba(147, 197, 253, 0.5);
-      color: #93C5FD;
-      font-size: 32px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 300;
-      line-height: 1;
-      z-index: 10003;
-    }
-
-    .lightbox-close:hover {
-      background: rgba(147, 197, 253, 0.3);
-      border-color: #93C5FD;
-      transform: rotate(90deg);
-    }
-
-    @keyframes lightboxZoom {
-      0% {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
+      .dropdown:hover .dropdown-menu,
+      .dropdown.active .dropdown-menu {
         opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
       }
-    }
 
-    @media (max-width: 1024px) {
-      .portfolio-grid-1x1 {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 20px !important;
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 16px; /* compact */
+        color: #ffffff; /* white */
+        text-decoration: none;
+        transition:
+          background 0.25s ease,
+          color 0.25s ease;
+        border-radius: 10px; /* rounded buttons */
+        margin: 4px 8px; /* more spacing */
+        background: #007fff; /* azure button */
+        font-size: 15px;
+        line-height: 1.2;
+        letter-spacing: 0.01em;
+        white-space: nowrap; /* prevent wrapping */
+        text-align: center;
       }
-      .lightbox-content {
-        width: 85vw;
-        max-width: 900px;
-      }
-    }
 
-    @media (max-width: 768px) {
-      .portfolio-grid-1x1 {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
+      .dropdown-menu a:hover {
+        background: #1d4ed8; /* cobalt */
+        color: #faf7f2; /* ivory */
       }
-      .lightbox-content {
-        width: 90vw;
-        max-width: none;
-        max-height: 80vh;
+
+      /* Large desktop responsive */
+      @media (max-width: 1400px) {
+        .nav {
+          padding: 0 30px;
+        }
+
+        .nav .brand {
+          font-size: 22px;
+        }
+
+        .nav .links {
+          gap: 24px;
+        }
+
+        .nav .links a {
+          font-size: 15px;
+          padding: 8px 14px;
+        }
       }
-      .lightbox-content img {
-        max-height: 80vh;
+
+      /* Tablet and smaller desktop responsive */
+      @media (max-width: 1024px) {
+        .hamburger-menu {
+          display: block;
+        }
+
+        /* Hide desktop navigation */
+        .nav .links {
+          display: none;
+        }
+
+        .nav {
+          padding: 0 20px;
+        }
+
+        .nav .brand {
+          font-size: 20px;
+        }
+
+        .nav .links a {
+          font-size: 14px;
+          padding: 6px 10px;
+        }
       }
-      .lightbox-close {
-        top: 10px;
-        right: 10px;
+
+      /* Mobile Responsive Styles */
+      @media (max-width: 1024px) {
+        .hamburger-menu {
+          display: block;
+        }
+
+        /* Hide desktop navigation */
+        .nav .links {
+          display: none;
+        }
+
+        .nav .brand img {
+          height: 60px;
+        }
+
+        .nav .links {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100vh;
+          background: rgba(11, 14, 20, 0.98);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 40px;
+          transition: left 0.3s ease;
+          z-index: 1000;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .mobile-link,
+        .mobile-dropdown-btn {
+          font-size: 18px;
+          min-width: 180px;
+        }
+
+        .mobile-sublink {
+          font-size: 16px;
+        }
+
+        .mobile-nav {
+          gap: 25px;
+          padding: 30px;
+        }
+
+        .nav .links a {
+          font-size: 18px;
+          padding: 12px 24px;
+          width: 200px;
+          text-align: center;
+        }
+
+        /* Hide desktop dropdown in mobile */
+        .dropdown {
+          display: none;
+        }
+
+        /* Mobile dropdown styling */
+        .mobile-dropdown-toggle {
+          display: flex !important;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 18px;
+          padding: 12px 24px;
+          width: 200px;
+          text-align: left;
+          color: #93c5fd; /* Azure text color */
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .mobile-dropdown-arrow {
+          font-size: 12px;
+          transition: transform 0.3s ease;
+        }
+
+        .mobile-dropdown-arrow.active {
+          transform: rotate(180deg);
+        }
+
+        .mobile-dropdown {
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 0.3s ease;
+          background: rgba(11, 14, 20, 0.8);
+        }
+
+        .mobile-dropdown.active {
+          max-height: 300px;
+        }
+
+        .mobile-dropdown a {
+          display: block;
+          padding: 8px 40px;
+          font-size: 16px;
+          color: var(--color-accent);
+          text-decoration: none;
+          text-align: left;
+          transition: all 0.3s ease;
+        }
+
+        .mobile-dropdown a:hover {
+          background: rgba(29, 78, 216, 0.2);
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          height: 70px;
+        }
+
+        .nav .brand {
+          font-size: 16px;
+        }
+      }
+
+      /* Footer Styles */
+      .footer {
+        background: var(--color-bg-primary); /* Deep Navy */
+        padding: 80px 0 40px;
+        border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
+      }
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 60px;
+      }
+      .footer-section {
+        display: flex;
+        flex-direction: column;
+      }
+      .footer-logo {
+        margin-bottom: 24px;
+      }
+      .footer-description {
+        color: #93c5fd; /* Azure text color */ /* Slate */
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 32px;
+        max-width: 300px;
+      }
+      .footer-social {
+        display: flex;
+        gap: 16px;
+      }
+      .footer-social a {
+        color: var(--color-accent); /* Azure */
+        font-size: 20px;
+        transition: color 0.3s ease;
+      }
+      .footer-social a:hover {
+        color: var(--color-heading); /* Off-white on hover */
+      }
+      .footer-label {
+        color: var(--color-accent) !important; /* Azure for H3 labels */
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .footer-heading {
+        color: var(
+          --color-heading
+        ) !important; /* Off-white for section headings */
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        letter-spacing: 0.02em;
+      }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+      .footer-links a {
+        color: var(--color-accent); /* Azure */
+        font-size: 16px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .footer-links a:hover {
+        color: var(--color-accent);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .footer-links strong {
+        color: var(--color-accent); /* Azure */
+        font-weight: 400;
+      }
+      .footer-links li {
+        color: var(--color-accent); /* Azure */
+        font-size: 16px;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
+        padding-top: 32px;
+      }
+      .footer-legal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .footer-legal p {
+        color: #93c5fd; /* Azure text color */ /* Slate */
+        font-size: 14px;
+        margin: 0;
+      }
+      .footer-legal-links {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .footer-legal-links a {
+        color: var(--color-accent); /* Azure */
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .footer-legal-links a:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .footer-divider {
+        color: rgba(163, 170, 180, 0.3); /* Slate 30% */
+        font-size: 14px;
+      }
+
+      /* Page Content */
+      .page-hero {
+        padding: 120px 40px 80px;
+        background: var(--color-bg-primary);
+        text-align: center;
+      }
+      .page-hero h1 {
+        font-size: clamp(36px, 6vw, 64px);
+        font-weight: 600;
+        color: var(--color-heading);
+        margin-bottom: 24px;
+        letter-spacing: 0.02em;
+      }
+      .page-hero p {
+        font-size: clamp(18px, 3vw, 24px);
+        color: var(--color-accent);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .page-content {
+        padding: 80px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .content-section {
+        margin-bottom: 60px;
+      }
+      .content-section h2 {
+        font-size: clamp(28px, 4vw, 36px);
+        font-weight: 600;
+        color: var(--color-heading);
+        margin-bottom: 24px;
+        letter-spacing: 0.01em;
+      }
+      .content-section p {
+        font-size: 18px;
+        color: #93c5fd; /* Azure text color */
+        margin-bottom: 20px;
+        line-height: 1.7;
+      }
+
+      /* Team Section */
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        margin-top: 40px;
+      }
+      .team-member {
+        background: rgba(255, 255, 255, 0.02);
+        padding: 40px;
+        border-radius: 8px;
+        border: 1px solid rgba(147, 197, 253, 0.1);
+        transition: all 0.3s ease;
+      }
+      .team-member:hover {
+        transform: translateY(-5px);
+        border-color: var(--color-accent);
+        box-shadow: 0 10px 30px rgba(29, 78, 216, 0.2);
+      }
+      .team-member h3 {
+        color: var(--color-heading);
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+      .team-member .role {
+        color: var(--color-accent);
+        font-size: 16px;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* Values Section */
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+      .value-item {
+        text-align: center;
+        padding: 30px;
+      }
+      .value-item h3 {
+        color: var(--color-accent);
+        font-size: 20px;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .value-item p {
+        color: #93c5fd; /* Azure text color */
+        font-size: 16px;
+      }
+
+      /* Buttons */
+      .btn {
+        background: #1d4ed8; /* Cobalt background */
+        color: #e7eaee; /* Off-white text */
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 300ms ease;
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.02em;
+        line-height: 1;
+        text-transform: none;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: #1e40af; /* Cobalt darken ~8% */
+        color: #e7eaee;
+      }
+      .btn:active {
+        background: #1e3a8a; /* Cobalt darken ~12% */
+        color: #e7eaee;
+        transform: scale(0.95);
+      }
+      .btn.secondary {
+        background: transparent;
+        color: #93c5fd;
+        border: 2px solid #93c5fd;
+      }
+      .btn.secondary:hover {
+        background: #0b0e14;
+        color: #93c5fd;
+        border-color: #93c5fd;
+      }
+      .btn.secondary:active {
+        background: #0b0e14;
+        color: #7dd3fc;
+        border-color: #7dd3fc;
+        transform: scale(0.95);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav {
+          padding: 0 20px;
+          height: 70px;
+        }
+        .nav .links {
+          gap: 20px;
+        }
+        .nav .links a {
+          font-size: 14px;
+          padding: 6px 12px;
+        }
+        .page-hero {
+          padding: 100px 20px 60px;
+        }
+        .page-content {
+          padding: 60px 20px;
+        }
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+        .founder-section {
+          grid-template-columns: 1fr !important;
+          gap: 40px !important;
+        }
+        .founder-image {
+          height: 400px !important;
+        }
+
+        .footer-content {
+          padding: 0 20px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          margin-bottom: 40px;
+        }
+        .footer-legal {
+          flex-direction: column;
+          text-align: center;
+          gap: 16px;
+        }
+      }
+
+      /* Custom Floating Cursor */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(147, 197, 253, 0.6); /* Azure - semi-transparent */
+        border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10002;
+        transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .cursor-follower {
+        position: fixed;
         width: 40px;
         height: 40px;
-        font-size: 24px;
+        border: 2px solid rgba(147, 197, 253, 0.3); /* Azure */
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10001;
+        background: rgba(147, 197, 253, 0.1); /* Azure */
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
-    }
-  </style>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Z0F0X2TWW4');
-  </script>
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1273059444474707');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
-  /></noscript>
-
-</head>
-<body>
-  <!-- Custom Floating Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-  <!-- Header -->
-  <header class="nav">
-    <div class="brand">
-      <a href="index.html">
-        <img src="assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" style="height: 200px; width: auto;" />
-      </a>
-    </div>
-    <!-- Hamburger Menu (mobile/minimized) -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-      <div class="hamburger-icon" aria-label="Open Menu" role="button" tabindex="0">
-        <span class="line line1"></span>
-        <span class="line line2"></span>
-        <span class="line line3"></span>
-      </div>
-      <div class="mobile-overlay" id="mobileOverlay">
-        <nav class="mobile-nav" aria-label="Mobile Navigation">
-          <a href="about.html" class="mobile-link">About</a>
-          <a href="services/interior-design.html" class="mobile-link">Services</a>
-          <a href="our-process.html" class="mobile-link">Our Process</a>
-          <a href="contact/get-quote.html" class="mobile-link">Contact</a>
-        </nav>
-      </div>
-    </div>
-    
-    <nav class="links">
-      <a href="our-process.html">Our Process</a>
-      <a href="services/interior-design.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="contact/get-quote.html">Contact</a>
-    </nav>
-  </header>
-
-  <!-- Page Hero -->
-  <section class="page-hero">
-    <h1>About Interior Illusions</h1>
-    <p>One team. Clear scope. Flawless handover.</p>
-  </section>
-
-  <!-- External CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Page Content -->
-  <main class="page-content">
-    <!-- Founder Section -->
-    <div class="content-section founder-section" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 80px;">
-      <div class="founder-image" style="width: 100%; height: 500px; background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80') center/cover; border-radius: 0px;"></div>
-      <div class="founder-content">
-        <h2 style="color: var(--color-accent); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 16px;">FOUNDER</h2>
-        <h3 style="color: var(--color-heading); font-size: 32px; font-weight: 700; margin-bottom: 24px;">Andy Chavira</h3>
-        <p>At the heart of Interior Illusions Construction is founder Andy Chavira, a dedicated professional with a passion for transforming spaces into refined, functional, and lasting works of craftsmanship. With years of hands-on experience in remodeling and construction, Andy built Interior Illusions Construction on a foundation of integrity, precision, and a deep respect for clients’ visions.</p>
-        <p>Andy is known not only for his technical expertise, but also for his commitment to client relationships. He has guided countless projects from concept to completion, ensuring each detail reflects both quality workmanship and the client’s unique lifestyle. His leadership has earned Interior Illusions Construction a reputation for reliability, transparency, and delivering exceptional results in every phase of a remodel.</p>
-        <p>Driven by a belief that a home should be both beautiful and enduring, Andy continues to lead his team with the same dedication that started the company: treating every project as if it were his own home.</p>
-      </div>
-    </div>
-
-    <!-- Interior Illusions Section -->
-    <div class="content-section">
-      <h2>Interior Illusions</h2>
-      <p>Interior Illusions (Interior Illusions Construction) delivers full-service, design-build remodeling—luxury kitchens, baths, and whole-home interiors. We blend craftsmanship, innovation, and attentive service from concept to completion. Expect itemized scope, predictable timelines, and crisp finishes. We work with homeowners, builders, and designers so each space reflects the client's vision and lifestyle.</p>
-    </div>
-
-    <!-- Mission Section -->
-    <div class="content-section">
-      <h2>Mission</h2>
-      <p>Interior Illusions exists to turn thoughtful plans into refined, durable interiors. We combine design clarity, cost transparency, and precise execution to deliver calm projects, crisp finishes, and homes that work beautifully day to day.</p>
-    </div>
-
-    <!-- Our Values Section -->
-    <div class="content-section">
-      <h2>Our Values</h2>
-      <div class="values-grid">
-        <div class="value-item">
-          <h3>Calm</h3>
-          <p>We run a steady, transparent process—clear plans, tidy sites, and one point of contact—so projects feel organized, predictable, and stress-free.</p>
-        </div>
-        <div class="value-item">
-          <h3>Precise</h3>
-          <p>We measure twice and build to spec. True lines, tight reveals, clean transitions, and documented quality checks at every stage.</p>
-        </div>
-        <div class="value-item">
-          <h3>Modern</h3>
-          <p>We favor clean geometry, smart materials, and efficient systems—design that looks timeless, works hard, and simplifies daily living.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Portfolio Section -->
-    <section id="work" class="gallery" style="margin-top: 80px;">
-      <div class="section-header reveal" style="text-align: left;">
-        <p class="section-subtitle" style="text-align: left;">PORTFOLIO</p>
-        <h2 class="section-title" style="text-align: left;">Our Latest Work</h2>
-      </div>
-
-      <div class="gallery-grid">
-    <div class="gallery-item reveal"
-      style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG');"
-      data-footnote="Custom tile in Primary Bathroom"
-      onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)"></div>
-
-    <div class="gallery-item reveal"
-      style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG');"
-      data-footnote="LVP flooring install throughout"
-      onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)"></div>
-
-    <div class="gallery-item reveal"
-      style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG');"
-      data-footnote="Nail down install"
-      onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)"></div>
-
-    <div class="gallery-item reveal"
-      style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG');"
-      data-footnote="Full home remodel"
-      onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)"></div>
-
-    <div class="gallery-item reveal"
-      style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG');"
-      data-footnote="Custom tile in Primary Bathroom"
-      onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)"></div>
-
-    <div class="gallery-item reveal"
-      style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG');"
-      data-footnote="Custom Tile"
-      onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG', this)"></div>
-
-    <div class="gallery-item reveal"
-      style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG');"
-      data-footnote="Guest Bath Marble Tile Install"
-      onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG', this)"></div>
-
-    <div class="gallery-item reveal"
-      style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG');"
-      data-footnote="Red Oak HardwoodFloor Install"
-      onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG', this)"></div>
-
-    <div class="gallery-item reveal"
-      style="background-image: url('assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG');"
-      data-footnote="Primary Bath Tile Install"
-      onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG', this)"></div>
-    </div>
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
-      <div class="lightbox-content">
-        <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
-        <img id="lightboxImage" src="" alt="Portfolio Image" />
-        <div id="lightboxFootnote" class="lightbox-footnote" aria-live="polite" tabindex="0" role="complementary" aria-label="Image details" onclick="event.stopPropagation()"></div>
-      </div>
-    </div>
-
-    <!-- CTA Banner -->
-    <div style="max-width: 1400px; margin: 80px auto 0; padding: 0 40px;">
-      <section class="cta-banner" style="background: #0D111B; padding: 60px 50px; text-align: center; border-radius: 12px; transition: background 0.4s ease, transform 0.3s ease; box-shadow: 0 6px 18px rgba(11,14,20,0.06);">
-        <div style="max-width: 800px; margin: 0 auto;">
-          <h2 class="cta-banner-title" style="color: var(--color-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin-bottom: 24px; transition: color 0.4s ease;">Ready to Start Your Project?</h2>
-          <p class="cta-banner-text" style="color: var(--color-accent); font-size: clamp(16px, 2.5vw, 20px); margin-bottom: 40px; line-height: 1.6; transition: color 0.4s ease;">Let's discuss how we can transform your space into something extraordinary.</p>
-          <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-            <a href="contact/get-quote.html" class="btn" style="min-width: 180px;">Get a Quote</a>
-            <a href="portfolio/residential-projects.html" class="btn secondary" style="min-width: 180px;">View Our Work</a>
-          </div>
-        </div>
-      </section>
-    </div>
-    <style>
-      .cta-banner:hover {
-        background: #FAF7F2 !important; /* Ivory */
-        transform: translateY(-4px);
-        box-shadow: 0 10px 40px rgba(147, 197, 253, 0.3);
+      /* Cursor hover states */
+      body.cursor-hover .cursor {
+        transform: scale(1.5);
+        background: rgba(147, 197, 253, 0.3); /* Azure - very transparent */
+        border: 2px solid rgba(147, 197, 253, 1); /* Solid Azure border */
+        box-shadow:
+          0 0 15px rgba(147, 197, 253, 0.8),
+          0 0 30px rgba(147, 197, 253, 0.4); /* Bright glow */
+        animation: cursorShine 0.6s ease-out;
       }
-      .cta-banner:hover .cta-banner-title {
-        color: #0B0E14 !important; /* Deep Navy */
+
+      body.cursor-hover .cursor-follower {
+        transform: translate(-50%, -50%) scale(1.5);
+        border-color: rgba(147, 197, 253, 0.6); /* Azure */
+        background: rgba(147, 197, 253, 0.05); /* Azure */
       }
-      .cta-banner:hover .cta-banner-text {
-        color: #1D4ED8 !important; /* Cobalt */
+
+      /* Cursor shine animation */
+      @keyframes cursorShine {
+        0% {
+          box-shadow:
+            0 0 15px rgba(147, 197, 253, 0.8),
+            0 0 30px rgba(147, 197, 253, 0.4);
+        }
+        50% {
+          box-shadow:
+            0 0 25px rgba(147, 197, 253, 1),
+            0 0 50px rgba(147, 197, 253, 0.6);
+        }
+        100% {
+          box-shadow:
+            0 0 15px rgba(147, 197, 253, 0.8),
+            0 0 30px rgba(147, 197, 253, 0.4);
+        }
+      }
+
+      /* Special cursor for clickable elements */
+      body.cursor-click .cursor {
+        transform: scale(0.8);
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      body.cursor-click .cursor-follower {
+        transform: translate(-50%, -50%) scale(2);
+        border-color: rgba(0, 0, 0, 0.4);
+        background: transparent;
+      }
+
+      /* Text cursor effect */
+      body.cursor-text .cursor {
+        transform: scaleX(0.3) scaleY(1.5);
+        background: rgba(147, 197, 253, 0.4); /* Azure - transparent */
+        border: 1px solid rgba(147, 197, 253, 0.9); /* Azure border */
+        border-radius: 2px;
+      }
+
+      body.cursor-text .cursor-follower {
+        opacity: 0;
+      }
+
+      /* Gallery */
+      .gallery {
+        padding: 120px 40px;
+        background: var(--color-light);
+      }
+
+      .gallery .section-header {
+        max-width: 1400px;
+        margin: 0 auto;
+        margin-bottom: 80px;
+        text-align: left !important;
+      }
+      .gallery-grid {
+        display: grid;
+        gap: 32px;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .gallery-item {
+        height: 400px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 0px;
+        transition: all 400ms ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .gallery-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(29, 78, 216, 0);
+        transition: all 400ms ease;
+      }
+      .gallery-item:hover {
+        transform: scale(1.02);
+        box-shadow: 0 25px 80px rgba(29, 78, 216, 0.18);
+      }
+      .gallery-item:hover::before {
+        background: rgba(29, 78, 216, 0.08);
+      }
+
+      /* Gallery hover effect */
+      body.cursor-view .cursor {
+        transform: scale(2);
+        background: rgba(147, 197, 253, 0.2); /* Azure - very transparent */
+        border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
+      }
+
+      body.cursor-view .cursor-follower {
+        transform: translate(-50%, -50%) scale(2.5);
+        border-color: rgba(147, 197, 253, 0.6); /* Azure */
+      }
+
+      body.cursor-view .cursor::after {
+        content: "VIEW";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 10px;
+        font-weight: 600;
+        color: rgba(147, 197, 253, 1); /* Azure */
+        letter-spacing: 0.5px;
+      }
+
+      /* Dropdown Navigation Styles */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-toggle {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .dropdown-arrow {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        background: #0b0e14;
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1001;
+        border: 1px solid rgba(147, 197, 253, 0.2);
+      }
+
+      .dropdown:hover .dropdown-menu,
+      .dropdown.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 12px 20px;
+        color: #93c5fd; /* Azure text color */
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-radius: 20px;
+        margin: 4px 8px;
+        background: transparent;
+      }
+
+      .dropdown-menu a:hover {
+        background: #1d4ed8;
+        color: #e7eaee;
+        transform: scale(0.95);
+      }
+
+      /* Hide default cursor */
+      * {
+        cursor: none !important;
+      }
+
+      /* Responsive - hide custom cursor on touch devices */
+      @media (max-width: 768px) {
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+
+        * {
+          cursor: auto !important;
+        }
+
+        /* Mobile dropdown behavior */
+        .dropdown:hover .dropdown-menu {
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Portfolio Grid & Lightbox Styles */
+      @keyframes portfolioSheen {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      .portfolio-grid-1x1 {
+        max-width: 1400px !important;
+        margin: 0 auto !important;
+        display: grid !important;
+        gap: 24px !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        padding: 0 20px !important;
+      }
+
+      .portfolio-grid-1x1 .tile {
+        position: relative !important;
+        display: block !important;
+        overflow: hidden !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        background: #0d111b !important;
+        cursor: pointer !important;
+        aspect-ratio: 1 / 1 !important;
+      }
+
+      .portfolio-grid-1x1 .tile img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+        transform: none !important;
+      }
+
+      .portfolio-grid-1x1 .tile::after {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        pointer-events: none !important;
+        background: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0) 10%,
+          rgba(255, 255, 255, 0.25) 30%,
+          rgba(255, 255, 255, 0.4) 40%,
+          rgba(255, 255, 255, 0.25) 50%,
+          rgba(255, 255, 255, 0) 70%
+        ) !important;
+        background-size: 240% 100% !important;
+        background-position: 200% 0 !important;
+        mix-blend-mode: screen !important;
+        opacity: 0 !important;
+        transition: opacity 0.3s ease !important;
+        z-index: 2 !important;
+      }
+
+      .portfolio-grid-1x1 .tile:hover::after {
+        opacity: 1 !important;
+        animation: portfolioSheen 1.6s ease-out forwards !important;
+      }
+
+      .lightbox-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(11, 14, 20, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+      }
+
+      .lightbox-modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .lightbox-content {
+        position: relative;
+        width: 80vw;
+        max-width: 1200px;
+        max-height: 85vh;
+        animation: lightboxZoom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .lightbox-content img {
+        width: 100%;
+        height: auto;
+        max-height: 85vh;
+        object-fit: contain;
+        border: 2px solid rgba(147, 197, 253, 0.3);
+        border-radius: 8px;
+        display: block;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: -70px;
+        background: rgba(147, 197, 253, 0.2);
+        border: 2px solid rgba(147, 197, 253, 0.5);
+        color: #93c5fd;
+        font-size: 32px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 300;
+        line-height: 1;
+        z-index: 10003;
+      }
+
+      .lightbox-close:hover {
+        background: rgba(147, 197, 253, 0.3);
+        border-color: #93c5fd;
+        transform: rotate(90deg);
+      }
+
+      @keyframes lightboxZoom {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .portfolio-grid-1x1 {
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 20px !important;
+        }
+        .lightbox-content {
+          width: 85vw;
+          max-width: 900px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .portfolio-grid-1x1 {
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
+        }
+        .lightbox-content {
+          width: 90vw;
+          max-width: none;
+          max-height: 80vh;
+        }
+        .lightbox-content img {
+          max-height: 80vh;
+        }
+        .lightbox-close {
+          top: 10px;
+          right: 10px;
+          width: 40px;
+          height: 40px;
+          font-size: 24px;
+        }
       }
     </style>
-  </main>
-  <script>
-    // Custom Floating Cursor
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    let mouseX = 0;
-    let mouseY = 0;
-    let followerX = 0;
-    let followerY = 0;
 
-    // Update cursor position with smooth interpolation
-    let cursorX = 0;
-    let cursorY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-    
-    // Smooth cursor animation
-    function animateCursor() {
-      const ease = 0.2; // Smooth easing for main cursor
-      cursorX += (mouseX - cursorX) * ease;
-      cursorY += (mouseY - cursorY) * ease;
-      
-      // Use transform for better performance
-      cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-      
-      requestAnimationFrame(animateCursor);
-    }
-    
-    // Smooth follower animation
-    function animateFollower() {
-      const ease = 0.1; // Slower easing for follower
-      followerX += (mouseX - followerX) * ease;
-      followerY += (mouseY - followerY) * ease;
-      
-      // Use transform for better performance
-      cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
-      
-      requestAnimationFrame(animateFollower);
-    }
-    
-    animateCursor();
-    animateFollower();
-    
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0F0X2TWW4");
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1273059444474707");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+    /></noscript>
+  </head>
+  <body>
+    <!-- Custom Floating Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <!-- Header -->
+    <header class="nav">
+      <div class="brand">
+        <a href="index.html">
+          <img
+            src="assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+            alt="Interior Illusions Logo"
+            style="height: 200px; width: auto"
+          />
+        </a>
+      </div>
+      <!-- Hamburger Menu (mobile/minimized) -->
+      <div class="hamburger-menu" id="hamburgerMenu">
+        <div
+          class="hamburger-icon"
+          aria-label="Open Menu"
+          role="button"
+          tabindex="0"
+        >
+          <span class="line line1"></span>
+          <span class="line line2"></span>
+          <span class="line line3"></span>
+        </div>
+        <div class="mobile-overlay" id="mobileOverlay">
+          <nav class="mobile-nav" aria-label="Mobile Navigation">
+            <a href="about.html" class="mobile-link">About</a>
+            <a href="services/interior-design.html" class="mobile-link"
+              >Services</a
+            >
+            <a href="our-process.html" class="mobile-link">Our Process</a>
+            <a href="contact/get-quote.html" class="mobile-link">Contact</a>
+          </nav>
+        </div>
+      </div>
 
-    // Interactive elements
-    const hoverElements = document.querySelectorAll('a, button, .btn, .dropdown-toggle, .tile');
-    const clickableElements = document.querySelectorAll('a, button, .btn, .dropdown-toggle, .tile');
-    const textElements = document.querySelectorAll('input, textarea, p, h1, h2, h3, h4, h5, h6');
-    
-    // Hover effects
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-hover');
+      <nav class="links">
+        <a href="our-process.html">Our Process</a>
+        <a href="services/interior-design.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact/get-quote.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <h1>About Interior Illusions</h1>
+      <p>One team. Clear scope. Flawless handover.</p>
+    </section>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Page Content -->
+    <main class="page-content">
+      <!-- Founder Section -->
+      <div
+        class="content-section founder-section"
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 60px;
+          align-items: center;
+          margin-bottom: 80px;
+        "
+      >
+        <div
+          class="founder-image"
+          style="
+            width: 100%;
+            height: 500px;
+            background: url(&quot;https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80&quot;)
+              center/cover;
+            border-radius: 0px;
+          "
+        ></div>
+        <div class="founder-content">
+          <h2
+            style="
+              color: var(--color-accent);
+              font-size: 14px;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.1em;
+              margin-bottom: 16px;
+            "
+          >
+            FOUNDER
+          </h2>
+          <h3
+            style="
+              color: var(--color-heading);
+              font-size: 32px;
+              font-weight: 700;
+              margin-bottom: 24px;
+            "
+          >
+            Andy Chavira
+          </h3>
+          <p>
+            At the heart of Interior Illusions Construction is founder Andy
+            Chavira, a dedicated professional with a passion for transforming
+            spaces into refined, functional, and lasting works of craftsmanship.
+            With years of hands-on experience in remodeling and construction,
+            Andy built Interior Illusions Construction on a foundation of
+            integrity, precision, and a deep respect for clients’ visions.
+          </p>
+          <p>
+            Andy is known not only for his technical expertise, but also for his
+            commitment to client relationships. He has guided countless projects
+            from concept to completion, ensuring each detail reflects both
+            quality workmanship and the client’s unique lifestyle. His
+            leadership has earned Interior Illusions Construction a reputation
+            for reliability, transparency, and delivering exceptional results in
+            every phase of a remodel.
+          </p>
+          <p>
+            Driven by a belief that a home should be both beautiful and
+            enduring, Andy continues to lead his team with the same dedication
+            that started the company: treating every project as if it were his
+            own home.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interior Illusions Section -->
+      <div class="content-section">
+        <h2>Interior Illusions</h2>
+        <p>
+          Interior Illusions (Interior Illusions Construction) delivers
+          full-service, design-build remodeling—luxury kitchens, baths, and
+          whole-home interiors. We blend craftsmanship, innovation, and
+          attentive service from concept to completion. Expect itemized scope,
+          predictable timelines, and crisp finishes. We work with homeowners,
+          builders, and designers so each space reflects the client's vision and
+          lifestyle.
+        </p>
+      </div>
+
+      <!-- Mission Section -->
+      <div class="content-section">
+        <h2>Mission</h2>
+        <p>
+          Interior Illusions exists to turn thoughtful plans into refined,
+          durable interiors. We combine design clarity, cost transparency, and
+          precise execution to deliver calm projects, crisp finishes, and homes
+          that work beautifully day to day.
+        </p>
+      </div>
+
+      <!-- Our Values Section -->
+      <div class="content-section">
+        <h2>Our Values</h2>
+        <div class="values-grid">
+          <div class="value-item">
+            <h3>Calm</h3>
+            <p>
+              We run a steady, transparent process—clear plans, tidy sites, and
+              one point of contact—so projects feel organized, predictable, and
+              stress-free.
+            </p>
+          </div>
+          <div class="value-item">
+            <h3>Precise</h3>
+            <p>
+              We measure twice and build to spec. True lines, tight reveals,
+              clean transitions, and documented quality checks at every stage.
+            </p>
+          </div>
+          <div class="value-item">
+            <h3>Modern</h3>
+            <p>
+              We favor clean geometry, smart materials, and efficient
+              systems—design that looks timeless, works hard, and simplifies
+              daily living.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Section -->
+      <section id="work" class="gallery" style="margin-top: 80px">
+        <div class="section-header reveal" style="text-align: left">
+          <p class="section-subtitle" style="text-align: left">PORTFOLIO</p>
+          <h2 class="section-title" style="text-align: left">
+            Our Latest Work
+          </h2>
+        </div>
+
+        <div class="gallery-grid">
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG&quot;);
+            "
+            data-footnote="Custom tile in Primary Bathroom"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)"
+          ></div>
+
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG&quot;);
+            "
+            data-footnote="LVP flooring install throughout"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)"
+          ></div>
+
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG&quot;);
+            "
+            data-footnote="Nail down install"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)"
+          ></div>
+
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG&quot;);
+            "
+            data-footnote="Full home remodel"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)"
+          ></div>
+
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG&quot;);
+            "
+            data-footnote="Custom tile in Primary Bathroom"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)"
+          ></div>
+
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG&quot;);
+            "
+            data-footnote="Custom Tile"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG', this)"
+          ></div>
+
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG&quot;);
+            "
+            data-footnote="Guest Bath Marble Tile Install"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG', this)"
+          ></div>
+
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG&quot;);
+            "
+            data-footnote="Red Oak HardwoodFloor Install"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG', this)"
+          ></div>
+
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG&quot;);
+            "
+            data-footnote="Primary Bath Tile Install"
+            onclick="openLightbox('assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG', this)"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Lightbox Modal -->
+      <div
+        class="lightbox-modal"
+        id="lightboxModal"
+        onclick="closeLightbox(event)"
+      >
+        <div class="lightbox-content">
+          <button class="lightbox-close" onclick="closeLightbox(event)">
+            ×
+          </button>
+          <img id="lightboxImage" src="" alt="Portfolio Image" />
+          <div
+            id="lightboxFootnote"
+            class="lightbox-footnote"
+            aria-live="polite"
+            tabindex="0"
+            role="complementary"
+            aria-label="Image details"
+            onclick="event.stopPropagation()"
+          ></div>
+        </div>
+      </div>
+
+      <!-- CTA Banner -->
+      <div style="max-width: 1400px; margin: 80px auto 0; padding: 0 40px">
+        <section
+          class="cta-banner"
+          style="
+            background: #0d111b;
+            padding: 60px 50px;
+            text-align: center;
+            border-radius: 12px;
+            transition:
+              background 0.4s ease,
+              transform 0.3s ease;
+            box-shadow: 0 6px 18px rgba(11, 14, 20, 0.06);
+          "
+        >
+          <div style="max-width: 800px; margin: 0 auto">
+            <h2
+              class="cta-banner-title"
+              style="
+                color: var(--color-heading);
+                font-size: clamp(32px, 5vw, 48px);
+                font-weight: 700;
+                margin-bottom: 24px;
+                transition: color 0.4s ease;
+              "
+            >
+              Ready to Start Your Project?
+            </h2>
+            <p
+              class="cta-banner-text"
+              style="
+                color: var(--color-accent);
+                font-size: clamp(16px, 2.5vw, 20px);
+                margin-bottom: 40px;
+                line-height: 1.6;
+                transition: color 0.4s ease;
+              "
+            >
+              Let's discuss how we can transform your space into something
+              extraordinary.
+            </p>
+            <div
+              style="
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+              "
+            >
+              <a
+                href="contact/get-quote.html"
+                class="btn"
+                style="min-width: 180px"
+                >Get a Quote</a
+              >
+              <a
+                href="portfolio/residential-projects.html"
+                class="btn secondary"
+                style="min-width: 180px"
+                >View Our Work</a
+              >
+            </div>
+          </div>
+        </section>
+      </div>
+      <style>
+        .cta-banner:hover {
+          background: #faf7f2 !important; /* Ivory */
+          transform: translateY(-4px);
+          box-shadow: 0 10px 40px rgba(147, 197, 253, 0.3);
+        }
+        .cta-banner:hover .cta-banner-title {
+          color: #0b0e14 !important; /* Deep Navy */
+        }
+        .cta-banner:hover .cta-banner-text {
+          color: #1d4ed8 !important; /* Cobalt */
+        }
+      </style>
+    </main>
+    <script>
+      // Custom Floating Cursor
+      const cursor = document.querySelector(".cursor");
+      const cursorFollower = document.querySelector(".cursor-follower");
+      let mouseX = 0;
+      let mouseY = 0;
+      let followerX = 0;
+      let followerY = 0;
+
+      // Update cursor position with smooth interpolation
+      let cursorX = 0;
+      let cursorY = 0;
+
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
       });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-hover');
-      });
-    });
 
-    // Click effects
-    clickableElements.forEach(el => {
-      el.addEventListener('mousedown', () => {
-        document.body.classList.add('cursor-click');
-      });
-      el.addEventListener('mouseup', () => {
-        document.body.classList.remove('cursor-click');
-      });
-    });
+      // Smooth cursor animation
+      function animateCursor() {
+        const ease = 0.2; // Smooth easing for main cursor
+        cursorX += (mouseX - cursorX) * ease;
+        cursorY += (mouseY - cursorY) * ease;
 
-    // Text cursor
-    textElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-text');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-text');
-      });
-    });
+        // Use transform for better performance
+        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
 
-    // Hide cursor when it leaves the window
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-      cursorFollower.style.opacity = '0';
-    });
-
-    document.addEventListener('mouseenter', () => {
-      cursor.style.opacity = '1';
-      cursorFollower.style.opacity = '1';
-    });
-
-    // Hamburger Menu Functionality - Wrapped in DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded, initializing hamburger menu...'); // Debug log
-      
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      const hamburgerIcon = document.querySelector('.hamburger-icon');
-      const mobileOverlay = document.querySelector('.mobile-overlay');
-      const dropdownBtn = document.querySelector('.mobile-dropdown-btn');
-      const dropdownSection = document.querySelector('.mobile-dropdown-section');
-      const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-sublink');
-
-      console.log('Hamburger menu found:', !!hamburgerMenu); // Debug log
-      console.log('Hamburger icon found:', !!hamburgerIcon); // Debug log
-
-      // Toggle hamburger menu (opens and closes)
-      if (hamburgerIcon) {
-        hamburgerIcon.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          console.log('Hamburger clicked!'); // Debug log
-          hamburgerMenu.classList.toggle('active');
-          document.body.style.overflow = hamburgerMenu.classList.contains('active') ? 'hidden' : 'auto';
-          console.log('Menu active:', hamburgerMenu.classList.contains('active')); // Debug log
-        });
-      } else {
-        console.log('Hamburger icon not found!'); // Debug log
+        requestAnimationFrame(animateCursor);
       }
 
-      // Close menu when clicking on overlay
-      if (mobileOverlay) {
-        mobileOverlay.addEventListener('click', function(e) {
-          if (e.target === mobileOverlay) {
-            hamburgerMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
+      // Smooth follower animation
+      function animateFollower() {
+        const ease = 0.1; // Slower easing for follower
+        followerX += (mouseX - followerX) * ease;
+        followerY += (mouseY - followerY) * ease;
+
+        // Use transform for better performance
+        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+
+        requestAnimationFrame(animateFollower);
+      }
+
+      animateCursor();
+      animateFollower();
+
+      // Interactive elements
+      const hoverElements = document.querySelectorAll(
+        "a, button, .btn, .dropdown-toggle, .tile",
+      );
+      const clickableElements = document.querySelectorAll(
+        "a, button, .btn, .dropdown-toggle, .tile",
+      );
+      const textElements = document.querySelectorAll(
+        "input, textarea, p, h1, h2, h3, h4, h5, h6",
+      );
+
+      // Hover effects
+      hoverElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-hover");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-hover");
+        });
+      });
+
+      // Click effects
+      clickableElements.forEach((el) => {
+        el.addEventListener("mousedown", () => {
+          document.body.classList.add("cursor-click");
+        });
+        el.addEventListener("mouseup", () => {
+          document.body.classList.remove("cursor-click");
+        });
+      });
+
+      // Text cursor
+      textElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-text");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-text");
+        });
+      });
+
+      // Hide cursor when it leaves the window
+      document.addEventListener("mouseleave", () => {
+        cursor.style.opacity = "0";
+        cursorFollower.style.opacity = "0";
+      });
+
+      document.addEventListener("mouseenter", () => {
+        cursor.style.opacity = "1";
+        cursorFollower.style.opacity = "1";
+      });
+
+      // Hamburger Menu Functionality - Wrapped in DOMContentLoaded
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM loaded, initializing hamburger menu..."); // Debug log
+
+        const hamburgerMenu = document.querySelector(".hamburger-menu");
+        const hamburgerIcon = document.querySelector(".hamburger-icon");
+        const mobileOverlay = document.querySelector(".mobile-overlay");
+        const dropdownBtn = document.querySelector(".mobile-dropdown-btn");
+        const dropdownSection = document.querySelector(
+          ".mobile-dropdown-section",
+        );
+        const mobileLinks = document.querySelectorAll(
+          ".mobile-link, .mobile-sublink",
+        );
+
+        console.log("Hamburger menu found:", !!hamburgerMenu); // Debug log
+        console.log("Hamburger icon found:", !!hamburgerIcon); // Debug log
+
+        // Toggle hamburger menu (opens and closes)
+        if (hamburgerIcon) {
+          hamburgerIcon.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("Hamburger clicked!"); // Debug log
+            hamburgerMenu.classList.toggle("active");
+            document.body.style.overflow = hamburgerMenu.classList.contains(
+              "active",
+            )
+              ? "hidden"
+              : "auto";
+            console.log(
+              "Menu active:",
+              hamburgerMenu.classList.contains("active"),
+            ); // Debug log
+          });
+        } else {
+          console.log("Hamburger icon not found!"); // Debug log
+        }
+
+        // Close menu when clicking on overlay
+        if (mobileOverlay) {
+          mobileOverlay.addEventListener("click", function (e) {
+            if (e.target === mobileOverlay) {
+              hamburgerMenu.classList.remove("active");
+              document.body.style.overflow = "auto";
+            }
+          });
+        }
+
+        // Dropdown functionality
+        if (dropdownBtn) {
+          dropdownBtn.addEventListener("click", function () {
+            dropdownSection.classList.toggle("active");
+          });
+        }
+
+        // Close menu when clicking on links
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            hamburgerMenu.classList.remove("active");
+            document.body.style.overflow = "auto";
+          });
+        });
+
+        // Handle escape key
+        document.addEventListener("keydown", function (e) {
+          if (
+            e.key === "Escape" &&
+            hamburgerMenu &&
+            hamburgerMenu.classList.contains("active")
+          ) {
+            hamburgerMenu.classList.remove("active");
+            document.body.style.overflow = "auto";
           }
         });
-      }
+      }); // Close DOMContentLoaded
+    </script>
 
-      // Dropdown functionality
-      if (dropdownBtn) {
-        dropdownBtn.addEventListener('click', function() {
-          dropdownSection.classList.toggle('active');
-        });
-      }
-
-      // Close menu when clicking on links
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          hamburgerMenu.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        });
-      });
-
-      // Handle escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && hamburgerMenu && hamburgerMenu.classList.contains('active')) {
-          hamburgerMenu.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        }
-      });
-    }); // Close DOMContentLoaded
-  </script>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-grid">
-        <!-- Company Info -->
-        <div class="footer-section">
-          <div class="footer-logo">
-            <img src="assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" style="height: 120px; width: auto;" />
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-grid">
+          <!-- Company Info -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img
+                src="assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+                alt="Interior Illusions Logo"
+                style="height: 120px; width: auto"
+              />
+            </div>
+            <p class="footer-description">
+              Specialists in providing luxury interior finishes in residential &
+              commercial projects. Remodels & New Construction.
+            </p>
+            <div class="footer-social">
+              <a
+                href="https://instagram.com/interior_illusions_llc"
+                target="_blank"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F"
+                target="_blank"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="mailto:interiorillusionsllc@outlook.com"
+                aria-label="Email"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
           </div>
-          <p class="footer-description">Specialists in providing luxury interior finishes in residential & commercial projects. Remodels & New Construction.</p>
-          <div class="footer-social">
-            <a href="https://instagram.com/interior_illusions_llc" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="mailto:interiorillusionsllc@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+
+          <!-- Services -->
+          <div class="footer-section">
+            <h3 class="footer-label">Services</h3>
+            <h4 class="footer-heading">What We Do</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="services/full-home-remodels.html"
+                  >Full home remodels</a
+                >
+              </li>
+              <li><a href="services/kitchens.html">Kitchens</a></li>
+              <li><a href="services/bathrooms.html">Bathrooms</a></li>
+              <li><a href="services/flooring.html">Flooring</a></li>
+              <li>
+                <a href="services/general-construction.html"
+                  >General construction and framing</a
+                >
+              </li>
+              <li>
+                <a href="services/custom-cabinetry.html"
+                  >Custom cabinetry and millwork</a
+                >
+              </li>
+              <li>
+                <a href="services/painting-finishes.html">Interior painting</a>
+              </li>
+              <li>
+                <a href="services/selective-demolition.html">Demolition</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Portfolio -->
+          <div class="footer-section">
+            <h3 class="footer-label">Portfolio</h3>
+            <h4 class="footer-heading">Our Work</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="portfolio/residential-projects.html"
+                  >Residential Projects</a
+                >
+              </li>
+              <li>
+                <a href="portfolio/commercial-projects.html"
+                  >Commercial Projects</a
+                >
+              </li>
+              <li>
+                <a href="portfolio/before-after-gallery.html"
+                  >Before & After Gallery</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer-section">
+            <h3 class="footer-label">Contact</h3>
+            <h4 class="footer-heading">Get In Touch</h4>
+            <ul class="footer-links">
+              <li><strong>Dallas, TX, United States</strong></li>
+              <li><a href="tel:+19723704873">(972) 370-4873</a></li>
+              <li>
+                <a href="mailto:interiorillusionsllc@outlook.com"
+                  >interiorillusionsllc@outlook.com</a
+                >
+              </li>
+              <li>
+                <a href="https://instagram.com/interior_illusions_llc"
+                  >@interior_illusions_llc</a
+                >
+              </li>
+              <li>
+                <strong>Service Area:</strong> DFW Metroplex, North Texas,
+                McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco
+              </li>
+            </ul>
           </div>
         </div>
 
-        <!-- Services -->
-        <div class="footer-section">
-          <h3 class="footer-label">Services</h3>
-          <h4 class="footer-heading">What We Do</h4>
-          <ul class="footer-links">
-            <li><a href="services/full-home-remodels.html">Full home remodels</a></li>
-            <li><a href="services/kitchens.html">Kitchens</a></li>
-            <li><a href="services/bathrooms.html">Bathrooms</a></li>
-            <li><a href="services/flooring.html">Flooring</a></li>
-            <li><a href="services/general-construction.html">General construction and framing</a></li>
-            <li><a href="services/custom-cabinetry.html">Custom cabinetry and millwork</a></li>
-            <li><a href="services/painting-finishes.html">Interior painting</a></li>
-            <li><a href="services/selective-demolition.html">Demolition</a></li>
-          </ul>
-        </div>
-
-        <!-- Portfolio -->
-        <div class="footer-section">
-          <h3 class="footer-label">Portfolio</h3>
-          <h4 class="footer-heading">Our Work</h4>
-          <ul class="footer-links">
-            <li><a href="portfolio/residential-projects.html">Residential Projects</a></li>
-            <li><a href="portfolio/commercial-projects.html">Commercial Projects</a></li>
-            <li><a href="portfolio/before-after-gallery.html">Before & After Gallery</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div class="footer-section">
-          <h3 class="footer-label">Contact</h3>
-          <h4 class="footer-heading">Get In Touch</h4>
-          <ul class="footer-links">
-            <li><strong>Dallas, TX, United States</strong></li>
-            <li><a href="tel:+19723704873">(972) 370-4873</a></li>
-            <li><a href="mailto:interiorillusionsllc@outlook.com">interiorillusionsllc@outlook.com</a></li>
-            <li><a href="https://instagram.com/interior_illusions_llc">@interior_illusions_llc</a></li>
-            <li><strong>Service Area:</strong> DFW Metroplex, North Texas, McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco</li>
-          </ul>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <p>
+              &copy; 2024 Interior Illusions LLC. All rights reserved.
+              Construction company · Home improvement
+            </p>
+            <div class="footer-legal-links">
+              <a href="#">Privacy Policy</a>
+              <span class="footer-divider">|</span>
+              <a href="#">Terms of Service</a>
+            </div>
+          </div>
         </div>
       </div>
+    </footer>
 
-      <!-- Footer Bottom -->
-      <div class="footer-bottom">
-        <div class="footer-legal">
-          <p>&copy; 2024 Interior Illusions LLC. All rights reserved. Construction company · Home improvement</p>
-          <div class="footer-legal-links">
-            <a href="#">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  
-  <script>
-    // Lightbox Functions
-    function openLightbox(imageSrc, clickedElement) {
-      const modal = document.getElementById('lightboxModal');
-      const image = document.getElementById('lightboxImage');
-      const footnote = document.getElementById('lightboxFootnote');
-      // Resolve imageSrc relative to the current document so paths work
-      // whether the site is served (http/https) or opened via file://
-      try {
-        if (typeof imageSrc === 'string') {
-          // new URL(base) will correctly resolve relative paths against the page
-          image.src = new URL(imageSrc, window.location.href).href;
-        } else {
-          image.src = imageSrc || '';
+    <script>
+      // Lightbox Functions
+      function openLightbox(imageSrc, clickedElement) {
+        const modal = document.getElementById("lightboxModal");
+        const image = document.getElementById("lightboxImage");
+        const footnote = document.getElementById("lightboxFootnote");
+        // Resolve imageSrc relative to the current document so paths work
+        // whether the site is served (http/https) or opened via file://
+        try {
+          if (typeof imageSrc === "string") {
+            // new URL(base) will correctly resolve relative paths against the page
+            image.src = new URL(imageSrc, window.location.href).href;
+          } else {
+            image.src = imageSrc || "";
+          }
+        } catch (err) {
+          // Fallback: naive handling for older browsers or unusual inputs
+          if (
+            typeof imageSrc === "string" &&
+            !/^([a-zA-Z0-9]+:)?\//.test(imageSrc)
+          ) {
+            image.src = "/" + imageSrc.replace(/^\.?\//, "");
+          } else {
+            image.src = imageSrc || "";
+          }
         }
-      } catch (err) {
-        // Fallback: naive handling for older browsers or unusual inputs
-        if (typeof imageSrc === 'string' && !/^([a-zA-Z0-9]+:)?\//.test(imageSrc)) {
-          image.src = '/' + imageSrc.replace(/^\.?\//, '');
-        } else {
-          image.src = imageSrc || '';
+        // Populate footnote from clicked element if available
+        if (footnote) {
+          if (
+            clickedElement &&
+            clickedElement.dataset &&
+            clickedElement.dataset.footnote
+          ) {
+            footnote.innerHTML =
+              '<span class="footnote-desc">' +
+              clickedElement.dataset.footnote +
+              "</span>";
+            footnote.style.display = "block";
+            try {
+              footnote.focus();
+            } catch (e) {}
+          } else {
+            footnote.innerHTML = "";
+            footnote.style.display = "none";
+          }
         }
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
       }
-      // Populate footnote from clicked element if available
-      if (footnote) {
-        if (clickedElement && clickedElement.dataset && clickedElement.dataset.footnote) {
-          footnote.innerHTML = '<span class="footnote-desc">' + clickedElement.dataset.footnote + '</span>';
-          footnote.style.display = 'block';
-          try { footnote.focus(); } catch (e) {}
-        } else {
-          footnote.innerHTML = '';
-          footnote.style.display = 'none';
-        }
-      }
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
 
-    function closeLightbox(event) {
-      if (event.target.id === 'lightboxModal' || event.target.classList.contains('lightbox-close')) {
-        const modal = document.getElementById('lightboxModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
-
-    // Close lightbox with Escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        const modal = document.getElementById('lightboxModal');
-        if (modal.classList.contains('active')) {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
+      function closeLightbox(event) {
+        if (
+          event.target.id === "lightboxModal" ||
+          event.target.classList.contains("lightbox-close")
+        ) {
+          const modal = document.getElementById("lightboxModal");
+          modal.classList.remove("active");
+          document.body.style.overflow = "";
         }
       }
-    });
-  </script>
-  <script src="assets/js/nav-active.js"></script>
-</body>
+
+      // Close lightbox with Escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const modal = document.getElementById("lightboxModal");
+          if (modal.classList.contains("active")) {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }
+      });
+    </script>
+    <script src="assets/js/nav-active.js"></script>
+  </body>
 </html>
 
 <script>
-  (function(){
-    function ensureFootnoteInModal(modal){
-      if(!modal) return;
-      var content = modal.querySelector('.lightbox-content') || modal;
-      if(!content) return;
-      if(!content.querySelector('#lightboxFootnote')){
-        var div = document.createElement('div');
-        div.id = 'lightboxFootnote';
-        div.className = 'lightbox-footnote';
-        div.setAttribute('aria-live','polite');
-        div.setAttribute('tabindex','0');
-        div.setAttribute('role','complementary');
-        div.setAttribute('aria-label','Image details');
+  (function () {
+    function ensureFootnoteInModal(modal) {
+      if (!modal) return;
+      var content = modal.querySelector(".lightbox-content") || modal;
+      if (!content) return;
+      if (!content.querySelector("#lightboxFootnote")) {
+        var div = document.createElement("div");
+        div.id = "lightboxFootnote";
+        div.className = "lightbox-footnote";
+        div.setAttribute("aria-live", "polite");
+        div.setAttribute("tabindex", "0");
+        div.setAttribute("role", "complementary");
+        div.setAttribute("aria-label", "Image details");
         content.appendChild(div);
       }
     }
 
     // Inject into common modal selectors
-    ['#lightboxModal','#lightbox','.lightbox-modal','.lightbox'].forEach(sel=>{
-      document.querySelectorAll(sel).forEach(ensureFootnoteInModal);
-    });
+    ["#lightboxModal", "#lightbox", ".lightbox-modal", ".lightbox"].forEach(
+      (sel) => {
+        document.querySelectorAll(sel).forEach(ensureFootnoteInModal);
+      },
+    );
 
     var origOpen = window.openLightbox;
-    if(typeof origOpen === 'function'){
-      window.openLightbox = function(arg1,arg2){
-        try{ origOpen.apply(this, arguments); }catch(e){ try{ origOpen(arg1); }catch(e){} }
-        var modal = document.getElementById('lightboxModal') || document.getElementById('lightbox') || document.querySelector('.lightbox-modal') || document.querySelector('.lightbox');
-        if(modal){ ensureFootnoteInModal(modal);
-          var footnote = modal.querySelector('#lightboxFootnote');
-          if(footnote){
-            if(arg2 && arg2.dataset && arg2.dataset.footnote){ footnote.innerHTML = '<span class="footnote-desc">'+arg2.dataset.footnote+'</span>'; footnote.focus(); }
-            else footnote.innerHTML = '';
+    if (typeof origOpen === "function") {
+      window.openLightbox = function (arg1, arg2) {
+        try {
+          origOpen.apply(this, arguments);
+        } catch (e) {
+          try {
+            origOpen(arg1);
+          } catch (e) {}
+        }
+        var modal =
+          document.getElementById("lightboxModal") ||
+          document.getElementById("lightbox") ||
+          document.querySelector(".lightbox-modal") ||
+          document.querySelector(".lightbox");
+        if (modal) {
+          ensureFootnoteInModal(modal);
+          var footnote = modal.querySelector("#lightboxFootnote");
+          if (footnote) {
+            if (arg2 && arg2.dataset && arg2.dataset.footnote) {
+              footnote.innerHTML =
+                '<span class="footnote-desc">' +
+                arg2.dataset.footnote +
+                "</span>";
+              footnote.focus();
+            } else footnote.innerHTML = "";
           }
         }
       };
     }
 
     var origClose = window.closeLightbox;
-    if(typeof origClose === 'function'){
-      window.closeLightbox = function(e){
-        try{ origClose.apply(this, arguments); }catch(err){ try{ origClose(e); }catch(e){} }
-        var modal = document.getElementById('lightboxModal') || document.getElementById('lightbox') || document.querySelector('.lightbox-modal') || document.querySelector('.lightbox');
-        if(modal){ var footnote = modal.querySelector('#lightboxFootnote'); if(footnote) footnote.innerHTML = ''; }
+    if (typeof origClose === "function") {
+      window.closeLightbox = function (e) {
+        try {
+          origClose.apply(this, arguments);
+        } catch (err) {
+          try {
+            origClose(e);
+          } catch (e) {}
+        }
+        var modal =
+          document.getElementById("lightboxModal") ||
+          document.getElementById("lightbox") ||
+          document.querySelector(".lightbox-modal") ||
+          document.querySelector(".lightbox");
+        if (modal) {
+          var footnote = modal.querySelector("#lightboxFootnote");
+          if (footnote) footnote.innerHTML = "";
+        }
       };
     }
   })();

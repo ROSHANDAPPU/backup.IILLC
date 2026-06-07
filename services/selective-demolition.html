@@ -1,783 +1,1241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Selective Demolition Services - Interior Illusions LLC</title>
-  <meta name="description" content="Professional selective demolition services. Targeted removal that protects structural elements and utilities.">
-  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <style>
-    @font-face {
-      font-family: 'Satoshi';
-      src: url('../assets/fonts/Satoshi-Variable.woff2') format('woff2');
-      font-weight: 300 900;
-      font-style: normal;
-      font-display: swap;
-    }
-  </style>
-  
-  <style>
-    :root {
-      --color-bg-primary: #0B0E14;
-      --color-action: #1D4ED8;
-      --color-accent: #93C5FD;
-      --color-heading: #E7EAEE;
-      --color-body: #A3AAB4;
-      --color-light: #FAF7F2;
-    }
-
-    body, html {
-      font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
-      color: var(--color-body);
-      background: var(--color-bg-primary);
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    /* Navigation */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; height: 80px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px; z-index: 1000;
-      background: rgba(11,14,20,0.95); backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(147,197,253,0.1);
-    }
-    
-    .nav .brand img { height: 200px; width: auto; }
-    .nav .links { display: flex; gap: 32px; align-items: center; }
-    .nav .links a {
-      color: var(--color-heading); text-decoration: none; font-weight: 500;
-      font-size: 15px; padding: 8px 16px; border-radius: 20px;
-      transition: all 0.3s ease;
-    }
-    .nav .links a:hover { color: #93C5FD; background: rgba(147,197,253,0.1); }
-
-    /* Hamburger Menu */
-    .hamburger-menu { display: none; position: relative; z-index: 10002; pointer-events: auto !important; }
-    .hamburger-icon {
-      width: 30px; height: 24px; cursor: pointer !important;
-      display: flex; flex-direction: column; justify-content: space-between;
-      transition: all 0.4s ease;
-      position: relative; z-index: 10002; pointer-events: auto !important;
-    }
-    .line {
-      width: 100%; height: 3px; background: #1D4ED8; border-radius: 2px;
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      transform-origin: center;
-    }
-    .hamburger-menu.active .line1 { transform: rotate(45deg) translate(6px, 6px); }
-    .hamburger-menu.active .line2 { opacity: 0; transform: scaleX(0); }
-    .hamburger-menu.active .line3 { transform: rotate(-45deg) translate(6px, -6px); }
-
-    .mobile-overlay {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: #0B0E14; backdrop-filter: none;
-      display: none; align-items: center; justify-content: center;
-      opacity: 0; visibility: hidden; transition: all 0.4s ease; z-index: 9998;
-    }
-    .hamburger-menu.active .mobile-overlay { display: flex; opacity: 1; visibility: visible; }
-
-    .mobile-nav { display: flex; flex-direction: column; align-items: center; gap: 30px; padding: 40px; }
-    .mobile-link {
-      font-size: 24px; font-weight: 500; color: #E7EAEE;
-      text-decoration: none; padding: 15px 30px; border-radius: 12px;
-      transition: all 0.3s ease; text-align: center; min-width: 200px;
-    }
-    .mobile-link:hover { background: rgba(29, 78, 216, 0.2); color: #1D4ED8; transform: translateY(-2px); }
-
-    /* Custom Cursor */
-    .cursor {
-      position: fixed; width: 20px; height: 20px;
-      background: rgba(147, 197, 253, 0.6);
-      border: 2px solid rgba(147, 197, 253, 0.8);
-      border-radius: 50%; pointer-events: none; z-index: 10002;
-      transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .cursor-follower {
-      position: fixed; width: 40px; height: 40px;
-      border: 2px solid rgba(147, 197, 253, 0.3);
-      border-radius: 50%; pointer-events: none; z-index: 10001;
-      background: rgba(147, 197, 253, 0.1);
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    * { cursor: none !important; }
-
-    /* Override portfolio grid hover effects */
-    .portfolio-grid-1x1 .tile:hover {
-      border-color: rgba(147, 197, 253, 0.1) !important;
-      transform: none !important;
-      box-shadow: none !important;
-    }
-    .portfolio-grid-1x1 .tile:hover img {
-      transform: none !important;
-    }
-
-    /* Gallery Styles */
-    .gallery {
-      padding: 120px 40px;
-      background: var(--color-light);
-    }
-    .gallery .section-header {
-      text-align: left !important;
-    }
-    .gallery-grid {
-      display: grid;
-      gap: 32px;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .gallery-item {
-      height: 400px;
-      background-size: cover;
-      background-position: center;
-      transition: all 400ms ease;
-      cursor: pointer;
-    }
-    .gallery-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 25px 80px rgba(29,78,216,0.18);
-    }
-    .gallery-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0);
-      transition: all 400ms ease;
-    }
-    .gallery-item:hover::before {
-      background: rgba(0,0,0,0.1);
-    }
-    .gallery-item.reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: reveal 0.6s ease forwards;
-    }
-    @keyframes reveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @media (max-width: 1024px) {
-      .gallery {
-        padding: 100px 20px;
-      }
-      .gallery-grid {
-        gap: 24px;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      }
-      .gallery-item {
-        height: 300px;
-      }
-    }
-    @media (max-width: 768px) {
-      .gallery {
-        padding: 80px 20px;
-      }
-      .gallery-grid {
-        gap: 20px;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
-      .gallery-item {
-        height: 250px;
-      }
-    }
-    @media (max-width: 640px) {
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-      .gallery-item {
-        height: 300px;
-      }
-    }
-
-    /* Lightbox Modal */
-    .lightbox-modal {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(11, 14, 20, 0.95); backdrop-filter: blur(10px);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 10000; opacity: 0; visibility: hidden; transition: all 0.4s ease;
-    }
-    .lightbox-modal.active { opacity: 1; visibility: visible; }
-    .lightbox-content {
-      position: relative; width: 80vw; max-width: 1200px; max-height: 85vh;
-      animation: lightboxZoom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .lightbox-content img {
-      width: 100%; height: auto; max-height: 85vh;
-      object-fit: contain; border-radius: 8px; display: block;
-    }
-    .lightbox-close {
-      position: absolute; top: 20px; right: -70px; width: 50px; height: 50px;
-      background: rgba(11, 14, 20, 0.8); border: 2px solid rgba(147, 197, 253, 0.3);
-      border-radius: 50%; color: #93C5FD; font-size: 32px;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.3s ease; z-index: 10003;
-    }
-    .lightbox-close:hover {
-      background: rgba(147, 197, 253, 0.3); border-color: #93C5FD; transform: rotate(90deg);
-    }
-    @keyframes lightboxZoom {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    @media (max-width: 768px) {
-      .lightbox-content { width: 90vw; max-height: 80vh; }
-      .lightbox-close { top: 10px; right: 10px; width: 40px; height: 40px; font-size: 24px; }
-      .cursor, .cursor-follower { display: none; }
-    }
-
-    @media (max-width: 1024px) {
-      .nav .links { display: none; }
-      .hamburger-menu { display: block; }
-    }
-    @media (max-width: 768px) {
-      .cursor, .cursor-follower { display: none; }
-      * { cursor: auto !important; }
-      .nav { padding: 0 20px; }
-      .nav .brand img { height: 60px; }
-    }
-
-    .service-detail {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 120px 40px 80px;
-    }
-
-    .service-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .service-header h1 {
-      color: var(--color-heading);
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .service-header p {
-      color: var(--color-body);
-      font-size: clamp(16px, 2.5vw, 20px);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .service-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
-    }
-
-    .stat-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(147, 197, 253, 0.1);
-      border-radius: 8px;
-      padding: 24px;
-      text-align: center;
-    }
-
-    .stat-label {
-      color: var(--color-accent);
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
-    }
-
-    .stat-value {
-      color: var(--color-heading);
-      font-size: 24px;
-      font-weight: 700;
-    }
-
-    .content-section {
-      margin-bottom: 60px;
-    }
-
-    .content-section h2 {
-      color: var(--color-heading);
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 24px;
-    }
-
-    .content-section ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .content-section ul li {
-      color: var(--color-body);
-      font-size: 17px;
-      line-height: 1.8;
-      padding-left: 32px;
-      position: relative;
-      margin-bottom: 12px;
-    }
-
-    .content-section ul li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--color-accent);
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .pricing-box {
-      background: rgba(147, 197, 253, 0.05);
-      border: 1px solid rgba(147, 197, 253, 0.2);
-      border-radius: 8px;
-      padding: 32px;
-      margin-bottom: 40px;
-    }
-
-    .pricing-box h3 {
-      color: var(--color-accent);
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-
-    .pricing-box p {
-      color: var(--color-body);
-      font-size: 16px;
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* FAQ Accordion */
-    .faq-accordion {
-      margin-bottom: 60px;
-    }
-
-    .faq-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(147, 197, 253, 0.1);
-      border-radius: 8px;
-      margin-bottom: 16px;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      color: var(--color-heading);
-      font-size: 18px;
-      font-weight: 600;
-      padding: 20px 24px;
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.3s ease;
-    }
-
-    .faq-question:hover {
-      background: rgba(147, 197, 253, 0.05);
-    }
-
-    .faq-arrow {
-      color: var(--color-accent);
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item.active .faq-arrow {
-      transform: rotate(180deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-
-    .faq-answer-content {
-      padding: 0 24px 20px;
-      color: var(--color-body);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    @media (max-width: 768px) {
-      .service-detail {
-        padding: 100px 20px 60px;
-      }
-      .service-stats {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Z0F0X2TWW4');
-  </script>
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1273059444474707');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
-  /></noscript>
-
-</head>
-<body>
-  <!-- Custom Floating Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-
-  <!-- Navigation -->
-  <header class="nav">
-    <div class="brand">
-      <a href="../index.html">
-        <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" />
-      </a>
-    </div>
-
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-      <div class="hamburger-icon">
-        <div class="line line1"></div>
-        <div class="line line2"></div>
-        <div class="line line3"></div>
-      </div>
-      <div class="mobile-overlay">
-        <nav class="mobile-nav">
-          <a href="../about.html" class="mobile-link">About</a>
-          <a href="interior-design.html" class="mobile-link">Services</a>
-          <a href="../our-process.html" class="mobile-link">Our Process</a>
-          <a href="../contact/get-quote.html" class="mobile-link">Contact</a>
-        </nav>
-      </div>
-    </div>
-
-    <nav class="links">
-      <a href="../our-process.html">Our Process</a>
-      <a href="interior-design.html">Services</a>
-      <a href="../about.html">About</a>
-      <a href="../contact/get-quote.html">Contact</a>
-    </nav>
-  </header>
-  
-  <!-- Hero Image with Text Overlay -->
-  <div style="position: relative; width: 100%; height: 500px; overflow: hidden; margin-top: 80px;">
-    <img src="../assets/images/SERVICE PAGE/FINALS/SELECTIVE DEMOLITION.png" alt="Selective Demolition" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11, 14, 20, 0.6); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px;">
-      <h1 style="color: #FAF7F2; font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 20px; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Selective Demolition</h1>
-      <p style="color: #93C5FD; font-size: clamp(16px, 2.5vw, 22px); max-width: 800px; text-align: center; line-height: 1.6; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Targeted removal that protects structural elements and utilities, setting the stage for a clean, efficient build.</p>
-    </div>
-  </div>
-  
-  <main class="service-detail">
-    <!-- Service Stats -->
-    <div class="service-stats">
-      <div class="stat-card">
-        <div class="stat-label">Starting at</div>
-        <div class="stat-value">$1,500 per room</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Lead Time</div>
-        <div class="stat-value">3 weeks</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">On-Site Work</div>
-        <div class="stat-value">1-5 days per Room</div>
-      </div>
-    </div>
-
-    <!-- Use Cases -->
-    <div class="content-section">
-      <h2>Use Cases</h2>
-      <ul>
-        <li>Kitchen or bath gut without disturbing adjacent rooms</li>
-        <li>Taking down non-load-bearing walls to open a plan</li>
-        <li>Flooring or tile tear-outs ahead of new finishes</li>
-        <li>Pre-remodel asbestos/lead–aware demo by licensed subs (if required)</li>
-      </ul>
-    </div>
-
-    <!-- Key Features -->
-    <div class="content-section">
-      <h2>Key Features</h2>
-      <ul>
-        <li>Dust Control & Surface Protection</li>
-        <li>Selective Removal (Non-Structural)</li>
-        <li>Utility Capping & Debris Haul-Off</li>
-        <li>Rough-In-Ready Clean</li>
-      </ul>
-    </div>
-
-    <!-- Pricing -->
-    <div class="content-section">
-      <h2>PRICING</h2>
-      <div class="pricing-box">
-        <h3>What affects price</h3>
-        <p>Selective Demolition: ~$0.30–$6.40/sq ft; $400–$25k per room depending on scope, access, and materials removed. Full-structure demolition at ~$4–$17/sq ft</p>
-      </div>
-    </div>
-
-    <!-- Warranties -->
-    <div class="content-section">
-      <h2>Warranties</h2>
-      <ul>
-        <li>Work area protection and utility capping by licensed trades; photographic pre-/post-condition report</li>
-        <li>One-year workmanship correction period (see warranty note below)</li>
-      </ul>
-    </div>
-
-    <!-- FAQ -->
-    <div class="content-section">
-      <h2>FAQ's</h2>
-      <div class="faq-accordion">
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Do you test for asbestos/lead?
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-content">
-              We coordinate testing when indicated by age/scope; abatement is a separate licensed scope.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Can I keep appliances/fixtures?
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-content">
-              Yes—salvage for reuse/donation can be staged before haul-off.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            Will you remove load-bearing walls?
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-content">
-              Only with engineered plan, permits, and temporary shoring (separate scope).
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Portfolio Section -->
-    <section class="gallery" style="margin-top: 80px; background: var(--color-bg-primary);">
-      <div class="section-header" style="max-width: 1400px; margin: 0 auto 60px; padding: 0 20px;">
-        <p class="section-subtitle" style="color: var(--color-accent); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 12px;">PORTFOLIO</p>
-        <h2 class="section-title" style="color: var(--color-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin: 0;">Our Latest Work</h2>
-      </div>
-
-      <div class="gallery-grid">
-        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG');" data-footnote="Custom tile in Primary Bathroom" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG');" data-footnote="LVP flooring install throughout" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG');" data-footnote="Nail down install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG');" data-footnote="Full home remodel" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG');" data-footnote="Custom tile in Primary Bathroom" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG');" data-footnote="Custom Tile" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG');" data-footnote="Guest Bath Marble Tile Install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG');" data-footnote="Red Oak HardwoodFloor Install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG', this)"></div>
-        <div class="gallery-item reveal" style="background-image: url('../assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG');" data-footnote="Primary Bath Tile Install" onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG', this)"></div>
-      </div>
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
-      <div class="lightbox-content">
-        <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
-        <img id="lightboxImage" src="" alt="Portfolio Image" />
-        <div id="lightboxFootnote" class="lightbox-footnote" aria-live="polite" tabindex="0" role="complementary" aria-label="Image details" onclick="event.stopPropagation()"></div>
-      </div>
-    </div>
-
-    <!-- CTA Banner -->
-    <section class="cta-banner" style="background: #0D111B; padding: 80px 40px; text-align: center; margin-top: 80px; border-radius: 8px; transition: background 0.4s ease, transform 0.3s ease;">
-      <div style="max-width: 900px; margin: 0 auto;">
-        <h2 class="cta-banner-title" style="color: var(--color-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin-bottom: 24px; transition: color 0.4s ease;">Ready to Start Your Project?</h2>
-        <p class="cta-banner-text" style="color: var(--color-accent); font-size: clamp(16px, 2.5vw, 20px); margin-bottom: 40px; line-height: 1.6; transition: color 0.4s ease;">Let's discuss how we can transform your space into something extraordinary.</p>
-        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-          <a href="../contact/get-quote.html?service=selective-demolition" class="btn" style="min-width: 180px; background: #1D4ED8; color: #E7EAEE; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600;">Get a Quote</a>
-          <a href="../services/interior-design.html" class="btn secondary" style="min-width: 180px; background: transparent; color: #93C5FD; border: 2px solid #93C5FD; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600;">View All Services</a>
-        </div>
-      </div>
-    </section>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Selective Demolition Services - Interior Illusions LLC</title>
+    <meta
+      name="description"
+      content="Professional selective demolition services. Targeted removal that protects structural elements and utilities."
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/images/06_Favicon/favicon-high.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
     <style>
-      .cta-banner:hover {
-        background: #FAF7F2 !important;
-        transform: translateY(-4px);
-        box-shadow: 0 10px 40px rgba(147, 197, 253, 0.3);
-      }
-      .cta-banner:hover .cta-banner-title {
-        color: #0B0E14 !important;
-      }
-      .cta-banner:hover .cta-banner-text {
-        color: #1D4ED8 !important;
+      @font-face {
+        font-family: "Satoshi";
+        src: url("../assets/fonts/Satoshi-Variable.woff2") format("woff2");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
       }
     </style>
-  </main>
 
-  <script>
-    // FAQ Toggle
-    function toggleFAQ(button) {
-      const item = button.closest('.faq-item');
-      const answer = item.querySelector('.faq-answer');
-      const isActive = item.classList.contains('active');
-      
-      // Close all FAQ items
-      document.querySelectorAll('.faq-item').forEach(faq => {
-        faq.classList.remove('active');
-        faq.querySelector('.faq-answer').style.maxHeight = null;
-      });
-      
-      // Open clicked item if it wasn't active
-      if (!isActive) {
-        item.classList.add('active');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
+    <style>
+      :root {
+        --color-bg-primary: #0b0e14;
+        --color-action: #1d4ed8;
+        --color-accent: #93c5fd;
+        --color-heading: #e7eaee;
+        --color-body: #a3aab4;
+        --color-light: #faf7f2;
       }
-    }
 
-    // Hamburger Menu Toggle - Wrapped in DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', function() {
-      const hamburger = document.getElementById('hamburgerMenu');
-      const icon = hamburger ? hamburger.querySelector('.hamburger-icon') : null;
-      const overlay = hamburger ? hamburger.querySelector('.mobile-overlay') : null;
-      const links = overlay ? overlay.querySelectorAll('.mobile-link') : [];
+      body,
+      html {
+        font-family: "Satoshi", "Inter", system-ui, sans-serif;
+        color: var(--color-body);
+        background: var(--color-bg-primary);
+        margin: 0;
+        line-height: 1.6;
+      }
 
-      if (icon) {
-        icon.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          hamburger.classList.toggle('active');
-          document.body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : 'auto';
+      /* Navigation */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        z-index: 1000;
+        background: rgba(11, 14, 20, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+      }
+
+      .nav .brand img {
+        height: 200px;
+        width: auto;
+      }
+      .nav .links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+      .nav .links a {
+        color: var(--color-heading);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+      }
+      .nav .links a:hover {
+        color: #93c5fd;
+        background: rgba(147, 197, 253, 0.1);
+      }
+
+      /* Hamburger Menu */
+      .hamburger-menu {
+        display: none;
+        position: relative;
+        z-index: 10002;
+        pointer-events: auto !important;
+      }
+      .hamburger-icon {
+        width: 30px;
+        height: 24px;
+        cursor: pointer !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 10002;
+        pointer-events: auto !important;
+      }
+      .line {
+        width: 100%;
+        height: 3px;
+        background: #1d4ed8;
+        border-radius: 2px;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: center;
+      }
+      .hamburger-menu.active .line1 {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+      .hamburger-menu.active .line2 {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .hamburger-menu.active .line3 {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #0b0e14;
+        backdrop-filter: none;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 9998;
+      }
+      .hamburger-menu.active .mobile-overlay {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 40px;
+      }
+      .mobile-link {
+        font-size: 24px;
+        font-weight: 500;
+        color: #e7eaee;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 200px;
+      }
+      .mobile-link:hover {
+        background: rgba(29, 78, 216, 0.2);
+        color: #1d4ed8;
+        transform: translateY(-2px);
+      }
+
+      /* Custom Cursor */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(147, 197, 253, 0.6);
+        border: 2px solid rgba(147, 197, 253, 0.8);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10002;
+        transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .cursor-follower {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(147, 197, 253, 0.3);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10001;
+        background: rgba(147, 197, 253, 0.1);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      * {
+        cursor: none !important;
+      }
+
+      /* Override portfolio grid hover effects */
+      .portfolio-grid-1x1 .tile:hover {
+        border-color: rgba(147, 197, 253, 0.1) !important;
+        transform: none !important;
+        box-shadow: none !important;
+      }
+      .portfolio-grid-1x1 .tile:hover img {
+        transform: none !important;
+      }
+
+      /* Gallery Styles */
+      .gallery {
+        padding: 120px 40px;
+        background: var(--color-light);
+      }
+      .gallery .section-header {
+        text-align: left !important;
+      }
+      .gallery-grid {
+        display: grid;
+        gap: 32px;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .gallery-item {
+        height: 400px;
+        background-size: cover;
+        background-position: center;
+        transition: all 400ms ease;
+        cursor: pointer;
+      }
+      .gallery-item:hover {
+        transform: scale(1.02);
+        box-shadow: 0 25px 80px rgba(29, 78, 216, 0.18);
+      }
+      .gallery-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0);
+        transition: all 400ms ease;
+      }
+      .gallery-item:hover::before {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .gallery-item.reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: reveal 0.6s ease forwards;
+      }
+      @keyframes reveal {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 1024px) {
+        .gallery {
+          padding: 100px 20px;
+        }
+        .gallery-grid {
+          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .gallery-item {
+          height: 300px;
+        }
+      }
+      @media (max-width: 768px) {
+        .gallery {
+          padding: 80px 20px;
+        }
+        .gallery-grid {
+          gap: 20px;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .gallery-item {
+          height: 250px;
+        }
+      }
+      @media (max-width: 640px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+        .gallery-item {
+          height: 300px;
+        }
+      }
+
+      /* Lightbox Modal */
+      .lightbox-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(11, 14, 20, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+      }
+      .lightbox-modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .lightbox-content {
+        position: relative;
+        width: 80vw;
+        max-width: 1200px;
+        max-height: 85vh;
+        animation: lightboxZoom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .lightbox-content img {
+        width: 100%;
+        height: auto;
+        max-height: 85vh;
+        object-fit: contain;
+        border-radius: 8px;
+        display: block;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: -70px;
+        width: 50px;
+        height: 50px;
+        background: rgba(11, 14, 20, 0.8);
+        border: 2px solid rgba(147, 197, 253, 0.3);
+        border-radius: 50%;
+        color: #93c5fd;
+        font-size: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 10003;
+      }
+      .lightbox-close:hover {
+        background: rgba(147, 197, 253, 0.3);
+        border-color: #93c5fd;
+        transform: rotate(90deg);
+      }
+      @keyframes lightboxZoom {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      @media (max-width: 768px) {
+        .lightbox-content {
+          width: 90vw;
+          max-height: 80vh;
+        }
+        .lightbox-close {
+          top: 10px;
+          right: 10px;
+          width: 40px;
+          height: 40px;
+          font-size: 24px;
+        }
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .nav .links {
+          display: none;
+        }
+        .hamburger-menu {
+          display: block;
+        }
+      }
+      @media (max-width: 768px) {
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+        * {
+          cursor: auto !important;
+        }
+        .nav {
+          padding: 0 20px;
+        }
+        .nav .brand img {
+          height: 60px;
+        }
+      }
+
+      .service-detail {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 120px 40px 80px;
+      }
+
+      .service-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .service-header h1 {
+        color: var(--color-heading);
+        font-size: clamp(36px, 5vw, 56px);
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .service-header p {
+        color: var(--color-body);
+        font-size: clamp(16px, 2.5vw, 20px);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .service-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(147, 197, 253, 0.1);
+        border-radius: 8px;
+        padding: 24px;
+        text-align: center;
+      }
+
+      .stat-label {
+        color: var(--color-accent);
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+
+      .stat-value {
+        color: var(--color-heading);
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .content-section {
+        margin-bottom: 60px;
+      }
+
+      .content-section h2 {
+        color: var(--color-heading);
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      .content-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .content-section ul li {
+        color: var(--color-body);
+        font-size: 17px;
+        line-height: 1.8;
+        padding-left: 32px;
+        position: relative;
+        margin-bottom: 12px;
+      }
+
+      .content-section ul li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--color-accent);
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      .pricing-box {
+        background: rgba(147, 197, 253, 0.05);
+        border: 1px solid rgba(147, 197, 253, 0.2);
+        border-radius: 8px;
+        padding: 32px;
+        margin-bottom: 40px;
+      }
+
+      .pricing-box h3 {
+        color: var(--color-accent);
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 12px;
+      }
+
+      .pricing-box p {
+        color: var(--color-body);
+        font-size: 16px;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* FAQ Accordion */
+      .faq-accordion {
+        margin-bottom: 60px;
+      }
+
+      .faq-item {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(147, 197, 253, 0.1);
+        border-radius: 8px;
+        margin-bottom: 16px;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        width: 100%;
+        background: none;
+        border: none;
+        color: var(--color-heading);
+        font-size: 18px;
+        font-weight: 600;
+        padding: 20px 24px;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .faq-question:hover {
+        background: rgba(147, 197, 253, 0.05);
+      }
+
+      .faq-arrow {
+        color: var(--color-accent);
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.active .faq-arrow {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .faq-answer-content {
+        padding: 0 24px 20px;
+        color: var(--color-body);
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 768px) {
+        .service-detail {
+          padding: 100px 20px 60px;
+        }
+        .service-stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0F0X2TWW4");
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1273059444474707");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+    /></noscript>
+  </head>
+  <body>
+    <!-- Custom Floating Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <header class="nav">
+      <div class="brand">
+        <a href="../index.html">
+          <img
+            src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+            alt="Interior Illusions Logo"
+          />
+        </a>
+      </div>
+
+      <!-- Hamburger Menu -->
+      <div class="hamburger-menu" id="hamburgerMenu">
+        <div class="hamburger-icon">
+          <div class="line line1"></div>
+          <div class="line line2"></div>
+          <div class="line line3"></div>
+        </div>
+        <div class="mobile-overlay">
+          <nav class="mobile-nav">
+            <a href="../about.html" class="mobile-link">About</a>
+            <a href="interior-design.html" class="mobile-link">Services</a>
+            <a href="../our-process.html" class="mobile-link">Our Process</a>
+            <a href="../contact/get-quote.html" class="mobile-link">Contact</a>
+          </nav>
+        </div>
+      </div>
+
+      <nav class="links">
+        <a href="../our-process.html">Our Process</a>
+        <a href="interior-design.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../contact/get-quote.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Hero Image with Text Overlay -->
+    <div
+      style="
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        margin-top: 80px;
+      "
+    >
+      <img
+        src="../assets/images/SERVICE PAGE/FINALS/SELECTIVE DEMOLITION.png"
+        alt="Selective Demolition"
+        style="
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        "
+      />
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(11, 14, 20, 0.6);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 40px;
+        "
+      >
+        <h1
+          style="
+            color: #faf7f2;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+          "
+        >
+          Selective Demolition
+        </h1>
+        <p
+          style="
+            color: #93c5fd;
+            font-size: clamp(16px, 2.5vw, 22px);
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+          "
+        >
+          Targeted removal that protects structural elements and utilities,
+          setting the stage for a clean, efficient build.
+        </p>
+      </div>
+    </div>
+
+    <main class="service-detail">
+      <!-- Service Stats -->
+      <div class="service-stats">
+        <div class="stat-card">
+          <div class="stat-label">Starting at</div>
+          <div class="stat-value">$1,500 per room</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Lead Time</div>
+          <div class="stat-value">3 weeks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">On-Site Work</div>
+          <div class="stat-value">1-5 days per Room</div>
+        </div>
+      </div>
+
+      <!-- Use Cases -->
+      <div class="content-section">
+        <h2>Use Cases</h2>
+        <ul>
+          <li>Kitchen or bath gut without disturbing adjacent rooms</li>
+          <li>Taking down non-load-bearing walls to open a plan</li>
+          <li>Flooring or tile tear-outs ahead of new finishes</li>
+          <li>
+            Pre-remodel asbestos/lead–aware demo by licensed subs (if required)
+          </li>
+        </ul>
+      </div>
+
+      <!-- Key Features -->
+      <div class="content-section">
+        <h2>Key Features</h2>
+        <ul>
+          <li>Dust Control & Surface Protection</li>
+          <li>Selective Removal (Non-Structural)</li>
+          <li>Utility Capping & Debris Haul-Off</li>
+          <li>Rough-In-Ready Clean</li>
+        </ul>
+      </div>
+
+      <!-- Pricing -->
+      <div class="content-section">
+        <h2>PRICING</h2>
+        <div class="pricing-box">
+          <h3>What affects price</h3>
+          <p>
+            Selective Demolition: ~$0.30–$6.40/sq ft; $400–$25k per room
+            depending on scope, access, and materials removed. Full-structure
+            demolition at ~$4–$17/sq ft
+          </p>
+        </div>
+      </div>
+
+      <!-- Warranties -->
+      <div class="content-section">
+        <h2>Warranties</h2>
+        <ul>
+          <li>
+            Work area protection and utility capping by licensed trades;
+            photographic pre-/post-condition report
+          </li>
+          <li>
+            One-year workmanship correction period (see warranty note below)
+          </li>
+        </ul>
+      </div>
+
+      <!-- FAQ -->
+      <div class="content-section">
+        <h2>FAQ's</h2>
+        <div class="faq-accordion">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              Do you test for asbestos/lead?
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                We coordinate testing when indicated by age/scope; abatement is
+                a separate licensed scope.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              Can I keep appliances/fixtures?
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Yes—salvage for reuse/donation can be staged before haul-off.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              Will you remove load-bearing walls?
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Only with engineered plan, permits, and temporary shoring
+                (separate scope).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Section -->
+      <section
+        class="gallery"
+        style="margin-top: 80px; background: var(--color-bg-primary)"
+      >
+        <div
+          class="section-header"
+          style="max-width: 1400px; margin: 0 auto 60px; padding: 0 20px"
+        >
+          <p
+            class="section-subtitle"
+            style="
+              color: var(--color-accent);
+              font-size: 14px;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.1em;
+              margin-bottom: 12px;
+            "
+          >
+            PORTFOLIO
+          </p>
+          <h2
+            class="section-title"
+            style="
+              color: var(--color-heading);
+              font-size: clamp(32px, 5vw, 48px);
+              font-weight: 700;
+              margin: 0;
+            "
+          >
+            Our Latest Work
+          </h2>
+        </div>
+
+        <div class="gallery-grid">
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG&quot;);
+            "
+            data-footnote="Custom tile in Primary Bathroom"
+            onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG&quot;);
+            "
+            data-footnote="LVP flooring install throughout"
+            onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG&quot;);
+            "
+            data-footnote="Nail down install"
+            onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG&quot;);
+            "
+            data-footnote="Full home remodel"
+            onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG&quot;);
+            "
+            data-footnote="Custom tile in Primary Bathroom"
+            onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7920.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;../assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG&quot;);
+            "
+            data-footnote="Custom Tile"
+            onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7851.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;../assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG&quot;);
+            "
+            data-footnote="Guest Bath Marble Tile Install"
+            onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7852.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG&quot;);
+            "
+            data-footnote="Red Oak HardwoodFloor Install"
+            onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG', this)"
+          ></div>
+          <div
+            class="gallery-item reveal"
+            style="
+              background-image: url(&quot;../assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG&quot;);
+            "
+            data-footnote="Primary Bath Tile Install"
+            onclick="openLightbox('../assets/images/PORTFOLIO/FINALS1/IMG_7857.JPG', this)"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Lightbox Modal -->
+      <div
+        class="lightbox-modal"
+        id="lightboxModal"
+        onclick="closeLightbox(event)"
+      >
+        <div class="lightbox-content">
+          <button class="lightbox-close" onclick="closeLightbox(event)">
+            ×
+          </button>
+          <img id="lightboxImage" src="" alt="Portfolio Image" />
+          <div
+            id="lightboxFootnote"
+            class="lightbox-footnote"
+            aria-live="polite"
+            tabindex="0"
+            role="complementary"
+            aria-label="Image details"
+            onclick="event.stopPropagation()"
+          ></div>
+        </div>
+      </div>
+
+      <!-- CTA Banner -->
+      <section
+        class="cta-banner"
+        style="
+          background: #0d111b;
+          padding: 80px 40px;
+          text-align: center;
+          margin-top: 80px;
+          border-radius: 8px;
+          transition:
+            background 0.4s ease,
+            transform 0.3s ease;
+        "
+      >
+        <div style="max-width: 900px; margin: 0 auto">
+          <h2
+            class="cta-banner-title"
+            style="
+              color: var(--color-heading);
+              font-size: clamp(32px, 5vw, 48px);
+              font-weight: 700;
+              margin-bottom: 24px;
+              transition: color 0.4s ease;
+            "
+          >
+            Ready to Start Your Project?
+          </h2>
+          <p
+            class="cta-banner-text"
+            style="
+              color: var(--color-accent);
+              font-size: clamp(16px, 2.5vw, 20px);
+              margin-bottom: 40px;
+              line-height: 1.6;
+              transition: color 0.4s ease;
+            "
+          >
+            Let's discuss how we can transform your space into something
+            extraordinary.
+          </p>
+          <div
+            style="
+              display: flex;
+              gap: 20px;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              href="../contact/get-quote.html?service=selective-demolition"
+              class="btn"
+              style="
+                min-width: 180px;
+                background: #1d4ed8;
+                color: #e7eaee;
+                padding: 16px 32px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+              "
+              >Get a Quote</a
+            >
+            <a
+              href="../services/interior-design.html"
+              class="btn secondary"
+              style="
+                min-width: 180px;
+                background: transparent;
+                color: #93c5fd;
+                border: 2px solid #93c5fd;
+                padding: 16px 32px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+              "
+              >View All Services</a
+            >
+          </div>
+        </div>
+      </section>
+      <style>
+        .cta-banner:hover {
+          background: #faf7f2 !important;
+          transform: translateY(-4px);
+          box-shadow: 0 10px 40px rgba(147, 197, 253, 0.3);
+        }
+        .cta-banner:hover .cta-banner-title {
+          color: #0b0e14 !important;
+        }
+        .cta-banner:hover .cta-banner-text {
+          color: #1d4ed8 !important;
+        }
+      </style>
+    </main>
+
+    <script>
+      // FAQ Toggle
+      function toggleFAQ(button) {
+        const item = button.closest(".faq-item");
+        const answer = item.querySelector(".faq-answer");
+        const isActive = item.classList.contains("active");
+
+        // Close all FAQ items
+        document.querySelectorAll(".faq-item").forEach((faq) => {
+          faq.classList.remove("active");
+          faq.querySelector(".faq-answer").style.maxHeight = null;
         });
+
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+          item.classList.add("active");
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
       }
 
-      if (overlay) {
-        overlay.addEventListener('click', function(e) {
-          if (e.target === overlay) {
-            hamburger.classList.remove('active');
-            document.body.style.overflow = 'auto';
+      // Hamburger Menu Toggle - Wrapped in DOMContentLoaded
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.getElementById("hamburgerMenu");
+        const icon = hamburger
+          ? hamburger.querySelector(".hamburger-icon")
+          : null;
+        const overlay = hamburger
+          ? hamburger.querySelector(".mobile-overlay")
+          : null;
+        const links = overlay ? overlay.querySelectorAll(".mobile-link") : [];
+
+        if (icon) {
+          icon.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            hamburger.classList.toggle("active");
+            document.body.style.overflow = hamburger.classList.contains(
+              "active",
+            )
+              ? "hidden"
+              : "auto";
+          });
+        }
+
+        if (overlay) {
+          overlay.addEventListener("click", function (e) {
+            if (e.target === overlay) {
+              hamburger.classList.remove("active");
+              document.body.style.overflow = "auto";
+            }
+          });
+        }
+
+        links.forEach((link) => {
+          link.addEventListener("click", function () {
+            hamburger.classList.remove("active");
+            document.body.style.overflow = "auto";
+          });
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (
+            e.key === "Escape" &&
+            hamburger &&
+            hamburger.classList.contains("active")
+          ) {
+            hamburger.classList.remove("active");
+            document.body.style.overflow = "auto";
           }
         });
-      }
+      });
 
-      links.forEach(link => {
-        link.addEventListener('click', function() {
-          hamburger.classList.remove('active');
-          document.body.style.overflow = 'auto';
+      // Custom Floating Cursor
+      (function () {
+        const cursor = document.querySelector(".cursor");
+        const cursorFollower = document.querySelector(".cursor-follower");
+        if (!cursor || !cursorFollower) return;
+
+        let mouseX = 0,
+          mouseY = 0;
+        let cursorX = 0,
+          cursorY = 0;
+        let followerX = 0,
+          followerY = 0;
+
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
         });
-      });
 
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && hamburger && hamburger.classList.contains('active')) {
-          hamburger.classList.remove('active');
-          document.body.style.overflow = 'auto';
+        function animateCursor() {
+          const ease = 0.2;
+          cursorX += (mouseX - cursorX) * ease;
+          cursorY += (mouseY - cursorY) * ease;
+          cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+          requestAnimationFrame(animateCursor);
         }
-      });
-    });
+        function animateFollower() {
+          const ease = 0.15;
+          followerX += (mouseX - followerX) * ease;
+          followerY += (mouseY - followerY) * ease;
+          cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+          requestAnimationFrame(animateFollower);
+        }
+        animateCursor();
+        animateFollower();
 
-    // Custom Floating Cursor
-    (function() {
-      const cursor = document.querySelector('.cursor');
-      const cursorFollower = document.querySelector('.cursor-follower');
-      if (!cursor || !cursorFollower) return;
+        const hoverElements = document.querySelectorAll(
+          "a, button, .faq-question",
+        );
+        hoverElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-hover"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-hover"),
+          );
+        });
+      })();
 
-      let mouseX = 0, mouseY = 0;
-      let cursorX = 0, cursorY = 0;
-      let followerX = 0, followerY = 0;
-
-      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-
-      function animateCursor() {
-        const ease = 0.2;
-        cursorX += (mouseX - cursorX) * ease;
-        cursorY += (mouseY - cursorY) * ease;
-        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-        requestAnimationFrame(animateCursor);
+      // Lightbox Functions
+      function openLightbox(imageSrc, clickedElement) {
+        const modal = document.getElementById("lightboxModal");
+        const image = document.getElementById("lightboxImage");
+        image.src = imageSrc;
+        const footnote = document.getElementById("lightboxFootnote");
+        if (footnote) {
+          const desc =
+            clickedElement &&
+            clickedElement.dataset &&
+            clickedElement.dataset.footnote
+              ? clickedElement.dataset.footnote
+              : "";
+          footnote.innerHTML = desc
+            ? `<span class="footnote-desc">${desc}</span>`
+            : "";
+          if (desc) footnote.focus();
+        }
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
       }
-      function animateFollower() {
-        const ease = 0.15;
-        followerX += (mouseX - followerX) * ease;
-        followerY += (mouseY - followerY) * ease;
-        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
-        requestAnimationFrame(animateFollower);
-      }
-      animateCursor();
-      animateFollower();
-
-      const hoverElements = document.querySelectorAll('a, button, .faq-question');
-      hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-      });
-    })();
-
-    // Lightbox Functions
-    function openLightbox(imageSrc, clickedElement) {
-      const modal = document.getElementById('lightboxModal');
-      const image = document.getElementById('lightboxImage');
-      image.src = imageSrc;
-      const footnote = document.getElementById('lightboxFootnote');
-      if (footnote) {
-        const desc = clickedElement && clickedElement.dataset && clickedElement.dataset.footnote ? clickedElement.dataset.footnote : '';
-        footnote.innerHTML = desc ? `<span class="footnote-desc">${desc}</span>` : '';
-        if (desc) footnote.focus();
-      }
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox(event) {
-      if (event.target.id === 'lightboxModal' || event.target.classList.contains('lightbox-close')) {
-        const modal = document.getElementById('lightboxModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-        const footnoteEl = document.getElementById('lightboxFootnote');
-        if (footnoteEl) footnoteEl.textContent = '';
-      }
-    }
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        const modal = document.getElementById('lightboxModal');
-        if (modal && modal.classList.contains('active')) {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
+      function closeLightbox(event) {
+        if (
+          event.target.id === "lightboxModal" ||
+          event.target.classList.contains("lightbox-close")
+        ) {
+          const modal = document.getElementById("lightboxModal");
+          modal.classList.remove("active");
+          document.body.style.overflow = "";
+          const footnoteEl = document.getElementById("lightboxFootnote");
+          if (footnoteEl) footnoteEl.textContent = "";
         }
       }
-    });
-  </script>
-</body>
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const modal = document.getElementById("lightboxModal");
+          if (modal && modal.classList.contains("active")) {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        }
+      });
+    </script>
+  </body>
 </html>

@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const trackingCode = `
   <!-- Google Analytics -->
@@ -31,15 +31,15 @@ const trackingCode = `
 function walk(dir) {
   let results = [];
   const list = fs.readdirSync(dir);
-  list.forEach(function(file) {
+  list.forEach(function (file) {
     file = path.join(dir, file);
     const stat = fs.statSync(file);
     if (stat && stat.isDirectory()) {
-      if (!file.includes('node_modules') && !file.includes('.git')) {
+      if (!file.includes("node_modules") && !file.includes(".git")) {
         results = results.concat(walk(file));
       }
     } else {
-      if (file.endsWith('.html')) {
+      if (file.endsWith(".html")) {
         results.push(file);
       }
     }
@@ -47,12 +47,14 @@ function walk(dir) {
   return results;
 }
 
-const htmlFiles = walk('/Users/hilasmic/.gemini/antigravity/scratch/backup.IILLC');
-htmlFiles.forEach(file => {
-  let content = fs.readFileSync(file, 'utf8');
-  if (!content.includes('G-Z0F0X2TWW4')) {
-    content = content.replace(/<\/head>/i, trackingCode + '\n</head>');
-    fs.writeFileSync(file, content, 'utf8');
+const htmlFiles = walk(
+  "/Users/hilasmic/.gemini/antigravity/scratch/backup.IILLC",
+);
+htmlFiles.forEach((file) => {
+  let content = fs.readFileSync(file, "utf8");
+  if (!content.includes("G-Z0F0X2TWW4")) {
+    content = content.replace(/<\/head>/i, trackingCode + "\n</head>");
+    fs.writeFileSync(file, content, "utf8");
   }
 });
-console.log('Injected tracking code into ' + htmlFiles.length + ' HTML files.');
+console.log("Injected tracking code into " + htmlFiles.length + " HTML files.");

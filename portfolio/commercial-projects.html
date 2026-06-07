@@ -1,1169 +1,1335 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Commercial Projects - Interior Illusions LLC</title>
-  <meta name="description" content="Explore our commercial interior design projects and office space transformations.">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <!-- Shared Stylesheet for global nav interactions -->
-  <link rel="stylesheet" href="../css/style.css">
-  <style>
-    :root {
-      --color-bg-primary: #0B0E14; /* Deep Navy */
-      --color-action: #1D4ED8;    /* Cobalt */
-      --color-accent: #93C5FD;    /* Azure */
-      --color-heading: #E7EAEE;   /* Off-white */
-      --color-body: #A3AAB4;      /* Slate */
-      --color-light: #FAF7F2;     /* Ivory */
-    }
-
-    body, html {
-      font-family: 'Satoshi', 'Inter', sans-serif;
-      background: var(--color-bg-primary);
-      color: var(--color-heading);
-      line-height: 1.6;
-      overflow-x: hidden;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Navigation */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: #0B0E14;
-      backdrop-filter: none;
-      padding: 0 40px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(147, 197, 253, 0.1);
-    }
-    
-    /* Hamburger Menu Styles */
-    .hamburger-menu {
-      display: none;
-      position: relative;
-      z-index: 9999;
-    }
-
-    .hamburger-icon {
-      width: 30px;
-      height: 24px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.4s ease;
-    }
-
-    .line {
-      width: 100%;
-      height: 3px;
-      background: #1D4ED8;
-      border-radius: 2px;
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      transform-origin: center;
-    }
-
-    /* X Animation */
-    .hamburger-menu.active .line1 {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-
-    .hamburger-menu.active .line2 {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-
-    .hamburger-menu.active .line3 {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-
-    /* Mobile Overlay */
-    .mobile-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #0B0E14;
-      backdrop-filter: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-      z-index: 9998;
-    }
-
-    .hamburger-menu.active .mobile-overlay {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Mobile Navigation */
-    .mobile-nav {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      padding: 40px;
-    }
-
-    .mobile-link {
-      font-size: 24px;
-      font-weight: 500;
-      color: #E7EAEE;
-      text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-      text-align: center;
-      min-width: 200px;
-    }
-
-    .mobile-link:hover {
-      background: rgba(29, 78, 216, 0.2);
-      color: #1D4ED8;
-      transform: translateY(-2px);
-    }
-
-    /* Mobile Dropdown */
-    .mobile-dropdown-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .mobile-dropdown-btn {
-      font-size: 24px;
-      font-weight: 500;
-      color: #E7EAEE;
-      background: none;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-      min-width: 200px;
-      justify-content: center;
-    }
-
-    .mobile-dropdown-btn:hover {
-      background: rgba(29, 78, 216, 0.2);
-      color: #1D4ED8;
-    }
-
-    .mobile-arrow {
-      transition: transform 0.3s ease;
-      font-size: 16px;
-    }
-
-    .mobile-dropdown-section.active .mobile-arrow {
-      transform: rotate(180deg);
-    }
-
-    .mobile-dropdown-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .mobile-dropdown-section.active .mobile-dropdown-content {
-      max-height: 200px;
-    }
-
-    .mobile-sublink {
-      font-size: 18px;
-      color: #1D4ED8;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .mobile-sublink:hover {
-      background: rgba(29, 78, 216, 0.1);
-      color: #60A5FA;
-    }
-    .nav .brand img {
-      height: 60px;
-      width: auto;
-    }
-    .nav .links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav .links a {
-      color: var(--color-heading);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 15px;
-      padding: 8px 16px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-    }
-    .nav .links a:hover { 
-      color: #93C5FD;
-      text-decoration: underline;
-      text-decoration-color: #93C5FD;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 2px;
-    }
-    .nav .links a:active { 
-      background: #93C5FD; /* Azure */
-      color: #0B0E14; /* Deep Navy text */
-      transform: scale(0.95);
-    }
-    
-    /* Dropdown Navigation Styles */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    
-    .dropdown-toggle {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-    
-    .dropdown-arrow {
-      font-size: 12px;
-      transition: transform 0.3s ease;
-    }
-    
-    .dropdown.active .dropdown-arrow {
-      transform: rotate(180deg);
-    }
-    
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 240px; /* ensure single-line items */
-      background: #0B0E14; /* deep navy */
-      backdrop-filter: none;
-      border-radius: 12px;
-      padding: 6px 0;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      z-index: 1001;
-      border: 1px solid rgba(147, 197, 253, 0.2);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.3); /* soft depth */
-    }
-    
-    .dropdown:hover .dropdown-menu,
-    .dropdown.active .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    
-    .dropdown-menu a {
-      display: block;
-      padding: 10px 16px; /* compact */
-      color: #FFFFFF; /* white */
-      text-decoration: none;
-      transition: background 0.25s ease, color 0.25s ease;
-      border-radius: 10px;
-      margin: 4px 8px;
-      background: #007FFF; /* azure button */
-      font-size: 15px;
-      line-height: 1.2;
-      letter-spacing: 0.01em;
-      white-space: nowrap; /* prevent wrap */
-      text-align: center;
-    }
-    
-    .dropdown-menu a:hover {
-      background: #1D4ED8; /* Cobalt */
-      color: #FAF7F2; /* Ivory */
-    }
-    
-    /* Responsive Navigation */
-    @media (max-width: 1024px) {
-      .nav .links {
-        gap: 20px;
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Commercial Projects - Interior Illusions LLC</title>
+    <meta
+      name="description"
+      content="Explore our commercial interior design projects and office space transformations."
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/images/06_Favicon/favicon-high.png"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Shared Stylesheet for global nav interactions -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      :root {
+        --color-bg-primary: #0b0e14; /* Deep Navy */
+        --color-action: #1d4ed8; /* Cobalt */
+        --color-accent: #93c5fd; /* Azure */
+        --color-heading: #e7eaee; /* Off-white */
+        --color-body: #a3aab4; /* Slate */
+        --color-light: #faf7f2; /* Ivory */
       }
-      .nav .links a {
-        font-size: 14px;
-        padding: 6px 12px;
+
+      body,
+      html {
+        font-family: "Satoshi", "Inter", sans-serif;
+        background: var(--color-bg-primary);
+        color: var(--color-heading);
+        line-height: 1.6;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
       }
-    }
-    
-    @media (max-width: 768px) {
+
+      /* Navigation */
       .nav {
-        padding: 0 20px;
-        height: 70px;
-      }
-      
-      .nav .brand img {
-        height: 60px !important;
-      }
-      
-      .mobile-menu-toggle {
-        display: flex;
-      }
-      
-      .nav .links {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: #0B0E14;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding-top: 50px;
-        gap: 30px;
-        transition: left 0.3s ease;
-        z-index: 29;
-      }
-      
-      .nav .links.active {
-        left: 0;
-      }
-      
-      .nav .links a {
-        font-size: 18px;
-        padding: 12px 24px;
-        width: 200px;
-        text-align: center;
-      }
-      
-      .footer-content { padding: 0 20px; }
-      .footer-grid { 
-        grid-template-columns: 1fr; 
-        gap: 40px; 
-        margin-bottom: 40px; 
-      }
-      .footer-legal { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 16px; 
-      }
-    }
-
-    /* Footer Styles */
-    .footer {
-      background: var(--color-bg-primary); /* Deep Navy */
-      padding: 80px 0 40px;
-      border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
-    }
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 60px;
-    }
-    .footer-section {
-      display: flex;
-      flex-direction: column;
-    }
-    .footer-logo {
-      margin-bottom: 24px;
-    }
-    .footer-description {
-      color: var(--color-body); /* Slate */
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 32px;
-      max-width: 300px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 16px;
-    }
-    .footer-social a {
-      color: var(--color-accent); /* Azure */
-      font-size: 20px;
-      transition: color 0.3s ease;
-    }
-    .footer-social a:hover {
-      color: var(--color-heading); /* Off-white on hover */
-    }
-    .footer-label {
-      color: var(--color-accent) !important; /* Azure for H3 labels */
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      margin-bottom: 8px;
-    }
-    .footer-heading {
-      color: var(--color-heading) !important; /* Off-white for section headings */
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
-    }
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .footer-links li {
-      margin-bottom: 12px;
-    }
-    .footer-links a {
-      color: var(--color-accent); /* Azure */
-      font-size: 16px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .footer-links a:hover {
-      color: var(--color-accent);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 2px;
-    }
-    .footer-links strong {
-      color: var(--color-accent); /* Azure */
-      font-weight: 400;
-    }
-    .footer-links li {
-      color: var(--color-accent); /* Azure */
-      font-size: 16px;
-    }
-    .footer-bottom {
-      border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
-      padding-top: 32px;
-    }
-    .footer-legal {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .footer-legal p {
-      color: var(--color-body); /* Slate */
-      font-size: 14px;
-      margin: 0;
-    }
-    .footer-legal-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .footer-legal-links a {
-      color: var(--color-accent); /* Azure */
-      font-size: 14px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .footer-legal-links a:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 2px;
-    }
-    .footer-divider {
-      color: rgba(163, 170, 180, 0.3); /* Slate 30% */
-      font-size: 14px;
-    }
-
-    /* Page Content */
-    .page-hero {
-      padding: 120px 40px 80px;
-      background: var(--color-bg-primary);
-      text-align: center;
-    }
-    .page-hero h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight: 600;
-      color: var(--color-heading);
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
-    }
-    .page-hero p {
-      font-size: clamp(18px, 3vw, 24px);
-      color: var(--color-accent);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .page-content {
-      padding: 80px 40px;
-      max-width: 1400px;
-      margin: 0 auto;
-      background: var(--color-bg-primary);
-    }
-
-    /* Portfolio Grid */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 40px;
-      margin-top: 40px;
-    }
-
-    .portfolio-item {
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(147, 197, 253, 0.1);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .portfolio-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--color-accent);
-      box-shadow: 0 15px 40px rgba(29, 78, 216, 0.2);
-    }
-    .portfolio-image {
-      height: 300px;
-      background: linear-gradient(135deg, #1D4ED8 0%, #93C5FD 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .portfolio-image::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('../../assets/images/01-02_logo_mark/PNGs/azure.no-background.png') center/contain no-repeat;
-      opacity: 0.1;
-    }
-    .portfolio-content {
-      padding: 30px;
-    }
-    .portfolio-content h3 {
-      color: var(--color-heading);
-      font-size: 24px;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-    .portfolio-content .category {
-      color: var(--color-accent);
-      font-size: 14px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      margin-bottom: 8px;
-    }
-    .portfolio-content p {
-      color: var(--color-body);
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    /* Duplicate dropdown styles removed - using the ones defined earlier */
-
-    /* Hide mobile dropdown items on desktop */
-    .mobile-dropdown-item {
-      display: none;
-    }
-
-    /* Large desktop responsive */
-    @media (max-width: 1400px) {
-      .nav {
-        padding: 0 30px;
-      }
-      
-      .brand img {
-        height: 180px;
-      }
-      
-      .nav .links {
-        gap: 24px;
-      }
-      
-      .nav .links a {
-        font-size: 15px;
-        padding: 8px 16px;
-      }
-    }
-    
-    /* Tablet responsive */
-    @media (max-width: 1024px) {
-      .nav {
-        padding: 0 20px;
-      }
-      
-      .brand img {
-        height: 160px;
-      }
-      
-      .nav .links {
-        gap: 20px;
-      }
-      
-      .nav .links a {
-        font-size: 14px;
-        padding: 6px 12px;
-      }
-    }
-    
-    /* Mobile Responsive Styles */
-    @media (max-width: 1024px) {
-      .hamburger-menu {
-        display: block;
-      }
-      
-      /* Hide desktop navigation */
-      .nav .links {
-        display: none;
-      }
-      
-      .brand img {
-        height: 60px;
-      }
-      
-      .nav .links {
         position: fixed;
         top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
-        background: #0B0E14;
-        backdrop-filter: none;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-        transition: left 0.3s ease;
-        z-index: 1000;
-      }
-      
-      .nav .links.active {
         left: 0;
-      }
-      
-      .nav .links a {
-        font-size: 24px;
-        padding: 15px 30px;
-      }
-      
-      .dropdown-menu {
-        position: static;
-        background: rgba(29, 78, 216, 0.1);
+        right: 0;
+        z-index: 1000;
+        background: #0b0e14;
         backdrop-filter: none;
-        border: none;
-        border-radius: 8px;
-        margin-top: 10px;
+        padding: 0 40px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+      }
+
+      /* Hamburger Menu Styles */
+      .hamburger-menu {
+        display: none;
+        position: relative;
+        z-index: 9999;
+      }
+
+      .hamburger-icon {
+        width: 30px;
+        height: 24px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.4s ease;
+      }
+
+      .line {
+        width: 100%;
+        height: 3px;
+        background: #1d4ed8;
+        border-radius: 2px;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: center;
+      }
+
+      /* X Animation */
+      .hamburger-menu.active .line1 {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+
+      .hamburger-menu.active .line2 {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      .hamburger-menu.active .line3 {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      /* Mobile Overlay */
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #0b0e14;
+        backdrop-filter: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 9998;
+      }
+
+      .hamburger-menu.active .mobile-overlay {
         opacity: 1;
         visibility: visible;
-        transform: none;
       }
-      
-      .page-hero { padding: 100px 20px 60px; }
-      .page-content { padding: 60px 20px; }
-      .projects-grid { grid-template-columns: 1fr; }
-    }
 
-    /* Custom Floating Cursor */
-    .cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: rgba(147, 197, 253, 0.6); /* Azure - semi-transparent */
-      border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .cursor-follower {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      border: 2px solid rgba(147, 197, 253, 0.3); /* Azure */
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      background: rgba(147, 197, 253, 0.1); /* Azure */
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    /* Cursor hover states */
-    body.cursor-hover .cursor {
-      transform: scale(1.5);
-      background: rgba(147, 197, 253, 0.3); /* Azure - very transparent */
-      border: 2px solid rgba(147, 197, 253, 1); /* Solid Azure border */
-      box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4); /* Bright glow */
-      animation: cursorShine 0.6s ease-out;
-    }
-
-    body.cursor-hover .cursor-follower {
-      transform: translate(-50%, -50%) scale(1.5);
-      border-color: rgba(147, 197, 253, 0.6); /* Azure */
-      background: rgba(147, 197, 253, 0.05); /* Azure */
-    }
-
-    /* Cursor shine animation */
-    @keyframes cursorShine {
-      0% {
-        box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
+      /* Mobile Navigation */
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 40px;
       }
-      50% {
-        box-shadow: 0 0 25px rgba(147, 197, 253, 1), 0 0 50px rgba(147, 197, 253, 0.6);
+
+      .mobile-link {
+        font-size: 24px;
+        font-weight: 500;
+        color: #e7eaee;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 200px;
       }
-      100% {
-        box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
+
+      .mobile-link:hover {
+        background: rgba(29, 78, 216, 0.2);
+        color: #1d4ed8;
+        transform: translateY(-2px);
       }
-    }
 
-    /* Special cursor for clickable elements */
-    body.cursor-click .cursor {
-      transform: scale(0.8);
-      background: rgba(0, 0, 0, 0.8);
-    }
-
-    body.cursor-click .cursor-follower {
-      transform: translate(-50%, -50%) scale(2);
-      border-color: rgba(0, 0, 0, 0.4);
-      background: transparent;
-    }
-
-    /* Text cursor effect */
-    body.cursor-text .cursor {
-      transform: scaleX(0.3) scaleY(1.5);
-      background: rgba(147, 197, 253, 0.4); /* Azure - transparent */
-      border: 1px solid rgba(147, 197, 253, 0.9); /* Azure border */
-      border-radius: 2px;
-    }
-
-    body.cursor-text .cursor-follower {
-      opacity: 0;
-    }
-
-    /* Gallery hover effect */
-    body.cursor-view .cursor {
-      transform: scale(2);
-      background: rgba(147, 197, 253, 0.2); /* Azure - very transparent */
-      border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
-    }
-
-    body.cursor-view .cursor-follower {
-      transform: translate(-50%, -50%) scale(2.5);
-      border-color: rgba(147, 197, 253, 0.6); /* Azure */
-    }
-
-    body.cursor-view .cursor::after {
-      content: 'VIEW';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 10px;
-      font-weight: 600;
-      color: rgba(147, 197, 253, 1); /* Azure */
-      letter-spacing: 0.5px;
-    }
-
-    /* Hide default cursor */
-    * {
-      cursor: none !important;
-    }
-
-    /* Responsive - hide custom cursor on touch devices */
-    @media (max-width: 768px) {
-      .cursor,
-      .cursor-follower {
-        display: none;
+      /* Mobile Dropdown */
+      .mobile-dropdown-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
-      
+
+      .mobile-dropdown-btn {
+        font-size: 24px;
+        font-weight: 500;
+        color: #e7eaee;
+        background: none;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        min-width: 200px;
+        justify-content: center;
+      }
+
+      .mobile-dropdown-btn:hover {
+        background: rgba(29, 78, 216, 0.2);
+        color: #1d4ed8;
+      }
+
+      .mobile-arrow {
+        transition: transform 0.3s ease;
+        font-size: 16px;
+      }
+
+      .mobile-dropdown-section.active .mobile-arrow {
+        transform: rotate(180deg);
+      }
+
+      .mobile-dropdown-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .mobile-dropdown-section.active .mobile-dropdown-content {
+        max-height: 200px;
+      }
+
+      .mobile-sublink {
+        font-size: 18px;
+        color: #1d4ed8;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .mobile-sublink:hover {
+        background: rgba(29, 78, 216, 0.1);
+        color: #60a5fa;
+      }
+      .nav .brand img {
+        height: 60px;
+        width: auto;
+      }
       .nav .links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav .links a {
+        color: var(--color-heading);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+      }
+      .nav .links a:hover {
+        color: #93c5fd;
+        text-decoration: underline;
+        text-decoration-color: #93c5fd;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .nav .links a:active {
+        background: #93c5fd; /* Azure */
+        color: #0b0e14; /* Deep Navy text */
+        transform: scale(0.95);
+      }
+
+      /* Dropdown Navigation Styles */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-toggle {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .dropdown-arrow {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 240px; /* ensure single-line items */
+        background: #0b0e14; /* deep navy */
+        backdrop-filter: none;
+        border-radius: 12px;
+        padding: 6px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1001;
+        border: 1px solid rgba(147, 197, 253, 0.2);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3); /* soft depth */
+      }
+
+      .dropdown:hover .dropdown-menu,
+      .dropdown.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 16px; /* compact */
+        color: #ffffff; /* white */
+        text-decoration: none;
+        transition:
+          background 0.25s ease,
+          color 0.25s ease;
+        border-radius: 10px;
+        margin: 4px 8px;
+        background: #007fff; /* azure button */
+        font-size: 15px;
+        line-height: 1.2;
+        letter-spacing: 0.01em;
+        white-space: nowrap; /* prevent wrap */
+        text-align: center;
+      }
+
+      .dropdown-menu a:hover {
+        background: #1d4ed8; /* Cobalt */
+        color: #faf7f2; /* Ivory */
+      }
+
+      /* Responsive Navigation */
+      @media (max-width: 1024px) {
+        .nav .links {
+          gap: 20px;
+        }
+        .nav .links a {
+          font-size: 14px;
+          padding: 6px 12px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          padding: 0 20px;
+          height: 70px;
+        }
+
+        .nav .brand img {
+          height: 60px !important;
+        }
+
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        .nav .links {
+          position: fixed;
+          top: 70px;
+          left: -100%;
+          width: 100%;
+          height: calc(100vh - 70px);
+          background: #0b0e14;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          padding-top: 50px;
+          gap: 30px;
+          transition: left 0.3s ease;
+          z-index: 29;
+        }
+
+        .nav .links.active {
+          left: 0;
+        }
+
+        .nav .links a {
+          font-size: 18px;
+          padding: 12px 24px;
+          width: 200px;
+          text-align: center;
+        }
+
+        .footer-content {
+          padding: 0 20px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          margin-bottom: 40px;
+        }
+        .footer-legal {
+          flex-direction: column;
+          text-align: center;
+          gap: 16px;
+        }
+      }
+
+      /* Footer Styles */
+      .footer {
+        background: var(--color-bg-primary); /* Deep Navy */
+        padding: 80px 0 40px;
+        border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
+      }
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 60px;
+      }
+      .footer-section {
+        display: flex;
+        flex-direction: column;
+      }
+      .footer-logo {
+        margin-bottom: 24px;
+      }
+      .footer-description {
+        color: var(--color-body); /* Slate */
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 32px;
+        max-width: 300px;
+      }
+      .footer-social {
+        display: flex;
+        gap: 16px;
+      }
+      .footer-social a {
+        color: var(--color-accent); /* Azure */
+        font-size: 20px;
+        transition: color 0.3s ease;
+      }
+      .footer-social a:hover {
+        color: var(--color-heading); /* Off-white on hover */
+      }
+      .footer-label {
+        color: var(--color-accent) !important; /* Azure for H3 labels */
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .footer-heading {
+        color: var(
+          --color-heading
+        ) !important; /* Off-white for section headings */
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        letter-spacing: 0.02em;
+      }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+      .footer-links a {
+        color: var(--color-accent); /* Azure */
+        font-size: 16px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .footer-links a:hover {
+        color: var(--color-accent);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .footer-links strong {
+        color: var(--color-accent); /* Azure */
+        font-weight: 400;
+      }
+      .footer-links li {
+        color: var(--color-accent); /* Azure */
+        font-size: 16px;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
+        padding-top: 32px;
+      }
+      .footer-legal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
         gap: 20px;
       }
-    }
-  </style>
+      .footer-legal p {
+        color: var(--color-body); /* Slate */
+        font-size: 14px;
+        margin: 0;
+      }
+      .footer-legal-links {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .footer-legal-links a {
+        color: var(--color-accent); /* Azure */
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .footer-legal-links a:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .footer-divider {
+        color: rgba(163, 170, 180, 0.3); /* Slate 30% */
+        font-size: 14px;
+      }
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Z0F0X2TWW4');
-  </script>
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1273059444474707');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
-  /></noscript>
+      /* Page Content */
+      .page-hero {
+        padding: 120px 40px 80px;
+        background: var(--color-bg-primary);
+        text-align: center;
+      }
+      .page-hero h1 {
+        font-size: clamp(36px, 6vw, 64px);
+        font-weight: 600;
+        color: var(--color-heading);
+        margin-bottom: 24px;
+        letter-spacing: 0.02em;
+      }
+      .page-hero p {
+        font-size: clamp(18px, 3vw, 24px);
+        color: var(--color-accent);
+        max-width: 600px;
+        margin: 0 auto;
+      }
 
-</head>
+      .page-content {
+        padding: 80px 40px;
+        max-width: 1400px;
+        margin: 0 auto;
+        background: var(--color-bg-primary);
+      }
 
-<body class="portfolio">
-  <!-- Custom Floating Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
+      /* Portfolio Grid */
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 40px;
+        margin-top: 40px;
+      }
 
-  <!-- Header -->
-  <header class="nav">
-    <div class="brand">
-      <a href="../index.html">
-        <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" style="height: 200px;width:auto;display:inline-block;vertical-align:middle;filter:none;" />
-      </a>
-    </div>
-    
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu">
-      <div class="hamburger-icon">
-        <span class="line line1"></span>
-        <span class="line line2"></span>
-        <span class="line line3"></span>
+      .portfolio-item {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(147, 197, 253, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .portfolio-item:hover {
+        transform: translateY(-5px);
+        border-color: var(--color-accent);
+        box-shadow: 0 15px 40px rgba(29, 78, 216, 0.2);
+      }
+      .portfolio-image {
+        height: 300px;
+        background: linear-gradient(135deg, #1d4ed8 0%, #93c5fd 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .portfolio-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("../../assets/images/01-02_logo_mark/PNGs/azure.no-background.png")
+          center/contain no-repeat;
+        opacity: 0.1;
+      }
+      .portfolio-content {
+        padding: 30px;
+      }
+      .portfolio-content h3 {
+        color: var(--color-heading);
+        font-size: 24px;
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+      .portfolio-content .category {
+        color: var(--color-accent);
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .portfolio-content p {
+        color: var(--color-body);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* Duplicate dropdown styles removed - using the ones defined earlier */
+
+      /* Hide mobile dropdown items on desktop */
+      .mobile-dropdown-item {
+        display: none;
+      }
+
+      /* Large desktop responsive */
+      @media (max-width: 1400px) {
+        .nav {
+          padding: 0 30px;
+        }
+
+        .brand img {
+          height: 180px;
+        }
+
+        .nav .links {
+          gap: 24px;
+        }
+
+        .nav .links a {
+          font-size: 15px;
+          padding: 8px 16px;
+        }
+      }
+
+      /* Tablet responsive */
+      @media (max-width: 1024px) {
+        .nav {
+          padding: 0 20px;
+        }
+
+        .brand img {
+          height: 160px;
+        }
+
+        .nav .links {
+          gap: 20px;
+        }
+
+        .nav .links a {
+          font-size: 14px;
+          padding: 6px 12px;
+        }
+      }
+
+      /* Mobile Responsive Styles */
+      @media (max-width: 1024px) {
+        .hamburger-menu {
+          display: block;
+        }
+
+        /* Hide desktop navigation */
+        .nav .links {
+          display: none;
+        }
+
+        .brand img {
+          height: 60px;
+        }
+
+        .nav .links {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100vh;
+          background: #0b0e14;
+          backdrop-filter: none;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 40px;
+          transition: left 0.3s ease;
+          z-index: 1000;
+        }
+
+        .nav .links.active {
+          left: 0;
+        }
+
+        .nav .links a {
+          font-size: 24px;
+          padding: 15px 30px;
+        }
+
+        .dropdown-menu {
+          position: static;
+          background: rgba(29, 78, 216, 0.1);
+          backdrop-filter: none;
+          border: none;
+          border-radius: 8px;
+          margin-top: 10px;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+        }
+
+        .page-hero {
+          padding: 100px 20px 60px;
+        }
+        .page-content {
+          padding: 60px 20px;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Custom Floating Cursor */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(147, 197, 253, 0.6); /* Azure - semi-transparent */
+        border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .cursor-follower {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(147, 197, 253, 0.3); /* Azure */
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        background: rgba(147, 197, 253, 0.1); /* Azure */
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      /* Cursor hover states */
+      body.cursor-hover .cursor {
+        transform: scale(1.5);
+        background: rgba(147, 197, 253, 0.3); /* Azure - very transparent */
+        border: 2px solid rgba(147, 197, 253, 1); /* Solid Azure border */
+        box-shadow:
+          0 0 15px rgba(147, 197, 253, 0.8),
+          0 0 30px rgba(147, 197, 253, 0.4); /* Bright glow */
+        animation: cursorShine 0.6s ease-out;
+      }
+
+      body.cursor-hover .cursor-follower {
+        transform: translate(-50%, -50%) scale(1.5);
+        border-color: rgba(147, 197, 253, 0.6); /* Azure */
+        background: rgba(147, 197, 253, 0.05); /* Azure */
+      }
+
+      /* Cursor shine animation */
+      @keyframes cursorShine {
+        0% {
+          box-shadow:
+            0 0 15px rgba(147, 197, 253, 0.8),
+            0 0 30px rgba(147, 197, 253, 0.4);
+        }
+        50% {
+          box-shadow:
+            0 0 25px rgba(147, 197, 253, 1),
+            0 0 50px rgba(147, 197, 253, 0.6);
+        }
+        100% {
+          box-shadow:
+            0 0 15px rgba(147, 197, 253, 0.8),
+            0 0 30px rgba(147, 197, 253, 0.4);
+        }
+      }
+
+      /* Special cursor for clickable elements */
+      body.cursor-click .cursor {
+        transform: scale(0.8);
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      body.cursor-click .cursor-follower {
+        transform: translate(-50%, -50%) scale(2);
+        border-color: rgba(0, 0, 0, 0.4);
+        background: transparent;
+      }
+
+      /* Text cursor effect */
+      body.cursor-text .cursor {
+        transform: scaleX(0.3) scaleY(1.5);
+        background: rgba(147, 197, 253, 0.4); /* Azure - transparent */
+        border: 1px solid rgba(147, 197, 253, 0.9); /* Azure border */
+        border-radius: 2px;
+      }
+
+      body.cursor-text .cursor-follower {
+        opacity: 0;
+      }
+
+      /* Gallery hover effect */
+      body.cursor-view .cursor {
+        transform: scale(2);
+        background: rgba(147, 197, 253, 0.2); /* Azure - very transparent */
+        border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
+      }
+
+      body.cursor-view .cursor-follower {
+        transform: translate(-50%, -50%) scale(2.5);
+        border-color: rgba(147, 197, 253, 0.6); /* Azure */
+      }
+
+      body.cursor-view .cursor::after {
+        content: "VIEW";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 10px;
+        font-weight: 600;
+        color: rgba(147, 197, 253, 1); /* Azure */
+        letter-spacing: 0.5px;
+      }
+
+      /* Hide default cursor */
+      * {
+        cursor: none !important;
+      }
+
+      /* Responsive - hide custom cursor on touch devices */
+      @media (max-width: 768px) {
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+
+        .nav .links {
+          gap: 20px;
+        }
+      }
+    </style>
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0F0X2TWW4");
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1273059444474707");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+    /></noscript>
+  </head>
+
+  <body class="portfolio">
+    <!-- Custom Floating Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header -->
+    <header class="nav">
+      <div class="brand">
+        <a href="../index.html">
+          <img
+            src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+            alt="Interior Illusions Logo"
+            style="
+              height: 200px;
+              width: auto;
+              display: inline-block;
+              vertical-align: middle;
+              filter: none;
+            "
+          />
+        </a>
       </div>
-      <div class="mobile-overlay">
-        <nav class="mobile-nav">
-          <a href="../about.html" class="mobile-link">About</a>
-          <a href="../services/interior-design.html" class="mobile-link">Services</a>
-          <a href="../our-process.html" class="mobile-link">Our Process</a>
-          <a href="../contact/get-quote.html" class="mobile-link">Contact</a>
-        </nav>
-      </div>
-    </div>
-    
-    <nav class="links">
-      <a href="../our-process.html">Our Process</a>
-      <a href="../services/interior-design.html">Services</a>
-      <a href="../about.html">About</a>
-      <a href="../contact/get-quote.html">Contact</a>
-    </nav>
-  </header>
 
-  <!-- Page Hero -->
-  <section class="page-hero">
-    <h1>Commercial Projects</h1>
-    <p>Transforming workspaces into inspiring environments that drive productivity and creativity</p>
-  </section>
-
-  <!-- Page Content -->
-  <main class="page-content">
-
-    <!-- Portfolio Grid -->
-    <div class="portfolio-grid">
-      <div class="portfolio-item">
-        <div class="portfolio-image"></div>
-        <div class="portfolio-content">
-          <div class="category">Office</div>
-          <h3>Modern Corporate Headquarters</h3>
-          <p>Sleek and professional office design featuring open collaboration spaces, private meeting rooms, and executive suites.</p>
+      <!-- Hamburger Menu -->
+      <div class="hamburger-menu">
+        <div class="hamburger-icon">
+          <span class="line line1"></span>
+          <span class="line line2"></span>
+          <span class="line line3"></span>
+        </div>
+        <div class="mobile-overlay">
+          <nav class="mobile-nav">
+            <a href="../about.html" class="mobile-link">About</a>
+            <a href="../services/interior-design.html" class="mobile-link"
+              >Services</a
+            >
+            <a href="../our-process.html" class="mobile-link">Our Process</a>
+            <a href="../contact/get-quote.html" class="mobile-link">Contact</a>
+          </nav>
         </div>
       </div>
 
-      <div class="portfolio-item">
-        <div class="portfolio-image"></div>
-        <div class="portfolio-content">
-          <div class="category">Retail</div>
-          <h3>Boutique Retail Store</h3>
-          <p>Contemporary retail space designed to enhance customer experience and showcase products beautifully.</p>
-        </div>
-      </div>
+      <nav class="links">
+        <a href="../our-process.html">Our Process</a>
+        <a href="../services/interior-design.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../contact/get-quote.html">Contact</a>
+      </nav>
+    </header>
 
-      <div class="portfolio-item">
-        <div class="portfolio-image"></div>
-        <div class="portfolio-content">
-          <div class="category">Restaurant</div>
-          <h3>Fine Dining Restaurant</h3>
-          <p>Elegant restaurant interior that creates an intimate dining atmosphere while maintaining operational efficiency.</p>
-        </div>
-      </div>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <h1>Commercial Projects</h1>
+      <p>
+        Transforming workspaces into inspiring environments that drive
+        productivity and creativity
+      </p>
+    </section>
 
-      <div class="portfolio-item">
-        <div class="portfolio-image"></div>
-        <div class="portfolio-content">
-          <div class="category">Office Design</div>
-          <h3>Modern Tech Headquarters</h3>
-          <p>Complete office transformation featuring open collaboration spaces, private meeting rooms, and innovative workspace solutions.</p>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <div class="portfolio-image"></div>
-        <div class="portfolio-content">
-          <div class="category">Healthcare</div>
-          <h3>Medical Center Renovation</h3>
-          <p>Calming and functional healthcare environment designed for patient comfort and operational efficiency.</p>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <div class="portfolio-image"></div>
-        <div class="portfolio-content">
-          <div class="category">Hospitality</div>
-          <h3>Boutique Hotel Lobby</h3>
-          <p>Welcoming hotel lobby design that reflects local culture while providing modern luxury amenities.</p>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <div class="portfolio-image"></div>
-        <div class="portfolio-content">
-          <div class="category">Co-working</div>
-          <h3>Creative Workspace Hub</h3>
-          <p>Dynamic co-working space featuring flexible layouts, creative zones, and collaborative meeting areas.</p>
-        </div>
-      </div>
-    </div>
-  </main>
-  <script>
-    // Custom Floating Cursor
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    let mouseX = 0;
-    let mouseY = 0;
-    let followerX = 0;
-    let followerY = 0;
-
-    // Update cursor position with smooth interpolation
-    let cursorX = 0;
-    let cursorY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-    
-    // Smooth cursor animation
-    function animateCursor() {
-      const ease = 0.2; // Smooth easing for main cursor
-      cursorX += (mouseX - cursorX) * ease;
-      cursorY += (mouseY - cursorY) * ease;
-      
-      // Use transform for better performance
-      cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-      
-      requestAnimationFrame(animateCursor);
-    }
-    
-    // Smooth follower animation
-    function animateFollower() {
-      const ease = 0.1; // Slower easing for follower
-      followerX += (mouseX - followerX) * ease;
-      followerY += (mouseY - followerY) * ease;
-      
-      // Use transform for better performance
-      cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
-      
-      requestAnimationFrame(animateFollower);
-    }
-    
-    animateCursor();
-    animateFollower();
-    
-    // Interactive elements
-    const hoverElements = document.querySelectorAll('a, button, .btn, .project-card');
-    const clickableElements = document.querySelectorAll('a, button, .btn');
-    const textElements = document.querySelectorAll('input, textarea, p, h1, h2, h3, h4, h5, h6');
-    const viewElements = document.querySelectorAll('.project-card img');
-    
-    // Hover effects
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-hover');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-hover');
-      });
-    });
-
-    // Click effects
-    clickableElements.forEach(el => {
-      el.addEventListener('mousedown', () => {
-        document.body.classList.add('cursor-click');
-      });
-      el.addEventListener('mouseup', () => {
-        document.body.classList.remove('cursor-click');
-      });
-    });
-
-    // Text cursor
-    textElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-text');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-text');
-      });
-    });
-
-    // Gallery view effect
-    viewElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-view');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-view');
-      });
-    });
-
-    // Hide cursor when it leaves the window
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-      cursorFollower.style.opacity = '0';
-    });
-
-    document.addEventListener('mouseenter', () => {
-      cursor.style.opacity = '1';
-      cursorFollower.style.opacity = '1';
-    });
-  </script>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-grid">
-        <!-- Company Info -->
-        <div class="footer-section">
-          <div class="footer-logo">
-            <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" style="height: 120px; width: auto;" />
+    <!-- Page Content -->
+    <main class="page-content">
+      <!-- Portfolio Grid -->
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-image"></div>
+          <div class="portfolio-content">
+            <div class="category">Office</div>
+            <h3>Modern Corporate Headquarters</h3>
+            <p>
+              Sleek and professional office design featuring open collaboration
+              spaces, private meeting rooms, and executive suites.
+            </p>
           </div>
-          <p class="footer-description">Specialists in providing luxury interior finishes in residential & commercial projects. Remodels & New Construction.</p>
-          <div class="footer-social">
-            <a href="https://instagram.com/interior_illusions_llc" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="mailto:interiorillusionsllc@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="portfolio-image"></div>
+          <div class="portfolio-content">
+            <div class="category">Retail</div>
+            <h3>Boutique Retail Store</h3>
+            <p>
+              Contemporary retail space designed to enhance customer experience
+              and showcase products beautifully.
+            </p>
           </div>
         </div>
 
-        <!-- Services -->
-        <div class="footer-section">
-          <h3 class="footer-label">Services</h3>
-          <h4 class="footer-heading">What We Do</h4>
-          <ul class="footer-links">
-            <li><a href="../services/full-home-remodels.html">Full home remodels</a></li>
-            <li><a href="../services/kitchens.html">Kitchens</a></li>
-            <li><a href="../services/bathrooms.html">Bathrooms</a></li>
-            <li><a href="../services/flooring.html">Flooring</a></li>
-            <li><a href="../services/general-construction.html">General construction and framing</a></li>
-            <li><a href="../services/custom-cabinetry.html">Custom cabinetry and millwork</a></li>
-            <li><a href="../services/painting-finishes.html">Interior painting</a></li>
-            <li><a href="../services/selective-demolition.html">Demolition</a></li>
-          </ul>
+        <div class="portfolio-item">
+          <div class="portfolio-image"></div>
+          <div class="portfolio-content">
+            <div class="category">Restaurant</div>
+            <h3>Fine Dining Restaurant</h3>
+            <p>
+              Elegant restaurant interior that creates an intimate dining
+              atmosphere while maintaining operational efficiency.
+            </p>
+          </div>
         </div>
 
-        <!-- Portfolio -->
-        <div class="footer-section">
-          <h3 class="footer-label">Portfolio</h3>
-          <h4 class="footer-heading">Our Work</h4>
-          <ul class="footer-links">
-            <li><a href="residential-projects.html">Residential Projects</a></li>
-            <li><a href="commercial-projects.html">Commercial Projects</a></li>
-            <li><a href="before-after-gallery.html">Before & After Gallery</a></li>
-          </ul>
+        <div class="portfolio-item">
+          <div class="portfolio-image"></div>
+          <div class="portfolio-content">
+            <div class="category">Office Design</div>
+            <h3>Modern Tech Headquarters</h3>
+            <p>
+              Complete office transformation featuring open collaboration
+              spaces, private meeting rooms, and innovative workspace solutions.
+            </p>
+          </div>
         </div>
 
-        <!-- Contact -->
-        <div class="footer-section">
-          <h3 class="footer-label">Contact</h3>
-          <h4 class="footer-heading">Get In Touch</h4>
-          <ul class="footer-links">
-            <li><strong>Dallas, TX, United States</strong></li>
-            <li><a href="tel:+19723704873">(972) 370-4873</a></li>
-            <li><a href="mailto:interiorillusionsllc@outlook.com">interiorillusionsllc@outlook.com</a></li>
-            <li><a href="https://instagram.com/interior_illusions_llc">@interior_illusions_llc</a></li>
-            <li><strong>Service Area:</strong> DFW Metroplex, North Texas, McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco</li>
-          </ul>
+        <div class="portfolio-item">
+          <div class="portfolio-image"></div>
+          <div class="portfolio-content">
+            <div class="category">Healthcare</div>
+            <h3>Medical Center Renovation</h3>
+            <p>
+              Calming and functional healthcare environment designed for patient
+              comfort and operational efficiency.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <!-- Footer Bottom -->
-      <div class="footer-bottom">
-        <div class="footer-legal">
-          <p>&copy; 2024 Interior Illusions LLC. All rights reserved. Construction company · Home improvement</p>
-          <div class="footer-legal-links">
-            <a href="#">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Terms of Service</a>
+        <div class="portfolio-item">
+          <div class="portfolio-image"></div>
+          <div class="portfolio-content">
+            <div class="category">Hospitality</div>
+            <h3>Boutique Hotel Lobby</h3>
+            <p>
+              Welcoming hotel lobby design that reflects local culture while
+              providing modern luxury amenities.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="portfolio-image"></div>
+          <div class="portfolio-content">
+            <div class="category">Co-working</div>
+            <h3>Creative Workspace Hub</h3>
+            <p>
+              Dynamic co-working space featuring flexible layouts, creative
+              zones, and collaborative meeting areas.
+            </p>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
-<script src="../assets/js/nav-active.js"></script>
-</body>
-<script>
+    </main>
+    <script>
+      // Custom Floating Cursor
+      const cursor = document.querySelector(".cursor");
+      const cursorFollower = document.querySelector(".cursor-follower");
+      let mouseX = 0;
+      let mouseY = 0;
+      let followerX = 0;
+      let followerY = 0;
+
+      // Update cursor position with smooth interpolation
+      let cursorX = 0;
+      let cursorY = 0;
+
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      // Smooth cursor animation
+      function animateCursor() {
+        const ease = 0.2; // Smooth easing for main cursor
+        cursorX += (mouseX - cursorX) * ease;
+        cursorY += (mouseY - cursorY) * ease;
+
+        // Use transform for better performance
+        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+
+        requestAnimationFrame(animateCursor);
+      }
+
+      // Smooth follower animation
+      function animateFollower() {
+        const ease = 0.1; // Slower easing for follower
+        followerX += (mouseX - followerX) * ease;
+        followerY += (mouseY - followerY) * ease;
+
+        // Use transform for better performance
+        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+
+        requestAnimationFrame(animateFollower);
+      }
+
+      animateCursor();
+      animateFollower();
+
+      // Interactive elements
+      const hoverElements = document.querySelectorAll(
+        "a, button, .btn, .project-card",
+      );
+      const clickableElements = document.querySelectorAll("a, button, .btn");
+      const textElements = document.querySelectorAll(
+        "input, textarea, p, h1, h2, h3, h4, h5, h6",
+      );
+      const viewElements = document.querySelectorAll(".project-card img");
+
+      // Hover effects
+      hoverElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-hover");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-hover");
+        });
+      });
+
+      // Click effects
+      clickableElements.forEach((el) => {
+        el.addEventListener("mousedown", () => {
+          document.body.classList.add("cursor-click");
+        });
+        el.addEventListener("mouseup", () => {
+          document.body.classList.remove("cursor-click");
+        });
+      });
+
+      // Text cursor
+      textElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-text");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-text");
+        });
+      });
+
+      // Gallery view effect
+      viewElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-view");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-view");
+        });
+      });
+
+      // Hide cursor when it leaves the window
+      document.addEventListener("mouseleave", () => {
+        cursor.style.opacity = "0";
+        cursorFollower.style.opacity = "0";
+      });
+
+      document.addEventListener("mouseenter", () => {
+        cursor.style.opacity = "1";
+        cursorFollower.style.opacity = "1";
+      });
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-grid">
+          <!-- Company Info -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img
+                src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+                alt="Interior Illusions Logo"
+                style="height: 120px; width: auto"
+              />
+            </div>
+            <p class="footer-description">
+              Specialists in providing luxury interior finishes in residential &
+              commercial projects. Remodels & New Construction.
+            </p>
+            <div class="footer-social">
+              <a
+                href="https://instagram.com/interior_illusions_llc"
+                target="_blank"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F"
+                target="_blank"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="mailto:interiorillusionsllc@outlook.com"
+                aria-label="Email"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div class="footer-section">
+            <h3 class="footer-label">Services</h3>
+            <h4 class="footer-heading">What We Do</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="../services/full-home-remodels.html"
+                  >Full home remodels</a
+                >
+              </li>
+              <li><a href="../services/kitchens.html">Kitchens</a></li>
+              <li><a href="../services/bathrooms.html">Bathrooms</a></li>
+              <li><a href="../services/flooring.html">Flooring</a></li>
+              <li>
+                <a href="../services/general-construction.html"
+                  >General construction and framing</a
+                >
+              </li>
+              <li>
+                <a href="../services/custom-cabinetry.html"
+                  >Custom cabinetry and millwork</a
+                >
+              </li>
+              <li>
+                <a href="../services/painting-finishes.html"
+                  >Interior painting</a
+                >
+              </li>
+              <li>
+                <a href="../services/selective-demolition.html">Demolition</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Portfolio -->
+          <div class="footer-section">
+            <h3 class="footer-label">Portfolio</h3>
+            <h4 class="footer-heading">Our Work</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="residential-projects.html">Residential Projects</a>
+              </li>
+              <li>
+                <a href="commercial-projects.html">Commercial Projects</a>
+              </li>
+              <li>
+                <a href="before-after-gallery.html">Before & After Gallery</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer-section">
+            <h3 class="footer-label">Contact</h3>
+            <h4 class="footer-heading">Get In Touch</h4>
+            <ul class="footer-links">
+              <li><strong>Dallas, TX, United States</strong></li>
+              <li><a href="tel:+19723704873">(972) 370-4873</a></li>
+              <li>
+                <a href="mailto:interiorillusionsllc@outlook.com"
+                  >interiorillusionsllc@outlook.com</a
+                >
+              </li>
+              <li>
+                <a href="https://instagram.com/interior_illusions_llc"
+                  >@interior_illusions_llc</a
+                >
+              </li>
+              <li>
+                <strong>Service Area:</strong> DFW Metroplex, North Texas,
+                McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <p>
+              &copy; 2024 Interior Illusions LLC. All rights reserved.
+              Construction company · Home improvement
+            </p>
+            <div class="footer-legal-links">
+              <a href="#">Privacy Policy</a>
+              <span class="footer-divider">|</span>
+              <a href="#">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../assets/js/nav-active.js"></script>
+  </body>
+  <script>
     // Hamburger Menu Functionality
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const hamburgerIcon = document.querySelector('.hamburger-icon');
-    const mobileOverlay = document.querySelector('.mobile-overlay');
-    const dropdownBtn = document.querySelector('.mobile-dropdown-btn');
-    const dropdownSection = document.querySelector('.mobile-dropdown-section');
-    const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-sublink');
+    const hamburgerMenu = document.querySelector(".hamburger-menu");
+    const hamburgerIcon = document.querySelector(".hamburger-icon");
+    const mobileOverlay = document.querySelector(".mobile-overlay");
+    const dropdownBtn = document.querySelector(".mobile-dropdown-btn");
+    const dropdownSection = document.querySelector(".mobile-dropdown-section");
+    const mobileLinks = document.querySelectorAll(
+      ".mobile-link, .mobile-sublink",
+    );
 
     // Toggle hamburger menu
     if (hamburgerIcon) {
-      hamburgerIcon.addEventListener('click', function() {
-        hamburgerMenu.classList.toggle('active');
-        document.body.style.overflow = hamburgerMenu.classList.contains('active') ? 'hidden' : 'auto';
+      hamburgerIcon.addEventListener("click", function () {
+        hamburgerMenu.classList.toggle("active");
+        document.body.style.overflow = hamburgerMenu.classList.contains(
+          "active",
+        )
+          ? "hidden"
+          : "auto";
       });
     }
 
     // Close menu when clicking on overlay
     if (mobileOverlay) {
-      mobileOverlay.addEventListener('click', function(e) {
+      mobileOverlay.addEventListener("click", function (e) {
         if (e.target === mobileOverlay) {
-          hamburgerMenu.classList.remove('active');
-          document.body.style.overflow = 'auto';
+          hamburgerMenu.classList.remove("active");
+          document.body.style.overflow = "auto";
         }
       });
     }
 
     // Dropdown functionality
     if (dropdownBtn) {
-      dropdownBtn.addEventListener('click', function() {
-        dropdownSection.classList.toggle('active');
+      dropdownBtn.addEventListener("click", function () {
+        dropdownSection.classList.toggle("active");
       });
     }
 
     // Close menu when clicking on links
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        hamburgerMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", function () {
+        hamburgerMenu.classList.remove("active");
+        document.body.style.overflow = "auto";
       });
     });
 
     // Handle escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && hamburgerMenu && hamburgerMenu.classList.contains('active')) {
-        hamburgerMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "Escape" &&
+        hamburgerMenu &&
+        hamburgerMenu.classList.contains("active")
+      ) {
+        hamburgerMenu.classList.remove("active");
+        document.body.style.overflow = "auto";
       }
     });
   </script>

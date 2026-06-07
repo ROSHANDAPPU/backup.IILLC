@@ -1,1062 +1,1230 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  {{ ... }}
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Before & After Gallery - Interior Illusions LLC</title>
-  <meta name="description" content="See dramatic transformations in our before and after interior design gallery.">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --color-bg-primary: #0B0E14; /* Deep Navy */
-      --color-action: #1D4ED8;    /* Cobalt */
-      --color-accent: #93C5FD;    /* Azure */
-      --color-heading: #E7EAEE;   /* Off-white */
-      --color-body: #A3AAB4;      /* Slate */
-      --color-light: #FAF7F2;     /* Ivory */
-    }
+  <head>
+    {{ ... }}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Before & After Gallery - Interior Illusions LLC</title>
+    <meta
+      name="description"
+      content="See dramatic transformations in our before and after interior design gallery."
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/images/06_Favicon/favicon-high.png"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --color-bg-primary: #0b0e14; /* Deep Navy */
+        --color-action: #1d4ed8; /* Cobalt */
+        --color-accent: #93c5fd; /* Azure */
+        --color-heading: #e7eaee; /* Off-white */
+        --color-body: #a3aab4; /* Slate */
+        --color-light: #faf7f2; /* Ivory */
+      }
 
-    body, html {
-      font-family: 'Satoshi', 'Inter', 'SF Pro Display', system-ui, sans-serif;
-      color: var(--color-body);
-      background: var(--color-light); /* White Ivory #FAF7F2 */
-      height: 100%;
-      margin: 0;
-      line-height: 1.6;
-    }
+      body,
+      html {
+        font-family:
+          "Satoshi", "Inter", "SF Pro Display", system-ui, sans-serif;
+        color: var(--color-body);
+        background: var(--color-light); /* White Ivory #FAF7F2 */
+        height: 100%;
+        margin: 0;
+        line-height: 1.6;
+      }
 
-    /* Navigation */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; height: 80px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px; z-index: 30;
-      background: #0B0E14; /* Deep Navy background */
-    }
-    
-    .nav .brand img {
-      height: 200px;
-      width: auto;
-      transition: all 0.3s ease;
-    }
-    
-    /* Hamburger Menu Styles */
-    .hamburger-menu {
-      display: none;
-      position: relative;
-      z-index: 9999;
-    }
-
-    .hamburger-icon {
-      width: 30px;
-      height: 24px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.4s ease;
-    }
-
-    .line {
-      width: 100%;
-      height: 3px;
-      background: #1D4ED8;
-      border-radius: 2px;
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      transform-origin: center;
-    }
-
-    /* X Animation */
-    .hamburger-menu.active .line1 {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-
-    .hamburger-menu.active .line2 {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-
-    .hamburger-menu.active .line3 {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-
-    /* Mobile Overlay */
-    .mobile-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(11, 14, 20, 0.95);
-      backdrop-filter: blur(20px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-      z-index: 9998;
-    }
-
-    .hamburger-menu.active .mobile-overlay {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Mobile Navigation */
-    .mobile-nav {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      padding: 40px;
-    }
-
-    .mobile-link {
-      font-size: 24px;
-      font-weight: 500;
-      color: #E7EAEE;
-      text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-      text-align: center;
-      min-width: 200px;
-    }
-
-    .mobile-link:hover {
-      background: rgba(29, 78, 216, 0.2);
-      color: #1D4ED8;
-      transform: translateY(-2px);
-    }
-
-    /* Mobile Dropdown */
-    .mobile-dropdown-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .mobile-dropdown-btn {
-      font-size: 24px;
-      font-weight: 500;
-      color: #E7EAEE;
-      background: none;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-      min-width: 200px;
-      justify-content: center;
-    }
-
-    .mobile-dropdown-btn:hover {
-      background: rgba(29, 78, 216, 0.2);
-      color: #1D4ED8;
-    }
-
-    .mobile-arrow {
-      transition: transform 0.3s ease;
-      font-size: 16px;
-    }
-
-    .mobile-dropdown-section.active .mobile-arrow {
-      transform: rotate(180deg);
-    }
-
-    .mobile-dropdown-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .mobile-dropdown-section.active .mobile-dropdown-content {
-      max-height: 200px;
-    }
-
-    .mobile-sublink {
-      font-size: 18px;
-      color: #1D4ED8;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .mobile-sublink:hover {
-      background: rgba(29, 78, 216, 0.1);
-      color: #60A5FA;
-    }
-    
-    .nav a, .nav .brand { 
-      color: #E7EAEE; /* Off-white color for consistency */
-      text-decoration: none; 
-      font-weight: 500; 
-      letter-spacing: 0.02em; 
-      font-size: 16px;
-      transition: all 0.3s ease;
-      padding: 8px 16px;
-      border-radius: 20px;
-    }
-    .nav .brand { 
-      font-size: 24px; 
-      letter-spacing: 0.1em; 
-      color: #1D4ED8; /* Cobalt color for brand */
-    }
-    .nav .links { 
-      display: flex; 
-      gap: 32px; 
-    }
-    .nav a:hover { 
-      color: #93C5FD; /* Azure on hover */
-      background: rgba(147, 197, 253, 0.1);
-    }
-    .nav a:active {
-      background: #1D4ED8;
-      color: #FAF7F2;
-      transform: scale(0.95);
-    }
-    .logo { 
-      height: 40px; 
-      width: auto; 
-    }
-    
-    /* Dropdown Styles */
-    .dropdown {
-      position: relative;
-    }
-    
-    .dropdown-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-    
-    .dropdown-arrow {
-      font-size: 12px;
-      transition: transform 0.3s ease;
-    }
-    
-    .dropdown.active .dropdown-arrow {
-      transform: rotate(180deg);
-    }
-    
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 200px;
-      background: rgba(11, 14, 20, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 8px 0;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      z-index: 1001;
-      border: 1px solid rgba(147, 197, 253, 0.2);
-    }
-    
-    .dropdown:hover .dropdown-menu,
-    .dropdown.active .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    
-    .dropdown-menu a {
-      display: block;
-      padding: 12px 20px;
-      color: var(--color-body);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border-radius: 20px;
-      margin: 4px 8px;
-      background: transparent;
-    }
-    
-    .dropdown-menu a:hover {
-      background: #1D4ED8;
-      color: #E7EAEE;
-      transform: scale(0.95);
-    }
-    
-    /* Large desktop responsive */
-    @media (max-width: 1400px) {
+      /* Navigation */
       .nav {
-        padding: 0 30px;
-      }
-      
-      .nav .brand img {
-        height: 180px;
-      }
-      
-      .nav .links {
-        gap: 24px;
-      }
-      
-      .nav .links a {
-        font-size: 15px;
-        padding: 8px 14px;
-      }
-    }
-    
-    /* Tablet and smaller desktop responsive */
-    @media (max-width: 1024px) {
-      .nav {
-        padding: 0 20px;
-      }
-      
-      .nav .brand img {
-        height: 150px;
-      }
-      
-      .nav .links {
-        gap: 18px;
-      }
-      
-      .nav .links a {
-        font-size: 14px;
-        padding: 6px 10px;
-      }
-    }
-    
-    /* Mobile Responsive Styles */
-    @media (max-width: 1024px) {
-      .hamburger-menu {
-        display: block;
-      }
-      
-      /* Hide desktop navigation */
-      .nav .links {
-        display: none;
-      }
-      
-      .nav .brand img {
-        height: 60px;
-      }
-      
-      .nav .links {
         position: fixed;
         top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
-        background: rgba(11, 14, 20, 0.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-        transition: left 0.3s ease;
-        z-index: 1000;
-      }
-      
-      .nav .links.active {
         left: 0;
+        right: 0;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        z-index: 30;
+        background: #0b0e14; /* Deep Navy background */
       }
-      
-      .nav .links a {
-        font-size: 24px;
-        padding: 15px 30px;
+
+      .nav .brand img {
+        height: 200px;
+        width: auto;
+        transition: all 0.3s ease;
       }
-      
-      .dropdown-menu {
-        position: static;
-        background: rgba(29, 78, 216, 0.1);
-        backdrop-filter: none;
-        border: none;
-        border-radius: 8px;
-        margin-top: 10px;
+
+      /* Hamburger Menu Styles */
+      .hamburger-menu {
+        display: none;
+        position: relative;
+        z-index: 9999;
+      }
+
+      .hamburger-icon {
+        width: 30px;
+        height: 24px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.4s ease;
+      }
+
+      .line {
+        width: 100%;
+        height: 3px;
+        background: #1d4ed8;
+        border-radius: 2px;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: center;
+      }
+
+      /* X Animation */
+      .hamburger-menu.active .line1 {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+
+      .hamburger-menu.active .line2 {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      .hamburger-menu.active .line3 {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      /* Mobile Overlay */
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(11, 14, 20, 0.95);
+        backdrop-filter: blur(20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 9998;
+      }
+
+      .hamburger-menu.active .mobile-overlay {
         opacity: 1;
         visibility: visible;
-        transform: none;
       }
-    }
 
-    /* Main content */
-    .main {
-      padding-top: 120px;
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
-    .page-header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .page-title {
-      font-size: 48px;
-      font-weight: 600;
-      color: var(--color-bg-primary);
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-
-    .page-subtitle {
-      font-size: 20px;
-      color: var(--color-bg-primary);
-      opacity: 0.8;
-    }
-
-    /* Before/After Gallery */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 60px;
-      margin-bottom: 80px;
-    }
-
-    .comparison-card {
-      background: #F5F2ED;
-      border: 1px solid #E5E7EB;
-      border-radius: 0;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .comparison-card:hover {
-      background: #EFEAE5;
-      border: 2px solid var(--color-accent);
-    }
-
-    .comparison-images {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
-
-    .before-image, .after-image {
-      width: 100%;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-bg-primary);
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    .before-image {
-      background: #D1D5DB;
-    }
-
-    .after-image {
-      background: #E5E7EB;
-    }
-
-    .comparison-content {
-      padding: 24px;
-    }
-
-    .comparison-eyebrow {
-      color: var(--color-accent);
-      font-size: 14px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      margin-bottom: 8px;
-    }
-
-    .comparison-title {
-      color: var(--color-bg-primary);
-      font-size: 24px;
-      font-weight: 500;
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-
-    .comparison-description {
-      color: var(--color-bg-primary);
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .comparison-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .stat {
-      text-align: center;
-      padding: 16px;
-      background: #EFEAE5;
-      border: 1px solid #E5E7EB;
-    }
-
-    .stat-value {
-      color: var(--color-accent);
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      text-decoration: underline;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav { padding: 0 20px; height: 70px; }
-      .nav .links { gap: 20px; }
-      .nav .links a { font-size: 14px; padding: 6px 12px; }
-      .page-hero { padding: 100px 20px 60px; }
-      .page-content { padding: 60px 20px; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      
-      .footer-content { padding: 0 20px; }
-      .footer-grid { 
-        grid-template-columns: 1fr; 
-        gap: 40px; 
-        margin-bottom: 40px; 
+      /* Mobile Navigation */
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 40px;
       }
-      .footer-legal { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 16px; 
+
+      .mobile-link {
+        font-size: 24px;
+        font-weight: 500;
+        color: #e7eaee;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 200px;
       }
-    }
 
-    /* Custom Floating Cursor */
-    .cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: rgba(147, 197, 253, 0.6); /* Azure - semi-transparent */
-      border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .cursor-follower {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      border: 2px solid rgba(147, 197, 253, 0.3); /* Azure */
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      background: rgba(147, 197, 253, 0.1); /* Azure */
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    /* Cursor hover states */
-    body.cursor-hover .cursor {
-      transform: scale(1.5);
-      background: rgba(147, 197, 253, 0.3); /* Azure - very transparent */
-      border: 2px solid rgba(147, 197, 253, 1); /* Solid Azure border */
-      box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4); /* Bright glow */
-      animation: cursorShine 0.6s ease-out;
-    }
-
-    body.cursor-hover .cursor-follower {
-      transform: translate(-50%, -50%) scale(1.5);
-      border-color: rgba(147, 197, 253, 0.6); /* Azure */
-      background: rgba(147, 197, 253, 0.05); /* Azure */
-    }
-
-    /* Cursor shine animation */
-    @keyframes cursorShine {
-      0% {
-        box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
+      .mobile-link:hover {
+        background: rgba(29, 78, 216, 0.2);
+        color: #1d4ed8;
+        transform: translateY(-2px);
       }
-      50% {
-        box-shadow: 0 0 25px rgba(147, 197, 253, 1), 0 0 50px rgba(147, 197, 253, 0.6);
+
+      /* Mobile Dropdown */
+      .mobile-dropdown-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
-      100% {
-        box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
+
+      .mobile-dropdown-btn {
+        font-size: 24px;
+        font-weight: 500;
+        color: #e7eaee;
+        background: none;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        min-width: 200px;
+        justify-content: center;
       }
-    }
 
-    /* Special cursor for clickable elements */
-    body.cursor-click .cursor {
-      transform: scale(0.8);
-      background: rgba(0, 0, 0, 0.8);
-    }
-
-    body.cursor-click .cursor-follower {
-      transform: translate(-50%, -50%) scale(2);
-      border-color: rgba(0, 0, 0, 0.4);
-      background: transparent;
-    }
-
-    /* Text cursor effect */
-    body.cursor-text .cursor {
-      transform: scaleX(0.3) scaleY(1.5);
-      background: rgba(147, 197, 253, 0.4); /* Azure - transparent */
-      border: 1px solid rgba(147, 197, 253, 0.9); /* Azure border */
-      border-radius: 2px;
-    }
-
-    body.cursor-text .cursor-follower {
-      opacity: 0;
-    }
-
-    /* Gallery hover effect */
-    body.cursor-view .cursor {
-      transform: scale(2);
-      background: rgba(147, 197, 253, 0.2); /* Azure - very transparent */
-      border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
-    }
-
-    body.cursor-view .cursor-follower {
-      transform: translate(-50%, -50%) scale(2.5);
-      border-color: rgba(147, 197, 253, 0.6); /* Azure */
-    }
-
-    body.cursor-view .cursor::after {
-      content: 'VIEW';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 10px;
-      font-weight: 600;
-      color: rgba(147, 197, 253, 1); /* Azure */
-      letter-spacing: 0.5px;
-    }
-
-    /* Hide default cursor */
-    * {
-      cursor: none !important;
-    }
-
-    /* Responsive - hide custom cursor on touch devices */
-    @media (max-width: 768px) {
-      .cursor,
-      .cursor-follower {
-        display: none;
+      .mobile-dropdown-btn:hover {
+        background: rgba(29, 78, 216, 0.2);
+        color: #1d4ed8;
       }
-      
+
+      .mobile-arrow {
+        transition: transform 0.3s ease;
+        font-size: 16px;
+      }
+
+      .mobile-dropdown-section.active .mobile-arrow {
+        transform: rotate(180deg);
+      }
+
+      .mobile-dropdown-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .mobile-dropdown-section.active .mobile-dropdown-content {
+        max-height: 200px;
+      }
+
+      .mobile-sublink {
+        font-size: 18px;
+        color: #1d4ed8;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .mobile-sublink:hover {
+        background: rgba(29, 78, 216, 0.1);
+        color: #60a5fa;
+      }
+
+      .nav a,
+      .nav .brand {
+        color: #e7eaee; /* Off-white color for consistency */
+        text-decoration: none;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 20px;
+      }
+      .nav .brand {
+        font-size: 24px;
+        letter-spacing: 0.1em;
+        color: #1d4ed8; /* Cobalt color for brand */
+      }
       .nav .links {
-        gap: 20px;
+        display: flex;
+        gap: 32px;
       }
-      
+      .nav a:hover {
+        color: #93c5fd; /* Azure on hover */
+        background: rgba(147, 197, 253, 0.1);
+      }
+      .nav a:active {
+        background: #1d4ed8;
+        color: #faf7f2;
+        transform: scale(0.95);
+      }
+      .logo {
+        height: 40px;
+        width: auto;
+      }
+
+      /* Dropdown Styles */
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+
+      .dropdown-arrow {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        background: rgba(11, 14, 20, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1001;
+        border: 1px solid rgba(147, 197, 253, 0.2);
+      }
+
+      .dropdown:hover .dropdown-menu,
+      .dropdown.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 12px 20px;
+        color: var(--color-body);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-radius: 20px;
+        margin: 4px 8px;
+        background: transparent;
+      }
+
+      .dropdown-menu a:hover {
+        background: #1d4ed8;
+        color: #e7eaee;
+        transform: scale(0.95);
+      }
+
+      /* Large desktop responsive */
+      @media (max-width: 1400px) {
+        .nav {
+          padding: 0 30px;
+        }
+
+        .nav .brand img {
+          height: 180px;
+        }
+
+        .nav .links {
+          gap: 24px;
+        }
+
+        .nav .links a {
+          font-size: 15px;
+          padding: 8px 14px;
+        }
+      }
+
+      /* Tablet and smaller desktop responsive */
+      @media (max-width: 1024px) {
+        .nav {
+          padding: 0 20px;
+        }
+
+        .nav .brand img {
+          height: 150px;
+        }
+
+        .nav .links {
+          gap: 18px;
+        }
+
+        .nav .links a {
+          font-size: 14px;
+          padding: 6px 10px;
+        }
+      }
+
+      /* Mobile Responsive Styles */
+      @media (max-width: 1024px) {
+        .hamburger-menu {
+          display: block;
+        }
+
+        /* Hide desktop navigation */
+        .nav .links {
+          display: none;
+        }
+
+        .nav .brand img {
+          height: 60px;
+        }
+
+        .nav .links {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100vh;
+          background: rgba(11, 14, 20, 0.98);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 40px;
+          transition: left 0.3s ease;
+          z-index: 1000;
+        }
+
+        .nav .links.active {
+          left: 0;
+        }
+
+        .nav .links a {
+          font-size: 24px;
+          padding: 15px 30px;
+        }
+
+        .dropdown-menu {
+          position: static;
+          background: rgba(29, 78, 216, 0.1);
+          backdrop-filter: none;
+          border: none;
+          border-radius: 8px;
+          margin-top: 10px;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+        }
+      }
+
+      /* Main content */
+      .main {
+        padding-top: 120px;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .page-title {
+        font-size: 48px;
+        font-weight: 600;
+        color: var(--color-bg-primary);
+        margin-bottom: 16px;
+        letter-spacing: -0.02em;
+      }
+
+      .page-subtitle {
+        font-size: 20px;
+        color: var(--color-bg-primary);
+        opacity: 0.8;
+      }
+
+      /* Before/After Gallery */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 60px;
+        margin-bottom: 80px;
+      }
+
+      .comparison-card {
+        background: #f5f2ed;
+        border: 1px solid #e5e7eb;
+        border-radius: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .comparison-card:hover {
+        background: #efeae5;
+        border: 2px solid var(--color-accent);
+      }
+
+      .comparison-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+
+      .before-image,
+      .after-image {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-bg-primary);
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .before-image {
+        background: #d1d5db;
+      }
+
+      .after-image {
+        background: #e5e7eb;
+      }
+
+      .comparison-content {
+        padding: 24px;
+      }
+
+      .comparison-eyebrow {
+        color: var(--color-accent);
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+
+      .comparison-title {
+        color: var(--color-bg-primary);
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        line-height: 1.3;
+      }
+
+      .comparison-description {
+        color: var(--color-bg-primary);
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
       .comparison-stats {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
       }
-    }
-  </style>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Z0F0X2TWW4');
-  </script>
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1273059444474707');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
-  /></noscript>
+      .stat {
+        text-align: center;
+        padding: 16px;
+        background: #efeae5;
+        border: 1px solid #e5e7eb;
+      }
 
-</head>
+      .stat-value {
+        color: var(--color-accent);
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
 
-<body class="portfolio">
-  <!-- Custom Floating Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="brand">
-      <a href="../index.html">
-        <img src="../assets/images/01-02_logo_mark/PNGs/deepnav.no-background.png" alt="Interior Illusions" class="logo">
-      </a>
-    </div>
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu">
-      <div class="hamburger-icon">
-        <div class="line line1"></div>
-        <div class="line line2"></div>
-        <div class="line line3"></div>
+      .stat-label {
+        text-decoration: underline;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav {
+          padding: 0 20px;
+          height: 70px;
+        }
+        .nav .links {
+          gap: 20px;
+        }
+        .nav .links a {
+          font-size: 14px;
+          padding: 6px 12px;
+        }
+        .page-hero {
+          padding: 100px 20px 60px;
+        }
+        .page-content {
+          padding: 60px 20px;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          padding: 0 20px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          margin-bottom: 40px;
+        }
+        .footer-legal {
+          flex-direction: column;
+          text-align: center;
+          gap: 16px;
+        }
+      }
+
+      /* Custom Floating Cursor */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(147, 197, 253, 0.6); /* Azure - semi-transparent */
+        border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .cursor-follower {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(147, 197, 253, 0.3); /* Azure */
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        background: rgba(147, 197, 253, 0.1); /* Azure */
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      /* Cursor hover states */
+      body.cursor-hover .cursor {
+        transform: scale(1.5);
+        background: rgba(147, 197, 253, 0.3); /* Azure - very transparent */
+        border: 2px solid rgba(147, 197, 253, 1); /* Solid Azure border */
+        box-shadow:
+          0 0 15px rgba(147, 197, 253, 0.8),
+          0 0 30px rgba(147, 197, 253, 0.4); /* Bright glow */
+        animation: cursorShine 0.6s ease-out;
+      }
+
+      body.cursor-hover .cursor-follower {
+        transform: translate(-50%, -50%) scale(1.5);
+        border-color: rgba(147, 197, 253, 0.6); /* Azure */
+        background: rgba(147, 197, 253, 0.05); /* Azure */
+      }
+
+      /* Cursor shine animation */
+      @keyframes cursorShine {
+        0% {
+          box-shadow:
+            0 0 15px rgba(147, 197, 253, 0.8),
+            0 0 30px rgba(147, 197, 253, 0.4);
+        }
+        50% {
+          box-shadow:
+            0 0 25px rgba(147, 197, 253, 1),
+            0 0 50px rgba(147, 197, 253, 0.6);
+        }
+        100% {
+          box-shadow:
+            0 0 15px rgba(147, 197, 253, 0.8),
+            0 0 30px rgba(147, 197, 253, 0.4);
+        }
+      }
+
+      /* Special cursor for clickable elements */
+      body.cursor-click .cursor {
+        transform: scale(0.8);
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      body.cursor-click .cursor-follower {
+        transform: translate(-50%, -50%) scale(2);
+        border-color: rgba(0, 0, 0, 0.4);
+        background: transparent;
+      }
+
+      /* Text cursor effect */
+      body.cursor-text .cursor {
+        transform: scaleX(0.3) scaleY(1.5);
+        background: rgba(147, 197, 253, 0.4); /* Azure - transparent */
+        border: 1px solid rgba(147, 197, 253, 0.9); /* Azure border */
+        border-radius: 2px;
+      }
+
+      body.cursor-text .cursor-follower {
+        opacity: 0;
+      }
+
+      /* Gallery hover effect */
+      body.cursor-view .cursor {
+        transform: scale(2);
+        background: rgba(147, 197, 253, 0.2); /* Azure - very transparent */
+        border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
+      }
+
+      body.cursor-view .cursor-follower {
+        transform: translate(-50%, -50%) scale(2.5);
+        border-color: rgba(147, 197, 253, 0.6); /* Azure */
+      }
+
+      body.cursor-view .cursor::after {
+        content: "VIEW";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 10px;
+        font-weight: 600;
+        color: rgba(147, 197, 253, 1); /* Azure */
+        letter-spacing: 0.5px;
+      }
+
+      /* Hide default cursor */
+      * {
+        cursor: none !important;
+      }
+
+      /* Responsive - hide custom cursor on touch devices */
+      @media (max-width: 768px) {
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+
+        .nav .links {
+          gap: 20px;
+        }
+
+        .comparison-stats {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+      }
+    </style>
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0F0X2TWW4");
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1273059444474707");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+    /></noscript>
+  </head>
+
+  <body class="portfolio">
+    <!-- Custom Floating Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="brand">
+        <a href="../index.html">
+          <img
+            src="../assets/images/01-02_logo_mark/PNGs/deepnav.no-background.png"
+            alt="Interior Illusions"
+            class="logo"
+          />
+        </a>
       </div>
-      <div class="mobile-overlay">
-        <nav class="mobile-nav">
-          <a href="../about.html" class="mobile-link">About</a>
-          <a href="../services/interior-design.html" class="mobile-link">Services</a>
-          <a href="../our-process.html" class="mobile-link">Our Process</a>
-          <a href="../contact/get-quote.html" class="mobile-link">Contact</a>
-        </nav>
+      <!-- Hamburger Menu -->
+      <div class="hamburger-menu">
+        <div class="hamburger-icon">
+          <div class="line line1"></div>
+          <div class="line line2"></div>
+          <div class="line line3"></div>
+        </div>
+        <div class="mobile-overlay">
+          <nav class="mobile-nav">
+            <a href="../about.html" class="mobile-link">About</a>
+            <a href="../services/interior-design.html" class="mobile-link"
+              >Services</a
+            >
+            <a href="../our-process.html" class="mobile-link">Our Process</a>
+            <a href="../contact/get-quote.html" class="mobile-link">Contact</a>
+          </nav>
+        </div>
       </div>
-    </div>
-    <div class="links">
-      <a href="../our-process.html">Our Process</a>
-      <a href="../services/interior-design.html">Services</a>
-      <a href="../about.html">About</a>
-      <a href="../contact/get-quote.html">Contact</a>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
-  <main class="main">
-    <div class="container">
-      <!-- Page Header -->
-      <header class="page-header">
-        <h1 class="page-title">Before & After Gallery</h1>
-        <p class="page-subtitle">Witness the dramatic transformations we create</p>
-      </header>
-
-      <!-- Gallery Grid -->
-      <div class="gallery-grid">
-        <article class="comparison-card">
-          <div class="comparison-images">
-            <div class="before-image">BEFORE</div>
-            <div class="after-image">AFTER</div>
-          </div>
-          <div class="comparison-content">
-            <div class="comparison-eyebrow">Living Room</div>
-            <h2 class="comparison-title">Modern Family Space</h2>
-            <p class="comparison-description">Complete transformation from outdated to contemporary, featuring new furniture, lighting, and color palette.</p>
-            <div class="comparison-stats">
-              <div class="stat">
-                <div class="stat-value">6 weeks</div>
-                <div class="stat-label">Timeline</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value">$25K</div>
-                <div class="stat-label">Investment</div>
-              </div>
-            </div>
-            <a href="#" class="comparison-link">View Full Project →</a>
-          </div>
-        </article>
-
-        <article class="comparison-card">
-          <div class="comparison-images">
-            <div class="before-image">BEFORE</div>
-            <div class="after-image">AFTER</div>
-          </div>
-          <div class="comparison-content">
-            <div class="comparison-eyebrow">Kitchen</div>
-            <h2 class="comparison-title">Culinary Haven</h2>
-            <p class="comparison-description">Full kitchen renovation with custom cabinetry, premium appliances, and optimized workflow design.</p>
-            <div class="comparison-stats">
-              <div class="stat">
-                <div class="stat-value">10 weeks</div>
-                <div class="stat-label">Timeline</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value">$45K</div>
-                <div class="stat-label">Investment</div>
-              </div>
-            </div>
-            <a href="#" class="comparison-link">View Full Project →</a>
-          </div>
-        </article>
-
-        <article class="comparison-card">
-          <div class="comparison-images">
-            <div class="before-image">BEFORE</div>
-            <div class="after-image">AFTER</div>
-          </div>
-          <div class="comparison-content">
-            <div class="comparison-eyebrow">Master Bedroom</div>
-            <h2 class="comparison-title">Luxury Retreat</h2>
-            <p class="comparison-description">Transformed into a serene sanctuary with custom built-ins, premium textiles, and ambient lighting.</p>
-            <div class="comparison-stats">
-              <div class="stat">
-                <div class="stat-value">4 weeks</div>
-                <div class="stat-label">Timeline</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value">$18K</div>
-                <div class="stat-label">Investment</div>
-              </div>
-            </div>
-            <a href="#" class="comparison-link">View Full Project →</a>
-          </div>
-        </article>
-
-        <article class="comparison-card">
-          <div class="comparison-images">
-            <div class="before-image">BEFORE</div>
-            <div class="after-image">AFTER</div>
-          </div>
-          <div class="comparison-content">
-            <div class="comparison-eyebrow">Home Office</div>
-            <h2 class="comparison-title">Productive Workspace</h2>
-            <p class="comparison-description">Created an inspiring work environment with ergonomic furniture, smart storage, and natural lighting.</p>
-            <div class="comparison-stats">
-              <div class="stat">
-                <div class="stat-value">3 weeks</div>
-                <div class="stat-label">Timeline</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value">$12K</div>
-                <div class="stat-label">Investment</div>
-              </div>
-            </div>
-            <a href="#" class="comparison-link">View Full Project →</a>
-          </div>
-        </article>
+      <div class="links">
+        <a href="../our-process.html">Our Process</a>
+        <a href="../services/interior-design.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../contact/get-quote.html">Contact</a>
       </div>
-    </div>
-  </main>
-  <script>
-    // Custom Floating Cursor
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    let mouseX = 0;
-    let mouseY = 0;
-    let followerX = 0;
-    let followerY = 0;
+    </nav>
 
-    // Update cursor position with smooth interpolation
-    let cursorX = 0;
-    let cursorY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-    
-    // Smooth cursor animation
-    function animateCursor() {
-      const ease = 0.2; // Smooth easing for main cursor
-      cursorX += (mouseX - cursorX) * ease;
-      cursorY += (mouseY - cursorY) * ease;
-      
-      // Use transform for better performance
-      cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-      
-      requestAnimationFrame(animateCursor);
-    }
-    
-    // Smooth follower animation
-    function animateFollower() {
-      const ease = 0.1; // Slower easing for follower
-      followerX += (mouseX - followerX) * ease;
-      followerY += (mouseY - followerY) * ease;
-      
-      // Use transform for better performance
-      cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
-      
-      requestAnimationFrame(animateFollower);
-    }
-    
-    animateCursor();
-    animateFollower();
-    
-    // Interactive elements
-    const hoverElements = document.querySelectorAll('a, button, .btn, .gallery-item');
-    const clickableElements = document.querySelectorAll('a, button, .btn');
-    const textElements = document.querySelectorAll('input, textarea, p, h1, h2, h3, h4, h5, h6');
-    const viewElements = document.querySelectorAll('.gallery-item img');
-    
-    // Hover effects
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-hover');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-hover');
-      });
-    });
+    <!-- Main Content -->
+    <main class="main">
+      <div class="container">
+        <!-- Page Header -->
+        <header class="page-header">
+          <h1 class="page-title">Before & After Gallery</h1>
+          <p class="page-subtitle">
+            Witness the dramatic transformations we create
+          </p>
+        </header>
 
-    // Click effects
-    clickableElements.forEach(el => {
-      el.addEventListener('mousedown', () => {
-        document.body.classList.add('cursor-click');
-      });
-      el.addEventListener('mouseup', () => {
-        document.body.classList.remove('cursor-click');
-      });
-    });
+        <!-- Gallery Grid -->
+        <div class="gallery-grid">
+          <article class="comparison-card">
+            <div class="comparison-images">
+              <div class="before-image">BEFORE</div>
+              <div class="after-image">AFTER</div>
+            </div>
+            <div class="comparison-content">
+              <div class="comparison-eyebrow">Living Room</div>
+              <h2 class="comparison-title">Modern Family Space</h2>
+              <p class="comparison-description">
+                Complete transformation from outdated to contemporary, featuring
+                new furniture, lighting, and color palette.
+              </p>
+              <div class="comparison-stats">
+                <div class="stat">
+                  <div class="stat-value">6 weeks</div>
+                  <div class="stat-label">Timeline</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">$25K</div>
+                  <div class="stat-label">Investment</div>
+                </div>
+              </div>
+              <a href="#" class="comparison-link">View Full Project →</a>
+            </div>
+          </article>
 
-    // Text cursor
-    textElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-text');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-text');
-      });
-    });
+          <article class="comparison-card">
+            <div class="comparison-images">
+              <div class="before-image">BEFORE</div>
+              <div class="after-image">AFTER</div>
+            </div>
+            <div class="comparison-content">
+              <div class="comparison-eyebrow">Kitchen</div>
+              <h2 class="comparison-title">Culinary Haven</h2>
+              <p class="comparison-description">
+                Full kitchen renovation with custom cabinetry, premium
+                appliances, and optimized workflow design.
+              </p>
+              <div class="comparison-stats">
+                <div class="stat">
+                  <div class="stat-value">10 weeks</div>
+                  <div class="stat-label">Timeline</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">$45K</div>
+                  <div class="stat-label">Investment</div>
+                </div>
+              </div>
+              <a href="#" class="comparison-link">View Full Project →</a>
+            </div>
+          </article>
 
-    // Gallery view effect
-    viewElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-view');
+          <article class="comparison-card">
+            <div class="comparison-images">
+              <div class="before-image">BEFORE</div>
+              <div class="after-image">AFTER</div>
+            </div>
+            <div class="comparison-content">
+              <div class="comparison-eyebrow">Master Bedroom</div>
+              <h2 class="comparison-title">Luxury Retreat</h2>
+              <p class="comparison-description">
+                Transformed into a serene sanctuary with custom built-ins,
+                premium textiles, and ambient lighting.
+              </p>
+              <div class="comparison-stats">
+                <div class="stat">
+                  <div class="stat-value">4 weeks</div>
+                  <div class="stat-label">Timeline</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">$18K</div>
+                  <div class="stat-label">Investment</div>
+                </div>
+              </div>
+              <a href="#" class="comparison-link">View Full Project →</a>
+            </div>
+          </article>
+
+          <article class="comparison-card">
+            <div class="comparison-images">
+              <div class="before-image">BEFORE</div>
+              <div class="after-image">AFTER</div>
+            </div>
+            <div class="comparison-content">
+              <div class="comparison-eyebrow">Home Office</div>
+              <h2 class="comparison-title">Productive Workspace</h2>
+              <p class="comparison-description">
+                Created an inspiring work environment with ergonomic furniture,
+                smart storage, and natural lighting.
+              </p>
+              <div class="comparison-stats">
+                <div class="stat">
+                  <div class="stat-value">3 weeks</div>
+                  <div class="stat-label">Timeline</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">$12K</div>
+                  <div class="stat-label">Investment</div>
+                </div>
+              </div>
+              <a href="#" class="comparison-link">View Full Project →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+    <script>
+      // Custom Floating Cursor
+      const cursor = document.querySelector(".cursor");
+      const cursorFollower = document.querySelector(".cursor-follower");
+      let mouseX = 0;
+      let mouseY = 0;
+      let followerX = 0;
+      let followerY = 0;
+
+      // Update cursor position with smooth interpolation
+      let cursorX = 0;
+      let cursorY = 0;
+
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
       });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-view');
+
+      // Smooth cursor animation
+      function animateCursor() {
+        const ease = 0.2; // Smooth easing for main cursor
+        cursorX += (mouseX - cursorX) * ease;
+        cursorY += (mouseY - cursorY) * ease;
+
+        // Use transform for better performance
+        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+
+        requestAnimationFrame(animateCursor);
+      }
+
+      // Smooth follower animation
+      function animateFollower() {
+        const ease = 0.1; // Slower easing for follower
+        followerX += (mouseX - followerX) * ease;
+        followerY += (mouseY - followerY) * ease;
+
+        // Use transform for better performance
+        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+
+        requestAnimationFrame(animateFollower);
+      }
+
+      animateCursor();
+      animateFollower();
+
+      // Interactive elements
+      const hoverElements = document.querySelectorAll(
+        "a, button, .btn, .gallery-item",
+      );
+      const clickableElements = document.querySelectorAll("a, button, .btn");
+      const textElements = document.querySelectorAll(
+        "input, textarea, p, h1, h2, h3, h4, h5, h6",
+      );
+      const viewElements = document.querySelectorAll(".gallery-item img");
+
+      // Hover effects
+      hoverElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-hover");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-hover");
+        });
       });
-    });
 
-    // Hide cursor when it leaves the window
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-      cursorFollower.style.opacity = '0';
-    });
-
-    document.addEventListener('mouseenter', () => {
-      cursor.style.opacity = '1';
-      cursorFollower.style.opacity = '1';
-    });
-    
-    // Hamburger Menu Functionality
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const mobileOverlay = document.querySelector('.mobile-overlay');
-    const mobileDropdownSection = document.querySelector('.mobile-dropdown-section');
-    const mobileDropdownBtn = document.querySelector('.mobile-dropdown-btn');
-    const mobileDropdownContent = document.querySelector('.mobile-dropdown-content');
-    const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-sublink');
-
-    // Toggle hamburger menu
-    if (hamburgerMenu) {
-      hamburgerMenu.addEventListener('click', function(e) {
-        e.stopPropagation();
-        hamburgerMenu.classList.toggle('active');
-        document.body.style.overflow = hamburgerMenu.classList.contains('active') ? 'hidden' : 'auto';
+      // Click effects
+      clickableElements.forEach((el) => {
+        el.addEventListener("mousedown", () => {
+          document.body.classList.add("cursor-click");
+        });
+        el.addEventListener("mouseup", () => {
+          document.body.classList.remove("cursor-click");
+        });
       });
-    }
 
-    // Close menu when clicking on overlay
-    if (mobileOverlay) {
-      mobileOverlay.addEventListener('click', function(e) {
-        if (e.target === mobileOverlay) {
-          hamburgerMenu.classList.remove('active');
-          document.body.style.overflow = 'auto';
+      // Text cursor
+      textElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-text");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-text");
+        });
+      });
+
+      // Gallery view effect
+      viewElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-view");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-view");
+        });
+      });
+
+      // Hide cursor when it leaves the window
+      document.addEventListener("mouseleave", () => {
+        cursor.style.opacity = "0";
+        cursorFollower.style.opacity = "0";
+      });
+
+      document.addEventListener("mouseenter", () => {
+        cursor.style.opacity = "1";
+        cursorFollower.style.opacity = "1";
+      });
+
+      // Hamburger Menu Functionality
+      const hamburgerMenu = document.querySelector(".hamburger-menu");
+      const mobileOverlay = document.querySelector(".mobile-overlay");
+      const mobileDropdownSection = document.querySelector(
+        ".mobile-dropdown-section",
+      );
+      const mobileDropdownBtn = document.querySelector(".mobile-dropdown-btn");
+      const mobileDropdownContent = document.querySelector(
+        ".mobile-dropdown-content",
+      );
+      const mobileLinks = document.querySelectorAll(
+        ".mobile-link, .mobile-sublink",
+      );
+
+      // Toggle hamburger menu
+      if (hamburgerMenu) {
+        hamburgerMenu.addEventListener("click", function (e) {
+          e.stopPropagation();
+          hamburgerMenu.classList.toggle("active");
+          document.body.style.overflow = hamburgerMenu.classList.contains(
+            "active",
+          )
+            ? "hidden"
+            : "auto";
+        });
+      }
+
+      // Close menu when clicking on overlay
+      if (mobileOverlay) {
+        mobileOverlay.addEventListener("click", function (e) {
+          if (e.target === mobileOverlay) {
+            hamburgerMenu.classList.remove("active");
+            document.body.style.overflow = "auto";
+          }
+        });
+      }
+
+      // Mobile dropdown toggle
+      if (mobileDropdownBtn) {
+        mobileDropdownBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          mobileDropdownSection.classList.toggle("active");
+        });
+      }
+
+      // Close menu when clicking on links
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          hamburgerMenu.classList.remove("active");
+          document.body.style.overflow = "auto";
+        });
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", function (e) {
+        if (
+          e.key === "Escape" &&
+          hamburgerMenu &&
+          hamburgerMenu.classList.contains("active")
+        ) {
+          hamburgerMenu.classList.remove("active");
+          document.body.style.overflow = "auto";
         }
       });
-    }
-
-    // Mobile dropdown toggle
-    if (mobileDropdownBtn) {
-      mobileDropdownBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        mobileDropdownSection.classList.toggle('active');
-      });
-    }
-
-    // Close menu when clicking on links
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        hamburgerMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      });
-    });
-
-    // Handle escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && hamburgerMenu && hamburgerMenu.classList.contains('active')) {
-        hamburgerMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    });
-  </script>
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-grid">
-        <!-- Company Info -->
-        <div class="footer-section">
-          <div class="footer-logo">
-            <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" style="height: 120px; width: auto;" />
+    </script>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-grid">
+          <!-- Company Info -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img
+                src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+                alt="Interior Illusions Logo"
+                style="height: 120px; width: auto"
+              />
+            </div>
+            <p class="footer-description">
+              Specialists in providing luxury interior finishes in residential &
+              commercial projects. Remodels & New Construction.
+            </p>
+            <div class="footer-social">
+              <a
+                href="https://instagram.com/interior_illusions_llc"
+                target="_blank"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F"
+                target="_blank"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="mailto:interiorillusionsllc@outlook.com"
+                aria-label="Email"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
           </div>
-          <p class="footer-description">Specialists in providing luxury interior finishes in residential & commercial projects. Remodels & New Construction.</p>
-          <div class="footer-social">
-            <a href="https://instagram.com/interior_illusions_llc" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="mailto:interiorillusionsllc@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+
+          <!-- Services -->
+          <div class="footer-section">
+            <h3 class="footer-label">Services</h3>
+            <h4 class="footer-heading">What We Do</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="../services/full-home-remodels.html"
+                  >Full home remodels</a
+                >
+              </li>
+              <li><a href="../services/kitchens.html">Kitchens</a></li>
+              <li><a href="../services/bathrooms.html">Bathrooms</a></li>
+              <li><a href="../services/flooring.html">Flooring</a></li>
+              <li>
+                <a href="../services/general-construction.html"
+                  >General construction and framing</a
+                >
+              </li>
+              <li>
+                <a href="../services/custom-cabinetry.html"
+                  >Custom cabinetry and millwork</a
+                >
+              </li>
+              <li>
+                <a href="../services/painting-finishes.html"
+                  >Interior painting</a
+                >
+              </li>
+              <li>
+                <a href="../services/selective-demolition.html">Demolition</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Portfolio -->
+          <div class="footer-section">
+            <h3 class="footer-label">Portfolio</h3>
+            <h4 class="footer-heading">Our Work</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="residential-projects.html">Residential Projects</a>
+              </li>
+              <li>
+                <a href="commercial-projects.html">Commercial Projects</a>
+              </li>
+              <li>
+                <a href="before-after-gallery.html">Before & After Gallery</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer-section">
+            <h3 class="footer-label">Contact</h3>
+            <h4 class="footer-heading">Get In Touch</h4>
+            <ul class="footer-links">
+              <li><strong>Dallas, TX, United States</strong></li>
+              <li><a href="tel:+19723704873">(972) 370-4873</a></li>
+              <li>
+                <a href="mailto:interiorillusionsllc@outlook.com"
+                  >interiorillusionsllc@outlook.com</a
+                >
+              </li>
+              <li>
+                <a href="https://instagram.com/interior_illusions_llc"
+                  >@interior_illusions_llc</a
+                >
+              </li>
+              <li>
+                <strong>Service Area:</strong> DFW Metroplex, North Texas,
+                McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco
+              </li>
+            </ul>
           </div>
         </div>
 
-        <!-- Services -->
-        <div class="footer-section">
-          <h3 class="footer-label">Services</h3>
-          <h4 class="footer-heading">What We Do</h4>
-          <ul class="footer-links">
-            <li><a href="../services/full-home-remodels.html">Full home remodels</a></li>
-            <li><a href="../services/kitchens.html">Kitchens</a></li>
-            <li><a href="../services/bathrooms.html">Bathrooms</a></li>
-            <li><a href="../services/flooring.html">Flooring</a></li>
-            <li><a href="../services/general-construction.html">General construction and framing</a></li>
-            <li><a href="../services/custom-cabinetry.html">Custom cabinetry and millwork</a></li>
-            <li><a href="../services/painting-finishes.html">Interior painting</a></li>
-            <li><a href="../services/selective-demolition.html">Demolition</a></li>
-          </ul>
-        </div>
-
-        <!-- Portfolio -->
-        <div class="footer-section">
-          <h3 class="footer-label">Portfolio</h3>
-          <h4 class="footer-heading">Our Work</h4>
-          <ul class="footer-links">
-            <li><a href="residential-projects.html">Residential Projects</a></li>
-            <li><a href="commercial-projects.html">Commercial Projects</a></li>
-            <li><a href="before-after-gallery.html">Before & After Gallery</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div class="footer-section">
-          <h3 class="footer-label">Contact</h3>
-          <h4 class="footer-heading">Get In Touch</h4>
-          <ul class="footer-links">
-            <li><strong>Dallas, TX, United States</strong></li>
-            <li><a href="tel:+19723704873">(972) 370-4873</a></li>
-            <li><a href="mailto:interiorillusionsllc@outlook.com">interiorillusionsllc@outlook.com</a></li>
-            <li><a href="https://instagram.com/interior_illusions_llc">@interior_illusions_llc</a></li>
-            <li><strong>Service Area:</strong> DFW Metroplex, North Texas, McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco</li>
-          </ul>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <p>
+              &copy; 2024 Interior Illusions LLC. All rights reserved.
+              Construction company · Home improvement
+            </p>
+            <div class="footer-legal-links">
+              <a href="#">Privacy Policy</a>
+              <span class="footer-divider">|</span>
+              <a href="#">Terms of Service</a>
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- Footer Bottom -->
-      <div class="footer-bottom">
-        <div class="footer-legal">
-          <p>&copy; 2024 Interior Illusions LLC. All rights reserved. Construction company · Home improvement</p>
-          <div class="footer-legal-links">
-            <a href="#">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-<script src="../assets/js/nav-active.js"></script>
-</body>
+    </footer>
+    <script src="../assets/js/nav-active.js"></script>
+  </body>
 </html>

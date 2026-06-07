@@ -1,227 +1,495 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Service Request - Interior Illusions</title>
-  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <style>
-    :root{--bg:#0B0E14;--head:#E7EAEE;--body:#A3AAB4;--accent:#93C5FD;--action:#1D4ED8}
-    html,body{margin:0;background:var(--bg);color:var(--body);font-family:'Satoshi','Inter',system-ui,-apple-system,sans-serif}
-    .wrap{max-width:1000px;margin:0 auto;padding:120px 20px 40px}
-    h1{color:var(--head);margin:0 0 8px}
-    .lead{color:var(--accent);margin:0 0 24px}
-    .card{background:rgba(255,255,255,.02);border:1px solid rgba(147,197,253,.12);border-radius:8px;padding:24px}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .group{margin-bottom:16px}
-    label{display:block;color:var(--head);font-weight:600;margin-bottom:6px;font-size:14px}
-    input,select,textarea{width:100%;padding:12px 14px;border:2px solid rgba(147,197,253,.2);border-radius:8px;background:rgba(255,255,255,.05);color:var(--head);box-sizing:border-box}
-    textarea{min-height:120px;resize:vertical}
-    .btn{background:var(--action);color:#fff;border:none;border-radius:8px;padding:12px 18px;font-weight:700;cursor:pointer}
-    .meta{font-size:13px;color:var(--body);margin-top:8px}
-    .ok{display:none;margin-top:12px;color:var(--accent);font-weight:700}
-    /* Custom Floating Cursor (azure) */
-    .cursor { position: fixed; width: 20px; height: 20px; background: rgba(147, 197, 253, 0.6); border: 2px solid rgba(147, 197, 253, 0.8); border-radius: 50%; pointer-events: none; z-index: 9999; transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .cursor-follower { position: fixed; width: 40px; height: 40px; border: 2px solid rgba(147, 197, 253, 0.3); border-radius: 50%; pointer-events: none; z-index: 9998; background: rgba(147, 197, 253, 0.1); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    body.cursor-hover .cursor { transform: scale(1.5); background: rgba(147, 197, 253, 0.3); border: 2px solid rgba(147, 197, 253, 1); box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4); }
-    body.cursor-click .cursor { transform: scale(0.8); background: rgba(0,0,0,0.8); }
-    body.cursor-text .cursor { transform: scaleX(0.3) scaleY(1.5); background: rgba(147,197,253,0.4); border: 1px solid rgba(147,197,253,0.9); border-radius: 2px; }
-    body.cursor-view .cursor { transform: scale(2); background: rgba(147, 197, 253, 0.2); border: 2px solid rgba(147, 197, 253, 0.8); }
-    * { cursor: none !important; }
-    @media (max-width: 768px) { .cursor, .cursor-follower { display: none; } * { cursor: auto !important; } }
-    .topbar{position:fixed;inset:0 0 auto 0;height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:#0B0E14;z-index:30}
-    .topbar img{height:200px}
-    .links a{color:var(--head);text-decoration:none;margin-left:16px;font-size:14px;padding:8px 14px;border-radius:12px;transition:all .25s ease}
-    .links a:hover{background:var(--action);color:#fff}
-    @media(max-width:768px){.topbar img{height:60px}}
-    @media(max-width:720px){.row{grid-template-columns:1fr}.wrap{padding-top:100px}}
-  </style>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Z0F0X2TWW4');
-  </script>
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1273059444474707');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
-  /></noscript>
-
-</head>
-<body>
-  <!-- Custom Floating Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-  <header class="topbar">
-    <a href="../index.html"><img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions" /></a>
-    <nav class="links">
-      <a href="../our-process.html#postcare">Post-Project Care</a>
-      <a href="get-quote.html">Get Quote</a>
-    </nav>
-  </header>
-
-  <main class="wrap">
-    <h1>Service Request</h1>
-    <p class="lead">Report an issue or request aftercare service for your completed project. We’ll respond within 2 business days.</p>
-
-    <form id="serviceForm" class="card" method="POST" action="https://formsubmit.co/interiorillusionsllc@outlook.com">
-      <!-- FormSubmit configuration -->
-      <input type="hidden" name="_subject" value="New Service Request - Interior Illusions" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="thank-you.html" />
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-      <div class="row">
-        <div class="group">
-          <label for="firstName">First Name *</label>
-          <input id="firstName" name="firstName" required />
-        </div>
-        <div class="group">
-          <label for="lastName">Last Name *</label>
-          <input id="lastName" name="lastName" required />
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="group">
-          <label for="email">Email *</label>
-          <input id="email" name="email" type="email" required />
-        </div>
-        <div class="group">
-          <label for="phone">Phone</label>
-          <input id="phone" name="phone" type="tel" />
-        </div>
-      </div>
-
-      <div class="group">
-        <label for="address">Project Address *</label>
-        <input id="address" name="address" placeholder="Street, City, State, ZIP" required />
-      </div>
-
-      <div class="row">
-        <div class="group">
-          <label for="issueType">Issue Type *</label>
-          <select id="issueType" name="issueType" required>
-            <option value="">Select</option>
-            <option>Paint/Finish</option>
-            <option>Cabinetry/Hardware</option>
-            <option>Plumbing Fixture</option>
-            <option>Electrical/Lighting</option>
-            <option>Flooring/Tile</option>
-            <option>Appliance</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="group">
-          <label for="completed">Completion Date (approx.)</label>
-          <input id="completed" name="completed" type="date" />
-        </div>
-      </div>
-
-      <div class="group">
-        <label for="details">Issue Details *</label>
-        <textarea id="details" name="details" placeholder="Where is the issue, when did it start, any steps to reproduce?" required></textarea>
-      </div>
-
-      <div class="group">
-        <label for="photos">Photos (optional)</label>
-        <input id="photos" name="photos" type="file" accept="image/*" multiple />
-        <div class="meta">Up to 10 images. Clear photos help us resolve issues faster.</div>
-      </div>
-
-      <div class="group">
-        <label><input id="consent" type="checkbox" required /> This request relates to work completed by Interior Illusions within the last year.</label>
-      </div>
-
-      <button class="btn" type="submit"><i class="fa-solid fa-screwdriver-wrench"></i> Submit Service Request</button>
-      <div id="ok" class="ok"><i class="fa-solid fa-check"></i> Thank you! Your request was submitted. We’ll contact you within 2 business days.</div>
-      <div class="meta">For emergencies (active leak or hazard), please call us immediately.</div>
-    </form>
-  </main>
-
-  <script>
-    // Show success banner if redirected back with ?success=1
-    (function() {
-      const ok = document.getElementById('ok');
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('success') === '1' && ok) {
-        ok.style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Service Request - Interior Illusions</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/images/06_Favicon/favicon-high.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      :root {
+        --bg: #0b0e14;
+        --head: #e7eaee;
+        --body: #a3aab4;
+        --accent: #93c5fd;
+        --action: #1d4ed8;
       }
-    })();
-  </script>
-  <!-- Custom Floating Cursor JS (mirrors index.html) -->
-  <script>
-    (function() {
-      const cursor = document.querySelector('.cursor');
-      const cursorFollower = document.querySelector('.cursor-follower');
-      if (!cursor || !cursorFollower) return;
-
-      let mouseX = 0, mouseY = 0;
-      let cursorX = 0, cursorY = 0;
-      let followerX = 0, followerY = 0;
-
-      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-
-      function animateCursor() {
-        const ease = 0.2;
-        cursorX += (mouseX - cursorX) * ease;
-        cursorY += (mouseY - cursorY) * ease;
-        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-        requestAnimationFrame(animateCursor);
+      html,
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--body);
+        font-family:
+          "Satoshi",
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
       }
-      function animateFollower() {
-        const ease = 0.15;
-        followerX += (mouseX - followerX) * ease;
-        followerY += (mouseY - followerY) * ease;
-        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
-        requestAnimationFrame(animateFollower);
+      .wrap {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 120px 20px 40px;
       }
-      animateCursor();
-      animateFollower();
+      h1 {
+        color: var(--head);
+        margin: 0 0 8px;
+      }
+      .lead {
+        color: var(--accent);
+        margin: 0 0 24px;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(147, 197, 253, 0.12);
+        border-radius: 8px;
+        padding: 24px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .group {
+        margin-bottom: 16px;
+      }
+      label {
+        display: block;
+        color: var(--head);
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 2px solid rgba(147, 197, 253, 0.2);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--head);
+        box-sizing: border-box;
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .btn {
+        background: var(--action);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 18px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .meta {
+        font-size: 13px;
+        color: var(--body);
+        margin-top: 8px;
+      }
+      .ok {
+        display: none;
+        margin-top: 12px;
+        color: var(--accent);
+        font-weight: 700;
+      }
+      /* Custom Floating Cursor (azure) */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(147, 197, 253, 0.6);
+        border: 2px solid rgba(147, 197, 253, 0.8);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .cursor-follower {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(147, 197, 253, 0.3);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        background: rgba(147, 197, 253, 0.1);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      body.cursor-hover .cursor {
+        transform: scale(1.5);
+        background: rgba(147, 197, 253, 0.3);
+        border: 2px solid rgba(147, 197, 253, 1);
+        box-shadow:
+          0 0 15px rgba(147, 197, 253, 0.8),
+          0 0 30px rgba(147, 197, 253, 0.4);
+      }
+      body.cursor-click .cursor {
+        transform: scale(0.8);
+        background: rgba(0, 0, 0, 0.8);
+      }
+      body.cursor-text .cursor {
+        transform: scaleX(0.3) scaleY(1.5);
+        background: rgba(147, 197, 253, 0.4);
+        border: 1px solid rgba(147, 197, 253, 0.9);
+        border-radius: 2px;
+      }
+      body.cursor-view .cursor {
+        transform: scale(2);
+        background: rgba(147, 197, 253, 0.2);
+        border: 2px solid rgba(147, 197, 253, 0.8);
+      }
+      * {
+        cursor: none !important;
+      }
+      @media (max-width: 768px) {
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+        * {
+          cursor: auto !important;
+        }
+      }
+      .topbar {
+        position: fixed;
+        inset: 0 0 auto 0;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        background: #0b0e14;
+        z-index: 30;
+      }
+      .topbar img {
+        height: 200px;
+      }
+      .links a {
+        color: var(--head);
+        text-decoration: none;
+        margin-left: 16px;
+        font-size: 14px;
+        padding: 8px 14px;
+        border-radius: 12px;
+        transition: all 0.25s ease;
+      }
+      .links a:hover {
+        background: var(--action);
+        color: #fff;
+      }
+      @media (max-width: 768px) {
+        .topbar img {
+          height: 60px;
+        }
+      }
+      @media (max-width: 720px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+        .wrap {
+          padding-top: 100px;
+        }
+      }
+    </style>
 
-      const hoverElements = document.querySelectorAll('a, button, .service-card, .gallery-item');
-      const textElements = document.querySelectorAll('h1, h2, h3, p, span');
-      const clickableElements = document.querySelectorAll('button, .btn');
-      const viewElements = document.querySelectorAll('.gallery-item');
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0F0X2TWW4");
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1273059444474707");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+    /></noscript>
+  </head>
+  <body>
+    <!-- Custom Floating Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <header class="topbar">
+      <a href="../index.html"
+        ><img
+          src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+          alt="Interior Illusions"
+      /></a>
+      <nav class="links">
+        <a href="../our-process.html#postcare">Post-Project Care</a>
+        <a href="get-quote.html">Get Quote</a>
+      </nav>
+    </header>
 
-      hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-      });
-      clickableElements.forEach(el => {
-        el.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
-        el.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
-      });
-      textElements.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text'));
-      });
-      viewElements.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-view'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-view'));
-      });
+    <main class="wrap">
+      <h1>Service Request</h1>
+      <p class="lead">
+        Report an issue or request aftercare service for your completed project.
+        We’ll respond within 2 business days.
+      </p>
 
-      document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; cursorFollower.style.opacity = '0'; });
-      document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; cursorFollower.style.opacity = '1'; });
-    })();
-  </script>
-</body>
+      <form
+        id="serviceForm"
+        class="card"
+        method="POST"
+        action="https://formsubmit.co/interiorillusionsllc@outlook.com"
+      >
+        <!-- FormSubmit configuration -->
+        <input
+          type="hidden"
+          name="_subject"
+          value="New Service Request - Interior Illusions"
+        />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="thank-you.html" />
+        <input
+          type="text"
+          name="_honey"
+          style="display: none"
+          tabindex="-1"
+          autocomplete="off"
+        />
+        <div class="row">
+          <div class="group">
+            <label for="firstName">First Name *</label>
+            <input id="firstName" name="firstName" required />
+          </div>
+          <div class="group">
+            <label for="lastName">Last Name *</label>
+            <input id="lastName" name="lastName" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="group">
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+          <div class="group">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" />
+          </div>
+        </div>
+
+        <div class="group">
+          <label for="address">Project Address *</label>
+          <input
+            id="address"
+            name="address"
+            placeholder="Street, City, State, ZIP"
+            required
+          />
+        </div>
+
+        <div class="row">
+          <div class="group">
+            <label for="issueType">Issue Type *</label>
+            <select id="issueType" name="issueType" required>
+              <option value="">Select</option>
+              <option>Paint/Finish</option>
+              <option>Cabinetry/Hardware</option>
+              <option>Plumbing Fixture</option>
+              <option>Electrical/Lighting</option>
+              <option>Flooring/Tile</option>
+              <option>Appliance</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="group">
+            <label for="completed">Completion Date (approx.)</label>
+            <input id="completed" name="completed" type="date" />
+          </div>
+        </div>
+
+        <div class="group">
+          <label for="details">Issue Details *</label>
+          <textarea
+            id="details"
+            name="details"
+            placeholder="Where is the issue, when did it start, any steps to reproduce?"
+            required
+          ></textarea>
+        </div>
+
+        <div class="group">
+          <label for="photos">Photos (optional)</label>
+          <input
+            id="photos"
+            name="photos"
+            type="file"
+            accept="image/*"
+            multiple
+          />
+          <div class="meta">
+            Up to 10 images. Clear photos help us resolve issues faster.
+          </div>
+        </div>
+
+        <div class="group">
+          <label
+            ><input id="consent" type="checkbox" required /> This request
+            relates to work completed by Interior Illusions within the last
+            year.</label
+          >
+        </div>
+
+        <button class="btn" type="submit">
+          <i class="fa-solid fa-screwdriver-wrench"></i> Submit Service Request
+        </button>
+        <div id="ok" class="ok">
+          <i class="fa-solid fa-check"></i> Thank you! Your request was
+          submitted. We’ll contact you within 2 business days.
+        </div>
+        <div class="meta">
+          For emergencies (active leak or hazard), please call us immediately.
+        </div>
+      </form>
+    </main>
+
+    <script>
+      // Show success banner if redirected back with ?success=1
+      (function () {
+        const ok = document.getElementById("ok");
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("success") === "1" && ok) {
+          ok.style.display = "block";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      })();
+    </script>
+    <!-- Custom Floating Cursor JS (mirrors index.html) -->
+    <script>
+      (function () {
+        const cursor = document.querySelector(".cursor");
+        const cursorFollower = document.querySelector(".cursor-follower");
+        if (!cursor || !cursorFollower) return;
+
+        let mouseX = 0,
+          mouseY = 0;
+        let cursorX = 0,
+          cursorY = 0;
+        let followerX = 0,
+          followerY = 0;
+
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+          const ease = 0.2;
+          cursorX += (mouseX - cursorX) * ease;
+          cursorY += (mouseY - cursorY) * ease;
+          cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+          requestAnimationFrame(animateCursor);
+        }
+        function animateFollower() {
+          const ease = 0.15;
+          followerX += (mouseX - followerX) * ease;
+          followerY += (mouseY - followerY) * ease;
+          cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+          requestAnimationFrame(animateFollower);
+        }
+        animateCursor();
+        animateFollower();
+
+        const hoverElements = document.querySelectorAll(
+          "a, button, .service-card, .gallery-item",
+        );
+        const textElements = document.querySelectorAll("h1, h2, h3, p, span");
+        const clickableElements = document.querySelectorAll("button, .btn");
+        const viewElements = document.querySelectorAll(".gallery-item");
+
+        hoverElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-hover"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-hover"),
+          );
+        });
+        clickableElements.forEach((el) => {
+          el.addEventListener("mousedown", () =>
+            document.body.classList.add("cursor-click"),
+          );
+          el.addEventListener("mouseup", () =>
+            document.body.classList.remove("cursor-click"),
+          );
+        });
+        textElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-text"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-text"),
+          );
+        });
+        viewElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-view"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-view"),
+          );
+        });
+
+        document.addEventListener("mouseleave", () => {
+          cursor.style.opacity = "0";
+          cursorFollower.style.opacity = "0";
+        });
+        document.addEventListener("mouseenter", () => {
+          cursor.style.opacity = "1";
+          cursorFollower.style.opacity = "1";
+        });
+      })();
+    </script>
+  </body>
 </html>

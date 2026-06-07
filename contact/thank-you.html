@@ -1,136 +1,333 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thank You - Interior Illusions</title>
-  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <style>
-    :root{--bg:#0B0E14;--head:#E7EAEE;--body:#A3AAB4;--accent:#93C5FD;--action:#1D4ED8}
-    html,body{margin:0;background:var(--bg);color:var(--body);font-family:'Satoshi','Inter',system-ui,-apple-system,sans-serif}
-    .topbar{position:fixed;inset:0 0 auto 0;height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:#0B0E14;z-index:30}
-    .topbar img{height:200px}
-    @media(max-width:768px){.topbar img{height:60px}}
-    .links a{color:var(--head);text-decoration:none;margin-left:16px;font-size:14px;padding:8px 14px;border-radius:12px;transition:all .25s ease}
-    .links a:hover{background:var(--action);color:#fff}
-    .wrap{max-width:900px;margin:0 auto;padding:120px 20px 60px;text-align:left}
-    h1{color:var(--head);font-size:clamp(32px,6vw,48px);margin:0 0 10px}
-    p.lead{color:var(--accent);font-size:18px;margin:0 0 20px}
-    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--action);color:#fff;border:none;border-radius:8px;padding:12px 18px;font-weight:700;text-decoration:none}
-    .btn:hover{background:#1E40AF}
-    /* Custom Floating Cursor (azure) */
-    .cursor { position: fixed; width: 20px; height: 20px; background: rgba(147, 197, 253, 0.6); border: 2px solid rgba(147, 197, 253, 0.8); border-radius: 50%; pointer-events: none; z-index: 9999; transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .cursor-follower { position: fixed; width: 40px; height: 40px; border: 2px solid rgba(147, 197, 253, 0.3); border-radius: 50%; pointer-events: none; z-index: 9998; background: rgba(147, 197, 253, 0.1); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    body.cursor-hover .cursor { transform: scale(1.5); background: rgba(147, 197, 253, 0.3); border: 2px solid rgba(147, 197, 253, 1); box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4); }
-    body.cursor-click .cursor { transform: scale(0.8); background: rgba(0,0,0,0.8); }
-    body.cursor-text .cursor { transform: scaleX(0.3) scaleY(1.5); background: rgba(147,197,253,0.4); border: 1px solid rgba(147,197,253,0.9); border-radius: 2px; }
-    body.cursor-view .cursor { transform: scale(2); background: rgba(147, 197, 253, 0.2); border: 2px solid rgba(147, 197, 253, 0.8); }
-    * { cursor: none !important; }
-    @media (max-width: 768px) { .cursor, .cursor-follower { display: none; } * { cursor: auto !important; } }
-  </style>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Z0F0X2TWW4');
-  </script>
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1273059444474707');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
-  /></noscript>
-
-</head>
-<body>
-  <!-- Custom Floating Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-  <header class="topbar">
-    <a href="../index.html"><img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions" /></a>
-    <nav class="links">
-      <a href="../our-process.html#postcare">Post-Project Care</a>
-      <a href="get-quote.html">Get Quote</a>
-    </nav>
-  </header>
-
-  <main class="wrap">
-    <h1>Thank You - We've Received Your Request</h1>
-    <p class="lead">Your request has been successfully submitted. Our team is currently reviewing your details, and one of our specialists will be in touch with you shortly...</p>
-    <p>In the meantime, you can review our <a href="../our-process.html#postcare">Post-Project Care</a> information or contact us if your situation is urgent.</p>
-    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-      <a class="btn" href="../our-process.html#postcare"><i class="fa-solid fa-screwdriver-wrench"></i> Post-Project Care</a>
-      <a class="btn" href="get-quote.html"><i class="fa-solid fa-envelope"></i> Get Quote</a>
-    </div>
-    <div style="margin-top:12px">
-      <a href="service-request.html" style="color: var(--accent); text-decoration: underline; text-underline-offset: 4px;">Back to Service Request</a>
-    </div>
-  </main>
-  <!-- Custom Floating Cursor JS (mirrors index.html) -->
-  <script>
-    (function() {
-      const cursor = document.querySelector('.cursor');
-      const cursorFollower = document.querySelector('.cursor-follower');
-      if (!cursor || !cursorFollower) return;
-
-      let mouseX = 0, mouseY = 0;
-      let cursorX = 0, cursorY = 0;
-      let followerX = 0, followerY = 0;
-
-      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-
-      function animateCursor() {
-        const ease = 0.2;
-        cursorX += (mouseX - cursorX) * ease;
-        cursorY += (mouseY - cursorY) * ease;
-        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-        requestAnimationFrame(animateCursor);
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thank You - Interior Illusions</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/images/06_Favicon/favicon-high.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      :root {
+        --bg: #0b0e14;
+        --head: #e7eaee;
+        --body: #a3aab4;
+        --accent: #93c5fd;
+        --action: #1d4ed8;
       }
-      function animateFollower() {
-        const ease = 0.15;
-        followerX += (mouseX - followerX) * ease;
-        followerY += (mouseY - followerY) * ease;
-        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
-        requestAnimationFrame(animateFollower);
+      html,
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--body);
+        font-family:
+          "Satoshi",
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
       }
-      animateCursor();
-      animateFollower();
+      .topbar {
+        position: fixed;
+        inset: 0 0 auto 0;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        background: #0b0e14;
+        z-index: 30;
+      }
+      .topbar img {
+        height: 200px;
+      }
+      @media (max-width: 768px) {
+        .topbar img {
+          height: 60px;
+        }
+      }
+      .links a {
+        color: var(--head);
+        text-decoration: none;
+        margin-left: 16px;
+        font-size: 14px;
+        padding: 8px 14px;
+        border-radius: 12px;
+        transition: all 0.25s ease;
+      }
+      .links a:hover {
+        background: var(--action);
+        color: #fff;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 120px 20px 60px;
+        text-align: left;
+      }
+      h1 {
+        color: var(--head);
+        font-size: clamp(32px, 6vw, 48px);
+        margin: 0 0 10px;
+      }
+      p.lead {
+        color: var(--accent);
+        font-size: 18px;
+        margin: 0 0 20px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--action);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 18px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .btn:hover {
+        background: #1e40af;
+      }
+      /* Custom Floating Cursor (azure) */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(147, 197, 253, 0.6);
+        border: 2px solid rgba(147, 197, 253, 0.8);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .cursor-follower {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(147, 197, 253, 0.3);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        background: rgba(147, 197, 253, 0.1);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      body.cursor-hover .cursor {
+        transform: scale(1.5);
+        background: rgba(147, 197, 253, 0.3);
+        border: 2px solid rgba(147, 197, 253, 1);
+        box-shadow:
+          0 0 15px rgba(147, 197, 253, 0.8),
+          0 0 30px rgba(147, 197, 253, 0.4);
+      }
+      body.cursor-click .cursor {
+        transform: scale(0.8);
+        background: rgba(0, 0, 0, 0.8);
+      }
+      body.cursor-text .cursor {
+        transform: scaleX(0.3) scaleY(1.5);
+        background: rgba(147, 197, 253, 0.4);
+        border: 1px solid rgba(147, 197, 253, 0.9);
+        border-radius: 2px;
+      }
+      body.cursor-view .cursor {
+        transform: scale(2);
+        background: rgba(147, 197, 253, 0.2);
+        border: 2px solid rgba(147, 197, 253, 0.8);
+      }
+      * {
+        cursor: none !important;
+      }
+      @media (max-width: 768px) {
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+        * {
+          cursor: auto !important;
+        }
+      }
+    </style>
 
-      const hoverElements = document.querySelectorAll('a, button');
-      const textElements = document.querySelectorAll('h1, h2, h3, p, span');
-      const clickableElements = document.querySelectorAll('button, .btn');
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0F0X2TWW4");
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1273059444474707");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+    /></noscript>
+  </head>
+  <body>
+    <!-- Custom Floating Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <header class="topbar">
+      <a href="../index.html"
+        ><img
+          src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+          alt="Interior Illusions"
+      /></a>
+      <nav class="links">
+        <a href="../our-process.html#postcare">Post-Project Care</a>
+        <a href="get-quote.html">Get Quote</a>
+      </nav>
+    </header>
 
-      hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-      });
-      clickableElements.forEach(el => {
-        el.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
-        el.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
-      });
-      textElements.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text'));
-      });
+    <main class="wrap">
+      <h1>Thank You - We've Received Your Request</h1>
+      <p class="lead">
+        Your request has been successfully submitted. Our team is currently
+        reviewing your details, and one of our specialists will be in touch with
+        you shortly...
+      </p>
+      <p>
+        In the meantime, you can review our
+        <a href="../our-process.html#postcare">Post-Project Care</a> information
+        or contact us if your situation is urgent.
+      </p>
+      <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap">
+        <a class="btn" href="../our-process.html#postcare"
+          ><i class="fa-solid fa-screwdriver-wrench"></i> Post-Project Care</a
+        >
+        <a class="btn" href="get-quote.html"
+          ><i class="fa-solid fa-envelope"></i> Get Quote</a
+        >
+      </div>
+      <div style="margin-top: 12px">
+        <a
+          href="service-request.html"
+          style="
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+          "
+          >Back to Service Request</a
+        >
+      </div>
+    </main>
+    <!-- Custom Floating Cursor JS (mirrors index.html) -->
+    <script>
+      (function () {
+        const cursor = document.querySelector(".cursor");
+        const cursorFollower = document.querySelector(".cursor-follower");
+        if (!cursor || !cursorFollower) return;
 
-      document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; cursorFollower.style.opacity = '0'; });
-      document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; cursorFollower.style.opacity = '1'; });
-    })();
-  </script>
-</body>
+        let mouseX = 0,
+          mouseY = 0;
+        let cursorX = 0,
+          cursorY = 0;
+        let followerX = 0,
+          followerY = 0;
+
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+          const ease = 0.2;
+          cursorX += (mouseX - cursorX) * ease;
+          cursorY += (mouseY - cursorY) * ease;
+          cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+          requestAnimationFrame(animateCursor);
+        }
+        function animateFollower() {
+          const ease = 0.15;
+          followerX += (mouseX - followerX) * ease;
+          followerY += (mouseY - followerY) * ease;
+          cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+          requestAnimationFrame(animateFollower);
+        }
+        animateCursor();
+        animateFollower();
+
+        const hoverElements = document.querySelectorAll("a, button");
+        const textElements = document.querySelectorAll("h1, h2, h3, p, span");
+        const clickableElements = document.querySelectorAll("button, .btn");
+
+        hoverElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-hover"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-hover"),
+          );
+        });
+        clickableElements.forEach((el) => {
+          el.addEventListener("mousedown", () =>
+            document.body.classList.add("cursor-click"),
+          );
+          el.addEventListener("mouseup", () =>
+            document.body.classList.remove("cursor-click"),
+          );
+        });
+        textElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-text"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-text"),
+          );
+        });
+
+        document.addEventListener("mouseleave", () => {
+          cursor.style.opacity = "0";
+          cursorFollower.style.opacity = "0";
+        });
+        document.addEventListener("mouseenter", () => {
+          cursor.style.opacity = "1";
+          cursorFollower.style.opacity = "1";
+        });
+      })();
+    </script>
+  </body>
 </html>

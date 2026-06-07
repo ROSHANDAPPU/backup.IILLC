@@ -1,1471 +1,1823 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Luxury Penthouse - Interior Illusions</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <!-- Shared Stylesheet for global nav interactions -->
-  <link rel="stylesheet" href="../css/style.css?v=20250923">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
-  <style>
-    @font-face {
-      font-family: 'Satoshi';
-      src: url('../assets/fonts/Satoshi-Variable.woff2') format('woff2'),
-           url('../assets/fonts/Satoshi-Variable.woff') format('woff');
-      font-weight: 300 900;
-      font-display: swap;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Luxury Penthouse - Interior Illusions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/images/06_Favicon/favicon-high.png"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Shared Stylesheet for global nav interactions -->
+    <link rel="stylesheet" href="../css/style.css?v=20250923" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    :root {
-      --color-bg-primary: #0B0E14; /* Deep Navy */
-      --color-action: #1D4ED8;    /* Cobalt */
-      --color-accent: #93C5FD;    /* Azure */
-      --color-heading: #E7EAEE;   /* Off-white */
-      --color-body: #A3AAB4;      /* Slate */
-      --color-light: #FAF7F2;     /* Ivory */
-    }
+    <style>
+      @font-face {
+        font-family: "Satoshi";
+        src:
+          url("../assets/fonts/Satoshi-Variable.woff2") format("woff2"),
+          url("../assets/fonts/Satoshi-Variable.woff") format("woff");
+        font-weight: 300 900;
+        font-display: swap;
+      }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      :root {
+        --color-bg-primary: #0b0e14; /* Deep Navy */
+        --color-action: #1d4ed8; /* Cobalt */
+        --color-accent: #93c5fd; /* Azure */
+        --color-heading: #e7eaee; /* Off-white */
+        --color-body: #a3aab4; /* Slate */
+        --color-light: #faf7f2; /* Ivory */
+      }
 
-    body, html {
-      font-family: 'Satoshi', 'Inter', 'SF Pro Display', system-ui, sans-serif;
-      background: var(--color-bg-primary);
-      color: var(--color-heading);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    /* Navigation */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; height: 80px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px; z-index: 30;
-      background: rgba(11, 14, 20, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(163, 170, 180, 0.1);
-    }
-    
-    .nav .brand img { 
-      height: 180px; 
-      width: auto; 
-      transition: all 0.3s ease;
-    }
-    
-    /* Mobile Menu Toggle */
-    .mobile-menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 10px;
-      z-index: 1001;
-    }
-    
-    .mobile-menu-toggle span {
-      width: 25px;
-      height: 3px;
-      background: var(--color-accent);
-      margin: 3px 0;
-      transition: 0.3s;
-      border-radius: 2px;
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(1) {
-      transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(3) {
-      transform: rotate(45deg) translate(-5px, -6px);
-    }
-    
-    .nav .links {
-      display: flex; gap: 32px; align-items: center;
-    }
-    .nav .links a {
-      color: var(--color-body);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-    }
-    .nav .links a:hover { 
-      color: #93C5FD;
-      background: rgba(147, 197, 253, 0.1);
-    }
-    .nav .links a:active { 
-      background: #1D4ED8;
-      color: #FAF7F2;
-      transform: scale(0.95);
-    }
+      body,
+      html {
+        font-family:
+          "Satoshi", "Inter", "SF Pro Display", system-ui, sans-serif;
+        background: var(--color-bg-primary);
+        color: var(--color-heading);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
 
-    /* Dropdown Styles */
-    .dropdown {
-      position: relative;
-    }
-    
-    .dropdown-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .dropdown-arrow {
-      font-size: 12px;
-      transition: transform 0.3s ease;
-    }
-    
-    .dropdown.active .dropdown-arrow {
-      transform: rotate(180deg);
-    }
-    
-    /* Force-hide dropdown menu by default */
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 240px; /* ensure single-line items */
-      background: #0B0E14; /* deep navy */
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 6px 0;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      z-index: 1001;
-      border: 1px solid rgba(147, 197, 253, 0.2);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.3);
-      pointer-events: none !important; /* prevent interaction when hidden */
-      display: none !important; /* ensure links are not visible by default */
-    }
-    
-    .dropdown:hover .dropdown-menu,
-    .dropdown.active .dropdown-menu {
-      opacity: 1 !important;
-      visibility: visible !important;
-      transform: translateY(0) !important;
-      pointer-events: auto !important;
-      display: block !important; /* show on hover/active */
-    }
-    
-    .dropdown-menu a {
-      display: block;
-      padding: 10px 16px; /* compact */
-      color: #FFFFFF; /* white */
-      text-decoration: none;
-      transition: background 0.25s ease, color 0.25s ease;
-      border-radius: 10px; /* rounded buttons */
-      margin: 4px 8px;
-      background: #007FFF; /* azure button */
-      font-size: 15px; /* compact font size */
-      line-height: 1.2; /* tighter line height */
-      letter-spacing: 0.01em; /* reduced letter spacing */
-      white-space: nowrap; /* prevent wrapping */
-      text-align: center;
-    }
-    
-    .dropdown-menu a:hover {
-      background: #1D4ED8; /* cobalt hover */
-      color: #FAF7F2;
-    }
-    
-    /* Large desktop responsive */
-    @media (max-width: 1400px) {
+      /* Navigation */
       .nav {
-        padding: 0 30px;
-      }
-      
-      .nav .brand img {
-        height: 180px;
-      }
-      
-      .nav .links {
-        gap: 24px;
-      }
-      
-      .nav .links a {
-        font-size: 15px;
-        padding: 8px 14px;
-      }
-    }
-    
-    /* Tablet and smaller desktop responsive */
-    @media (max-width: 1024px) {
-      .nav {
-        padding: 0 20px;
-      }
-      
-      .nav .brand img {
-        height: 150px;
-      }
-      
-      .nav .links {
-        gap: 18px;
-      }
-      
-      .nav .links a {
-        font-size: 14px;
-        padding: 6px 10px;
-      }
-    }
-    
-    /* Mobile Responsive Styles */
-    @media (max-width: 1024px) {
-      .hamburger-menu {
-        display: block;
-      }
-      
-      /* Hide desktop navigation */
-      .nav .links {
-        display: none;
-      }
-      
-      .nav .brand img {
-        height: 60px;
-      }
-      
-      .nav .links {
         position: fixed;
         top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
-        background: rgba(11, 14, 20, 0.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-        transition: left 0.3s ease;
-        z-index: 1000;
-      }
-      
-      .nav .links.active {
         left: 0;
+        right: 0;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        z-index: 30;
+        background: rgba(11, 14, 20, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(163, 170, 180, 0.1);
       }
-      
+
+      .nav .brand img {
+        height: 180px;
+        width: auto;
+        transition: all 0.3s ease;
+      }
+
+      /* Mobile Menu Toggle */
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1001;
+      }
+
+      .mobile-menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: var(--color-accent);
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      .nav .links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
       .nav .links a {
-        font-size: 24px;
-        padding: 15px 30px;
+        color: var(--color-body);
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
       }
-      
+      .nav .links a:hover {
+        color: #93c5fd;
+        background: rgba(147, 197, 253, 0.1);
+      }
+      .nav .links a:active {
+        background: #1d4ed8;
+        color: #faf7f2;
+        transform: scale(0.95);
+      }
+
+      /* Dropdown Styles */
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .dropdown-arrow {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      /* Force-hide dropdown menu by default */
       .dropdown-menu {
-        position: static;
-        background: rgba(29, 78, 216, 0.1);
-        backdrop-filter: none;
-        border: none;
-        border-radius: 8px;
-        margin-top: 10px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 240px; /* ensure single-line items */
+        background: #0b0e14; /* deep navy */
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 6px 0;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1001;
+        border: 1px solid rgba(147, 197, 253, 0.2);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+        pointer-events: none !important; /* prevent interaction when hidden */
+        display: none !important; /* ensure links are not visible by default */
+      }
+
+      .dropdown:hover .dropdown-menu,
+      .dropdown.active .dropdown-menu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+        display: block !important; /* show on hover/active */
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 16px; /* compact */
+        color: #ffffff; /* white */
+        text-decoration: none;
+        transition:
+          background 0.25s ease,
+          color 0.25s ease;
+        border-radius: 10px; /* rounded buttons */
+        margin: 4px 8px;
+        background: #007fff; /* azure button */
+        font-size: 15px; /* compact font size */
+        line-height: 1.2; /* tighter line height */
+        letter-spacing: 0.01em; /* reduced letter spacing */
+        white-space: nowrap; /* prevent wrapping */
+        text-align: center;
+      }
+
+      .dropdown-menu a:hover {
+        background: #1d4ed8; /* cobalt hover */
+        color: #faf7f2;
+      }
+
+      /* Large desktop responsive */
+      @media (max-width: 1400px) {
+        .nav {
+          padding: 0 30px;
+        }
+
+        .nav .brand img {
+          height: 180px;
+        }
+
+        .nav .links {
+          gap: 24px;
+        }
+
+        .nav .links a {
+          font-size: 15px;
+          padding: 8px 14px;
+        }
+      }
+
+      /* Tablet and smaller desktop responsive */
+      @media (max-width: 1024px) {
+        .nav {
+          padding: 0 20px;
+        }
+
+        .nav .brand img {
+          height: 150px;
+        }
+
+        .nav .links {
+          gap: 18px;
+        }
+
+        .nav .links a {
+          font-size: 14px;
+          padding: 6px 10px;
+        }
+      }
+
+      /* Mobile Responsive Styles */
+      @media (max-width: 1024px) {
+        .hamburger-menu {
+          display: block;
+        }
+
+        /* Hide desktop navigation */
+        .nav .links {
+          display: none;
+        }
+
+        .nav .brand img {
+          height: 60px;
+        }
+
+        .nav .links {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100vh;
+          background: rgba(11, 14, 20, 0.98);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 40px;
+          transition: left 0.3s ease;
+          z-index: 1000;
+        }
+
+        .nav .links.active {
+          left: 0;
+        }
+
+        .nav .links a {
+          font-size: 24px;
+          padding: 15px 30px;
+        }
+
+        .dropdown-menu {
+          position: static;
+          background: rgba(29, 78, 216, 0.1);
+          backdrop-filter: none;
+          border: none;
+          border-radius: 8px;
+          margin-top: 10px;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+        }
+      }
+
+      .dropdown:hover .dropdown-menu,
+      .dropdown.active .dropdown-menu {
         opacity: 1;
         visibility: visible;
-        transform: none;
+        transform: translateY(0);
       }
-    }
-    
-    .dropdown:hover .dropdown-menu,
-    .dropdown.active .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    
-    .dropdown-menu a {
-      display: block;
-      padding: 10px 16px;
-      color: #FFFFFF;
-      text-decoration: none;
-      transition: background 0.25s ease, color 0.25s ease;
-      border-radius: 10px;
-      margin: 4px 8px;
-      background: #007FFF;
-      font-size: 15px;
-      line-height: 1.2;
-      letter-spacing: 0.01em;
-      white-space: nowrap; /* prevent wrapping */
-      text-align: center;
-    }
-    
-    .dropdown-menu a:hover {
-      background: #1D4ED8;
-      color: #FAF7F2;
-    }
 
-    /* Footer Styles */
-    .footer {
-      background: var(--color-bg-primary); /* Deep Navy */
-      padding: 80px 0 40px;
-      border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
-    }
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 60px;
-    }
-    .footer-section {
-      display: flex;
-      flex-direction: column;
-    }
-    .footer-logo {
-      margin-bottom: 24px;
-    }
-    .footer-description {
-      color: var(--color-body); /* Slate */
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 32px;
-      max-width: 300px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 16px;
-    }
-    .footer-social a {
-      color: var(--color-accent); /* Azure */
-      font-size: 20px;
-      transition: color 0.3s ease;
-    }
-    .footer-social a:hover {
-      color: var(--color-heading); /* Off-white on hover */
-    }
-    .footer-label {
-      color: var(--color-accent) !important; /* Azure for H3 labels */
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      margin-bottom: 8px;
-    }
-    .footer-heading {
-      color: var(--color-heading) !important; /* Off-white for section headings */
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
-    }
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .footer-links li {
-      margin-bottom: 12px;
-    }
-    .footer-links a {
-      color: var(--color-accent); /* Azure */
-      font-size: 16px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .footer-links a:hover {
-      color: var(--color-accent);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 2px;
-    }
-    .footer-links strong {
-      color: var(--color-accent); /* Azure */
-      font-weight: 400;
-    }
-    .footer-links li {
-      color: var(--color-accent); /* Azure */
-      font-size: 16px;
-    }
-    .footer-bottom {
-      border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
-      padding-top: 32px;
-    }
-    .footer-legal {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .footer-legal p {
-      color: var(--color-body); /* Slate */
-      font-size: 14px;
-      margin: 0;
-    }
-    .footer-legal-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .footer-legal-links a {
-      color: var(--color-accent); /* Azure */
-      font-size: 14px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .footer-legal-links a:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 2px;
-    }
-    .footer-divider {
-      color: rgba(163, 170, 180, 0.3); /* Slate 30% */
-      font-size: 14px;
-    }
-
-    /* Project Hero */
-    .project-hero {
-      padding: 120px 40px 80px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .project-breadcrumb {
-      color: var(--color-body);
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-    .project-breadcrumb a {
-      color: var(--color-accent);
-      text-decoration: none;
-    }
-    .project-title {
-      font-size: clamp(48px, 8vw, 96px);
-      font-weight: 900;
-      color: var(--color-heading);
-      margin-bottom: 24px;
-      letter-spacing: -0.02em;
-      line-height: 0.9;
-    }
-    .project-subtitle {
-      font-size: clamp(18px, 3vw, 24px);
-      color: var(--color-accent);
-      margin-bottom: 48px;
-      font-weight: 500;
-    }
-    .project-stats {
-      background: var(--color-bg-primary); /* Deep Navy */
-      border: 2px solid var(--color-light); /* Ivory border */
-      border-radius: 12px;
-      padding: 32px;
-      margin-bottom: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 40px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .project-stats:hover {
-      background: var(--color-action); /* Cobalt */
-      border-color: var(--color-action); /* Cobalt border */
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(29, 78, 216, 0.2);
-    }
-    .project-stats:hover .stat-number,
-    .project-stats:hover .stat-label {
-      color: var(--color-light); /* Ivory text on hover */
-    }
-    .project-stats:hover .stat-separator {
-      color: var(--color-light); /* Ivory separators on hover */
-    }
-    .stat-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-align: center;
-    }
-    .stat-number {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--color-action); /* Cobalt */
-    }
-    .stat-label {
-      font-size: 16px;
-      color: var(--color-action); /* Cobalt */
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      font-weight: 600;
-    }
-    .stat-separator {
-      color: var(--color-light); /* Ivory */
-      font-size: 24px;
-      font-weight: 300;
-      margin: 0 20px;
-    }
-
-    /* Featured Image */
-    .featured-image {
-      width: 100%;
-      height: 70vh;
-      background-size: cover;
-      background-position: center;
-      border-radius: 12px;
-      margin-bottom: 80px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .featured-image:hover {
-      transform: scale(1.02);
-    }
-
-    /* Project Content */
-    .project-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      margin-bottom: 80px;
-    }
-    .project-info h2 {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--color-heading);
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
-    }
-    .project-info p {
-      color: var(--color-body);
-      font-size: 18px;
-      margin-bottom: 24px;
-      line-height: 1.7;
-    }
-    .project-details {
-      list-style: none;
-    }
-    .project-details li {
-      display: flex;
-      justify-content: space-between;
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(163, 170, 180, 0.1);
-      color: var(--color-body);
-    }
-    .project-details li:last-child {
-      border-bottom: none;
-    }
-    .project-details .label {
-      font-weight: 600;
-      color: var(--color-heading);
-    }
-
-    /* Image Gallery */
-    .gallery-section {
-      margin-bottom: 80px;
-    }
-    .section-title {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--color-heading);
-      margin-bottom: 48px;
-      text-align: center;
-      letter-spacing: 0.02em;
-    }
-    .image-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 24px;
-    }
-    .gallery-item {
-      height: 300px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .gallery-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(29, 78, 216, 0.2);
-    }
-    .gallery-item::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(11, 14, 20, 0.3);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .gallery-item:hover::after {
-      opacity: 1;
-    }
-
-    /* Features Section */
-    .features-section {
-      margin-bottom: 80px;
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-    }
-    .feature-item {
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(147, 197, 253, 0.1);
-      border-radius: 8px;
-      text-align: center;
-    }
-    .feature-icon {
-      font-size: 48px;
-      color: var(--color-accent);
-      margin-bottom: 24px;
-    }
-    .feature-item h3 {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--color-heading);
-      margin-bottom: 16px;
-      letter-spacing: 0.02em;
-    }
-    .feature-item p {
-      color: var(--color-body);
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    /* Testimonial Section */
-    .testimonial-section {
-      background: rgba(255, 255, 255, 0.02);
-      padding: 80px 40px;
-      margin-bottom: 80px;
-      border-radius: 12px;
-      text-align: center;
-    }
-    .testimonial-quote {
-      font-size: clamp(24px, 4vw, 36px);
-      font-weight: 500;
-      color: var(--color-heading);
-      margin-bottom: 32px;
-      line-height: 1.4;
-      font-style: italic;
-    }
-    .testimonial-author {
-      color: var(--color-accent);
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .testimonial-role {
-      color: var(--color-body);
-      font-size: 16px;
-    }
-
-    /* CTA Section */
-    .cta-section {
-      text-align: center;
-      padding: 80px 40px;
-      background: linear-gradient(135deg, rgba(29, 78, 216, 0.1), rgba(147, 197, 253, 0.05));
-      border-radius: 12px;
-      margin-bottom: 80px;
-    }
-    .cta-title {
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 700;
-      color: var(--color-heading);
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
-    }
-    .cta-subtitle {
-      font-size: 20px;
-      color: var(--color-body);
-      margin-bottom: 40px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .cta-buttons {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .btn {
-      padding: 16px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-    .btn-primary {
-      background: var(--color-action);
-      color: var(--color-heading);
-      border: 2px solid var(--color-action);
-    }
-    .btn-primary:hover {
-      background: transparent;
-      color: var(--color-action);
-    }
-    .btn-secondary {
-      background: transparent;
-      color: var(--color-accent);
-      border: 2px solid var(--color-accent);
-    }
-    .btn-secondary:hover {
-      background: var(--color-accent);
-      color: var(--color-bg-primary);
-    }
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-    .lightbox.active {
-      display: flex;
-    }
-    .lightbox-content {
-      max-width: 90%;
-      max-height: 90%;
-      position: relative;
-    }
-    .lightbox-image {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: -40px;
-      right: 0;
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border: none;
-      font-size: 24px;
-      padding: 16px;
-      cursor: pointer;
-      border-radius: 50%;
-      transition: background 0.3s ease;
-    }
-    .lightbox-nav:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    .lightbox-prev {
-      left: -60px;
-    }
-    .lightbox-next {
-      right: -60px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav { padding: 0 20px; height: 70px; }
-      .nav .links { gap: 20px; }
-      .nav .links a { font-size: 14px; padding: 6px 12px; }
-      .hero { padding: 100px 20px 60px; }
-      .project-stats { padding: 40px 20px; }
-      .gallery { padding: 40px 20px; }
-      .features { padding: 40px 20px; }
-      .testimonial { padding: 40px 20px; }
-      .cta { padding: 40px 20px; }
-      .breadcrumb { padding: 100px 20px 20px; }
-      .prev, .next { display: none; }
-      .close { top: 20px; right: 20px; font-size: 30px; }
-      
-      .footer-content { padding: 0 20px; }
-      .footer-grid { 
-        grid-template-columns: 1fr; 
-        gap: 40px; 
-        margin-bottom: 40px; 
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 16px;
+        color: #ffffff;
+        text-decoration: none;
+        transition:
+          background 0.25s ease,
+          color 0.25s ease;
+        border-radius: 10px;
+        margin: 4px 8px;
+        background: #007fff;
+        font-size: 15px;
+        line-height: 1.2;
+        letter-spacing: 0.01em;
+        white-space: nowrap; /* prevent wrapping */
+        text-align: center;
       }
-      .footer-legal { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 16px; 
+
+      .dropdown-menu a:hover {
+        background: #1d4ed8;
+        color: #faf7f2;
       }
-    }
 
-    /* Custom Floating Cursor */
-    .cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: rgba(147, 197, 253, 0.6); /* Azure - semi-transparent */
-      border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .cursor-follower {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      border: 2px solid rgba(147, 197, 253, 0.3); /* Azure */
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      background: rgba(147, 197, 253, 0.1); /* Azure */
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    /* Cursor hover states */
-    body.cursor-hover .cursor {
-      transform: scale(1.5);
-      background: rgba(147, 197, 253, 0.3); /* Azure - very transparent */
-      border: 2px solid rgba(147, 197, 253, 1); /* Solid Azure border */
-      box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4); /* Bright glow */
-      animation: cursorShine 0.6s ease-out;
-    }
-
-    body.cursor-hover .cursor-follower {
-      transform: translate(-50%, -50%) scale(1.5);
-      border-color: rgba(147, 197, 253, 0.6); /* Azure */
-      background: rgba(147, 197, 253, 0.05); /* Azure */
-    }
-
-    /* Cursor shine animation */
-    @keyframes cursorShine {
-      0% {
-        box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
+      /* Footer Styles */
+      .footer {
+        background: var(--color-bg-primary); /* Deep Navy */
+        padding: 80px 0 40px;
+        border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
       }
-      50% {
-        box-shadow: 0 0 25px rgba(147, 197, 253, 1), 0 0 50px rgba(147, 197, 253, 0.6);
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
       }
-      100% {
-        box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 60px;
       }
-    }
+      .footer-section {
+        display: flex;
+        flex-direction: column;
+      }
+      .footer-logo {
+        margin-bottom: 24px;
+      }
+      .footer-description {
+        color: var(--color-body); /* Slate */
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 32px;
+        max-width: 300px;
+      }
+      .footer-social {
+        display: flex;
+        gap: 16px;
+      }
+      .footer-social a {
+        color: var(--color-accent); /* Azure */
+        font-size: 20px;
+        transition: color 0.3s ease;
+      }
+      .footer-social a:hover {
+        color: var(--color-heading); /* Off-white on hover */
+      }
+      .footer-label {
+        color: var(--color-accent) !important; /* Azure for H3 labels */
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .footer-heading {
+        color: var(
+          --color-heading
+        ) !important; /* Off-white for section headings */
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        letter-spacing: 0.02em;
+      }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+      .footer-links a {
+        color: var(--color-accent); /* Azure */
+        font-size: 16px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .footer-links a:hover {
+        color: var(--color-accent);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .footer-links strong {
+        color: var(--color-accent); /* Azure */
+        font-weight: 400;
+      }
+      .footer-links li {
+        color: var(--color-accent); /* Azure */
+        font-size: 16px;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(163, 170, 180, 0.2); /* Slate 20% */
+        padding-top: 32px;
+      }
+      .footer-legal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .footer-legal p {
+        color: var(--color-body); /* Slate */
+        font-size: 14px;
+        margin: 0;
+      }
+      .footer-legal-links {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .footer-legal-links a {
+        color: var(--color-accent); /* Azure */
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .footer-legal-links a:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+      .footer-divider {
+        color: rgba(163, 170, 180, 0.3); /* Slate 30% */
+        font-size: 14px;
+      }
 
-    /* Special cursor for clickable elements */
-    body.cursor-click .cursor {
-      transform: scale(0.8);
-      background: rgba(0, 0, 0, 0.8);
-    }
+      /* Project Hero */
+      .project-hero {
+        padding: 120px 40px 80px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .project-breadcrumb {
+        color: var(--color-body);
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+      .project-breadcrumb a {
+        color: var(--color-accent);
+        text-decoration: none;
+      }
+      .project-title {
+        font-size: clamp(48px, 8vw, 96px);
+        font-weight: 900;
+        color: var(--color-heading);
+        margin-bottom: 24px;
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+      }
+      .project-subtitle {
+        font-size: clamp(18px, 3vw, 24px);
+        color: var(--color-accent);
+        margin-bottom: 48px;
+        font-weight: 500;
+      }
+      .project-stats {
+        background: var(--color-bg-primary); /* Deep Navy */
+        border: 2px solid var(--color-light); /* Ivory border */
+        border-radius: 12px;
+        padding: 32px;
+        margin-bottom: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .project-stats:hover {
+        background: var(--color-action); /* Cobalt */
+        border-color: var(--color-action); /* Cobalt border */
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(29, 78, 216, 0.2);
+      }
+      .project-stats:hover .stat-number,
+      .project-stats:hover .stat-label {
+        color: var(--color-light); /* Ivory text on hover */
+      }
+      .project-stats:hover .stat-separator {
+        color: var(--color-light); /* Ivory separators on hover */
+      }
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-align: center;
+      }
+      .stat-number {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--color-action); /* Cobalt */
+      }
+      .stat-label {
+        font-size: 16px;
+        color: var(--color-action); /* Cobalt */
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+      }
+      .stat-separator {
+        color: var(--color-light); /* Ivory */
+        font-size: 24px;
+        font-weight: 300;
+        margin: 0 20px;
+      }
 
-    body.cursor-click .cursor-follower {
-      transform: translate(-50%, -50%) scale(2);
-      border-color: rgba(0, 0, 0, 0.4);
-      background: transparent;
-    }
+      /* Featured Image */
+      .featured-image {
+        width: 100%;
+        height: 70vh;
+        background-size: cover;
+        background-position: center;
+        border-radius: 12px;
+        margin-bottom: 80px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .featured-image:hover {
+        transform: scale(1.02);
+      }
 
-    /* Text cursor effect */
-    body.cursor-text .cursor {
-      transform: scaleX(0.3) scaleY(1.5);
-      background: rgba(147, 197, 253, 0.4); /* Azure - transparent */
-      border: 1px solid rgba(147, 197, 253, 0.9); /* Azure border */
-      border-radius: 2px;
-    }
+      /* Project Content */
+      .project-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 80px;
+        margin-bottom: 80px;
+      }
+      .project-info h2 {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--color-heading);
+        margin-bottom: 24px;
+        letter-spacing: 0.02em;
+      }
+      .project-info p {
+        color: var(--color-body);
+        font-size: 18px;
+        margin-bottom: 24px;
+        line-height: 1.7;
+      }
+      .project-details {
+        list-style: none;
+      }
+      .project-details li {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(163, 170, 180, 0.1);
+        color: var(--color-body);
+      }
+      .project-details li:last-child {
+        border-bottom: none;
+      }
+      .project-details .label {
+        font-weight: 600;
+        color: var(--color-heading);
+      }
 
-    body.cursor-text .cursor-follower {
-      opacity: 0;
-    }
+      /* Image Gallery */
+      .gallery-section {
+        margin-bottom: 80px;
+      }
+      .section-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--color-heading);
+        margin-bottom: 48px;
+        text-align: center;
+        letter-spacing: 0.02em;
+      }
+      .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 24px;
+      }
+      .gallery-item {
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(29, 78, 216, 0.2);
+      }
+      .gallery-item::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(11, 14, 20, 0.3);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .gallery-item:hover::after {
+        opacity: 1;
+      }
 
-    /* Gallery hover effect */
-    body.cursor-view .cursor {
-      transform: scale(2);
-      background: rgba(147, 197, 253, 0.2); /* Azure - very transparent */
-      border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
-    }
+      /* Features Section */
+      .features-section {
+        margin-bottom: 80px;
+      }
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+      }
+      .feature-item {
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(147, 197, 253, 0.1);
+        border-radius: 8px;
+        text-align: center;
+      }
+      .feature-icon {
+        font-size: 48px;
+        color: var(--color-accent);
+        margin-bottom: 24px;
+      }
+      .feature-item h3 {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--color-heading);
+        margin-bottom: 16px;
+        letter-spacing: 0.02em;
+      }
+      .feature-item p {
+        color: var(--color-body);
+        font-size: 16px;
+        line-height: 1.6;
+      }
 
-    body.cursor-view .cursor-follower {
-      transform: translate(-50%, -50%) scale(2.5);
-      border-color: rgba(147, 197, 253, 0.6); /* Azure */
-    }
+      /* Testimonial Section */
+      .testimonial-section {
+        background: rgba(255, 255, 255, 0.02);
+        padding: 80px 40px;
+        margin-bottom: 80px;
+        border-radius: 12px;
+        text-align: center;
+      }
+      .testimonial-quote {
+        font-size: clamp(24px, 4vw, 36px);
+        font-weight: 500;
+        color: var(--color-heading);
+        margin-bottom: 32px;
+        line-height: 1.4;
+        font-style: italic;
+      }
+      .testimonial-author {
+        color: var(--color-accent);
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .testimonial-role {
+        color: var(--color-body);
+        font-size: 16px;
+      }
 
-    body.cursor-view .cursor::after {
-      content: 'VIEW';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 10px;
-      font-weight: 600;
-      color: rgba(147, 197, 253, 1); /* Azure */
-      letter-spacing: 0.5px;
-    }
+      /* CTA Section */
+      .cta-section {
+        text-align: center;
+        padding: 80px 40px;
+        background: linear-gradient(
+          135deg,
+          rgba(29, 78, 216, 0.1),
+          rgba(147, 197, 253, 0.05)
+        );
+        border-radius: 12px;
+        margin-bottom: 80px;
+      }
+      .cta-title {
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 700;
+        color: var(--color-heading);
+        margin-bottom: 24px;
+        letter-spacing: 0.02em;
+      }
+      .cta-subtitle {
+        font-size: 20px;
+        color: var(--color-body);
+        margin-bottom: 40px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cta-buttons {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 16px 32px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+      .btn-primary {
+        background: var(--color-action);
+        color: var(--color-heading);
+        border: 2px solid var(--color-action);
+      }
+      .btn-primary:hover {
+        background: transparent;
+        color: var(--color-action);
+      }
+      .btn-secondary {
+        background: transparent;
+        color: var(--color-accent);
+        border: 2px solid var(--color-accent);
+      }
+      .btn-secondary:hover {
+        background: var(--color-accent);
+        color: var(--color-bg-primary);
+      }
 
-    /* Hide default cursor */
-    * {
-      cursor: none !important;
-    }
-
-    /* Responsive - hide custom cursor on touch devices */
-    @media (max-width: 768px) {
-      .cursor,
-      .cursor-follower {
+      /* Lightbox */
+      .lightbox {
         display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
       }
-      
-      * {
-        cursor: auto !important;
+      .lightbox.active {
+        display: flex;
       }
-      .features-grid { 
-        grid-template-columns: 1fr; 
-        gap: 24px; 
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
       }
-      .cta-buttons { 
-        flex-direction: column; 
-        align-items: center; 
+      .lightbox-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        background: none;
+        border: none;
       }
       .lightbox-nav {
-        position: fixed;
-        top: auto;
-        bottom: 20px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+        font-size: 24px;
+        padding: 16px;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: background 0.3s ease;
       }
-      .lightbox-prev { left: 20px; }
-      .lightbox-next { right: 20px; }
-    }
-  </style>
+      .lightbox-nav:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .lightbox-prev {
+        left: -60px;
+      }
+      .lightbox-next {
+        right: -60px;
+      }
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Z0F0X2TWW4');
-  </script>
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1273059444474707');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
-  /></noscript>
-
-</head>
-<body>
-  <!-- Custom Floating Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-
-  <!-- Navigation -->
-  <header class="nav">
-    <div class="brand">
-      <a href="../index.html">
-        <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" />
-      </a>
-    </div>
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu">
-      <div class="hamburger-icon">
-        <div class="line line1"></div>
-        <div class="line line2"></div>
-        <div class="line line3"></div>
-      </div>
-      <div class="mobile-overlay" style="display: none;">
-        <nav class="mobile-nav">
-          <a href="../about.html" class="mobile-link">About</a>
-          <a href="../services/interior-design.html" class="mobile-link">Services</a>
-          <a href="../contact/get-quote.html" class="mobile-link">Contact</a>
-        </nav>
-      </div>
-    </div>
-    <nav class="links">
-      <a href="../services/interior-design.html">Services</a>
-      <a href="../about.html">About</a>
-      <a href="../contact/get-quote.html">Contact</a>
-    </nav>
-  </header>
-
-  <!-- Project Hero -->
-  <script>
-    // Reveal header links after page load to avoid any FOUC of raw text
-    window.addEventListener('load', function(){
-      const linksBar = document.querySelector('header.nav .links');
-      if (linksBar) linksBar.style.visibility = 'visible';
-    });
-    // Defensive: hide desktop dropdown menus on load to avoid any raw text showing
-    document.addEventListener('DOMContentLoaded', function() {
-      const isMobile = window.matchMedia('(max-width: 1024px)').matches;
-      const dropdownMenus = document.querySelectorAll('header.nav .links .dropdown-menu');
-      dropdownMenus.forEach(menu => {
-        if (!isMobile) {
-          menu.style.display = 'none';
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav {
+          padding: 0 20px;
+          height: 70px;
         }
-      });
-      // Show on hover/focus for desktop
-      const dropdowns = document.querySelectorAll('header.nav .links .dropdown');
-      dropdowns.forEach(dd => {
-        const menu = dd.querySelector('.dropdown-menu');
-        if (!menu) return;
-        dd.addEventListener('mouseenter', () => { if (!isMobile) menu.style.display = 'block'; });
-        dd.addEventListener('mouseleave', () => { if (!isMobile) menu.style.display = 'none'; });
-        dd.querySelector('.dropdown-toggle')?.addEventListener('focus', () => { if (!isMobile) menu.style.display = 'block'; });
-      });
-    });
-  </script>
-  <section class="project-hero">
-    <div class="project-breadcrumb">
-      <a href="../index.html">Home</a> / <a href="residential-projects.html">Our Projects</a> / Modern Luxury Penthouse
-    </div>
-    
-    <h1 class="project-title">Modern Luxury Penthouse</h1>
-    <p class="project-subtitle">A sophisticated urban retreat combining contemporary design with timeless elegance</p>
-    
-    <div class="project-stats">
-      <div class="stat-item">
-        <span class="stat-number">4,200</span>
-        <span class="stat-label">Square Feet</span>
-      </div>
-      <span class="stat-separator">|</span>
-      <div class="stat-item">
-        <span class="stat-number">6</span>
-        <span class="stat-label">Months</span>
-      </div>
-      <span class="stat-separator">|</span>
-      <div class="stat-item">
-        <span class="stat-number">12</span>
-        <span class="stat-label">Rooms</span>
-      </div>
-      <span class="stat-separator">|</span>
-      <div class="stat-item">
-        <span class="stat-number">2024</span>
-        <span class="stat-label">Completed</span>
-      </div>
-    </div>
+        .nav .links {
+          gap: 20px;
+        }
+        .nav .links a {
+          font-size: 14px;
+          padding: 6px 12px;
+        }
+        .hero {
+          padding: 100px 20px 60px;
+        }
+        .project-stats {
+          padding: 40px 20px;
+        }
+        .gallery {
+          padding: 40px 20px;
+        }
+        .features {
+          padding: 40px 20px;
+        }
+        .testimonial {
+          padding: 40px 20px;
+        }
+        .cta {
+          padding: 40px 20px;
+        }
+        .breadcrumb {
+          padding: 100px 20px 20px;
+        }
+        .prev,
+        .next {
+          display: none;
+        }
+        .close {
+          top: 20px;
+          right: 20px;
+          font-size: 30px;
+        }
 
-    <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop');" onclick="openLightbox(0)"></div>
-  </section>
-
-  <!-- Project Content -->
-  <section class="project-content">
-    <div class="content-grid">
-      <div class="project-info">
-        <h2>Project Story</h2>
-        <p>This stunning penthouse transformation represents the perfect fusion of modern luxury and functional living. Located in the heart of the city, our clients wanted a space that would serve as both an elegant entertaining venue and a comfortable family home.</p>
-        
-        <p>Our design approach focused on maximizing natural light, creating seamless flow between spaces, and incorporating high-end materials that would stand the test of time. Every detail was carefully considered to reflect the clients' sophisticated taste while maintaining the warmth of a true home.</p>
-        
-        <p>The result is a breathtaking space that showcases contemporary design principles while providing the ultimate in comfort and functionality.</p>
-      </div>
-      
-      <div class="project-details-wrapper">
-        <h2>Project Details</h2>
-        <ul class="project-details">
-          <li><span class="label">Location:</span> <span>Manhattan, New York</span></li>
-          <li><span class="label">Style:</span> <span>Contemporary Luxury</span></li>
-          <li><span class="label">Budget:</span> <span>$850,000</span></li>
-          <li><span class="label">Timeline:</span> <span>6 Months</span></li>
-          <li><span class="label">Team Size:</span> <span>8 Professionals</span></li>
-          <li><span class="label">Architect:</span> <span>Studio Architecture</span></li>
-          <li><span class="label">Contractor:</span> <span>Elite Construction</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Image Gallery -->
-    <div class="gallery-section">
-      <h2 class="section-title">Project Gallery</h2>
-      <div class="image-gallery">
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop');" onclick="openLightbox(1)"></div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2000&auto=format&fit=crop');" onclick="openLightbox(2)"></div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1556912167-f556f1f39fdf?q=80&w=2000&auto=format&fit=crop');" onclick="openLightbox(3)"></div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2000&auto=format&fit=crop');" onclick="openLightbox(4)"></div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2000&auto=format&fit=crop');" onclick="openLightbox(5)"></div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2000&auto=format&fit=crop');" onclick="openLightbox(6)"></div>
-      </div>
-    </div>
-
-    <!-- Features -->
-    <div class="features-section">
-      <h2 class="section-title">Key Features</h2>
-      <div class="features-grid">
-        <div class="feature-item">
-          <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
-          <h3>Smart Lighting</h3>
-          <p>Integrated smart lighting system with customizable scenes and automated controls for optimal ambiance throughout the day.</p>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon"><i class="fas fa-couch"></i></div>
-          <h3>Custom Furniture</h3>
-          <p>Bespoke furniture pieces designed specifically for the space, combining luxury materials with functional design.</p>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon"><i class="fas fa-leaf"></i></div>
-          <h3>Sustainable Materials</h3>
-          <p>Eco-friendly materials and finishes selected for their environmental impact and long-term durability.</p>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon"><i class="fas fa-home"></i></div>
-          <h3>Open Floor Plan</h3>
-          <p>Seamless flow between living spaces creates an expansive feel while maintaining distinct functional areas.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Testimonial -->
-    <div class="testimonial-section">
-      <blockquote class="testimonial-quote">
-        "Interior Illusions transformed our vision into reality beyond our wildest dreams. The attention to detail and commitment to excellence is unmatched."
-      </blockquote>
-      <div class="testimonial-author">Sarah & Michael Chen</div>
-      <div class="testimonial-role">Penthouse Owners</div>
-    </div>
-
-    <!-- Call to Action -->
-    <section class="cta-banner" style="background: #0D111B; padding: 80px 40px; text-align: center; margin-top: 80px; transition: background 0.4s ease, transform 0.3s ease;">
-      <div style="max-width: 900px; margin: 0 auto;">
-        <h2 class="cta-banner-title" style="color: var(--color-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin-bottom: 24px; transition: color 0.4s ease;">Ready to Transform Your Space?</h2>
-        <p class="cta-banner-text" style="color: var(--color-accent); font-size: clamp(16px, 2.5vw, 20px); margin-bottom: 40px; line-height: 1.6; transition: color 0.4s ease;">Let's discuss how we can bring your vision to life with the same attention to detail and luxury finish.</p>
-        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-          <a href="../contact/get-quote.html" class="btn" style="min-width: 180px;">Get Your Quote</a>
-          <a href="../contact/schedule-consultation.html" class="btn secondary" style="min-width: 180px;">Schedule Consultation</a>
-        </div>
-      </div>
-    </section>
-    <style>
-      .cta-banner:hover {
-        background: #FAF7F2 !important;
-        transform: translateY(-4px);
-        box-shadow: 0 10px 40px rgba(147, 197, 253, 0.3);
+        .footer-content {
+          padding: 0 20px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          margin-bottom: 40px;
+        }
+        .footer-legal {
+          flex-direction: column;
+          text-align: center;
+          gap: 16px;
+        }
       }
-      .cta-banner:hover .cta-banner-title {
-        color: #0B0E14 !important;
+
+      /* Custom Floating Cursor */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(147, 197, 253, 0.6); /* Azure - semi-transparent */
+        border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
-      .cta-banner:hover .cta-banner-text {
-        color: #1D4ED8 !important;
+
+      .cursor-follower {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(147, 197, 253, 0.3); /* Azure */
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        background: rgba(147, 197, 253, 0.1); /* Azure */
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      /* Cursor hover states */
+      body.cursor-hover .cursor {
+        transform: scale(1.5);
+        background: rgba(147, 197, 253, 0.3); /* Azure - very transparent */
+        border: 2px solid rgba(147, 197, 253, 1); /* Solid Azure border */
+        box-shadow:
+          0 0 15px rgba(147, 197, 253, 0.8),
+          0 0 30px rgba(147, 197, 253, 0.4); /* Bright glow */
+        animation: cursorShine 0.6s ease-out;
+      }
+
+      body.cursor-hover .cursor-follower {
+        transform: translate(-50%, -50%) scale(1.5);
+        border-color: rgba(147, 197, 253, 0.6); /* Azure */
+        background: rgba(147, 197, 253, 0.05); /* Azure */
+      }
+
+      /* Cursor shine animation */
+      @keyframes cursorShine {
+        0% {
+          box-shadow:
+            0 0 15px rgba(147, 197, 253, 0.8),
+            0 0 30px rgba(147, 197, 253, 0.4);
+        }
+        50% {
+          box-shadow:
+            0 0 25px rgba(147, 197, 253, 1),
+            0 0 50px rgba(147, 197, 253, 0.6);
+        }
+        100% {
+          box-shadow:
+            0 0 15px rgba(147, 197, 253, 0.8),
+            0 0 30px rgba(147, 197, 253, 0.4);
+        }
+      }
+
+      /* Special cursor for clickable elements */
+      body.cursor-click .cursor {
+        transform: scale(0.8);
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      body.cursor-click .cursor-follower {
+        transform: translate(-50%, -50%) scale(2);
+        border-color: rgba(0, 0, 0, 0.4);
+        background: transparent;
+      }
+
+      /* Text cursor effect */
+      body.cursor-text .cursor {
+        transform: scaleX(0.3) scaleY(1.5);
+        background: rgba(147, 197, 253, 0.4); /* Azure - transparent */
+        border: 1px solid rgba(147, 197, 253, 0.9); /* Azure border */
+        border-radius: 2px;
+      }
+
+      body.cursor-text .cursor-follower {
+        opacity: 0;
+      }
+
+      /* Gallery hover effect */
+      body.cursor-view .cursor {
+        transform: scale(2);
+        background: rgba(147, 197, 253, 0.2); /* Azure - very transparent */
+        border: 2px solid rgba(147, 197, 253, 0.8); /* Azure border */
+      }
+
+      body.cursor-view .cursor-follower {
+        transform: translate(-50%, -50%) scale(2.5);
+        border-color: rgba(147, 197, 253, 0.6); /* Azure */
+      }
+
+      body.cursor-view .cursor::after {
+        content: "VIEW";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 10px;
+        font-weight: 600;
+        color: rgba(147, 197, 253, 1); /* Azure */
+        letter-spacing: 0.5px;
+      }
+
+      /* Hide default cursor */
+      * {
+        cursor: none !important;
+      }
+
+      /* Responsive - hide custom cursor on touch devices */
+      @media (max-width: 768px) {
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+
+        * {
+          cursor: auto !important;
+        }
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        .lightbox-nav {
+          position: fixed;
+          top: auto;
+          bottom: 20px;
+        }
+        .lightbox-prev {
+          left: 20px;
+        }
+        .lightbox-next {
+          right: 20px;
+        }
       }
     </style>
-  </section>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-content">
-      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-      <button class="lightbox-nav lightbox-prev" onclick="prevImage()">&#8249;</button>
-      <img class="lightbox-image" id="lightbox-image" src="" alt="Gallery Image">
-      <button class="lightbox-nav lightbox-next" onclick="nextImage()">&#8250;</button>
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0F0X2TWW4");
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1273059444474707");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+    /></noscript>
+  </head>
+  <body>
+    <!-- Custom Floating Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <header class="nav">
+      <div class="brand">
+        <a href="../index.html">
+          <img
+            src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+            alt="Interior Illusions Logo"
+          />
+        </a>
+      </div>
+      <!-- Hamburger Menu -->
+      <div class="hamburger-menu">
+        <div class="hamburger-icon">
+          <div class="line line1"></div>
+          <div class="line line2"></div>
+          <div class="line line3"></div>
+        </div>
+        <div class="mobile-overlay" style="display: none">
+          <nav class="mobile-nav">
+            <a href="../about.html" class="mobile-link">About</a>
+            <a href="../services/interior-design.html" class="mobile-link"
+              >Services</a
+            >
+            <a href="../contact/get-quote.html" class="mobile-link">Contact</a>
+          </nav>
+        </div>
+      </div>
+      <nav class="links">
+        <a href="../services/interior-design.html">Services</a>
+        <a href="../about.html">About</a>
+        <a href="../contact/get-quote.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Project Hero -->
+    <script>
+      // Reveal header links after page load to avoid any FOUC of raw text
+      window.addEventListener("load", function () {
+        const linksBar = document.querySelector("header.nav .links");
+        if (linksBar) linksBar.style.visibility = "visible";
+      });
+      // Defensive: hide desktop dropdown menus on load to avoid any raw text showing
+      document.addEventListener("DOMContentLoaded", function () {
+        const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+        const dropdownMenus = document.querySelectorAll(
+          "header.nav .links .dropdown-menu",
+        );
+        dropdownMenus.forEach((menu) => {
+          if (!isMobile) {
+            menu.style.display = "none";
+          }
+        });
+        // Show on hover/focus for desktop
+        const dropdowns = document.querySelectorAll(
+          "header.nav .links .dropdown",
+        );
+        dropdowns.forEach((dd) => {
+          const menu = dd.querySelector(".dropdown-menu");
+          if (!menu) return;
+          dd.addEventListener("mouseenter", () => {
+            if (!isMobile) menu.style.display = "block";
+          });
+          dd.addEventListener("mouseleave", () => {
+            if (!isMobile) menu.style.display = "none";
+          });
+          dd.querySelector(".dropdown-toggle")?.addEventListener(
+            "focus",
+            () => {
+              if (!isMobile) menu.style.display = "block";
+            },
+          );
+        });
+      });
+    </script>
+    <section class="project-hero">
+      <div class="project-breadcrumb">
+        <a href="../index.html">Home</a> /
+        <a href="residential-projects.html">Our Projects</a> / Modern Luxury
+        Penthouse
+      </div>
+
+      <h1 class="project-title">Modern Luxury Penthouse</h1>
+      <p class="project-subtitle">
+        A sophisticated urban retreat combining contemporary design with
+        timeless elegance
+      </p>
+
+      <div class="project-stats">
+        <div class="stat-item">
+          <span class="stat-number">4,200</span>
+          <span class="stat-label">Square Feet</span>
+        </div>
+        <span class="stat-separator">|</span>
+        <div class="stat-item">
+          <span class="stat-number">6</span>
+          <span class="stat-label">Months</span>
+        </div>
+        <span class="stat-separator">|</span>
+        <div class="stat-item">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Rooms</span>
+        </div>
+        <span class="stat-separator">|</span>
+        <div class="stat-item">
+          <span class="stat-number">2024</span>
+          <span class="stat-label">Completed</span>
+        </div>
+      </div>
+
+      <div
+        class="featured-image"
+        style="
+          background-image: url(&quot;https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop&quot;);
+        "
+        onclick="openLightbox(0)"
+      ></div>
+    </section>
+
+    <!-- Project Content -->
+    <section class="project-content">
+      <div class="content-grid">
+        <div class="project-info">
+          <h2>Project Story</h2>
+          <p>
+            This stunning penthouse transformation represents the perfect fusion
+            of modern luxury and functional living. Located in the heart of the
+            city, our clients wanted a space that would serve as both an elegant
+            entertaining venue and a comfortable family home.
+          </p>
+
+          <p>
+            Our design approach focused on maximizing natural light, creating
+            seamless flow between spaces, and incorporating high-end materials
+            that would stand the test of time. Every detail was carefully
+            considered to reflect the clients' sophisticated taste while
+            maintaining the warmth of a true home.
+          </p>
+
+          <p>
+            The result is a breathtaking space that showcases contemporary
+            design principles while providing the ultimate in comfort and
+            functionality.
+          </p>
+        </div>
+
+        <div class="project-details-wrapper">
+          <h2>Project Details</h2>
+          <ul class="project-details">
+            <li>
+              <span class="label">Location:</span>
+              <span>Manhattan, New York</span>
+            </li>
+            <li>
+              <span class="label">Style:</span> <span>Contemporary Luxury</span>
+            </li>
+            <li><span class="label">Budget:</span> <span>$850,000</span></li>
+            <li><span class="label">Timeline:</span> <span>6 Months</span></li>
+            <li>
+              <span class="label">Team Size:</span> <span>8 Professionals</span>
+            </li>
+            <li>
+              <span class="label">Architect:</span>
+              <span>Studio Architecture</span>
+            </li>
+            <li>
+              <span class="label">Contractor:</span>
+              <span>Elite Construction</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Image Gallery -->
+      <div class="gallery-section">
+        <h2 class="section-title">Project Gallery</h2>
+        <div class="image-gallery">
+          <div
+            class="gallery-item"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop&quot;);
+            "
+            onclick="openLightbox(1)"
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2000&auto=format&fit=crop&quot;);
+            "
+            onclick="openLightbox(2)"
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1556912167-f556f1f39fdf?q=80&w=2000&auto=format&fit=crop&quot;);
+            "
+            onclick="openLightbox(3)"
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2000&auto=format&fit=crop&quot;);
+            "
+            onclick="openLightbox(4)"
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2000&auto=format&fit=crop&quot;);
+            "
+            onclick="openLightbox(5)"
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2000&auto=format&fit=crop&quot;);
+            "
+            onclick="openLightbox(6)"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="features-section">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3>Smart Lighting</h3>
+            <p>
+              Integrated smart lighting system with customizable scenes and
+              automated controls for optimal ambiance throughout the day.
+            </p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-couch"></i></div>
+            <h3>Custom Furniture</h3>
+            <p>
+              Bespoke furniture pieces designed specifically for the space,
+              combining luxury materials with functional design.
+            </p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+            <h3>Sustainable Materials</h3>
+            <p>
+              Eco-friendly materials and finishes selected for their
+              environmental impact and long-term durability.
+            </p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-home"></i></div>
+            <h3>Open Floor Plan</h3>
+            <p>
+              Seamless flow between living spaces creates an expansive feel
+              while maintaining distinct functional areas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="testimonial-section">
+        <blockquote class="testimonial-quote">
+          "Interior Illusions transformed our vision into reality beyond our
+          wildest dreams. The attention to detail and commitment to excellence
+          is unmatched."
+        </blockquote>
+        <div class="testimonial-author">Sarah & Michael Chen</div>
+        <div class="testimonial-role">Penthouse Owners</div>
+      </div>
+
+      <!-- Call to Action -->
+      <section
+        class="cta-banner"
+        style="
+          background: #0d111b;
+          padding: 80px 40px;
+          text-align: center;
+          margin-top: 80px;
+          transition:
+            background 0.4s ease,
+            transform 0.3s ease;
+        "
+      >
+        <div style="max-width: 900px; margin: 0 auto">
+          <h2
+            class="cta-banner-title"
+            style="
+              color: var(--color-heading);
+              font-size: clamp(32px, 5vw, 48px);
+              font-weight: 700;
+              margin-bottom: 24px;
+              transition: color 0.4s ease;
+            "
+          >
+            Ready to Transform Your Space?
+          </h2>
+          <p
+            class="cta-banner-text"
+            style="
+              color: var(--color-accent);
+              font-size: clamp(16px, 2.5vw, 20px);
+              margin-bottom: 40px;
+              line-height: 1.6;
+              transition: color 0.4s ease;
+            "
+          >
+            Let's discuss how we can bring your vision to life with the same
+            attention to detail and luxury finish.
+          </p>
+          <div
+            style="
+              display: flex;
+              gap: 20px;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              href="../contact/get-quote.html"
+              class="btn"
+              style="min-width: 180px"
+              >Get Your Quote</a
+            >
+            <a
+              href="../contact/schedule-consultation.html"
+              class="btn secondary"
+              style="min-width: 180px"
+              >Schedule Consultation</a
+            >
+          </div>
+        </div>
+      </section>
+      <style>
+        .cta-banner:hover {
+          background: #faf7f2 !important;
+          transform: translateY(-4px);
+          box-shadow: 0 10px 40px rgba(147, 197, 253, 0.3);
+        }
+        .cta-banner:hover .cta-banner-title {
+          color: #0b0e14 !important;
+        }
+        .cta-banner:hover .cta-banner-text {
+          color: #1d4ed8 !important;
+        }
+      </style>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+        <button class="lightbox-close" onclick="closeLightbox()">
+          &times;
+        </button>
+        <button class="lightbox-nav lightbox-prev" onclick="prevImage()">
+          &#8249;
+        </button>
+        <img
+          class="lightbox-image"
+          id="lightbox-image"
+          src=""
+          alt="Gallery Image"
+        />
+        <button class="lightbox-nav lightbox-next" onclick="nextImage()">
+          &#8250;
+        </button>
+      </div>
     </div>
-  </div>
 
-  <script>
-    const galleryImages = [
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1556912167-f556f1f39fdf?q=80&w=2000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2000&auto=format&fit=crop'
-    ];
+    <script>
+      const galleryImages = [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?q=80&w=2000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2000&auto=format&fit=crop",
+      ];
 
-    let currentImageIndex = 0;
+      let currentImageIndex = 0;
 
-    function openLightbox(index) {
-      currentImageIndex = index;
-      document.getElementById('lightbox-image').src = galleryImages[index];
-      document.getElementById('lightbox').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    function nextImage() {
-      currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-      document.getElementById('lightbox-image').src = galleryImages[currentImageIndex];
-    }
-
-    function prevImage() {
-      currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-      document.getElementById('lightbox-image').src = galleryImages[currentImageIndex];
-    }
-
-    // Close lightbox on escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeLightbox();
+      function openLightbox(index) {
+        currentImageIndex = index;
+        document.getElementById("lightbox-image").src = galleryImages[index];
+        document.getElementById("lightbox").classList.add("active");
+        document.body.style.overflow = "hidden";
       }
-    });
 
-    // Close lightbox on background click
-    document.getElementById('lightbox').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeLightbox();
+      function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("active");
+        document.body.style.overflow = "auto";
       }
-    });
-  </script>
 
-  <script>
-    // Custom Floating Cursor
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    let mouseX = 0;
-    let mouseY = 0;
-    let followerX = 0;
-    let followerY = 0;
+      function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+        document.getElementById("lightbox-image").src =
+          galleryImages[currentImageIndex];
+      }
 
-    // Update cursor position with smooth interpolation
-    let cursorX = 0;
-    let cursorY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-    
-    // Smooth cursor animation
-    function animateCursor() {
-      const ease = 0.2; // Smooth easing for main cursor
-      cursorX += (mouseX - cursorX) * ease;
-      cursorY += (mouseY - cursorY) * ease;
-      
-      // Use transform for better performance
-      cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-      
-      requestAnimationFrame(animateCursor);
-    }
-    
-    // Smooth follower animation
-    function animateFollower() {
-      const ease = 0.1; // Slower easing for follower
-      followerX += (mouseX - followerX) * ease;
-      followerY += (mouseY - followerY) * ease;
-      
-      // Use transform for better performance
-      cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
-      
-      requestAnimationFrame(animateFollower);
-    }
-    
-    animateCursor();
-    animateFollower();
-    
-    // Interactive elements
-    const hoverElements = document.querySelectorAll('a, button, .cta-button, .project-stats, .feature-item');
-    const clickableElements = document.querySelectorAll('a, button, .cta-button');
-    const textElements = document.querySelectorAll('input, textarea, p, h1, h2, h3, h4, h5, h6');
-    const viewElements = document.querySelectorAll('.featured-image, .gallery-image');
-    
-    // Hover effects
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-hover');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-hover');
-      });
-    });
+      function prevImage() {
+        currentImageIndex =
+          (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+        document.getElementById("lightbox-image").src =
+          galleryImages[currentImageIndex];
+      }
 
-    // Click effects
-    clickableElements.forEach(el => {
-      el.addEventListener('mousedown', () => {
-        document.body.classList.add('cursor-click');
-      });
-      el.addEventListener('mouseup', () => {
-        document.body.classList.remove('cursor-click');
-      });
-    });
-
-    // Text cursor
-    textElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-text');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-text');
-      });
-    });
-
-    // Gallery view effect
-    viewElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-view');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-view');
-      });
-    });
-
-    // Hide cursor when it leaves the window
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-      cursorFollower.style.opacity = '0';
-    });
-
-    document.addEventListener('mouseenter', () => {
-      cursor.style.opacity = '1';
-      cursorFollower.style.opacity = '1';
-    });
-    
-  </script>
-
-  <script>
-    // Hamburger Menu Functionality
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const mobileOverlay = document.querySelector('.mobile-overlay');
-    const mobileDropdownSection = document.querySelector('.mobile-dropdown-section');
-    const mobileDropdownBtn = document.querySelector('.mobile-dropdown-btn');
-    const mobileDropdownContent = document.querySelector('.mobile-dropdown-content');
-    const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-sublink');
-
-    // Toggle hamburger menu
-    if (hamburgerMenu) {
-      hamburgerMenu.addEventListener('click', function(e) {
-        e.stopPropagation();
-        hamburgerMenu.classList.toggle('active');
-        const isOpen = hamburgerMenu.classList.contains('active');
-        document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-        if (mobileOverlay) mobileOverlay.style.display = isOpen ? 'flex' : 'none';
-      });
-    }
-
-    // Close menu when clicking on overlay
-    if (mobileOverlay) {
-      mobileOverlay.addEventListener('click', function(e) {
-        if (e.target === mobileOverlay) {
-          hamburgerMenu.classList.remove('active');
-          document.body.style.overflow = 'auto';
-          mobileOverlay.style.display = 'none';
+      // Close lightbox on escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeLightbox();
         }
       });
-    }
 
-    // Mobile dropdown toggle
-    if (mobileDropdownBtn) {
-      mobileDropdownBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        mobileDropdownSection.classList.toggle('active');
+      // Close lightbox on background click
+      document
+        .getElementById("lightbox")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeLightbox();
+          }
+        });
+    </script>
+
+    <script>
+      // Custom Floating Cursor
+      const cursor = document.querySelector(".cursor");
+      const cursorFollower = document.querySelector(".cursor-follower");
+      let mouseX = 0;
+      let mouseY = 0;
+      let followerX = 0;
+      let followerY = 0;
+
+      // Update cursor position with smooth interpolation
+      let cursorX = 0;
+      let cursorY = 0;
+
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
       });
-    }
 
-    // Close menu when clicking on links
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        hamburgerMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        if (mobileOverlay) mobileOverlay.style.display = 'none';
-      });
-    });
+      // Smooth cursor animation
+      function animateCursor() {
+        const ease = 0.2; // Smooth easing for main cursor
+        cursorX += (mouseX - cursorX) * ease;
+        cursorY += (mouseY - cursorY) * ease;
 
-    // Handle escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && hamburgerMenu && hamburgerMenu.classList.contains('active')) {
-        hamburgerMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        // Use transform for better performance
+        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+
+        requestAnimationFrame(animateCursor);
       }
-    });
-  </script>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-grid">
-        <!-- Company Info -->
-        <div class="footer-section">
-          <div class="footer-logo">
-            <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" style="height: 120px; width: auto;" />
+      // Smooth follower animation
+      function animateFollower() {
+        const ease = 0.1; // Slower easing for follower
+        followerX += (mouseX - followerX) * ease;
+        followerY += (mouseY - followerY) * ease;
+
+        // Use transform for better performance
+        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+
+        requestAnimationFrame(animateFollower);
+      }
+
+      animateCursor();
+      animateFollower();
+
+      // Interactive elements
+      const hoverElements = document.querySelectorAll(
+        "a, button, .cta-button, .project-stats, .feature-item",
+      );
+      const clickableElements = document.querySelectorAll(
+        "a, button, .cta-button",
+      );
+      const textElements = document.querySelectorAll(
+        "input, textarea, p, h1, h2, h3, h4, h5, h6",
+      );
+      const viewElements = document.querySelectorAll(
+        ".featured-image, .gallery-image",
+      );
+
+      // Hover effects
+      hoverElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-hover");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-hover");
+        });
+      });
+
+      // Click effects
+      clickableElements.forEach((el) => {
+        el.addEventListener("mousedown", () => {
+          document.body.classList.add("cursor-click");
+        });
+        el.addEventListener("mouseup", () => {
+          document.body.classList.remove("cursor-click");
+        });
+      });
+
+      // Text cursor
+      textElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-text");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-text");
+        });
+      });
+
+      // Gallery view effect
+      viewElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-view");
+        });
+        el.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-view");
+        });
+      });
+
+      // Hide cursor when it leaves the window
+      document.addEventListener("mouseleave", () => {
+        cursor.style.opacity = "0";
+        cursorFollower.style.opacity = "0";
+      });
+
+      document.addEventListener("mouseenter", () => {
+        cursor.style.opacity = "1";
+        cursorFollower.style.opacity = "1";
+      });
+    </script>
+
+    <script>
+      // Hamburger Menu Functionality
+      const hamburgerMenu = document.querySelector(".hamburger-menu");
+      const mobileOverlay = document.querySelector(".mobile-overlay");
+      const mobileDropdownSection = document.querySelector(
+        ".mobile-dropdown-section",
+      );
+      const mobileDropdownBtn = document.querySelector(".mobile-dropdown-btn");
+      const mobileDropdownContent = document.querySelector(
+        ".mobile-dropdown-content",
+      );
+      const mobileLinks = document.querySelectorAll(
+        ".mobile-link, .mobile-sublink",
+      );
+
+      // Toggle hamburger menu
+      if (hamburgerMenu) {
+        hamburgerMenu.addEventListener("click", function (e) {
+          e.stopPropagation();
+          hamburgerMenu.classList.toggle("active");
+          const isOpen = hamburgerMenu.classList.contains("active");
+          document.body.style.overflow = isOpen ? "hidden" : "auto";
+          if (mobileOverlay)
+            mobileOverlay.style.display = isOpen ? "flex" : "none";
+        });
+      }
+
+      // Close menu when clicking on overlay
+      if (mobileOverlay) {
+        mobileOverlay.addEventListener("click", function (e) {
+          if (e.target === mobileOverlay) {
+            hamburgerMenu.classList.remove("active");
+            document.body.style.overflow = "auto";
+            mobileOverlay.style.display = "none";
+          }
+        });
+      }
+
+      // Mobile dropdown toggle
+      if (mobileDropdownBtn) {
+        mobileDropdownBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          mobileDropdownSection.classList.toggle("active");
+        });
+      }
+
+      // Close menu when clicking on links
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          hamburgerMenu.classList.remove("active");
+          document.body.style.overflow = "auto";
+          if (mobileOverlay) mobileOverlay.style.display = "none";
+        });
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", function (e) {
+        if (
+          e.key === "Escape" &&
+          hamburgerMenu &&
+          hamburgerMenu.classList.contains("active")
+        ) {
+          hamburgerMenu.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+      });
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-grid">
+          <!-- Company Info -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img
+                src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg"
+                alt="Interior Illusions Logo"
+                style="height: 120px; width: auto"
+              />
+            </div>
+            <p class="footer-description">
+              Specialists in providing luxury interior finishes in residential &
+              commercial projects. Remodels & New Construction.
+            </p>
+            <div class="footer-social">
+              <a
+                href="https://instagram.com/interior_illusions_llc"
+                target="_blank"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F"
+                target="_blank"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="mailto:interiorillusionsllc@outlook.com"
+                aria-label="Email"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
           </div>
-          <p class="footer-description">Specialists in providing luxury interior finishes in residential & commercial projects. Remodels & New Construction.</p>
-          <div class="footer-social">
-            <a href="https://instagram.com/interior_illusions_llc" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="mailto:interiorillusionsllc@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+
+          <!-- Services -->
+          <div class="footer-section">
+            <h3 class="footer-label">Services</h3>
+            <h4 class="footer-heading">What We Do</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="../services/full-home-remodels.html"
+                  >Full home remodels</a
+                >
+              </li>
+              <li><a href="../services/kitchens.html">Kitchens</a></li>
+              <li><a href="../services/bathrooms.html">Bathrooms</a></li>
+              <li><a href="../services/flooring.html">Flooring</a></li>
+              <li>
+                <a href="../services/general-construction.html"
+                  >General construction and framing</a
+                >
+              </li>
+              <li>
+                <a href="../services/custom-cabinetry.html"
+                  >Custom cabinetry and millwork</a
+                >
+              </li>
+              <li>
+                <a href="../services/painting-finishes.html"
+                  >Interior painting</a
+                >
+              </li>
+              <li>
+                <a href="../services/selective-demolition.html">Demolition</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Portfolio -->
+          <div class="footer-section">
+            <h3 class="footer-label">Portfolio</h3>
+            <h4 class="footer-heading">Our Work</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="residential-projects.html">Residential Projects</a>
+              </li>
+              <li>
+                <a href="commercial-projects.html">Commercial Projects</a>
+              </li>
+              <li>
+                <a href="before-after-gallery.html">Before & After Gallery</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer-section">
+            <h3 class="footer-label">Contact</h3>
+            <h4 class="footer-heading">Get In Touch</h4>
+            <ul class="footer-links">
+              <li><strong>Dallas, TX, United States</strong></li>
+              <li><a href="tel:+19723704873">(972) 370-4873</a></li>
+              <li>
+                <a href="mailto:interiorillusionsllc@outlook.com"
+                  >interiorillusionsllc@outlook.com</a
+                >
+              </li>
+              <li>
+                <a href="https://instagram.com/interior_illusions_llc"
+                  >@interior_illusions_llc</a
+                >
+              </li>
+              <li>
+                <strong>Service Area:</strong> DFW Metroplex, North Texas,
+                McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco
+              </li>
+            </ul>
           </div>
         </div>
 
-        <!-- Services -->
-        <div class="footer-section">
-          <h3 class="footer-label">Services</h3>
-          <h4 class="footer-heading">What We Do</h4>
-          <ul class="footer-links">
-            <li><a href="../services/full-home-remodels.html">Full home remodels</a></li>
-            <li><a href="../services/kitchens.html">Kitchens</a></li>
-            <li><a href="../services/bathrooms.html">Bathrooms</a></li>
-            <li><a href="../services/flooring.html">Flooring</a></li>
-            <li><a href="../services/general-construction.html">General construction and framing</a></li>
-            <li><a href="../services/custom-cabinetry.html">Custom cabinetry and millwork</a></li>
-            <li><a href="../services/painting-finishes.html">Interior painting</a></li>
-            <li><a href="../services/selective-demolition.html">Demolition</a></li>
-          </ul>
-        </div>
-
-        <!-- Portfolio -->
-        <div class="footer-section">
-          <h3 class="footer-label">Portfolio</h3>
-          <h4 class="footer-heading">Our Work</h4>
-          <ul class="footer-links">
-            <li><a href="residential-projects.html">Residential Projects</a></li>
-            <li><a href="commercial-projects.html">Commercial Projects</a></li>
-            <li><a href="before-after-gallery.html">Before & After Gallery</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div class="footer-section">
-          <h3 class="footer-label">Contact</h3>
-          <h4 class="footer-heading">Get In Touch</h4>
-          <ul class="footer-links">
-            <li><strong>Dallas, TX, United States</strong></li>
-            <li><a href="tel:+19723704873">(972) 370-4873</a></li>
-            <li><a href="mailto:interiorillusionsllc@outlook.com">interiorillusionsllc@outlook.com</a></li>
-            <li><a href="https://instagram.com/interior_illusions_llc">@interior_illusions_llc</a></li>
-            <li><strong>Service Area:</strong> DFW Metroplex, North Texas, McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco</li>
-          </ul>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <p>
+              &copy; 2024 Interior Illusions LLC. All rights reserved.
+              Construction company · Home improvement
+            </p>
+            <div class="footer-legal-links">
+              <a href="#">Privacy Policy</a>
+              <span class="footer-divider">|</span>
+              <a href="#">Terms of Service</a>
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- Footer Bottom -->
-      <div class="footer-bottom">
-        <div class="footer-legal">
-          <p>&copy; 2024 Interior Illusions LLC. All rights reserved. Construction company · Home improvement</p>
-          <div class="footer-legal-links">
-            <a href="#">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-</body>
-<script src="../assets/js/nav-active.js"></script>
+    </footer>
+  </body>
+  <script src="../assets/js/nav-active.js"></script>
 </html>

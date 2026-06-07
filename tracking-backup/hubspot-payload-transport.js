@@ -45,6 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
 async function submitFormToHubSpot(e) {
   e.preventDefault();
 
+  // Constants placeholder for manager
+  const portalId = "51388633";
+  const formGuid = "f47c4f3d-4891-4c48-a1a1-80a4240f5b51";
+  const accessToken = "pat-na1-92f05fa5-2818-4e52-a7b8-e9b4b43d9674";
+
   // Custom mapping for vanilla HTML values
   const email = document.querySelector('input[name="email"]')?.value || "";
   const firstname =
@@ -106,14 +111,14 @@ async function submitFormToHubSpot(e) {
     else submitButton.value = "Submitting...";
   }
 
-  // Prepare headers for the backend PHP proxy
-  const endpoint = "/backend/submit-lead.php";
+  const endpoint = `https://api.hsforms.com/submissions/v3/integration/secure/submit/${portalId}/${formGuid}`;
 
   try {
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(payload),
     });
@@ -121,11 +126,11 @@ async function submitFormToHubSpot(e) {
     const result = await response.json();
 
     if (response.ok) {
-      console.log("✅ HubSpot submission success via secure proxy:", result);
+      console.log("✅ HubSpot submission success:", result);
       window.location.href =
         "https://interiorillusionsconstruction.com/contact/thank-you.html";
     } else {
-      console.error("❌ Proxy API Error:", result);
+      console.error("❌ HubSpot API Error:", result);
       alert("There was an error submitting your form. Please try again.");
       if (submitButton) {
         submitButton.disabled = false;
