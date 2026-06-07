@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book a Call - Interior Illusions LLC</title>
+  <meta name="description" content="Book a call with Interior Illusions LLC to get a free estimate and design consultation for your kitchen, bathroom, or full home remodel.">
+  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Shared Stylesheet for global nav interactions -->
+  <link rel="stylesheet" href="../css/style.css">
+  
+  <!-- React, ReactDOM, Babel, & Tailwind CSS CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      },
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0B0E14',
+              cobalt: '#1D4ED8',
+              azure: '#93C5FD',
+              offwhite: '#E7EAEE',
+              slate: '#A3AAB4',
+              light: '#FAF7F2'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z0F0X2TWW4');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1273059444474707');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1"
+  /></noscript>
+
+  <style>
+    :root {
+      --color-bg-primary: #0B0E14; /* Deep Navy */
+      --color-action: #1D4ED8;    /* Cobalt */
+      --color-accent: #93C5FD;    /* Azure */
+      --color-heading: #E7EAEE;   /* Off-white */
+      --color-body: #A3AAB4;      /* Slate */
+      --color-light: #FAF7F2;     /* Ivory */
+    }
+
+    body, html {
+      font-family: 'Satoshi', 'Inter', 'SF Pro Display', system-ui, sans-serif;
+      color: var(--color-body);
+      background: var(--color-bg-primary);
+      height: 100%;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; z-index: 30;
+      background: #0B0E14; /* Deep Navy background */
+    }
+
+    .nav a, .nav .brand {
+      color: #E7EAEE;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .call-now-btn:hover {
+      background: rgba(29, 78, 216, 0.2) !important;
+      border-color: #93C5FD !important;
+      transform: translateY(-1px);
+    }
+    .call-now-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Page Content */
+    .page-content {
+      padding: 140px 20px 80px;
+      max-width: 720px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background: var(--color-bg-primary);
+      padding: 80px 0 40px;
+      border-top: 1px solid rgba(163, 170, 180, 0.2);
+    }
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .footer-section {
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-logo {
+      margin-bottom: 24px;
+    }
+    .footer-description {
+      color: var(--color-body);
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 300px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-social a {
+      color: var(--color-accent);
+      font-size: 20px;
+      transition: color 0.3s ease;
+    }
+    .footer-social a:hover {
+      color: var(--color-heading);
+    }
+    .footer-label {
+      color: var(--color-accent) !important;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .footer-heading {
+      color: var(--color-heading) !important;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    .footer-links a {
+      color: var(--color-accent);
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .footer-links a:hover {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+    }
+    .footer-links strong {
+      color: var(--color-accent);
+      font-weight: 400;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(163, 170, 180, 0.2);
+      padding-top: 32px;
+    }
+    .footer-legal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-legal p {
+      color: var(--color-body);
+      font-size: 14px;
+      margin: 0;
+    }
+    .footer-legal-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-legal-links a {
+      color: var(--color-accent);
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .footer-legal-links a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+    }
+    .footer-divider {
+      color: rgba(163, 170, 180, 0.3);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+    }
+    @media (max-width: 640px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Floating Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Header -->
+  <header class="nav">
+    <div class="brand">
+      <a href="../index.html">
+        <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" style="height: 120px; width: auto; display: inline-block; vertical-align: middle;" />
+      </a>
+    </div>
+    <div class="nav-actions">
+      <a href="tel:+19723704873" class="call-now-btn" style="background: rgba(29, 78, 216, 0.05); border: 2px solid #1D4ED8; border-radius: 8px; padding: 10px 20px; color: #FAF7F2; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-family: inherit; font-size: 16px; transition: all 0.3s ease; cursor: pointer;">
+        <i class="fa-solid fa-phone" style="color: #93C5FD;"></i> CALL NOW
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Wizard Container -->
+  <main class="page-content">
+    <div id="react-form-root"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <!-- Company Info -->
+        <div class="footer-section">
+          <div class="footer-logo">
+            <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Logo" style="height: 120px; width: auto;" />
+          </div>
+          <p class="footer-description">Specialists in providing luxury interior finishes in residential & commercial projects. Remodels & New Construction.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/interior_illusions_llc" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/people/Interior-Illusions-Contractors/61573381874473/?rdid=I6qxrjh9E32T0KQ7&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F175PqtNXzX%2F" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="mailto:interiorillusionsllc@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div class="footer-section">
+          <h3 class="footer-label">Services</h3>
+          <h4 class="footer-heading">What We Do</h4>
+          <ul class="footer-links">
+            <li><a href="../services/full-home-remodels.html">Full home remodels</a></li>
+            <li><a href="../services/kitchens.html">Kitchens</a></li>
+            <li><a href="../services/bathrooms.html">Bathrooms</a></li>
+            <li><a href="../services/flooring.html">Flooring</a></li>
+            <li><a href="../services/general-construction.html">General construction and framing</a></li>
+            <li><a href="../services/custom-cabinetry.html">Custom cabinetry and millwork</a></li>
+            <li><a href="../services/painting-finishes.html">Interior painting</a></li>
+            <li><a href="../services/selective-demolition.html">Demolition</a></li>
+          </ul>
+        </div>
+
+        <!-- Portfolio -->
+        <div class="footer-section">
+          <h3 class="footer-label">Portfolio</h3>
+          <h4 class="footer-heading">Our Work</h4>
+          <ul class="footer-links">
+            <li><a href="../portfolio/residential-projects.html">Residential Projects</a></li>
+            <li><a href="../portfolio/commercial-projects.html">Commercial Projects</a></li>
+            <li><a href="../portfolio/before-after-gallery.html">Before & After Gallery</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-section">
+          <h3 class="footer-label">Contact</h3>
+          <h4 class="footer-heading">Get In Touch</h4>
+          <ul class="footer-links">
+            <li><strong>Dallas, TX, United States</strong></li>
+            <li><a href="tel:+19723704873">(972) 370-4873</a></li>
+            <li><a href="mailto:interiorillusionsllc@outlook.com">interiorillusionsllc@outlook.com</a></li>
+            <li><a href="https://instagram.com/interior_illusions_llc">@interior_illusions_llc</a></li>
+            <li><strong>Service Area:</strong> DFW Metroplex, North Texas, McKinney, Plano, Allen, Gunter, Celina, Prosper, Frisco</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>&copy; 2024 Interior Illusions LLC. All rights reserved. Construction company · Home improvement</p>
+          <div class="footer-legal-links">
+            <a href="#">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- React Wizard Application Code -->
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // Helper functions for global custom cursor hover highlights
+    const handleHoverStart = () => document.body.classList.add("cursor-hover");
+    const handleHoverEnd = () => document.body.classList.remove("cursor-hover");
+    const handleTextHoverStart = () => document.body.classList.add("cursor-text");
+    const handleTextHoverEnd = () => document.body.classList.remove("cursor-text");
+    const handleClickStart = () => document.body.classList.add("cursor-click");
+    const handleClickEnd = () => document.body.classList.remove("cursor-click");
+
+    // Icons
+    const BathroomIcon = () => (
+      <svg className="w-16 h-16 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 15h18v2.5a3 3 0 01-3 3H6a3 3 0 01-3-3V15z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 20.5v1.5M19 20.5v1.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7 15V5a3 3 0 013-3h1.5a1 1 0 011 1v1.5a1 1 0 01-1 1H10" />
+        <circle cx="9" cy="9" r="0.5" fill="currentColor" />
+        <circle cx="11" cy="9" r="0.5" fill="currentColor" />
+        <circle cx="13" cy="9" r="0.5" fill="currentColor" />
+        <circle cx="10" cy="11" r="0.5" fill="currentColor" />
+        <circle cx="12" cy="11" r="0.5" fill="currentColor" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16 15v3.5a0.5 0.5 0 000.5 0.5h1.5a0.5 0.5 0 000.5-0.5V15" />
+      </svg>
+    );
+
+    const KitchenIcon = () => (
+      <svg className="w-16 h-16 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+        <rect x="4" y="3" width="5" height="4" rx="0.5" />
+        <rect x="9" y="3" width="5" height="4" rx="0.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16 3h4l-1 4h-2l-1-4z" />
+        <rect x="4" y="11" width="16" height="9" rx="0.5" />
+        <path d="M4 14h16M10 11v9M14 11v9" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="11.5" y="13.5" width="5" height="4.5" rx="0.5" />
+        <circle cx="11.5" cy="12.5" r="0.4" fill="currentColor" />
+        <circle cx="13" cy="12.5" r="0.4" fill="currentColor" />
+        <circle cx="14.5" cy="12.5" r="0.4" fill="currentColor" />
+        <circle cx="16" cy="12.5" r="0.4" fill="currentColor" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 11V9.5a1.5 1.5 0 011.5-1.5h1a0.5 0.5 0 010.5 0.5V9" />
+      </svg>
+    );
+
+    const HouseIcon = () => (
+      <svg className="w-16 h-16 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h12a1 1 0 001-1V10" />
+        <path d="M5 13h14" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="7.5" y="8" width="3" height="3" rx="0.5" />
+        <rect x="13.5" y="8" width="3" height="3" rx="0.5" />
+        <rect x="10.5" y="15" width="3" height="5" rx="0.5" />
+        <circle cx="11" cy="17.5" r="0.3" fill="currentColor" />
+        <rect x="6.5" y="15" width="2.5" height="3" rx="0.5" />
+        <rect x="15" y="15" width="2.5" height="3" rx="0.5" />
+      </svg>
+    );
+
+    const UpgradesIcon = () => (
+      <svg className="w-16 h-16 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+        <path d="M7 16v-4a2 2 0 012-2h6a2 2 0 012 2v4M5 13h14v3a2 2 0 01-2 2H7a2 2 0 01-2-2v-3z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M7 18l-1 2M17 18l1 2" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="5.5" y="3.5" width="5" height="4" rx="0.5" />
+        <path d="M6.5 6l1-1 1.5 1.5M9 5.5l1.5-1" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16.5 18V9.5M15 9.5h3l-0.5-2.5h-2zM15.5 18h2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M3 18h2.5M2.5 18l0.5 2h1.5l0.5-2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M3.5 18c-0.5-1.5 0-2.5 0.5-3M3.75 16.5c1-1 1-2 1-3M4 18c0.75-0.75 1.5-0.75 2-1" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+
+    const LightningIcon = () => (
+      <svg className="w-8 h-8 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    );
+
+    const CalendarIcon = () => (
+      <svg className="w-8 h-8 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="15" rx="2" />
+        <path d="M16 2v4M8 2v4M3 10h18" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+
+    const ClockIcon = () => (
+      <svg className="w-8 h-8 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l2.5 1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+
+    const CalendarStarIcon = () => (
+      <svg className="w-8 h-8 text-brand-azure flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M16 2v4M8 2v4M3 9h18" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 11.5l.8 1.6 1.8.3-1.3 1.3.3 1.8-1.6-.8-1.6.8.3-1.8-1.3-1.3 1.8-.3z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+
+    const UserIcon = () => (
+      <svg className="w-5 h-5 text-brand-slate" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    );
+
+    const EnvelopeIcon = () => (
+      <svg className="w-5 h-5 text-brand-slate" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    );
+
+    const PhoneIcon = () => (
+      <svg className="w-5 h-5 text-brand-slate" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+      </svg>
+    );
+
+    const ShieldDollarIcon = () => (
+      <svg className="w-8 h-8 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    );
+
+    const ClockIconLarge = () => (
+      <svg className="w-8 h-8 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    );
+
+    const StarIconLarge = () => (
+      <svg className="w-8 h-8 text-brand-azure" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.969 0 1.371 1.24.588 1.81l-3.97 2.883a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.971-2.883a1 1 0 00-1.18 0l-3.97 2.883c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118L2.98 10.1c-.783-.57-.38-1.81.588-1.81h4.906a1 1 0 00.951-.69l1.519-4.674z" />
+      </svg>
+    );
+
+    const formatPhoneNumber = (value) => {
+      if (!value) return value;
+      const phoneNumber = value.replace(/[^\d]/g, "");
+      const length = phoneNumber.length;
+      if (length < 4) return phoneNumber;
+      if (length < 7) {
+        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+      }
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+    };
+
+    const getCookie = (name) => {
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return "";
+    };
+
+    function BookCallWizard() {
+      const [step, setStep] = useState(1);
+      const [formData, setFormData] = useState({
+        service: "",
+        timeline: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: ""
+      });
+      const [errors, setErrors] = useState({});
+      const [isSubmitting, setIsSubmitting] = useState(false);
+
+      const scopes = [
+        { id: "bathroom", name: "Bathroom Remodel", icon: <BathroomIcon /> },
+        { id: "kitchen", name: "Kitchen", icon: <KitchenIcon /> },
+        { id: "full-home-remodel", name: "Full Home Remodel", icon: <HouseIcon /> },
+        { id: "interior-upgrades", name: "Interior Upgrades", details: "Flooring, painting, custom cabinetry, other", icon: <UpgradesIcon /> }
+      ];
+
+      const timelines = [
+        { id: "asap", name: "ASAP (Next 30 Days)", badge: "High Urgency", icon: <LightningIcon /> },
+        { id: "1-3-months", name: "Next 1-3 Months", badge: "Medium Urgency", icon: <CalendarIcon /> },
+        { id: "researching", name: "Just Researching (3+ Months)", badge: "Low Urgency", icon: <ClockIcon /> }
+      ];
+
+      const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        if (errors[name]) {
+          setErrors(prev => ({ ...prev, [name]: "" }));
+        }
+      };
+
+      const handlePhoneChange = (e) => {
+        const formatted = formatPhoneNumber(e.target.value);
+        setFormData(prev => ({ ...prev, phone: formatted }));
+        if (errors.phone) {
+          setErrors(prev => ({ ...prev, [phone]: "" }));
+        }
+      };
+
+      const validateStep3 = () => {
+        const newErrors = {};
+        if (!formData.firstName.trim()) newErrors.firstName = "First name is required.";
+        if (!formData.lastName.trim()) newErrors.lastName = "Last name is required.";
+        if (!formData.email.trim()) {
+          newErrors.email = "Email address is required.";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+          newErrors.email = "Please enter a valid email address.";
+        }
+        if (!formData.phone.trim()) {
+          newErrors.phone = "Phone number is required.";
+        } else if (formData.phone.replace(/[^\d]/g, "").length < 10) {
+          newErrors.phone = "Please enter a valid 10-digit phone number.";
+        }
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+      };
+
+      const selectScope = (val) => {
+        setFormData(prev => ({ ...prev, service: val }));
+        setTimeout(() => setStep(2), 250);
+      };
+
+      const selectTimeline = (val) => {
+        setFormData(prev => ({ ...prev, timeline: val }));
+        setTimeout(() => setStep(3), 250);
+      };
+
+      const prevStep = () => {
+        setStep(prev => prev - 1);
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!validateStep3()) return;
+
+        setIsSubmitting(true);
+
+        const fbp = getCookie("_fbp");
+        let fbc = getCookie("_fbc");
+        const fbclid = new URLSearchParams(window.location.search).get("fbclid");
+        if (!fbc && fbclid) {
+          fbc = "fb.1." + Date.now() + "." + fbclid;
+        }
+
+        const fields = [
+          { name: "firstname", value: formData.firstName },
+          { name: "lastname", value: formData.lastName },
+          { name: "email", value: formData.email },
+          { name: "phone", value: formData.phone },
+          { name: "service", value: formData.service },
+          { name: "preferred.timeline", value: formData.timeline },
+          { name: "address", value: "" },
+          { name: "hear.about.us", value: "" },
+          { name: "project.details", value: "Book A Call Form Submission" },
+          { name: "fbp", value: fbp },
+          { name: "fbc", value: fbc }
+        ];
+
+        const context = {
+          hutk: getCookie("hubspotutk"),
+          pageUri: window.location.href,
+          pageName: document.title
+        };
+
+        const payload = {
+          fields: fields,
+          context: context
+        };
+
+        const endpoint = "/backend/submit-lead.php";
+
+        fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload),
+          keepalive: true
+        })
+        .then(res => {
+          if (res.ok) {
+            window.location.href = "thank-you.html";
+          } else {
+            console.error("HubSpot Submission error status:", res.status);
+            alert("There was an issue sending your request. Please check details and try again.");
+            setIsSubmitting(false);
+          }
+        })
+        .catch(err => {
+          console.error("Network connectivity issue:", err);
+          alert("Network error. Please check your internet connection.");
+          setIsSubmitting(false);
+        });
+      };
+
+      const getOpeningsText = () => {
+        switch (formData.service) {
+          case "bathroom":
+            return { count: 3, name: "Custom Bathroom Remodel" };
+          case "kitchen":
+            return { count: 2, name: "Custom Kitchen Remodel" };
+          case "full-home-remodel":
+            return { count: 2, name: "Custom Full Home Remodel" };
+          case "interior-upgrades":
+            return { count: 4, name: "Interior Upgrade" };
+          default:
+            return { count: 3, name: "Custom Remodel" };
+        }
+      };
+
+      const openings = getOpeningsText();
+
+      const getProgressPercentage = () => {
+        if (step === 1) return "33%";
+        if (step === 2) return "66%";
+        return "100%";
+      };
+
+      return (
+        <div className="bg-[#0B0E14] border border-brand-azure/10 rounded-2xl p-6 sm:p-10 shadow-2xl relative font-sans select-none">
+          {/* Progress Bar & Header */}
+          <div className="relative mb-8 pt-4">
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={prevStep}
+                onMouseEnter={handleHoverStart}
+                onMouseLeave={handleHoverEnd}
+                onMouseDown={handleClickStart}
+                onMouseUp={handleClickEnd}
+                className="absolute left-0 top-3 text-brand-azure hover:text-white border-0 bg-transparent cursor-pointer flex items-center gap-1 font-semibold text-sm transition-colors duration-200 outline-none"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            )}
+            
+            <div className="w-full bg-[#1A1F2B] h-2.5 rounded-full overflow-hidden mb-6">
+              <div 
+                className="bg-brand-azure h-full rounded-full transition-all duration-500 ease-out"
+                style={{ width: getProgressPercentage() }}
+              />
+            </div>
+            
+            <div className="text-center">
+              <span className="text-brand-azure font-semibold text-sm tracking-wider uppercase">
+                Step {step} of 3: {step === 1 ? "Project Scope" : step === 2 ? "Timeline" : "Contact Info"}
+              </span>
+            </div>
+          </div>
+
+          {/* Step 1: Project Scope */}
+          {step === 1 && (
+            <div className="animate-fade-in">
+              <h2 className="text-[#E7EAEE] text-3xl sm:text-4xl font-bold text-center mb-2 tracking-tight">
+                Get Your Free Estimate!
+              </h2>
+              <p className="text-brand-slate text-center text-lg mb-8">
+                Select the primary scope of your project.
+              </p>
+              
+              <div className="grid grid-cols-1 gap-4">
+                {scopes.map((scope) => (
+                  <button
+                    key={scope.id}
+                    type="button"
+                    onClick={() => selectScope(scope.id)}
+                    onMouseEnter={handleHoverStart}
+                    onMouseLeave={handleHoverEnd}
+                    onMouseDown={handleClickStart}
+                    onMouseUp={handleClickEnd}
+                    className={`flex items-center text-left w-full p-5 sm:p-6 rounded-xl border-2 transition-all duration-350 cursor-pointer bg-transparent outline-none ${
+                      formData.service === scope.id
+                        ? "border-[#1D4ED8] bg-[#1D4ED8]/10"
+                        : "border-brand-azure/10 hover:border-brand-azure hover:bg-brand-azure/5"
+                    }`}
+                  >
+                    <div className="flex-shrink-0 mr-6">
+                      {scope.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold text-xl mb-1">{scope.name}</h3>
+                      {scope.details && (
+                        <p className="text-brand-slate text-sm font-medium">{scope.details}</p>
+                      )}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Step 2: Timeline */}
+          {step === 2 && (
+            <div className="animate-fade-in">
+              <h2 className="text-[#E7EAEE] text-3xl sm:text-4xl font-bold text-center mb-2 tracking-tight">
+                When would you like to begin construction?
+              </h2>
+              <p className="text-brand-slate text-center text-lg mb-8">
+                This helps us coordinate our in-house design and building crews.
+              </p>
+
+              <div className="grid grid-cols-1 gap-4 mb-8">
+                {timelines.map((t) => (
+                  <button
+                    key={t.id}
+                    type="button"
+                    onClick={() => selectTimeline(t.id)}
+                    onMouseEnter={handleHoverStart}
+                    onMouseLeave={handleHoverEnd}
+                    onMouseDown={handleClickStart}
+                    onMouseUp={handleClickEnd}
+                    className={`flex items-center justify-between text-left w-full p-5 sm:p-6 rounded-xl border-2 transition-all duration-350 cursor-pointer outline-none ${
+                      formData.timeline === t.id
+                        ? "border-[#1D4ED8] bg-[#1D4ED8] text-white"
+                        : "border-brand-azure/10 bg-transparent hover:border-brand-azure hover:bg-brand-azure/5"
+                    }`}
+                  >
+                    <div className="flex items-center gap-6">
+                      <div className={`flex-shrink-0 ${formData.timeline === t.id ? "text-white" : "text-brand-azure"}`}>
+                        {t.icon}
+                      </div>
+                      <span className={`font-bold text-xl ${formData.timeline === t.id ? "text-white" : "text-[#E7EAEE]"}`}>
+                        {t.name}
+                      </span>
+                    </div>
+                    <span className={`text-xs uppercase tracking-widest font-semibold px-3 py-1.5 rounded-md ${
+                      formData.timeline === t.id
+                        ? "bg-white/20 text-white"
+                        : "bg-[#1A1F2B] text-brand-azure"
+                    }`}>
+                      {t.badge}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Limited Spots Alert Box */}
+              <div className="flex items-start gap-4 border-t border-brand-azure/10 pt-6 justify-center">
+                <CalendarIcon />
+                <span className="text-brand-slate text-sm font-medium max-w-sm mt-1">
+                  Limited spots available. Schedule early to secure your preferred start date.
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Step 3: Contact Info */}
+          {step === 3 && (
+            <form onSubmit={handleSubmit} className="animate-fade-in">
+              <h2 className="text-[#E7EAEE] text-3xl sm:text-4xl font-bold text-center mb-2 tracking-tight">
+                Where should we send your custom design guide and estimate?
+              </h2>
+              <p className="text-brand-slate text-center text-lg mb-8">
+                Enter your details to finalize your request.
+              </p>
+
+              {/* Dynamic Openings Box */}
+              <div className="bg-[#1D4ED8]/5 border border-[#1D4ED8]/30 rounded-xl p-5 mb-8 flex items-start gap-4">
+                <CalendarStarIcon />
+                <p className="text-[#E7EAEE] text-sm leading-relaxed m-0 font-medium">
+                  We have <span className="text-brand-azure font-bold">{openings.count} new {openings.name} Openings</span> for This Month. We limit active projects to guarantee on-time delivery and clean work environments.
+                </p>
+              </div>
+
+              {/* Input Fields */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
+                <div>
+                  <div className="relative">
+                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <UserIcon />
+                    </span>
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      placeholder="First Name"
+                      onMouseEnter={handleHoverStart}
+                      onMouseLeave={handleHoverEnd}
+                      onFocus={handleTextHoverStart}
+                      onBlur={handleTextHoverEnd}
+                      className={`w-full bg-[#1A1F2B] border-2 text-white text-base rounded-xl py-4 pl-12 pr-4 outline-none transition-colors duration-250 box-border ${
+                        errors.firstName ? "border-red-500" : "border-brand-azure/20 focus:border-brand-azure"
+                      }`}
+                    />
+                  </div>
+                  {errors.firstName && (
+                    <p className="text-red-500 text-xs mt-2 ml-1 font-semibold">{errors.firstName}</p>
+                  )}
+                </div>
+
+                <div>
+                  <div className="relative">
+                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <UserIcon />
+                    </span>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      placeholder="Last Name"
+                      onMouseEnter={handleHoverStart}
+                      onMouseLeave={handleHoverEnd}
+                      onFocus={handleTextHoverStart}
+                      onBlur={handleTextHoverEnd}
+                      className={`w-full bg-[#1A1F2B] border-2 text-white text-base rounded-xl py-4 pl-12 pr-4 outline-none transition-colors duration-250 box-border ${
+                        errors.lastName ? "border-red-500" : "border-brand-azure/20 focus:border-brand-azure"
+                      }`}
+                    />
+                  </div>
+                  {errors.lastName && (
+                    <p className="text-red-500 text-xs mt-2 ml-1 font-semibold">{errors.lastName}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+                <div>
+                  <div className="relative">
+                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <EnvelopeIcon />
+                    </span>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="Email Address"
+                      onMouseEnter={handleHoverStart}
+                      onMouseLeave={handleHoverEnd}
+                      onFocus={handleTextHoverStart}
+                      onBlur={handleTextHoverEnd}
+                      className={`w-full bg-[#1A1F2B] border-2 text-white text-base rounded-xl py-4 pl-12 pr-4 outline-none transition-colors duration-250 box-border ${
+                        errors.email ? "border-red-500" : "border-brand-azure/20 focus:border-brand-azure"
+                      }`}
+                    />
+                  </div>
+                  {errors.email && (
+                    <p className="text-red-500 text-xs mt-2 ml-1 font-semibold">{errors.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <div className="relative">
+                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <PhoneIcon />
+                    </span>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handlePhoneChange}
+                      placeholder="Phone Number"
+                      onMouseEnter={handleHoverStart}
+                      onMouseLeave={handleHoverEnd}
+                      onFocus={handleTextHoverStart}
+                      onBlur={handleTextHoverEnd}
+                      className={`w-full bg-[#1A1F2B] border-2 text-white text-base rounded-xl py-4 pl-12 pr-4 outline-none transition-colors duration-250 box-border ${
+                        errors.phone ? "border-red-500" : "border-brand-azure/20 focus:border-brand-azure"
+                      }`}
+                    />
+                  </div>
+                  {errors.phone && (
+                    <p className="text-red-500 text-xs mt-2 ml-1 font-semibold">{errors.phone}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                onMouseEnter={handleHoverStart}
+                onMouseLeave={handleHoverEnd}
+                onMouseDown={handleClickStart}
+                onMouseUp={handleClickEnd}
+                className="w-full bg-brand-cobalt hover:bg-[#1e40af] text-white text-lg font-bold py-4 px-8 rounded-xl cursor-pointer border-0 transition-colors duration-200 outline-none flex items-center justify-center min-h-[56px] disabled:opacity-50"
+              >
+                {isSubmitting ? "SUBMITTING..." : "GET FREE ESTIMATE"}
+              </button>
+
+              {/* Trust Badges Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-brand-azure/10 mt-8 pt-8">
+                <div className="flex flex-col items-center text-center">
+                  <ShieldDollarIcon />
+                  <span className="text-[#E7EAEE] font-bold text-sm mt-3 mb-1">Only 10% Down</span>
+                  <span className="text-brand-slate text-xs">to Get Started</span>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <ClockIconLarge />
+                  <span className="text-[#E7EAEE] font-bold text-sm mt-3 mb-1">On-Time Completion</span>
+                  <span className="text-brand-slate text-xs">& Dust-Free Process</span>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <StarIconLarge />
+                  <span className="text-[#E7EAEE] font-bold text-sm mt-3 mb-1">5-Star Rated</span>
+                  <span className="text-brand-slate text-xs mb-1">on Google</span>
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <i key={i} className="fas fa-star text-brand-azure text-xs" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </form>
+          )}
+        </div>
+      );
+    }
+
+    const container = document.getElementById("react-form-root");
+    const root = ReactDOM.createRoot(container);
+    root.render(<BookCallWizard />);
+  </script>
+
+  <!-- Custom Floating Cursor JS -->
+  <script>
+    (function() {
+      const cursor = document.querySelector('.cursor');
+      const cursorFollower = document.querySelector('.cursor-follower');
+      if (!cursor || !cursorFollower) return;
+
+      let mouseX = 0, mouseY = 0;
+      let cursorX = 0, cursorY = 0;
+      let followerX = 0, followerY = 0;
+
+      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+
+      function animateCursor() {
+        const ease = 0.2;
+        cursorX += (mouseX - cursorX) * ease;
+        cursorY += (mouseY - cursorY) * ease;
+        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+        requestAnimationFrame(animateCursor);
+      }
+      function animateFollower() {
+        const ease = 0.15;
+        followerX += (mouseX - followerX) * ease;
+        followerY += (mouseY - followerY) * ease;
+        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+        requestAnimationFrame(animateFollower);
+      }
+      animateCursor();
+      animateFollower();
+
+      const hoverElements = document.querySelectorAll('a, button');
+      const textElements = document.querySelectorAll('h1, h2, h3, p, span, input, select, textarea');
+      const clickableElements = document.querySelectorAll('button, .btn, .call-now-btn');
+
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      });
+      clickableElements.forEach(el => {
+        el.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
+        el.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
+      });
+      textElements.forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text'));
+      });
+
+      document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; cursorFollower.style.opacity = '0'; });
+      document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; cursorFollower.style.opacity = '1'; });
+    })();
+  </script>
+</body>
+</html>
