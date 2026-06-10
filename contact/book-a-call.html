@@ -511,16 +511,16 @@
       const [isSubmitting, setIsSubmitting] = useState(false);
 
       const scopes = [
-        { id: "bathroom", name: "Bathroom Remodel", icon: <BathroomIcon /> },
-        { id: "kitchen", name: "Kitchen", icon: <KitchenIcon /> },
-        { id: "full-home-remodel", name: "Full Home Remodel", icon: <HouseIcon /> },
-        { id: "interior-upgrades", name: "Interior Upgrades", details: "Flooring, painting, custom cabinetry, other", icon: <UpgradesIcon /> }
+        { id: "bathroom_remodel", name: "Bathroom Remodel", icon: <BathroomIcon /> },
+        { id: "kitchen_remodel", name: "Kitchen", icon: <KitchenIcon /> },
+        { id: "home_remodel", name: "Full Home Remodel", icon: <HouseIcon /> },
+        { id: "interior_upgrades", name: "Interior Upgrades", details: "Flooring, painting, custom cabinetry, other", icon: <UpgradesIcon /> }
       ];
 
       const timelines = [
-        { id: "asap", name: "ASAP (Next 30 Days)", badge: "High Urgency", icon: <LightningIcon /> },
-        { id: "1-3-months", name: "Next 1-3 Months", badge: "Medium Urgency", icon: <CalendarIcon /> },
-        { id: "researching", name: "Just Researching (3+ Months)", badge: "Low Urgency", icon: <ClockIcon /> }
+        { id: "high", name: "ASAP (Next 30 Days)", badge: "High Urgency", icon: <LightningIcon /> },
+        { id: "medium", name: "Next 1-3 Months", badge: "Medium Urgency", icon: <CalendarIcon /> },
+        { id: "low", name: "Just Researching (3+ Months)", badge: "Low Urgency", icon: <ClockIcon /> }
       ];
 
       const handleInputChange = (e) => {
@@ -535,7 +535,7 @@
         const formatted = formatPhoneNumber(e.target.value);
         setFormData(prev => ({ ...prev, phone: formatted }));
         if (errors.phone) {
-          setErrors(prev => ({ ...prev, [phone]: "" }));
+          setErrors(prev => ({ ...prev, phone: "" }));
         }
       };
 
@@ -579,8 +579,8 @@
 
         const fbp = getCookie("_fbp");
         let fbc = getCookie("_fbc");
-        const fbclid = new URLSearchParams(window.location.search).get("fbclid");
-        if (!fbc && fbclid) {
+        const fbclid = getParameterByName("fbclid");
+        if (fbclid && !fbc) {
           fbc = "fb.1." + Date.now() + "." + fbclid;
         }
 
@@ -589,13 +589,13 @@
           { name: "lastname", value: formData.lastName },
           { name: "email", value: formData.email },
           { name: "phone", value: formData.phone },
-          { name: "service", value: formData.service },
-          { name: "preferred_timeline", value: formData.timeline },
-          { name: "address", value: "" },
-          { name: "hear_about_us", value: "" },
-          { name: "message", value: "Book A Call Form Submission" },
-          { name: "fbp", value: fbp },
-          { name: "fbc", value: fbc }
+          { name: "service_scope", value: formData.service },
+          { name: "urgency", value: formData.timeline },
+          { name: "fbp", value: fbp || "" },
+          { name: "fbc", value: fbc || "" },
+          { name: "fbclid_raw", value: fbclid || "" },
+          { name: "book_meeting", value: "no" },
+          { name: "service_form_filled", value: "no" }
         ];
 
         const hutk = getCookie("hubspotutk");
@@ -613,7 +613,7 @@
         };
 
         const portalId = '51388633';
-        const formGuid = 'f47c4f3d-4891-4c48-a1a1-80a4240f5b51';
+        const formGuid = 'c5de09b0-5b5f-470d-83ac-b133359eec01';
         // Use HubSpot Public Submission API for reliable browser-side requests
         const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
 
@@ -630,9 +630,9 @@
             const serviceParam = formData.service ? `?service=${formData.service}` : "";
             
             // Redirect based on urgency with service context
-            if (timelineVal === "asap") {
+            if (timelineVal === "high") {
               window.location.href = `thank-you-high.html${serviceParam}`;
-            } else if (timelineVal.includes("1-3") || timelineVal.includes("medium")) {
+            } else if (timelineVal === "medium") {
               window.location.href = `thank-you-medium.html${serviceParam}`;
             } else {
               window.location.href = `thank-you-low.html${serviceParam}`;
@@ -656,12 +656,13 @@
           if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
             console.warn("Local testing: Redirecting despite fetch error.");
             const timelineVal = formData.timeline ? formData.timeline.toLowerCase() : "";
-            if (timelineVal === "asap") {
-              window.location.href = "thank-you-high.html";
-            } else if (timelineVal.includes("1-3") || timelineVal.includes("medium")) {
-              window.location.href = "thank-you-medium.html";
+            const serviceParam = formData.service ? `?service=${formData.service}` : "";
+            if (timelineVal === "high") {
+              window.location.href = `thank-you-high.html${serviceParam}`;
+            } else if (timelineVal === "medium") {
+              window.location.href = `thank-you-medium.html${serviceParam}`;
             } else {
-              window.location.href = "thank-you-low.html";
+              window.location.href = `thank-you-low.html${serviceParam}`;
             }
           } else {
             alert("Network error. Please check your internet connection.");
@@ -672,13 +673,13 @@
 
       const getOpeningsText = () => {
         switch (formData.service) {
-          case "bathroom":
+          case "bathroom_remodel":
             return { count: 3, name: "Custom Bathroom Remodel" };
-          case "kitchen":
+          case "kitchen_remodel":
             return { count: 2, name: "Custom Kitchen Remodel" };
-          case "full-home-remodel":
+          case "home_remodel":
             return { count: 2, name: "Custom Full Home Remodel" };
-          case "interior-upgrades":
+          case "interior_upgrades":
             return { count: 4, name: "Interior Upgrade" };
           default:
             return { count: 3, name: "Custom Remodel" };
