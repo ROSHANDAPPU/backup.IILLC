@@ -78,9 +78,9 @@ async function submitFormToHubSpot(e) {
       { name: "phone", value: phone },
       { name: "service", value: service },
       { name: "address", value: address },
-      { name: "preferred.timeline", value: timeline },
-      { name: "hear.about.us", value: source },
-      { name: "project.details", value: details },
+      { name: "preferred_timeline", value: timeline },
+      { name: "hear_about_us", value: source },
+      { name: "message", value: details },
       { name: "fbp", value: fbp },
       { name: "fbc", value: fbc },
       { name: "fbc.lid_raw", value: fbclidRaw },
@@ -90,6 +90,11 @@ async function submitFormToHubSpot(e) {
       pageName: document.title,
     },
   };
+
+  const hutk = getCookie("hubspotutk");
+  if (hutk) {
+    payload.context.hutk = hutk;
+  }
 
   console.log("Submitting to HubSpot with payload:", payload);
 
@@ -106,8 +111,11 @@ async function submitFormToHubSpot(e) {
     else submitButton.value = "Submitting...";
   }
 
-  // Prepare headers for the backend PHP proxy
-  const endpoint = "/backend/submit-lead.php";
+  // HubSpot Credentials
+  const portalId = '51388633';
+  const formGuid = 'f47c4f3d-4891-4c48-a1a1-80a4240f5b51';
+  // Use HubSpot Public Submission API
+  const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
 
   try {
     const response = await fetch(endpoint, {
@@ -118,15 +126,32 @@ async function submitFormToHubSpot(e) {
       body: JSON.stringify(payload),
     });
 
-    const result = await response.json();
+    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    const isMockSuccess = !response.ok && isLocalhost && (response.status === 404 || response.status === 405);
 
-    if (response.ok) {
-      console.log("✅ HubSpot submission success via secure proxy:", result);
-      window.location.href =
-        "https://interiorillusionsconstruction.com/contact/thank-you.html";
+    if (response.ok || isMockSuccess) {
+      if (isMockSuccess) {
+        console.warn("HubSpot API not reachable on local static server. Simulating success redirect.");
+      }
+      console.log("✅ HubSpot submission success:", response.status);
+      const timelineVal = timeline ? timeline.toLowerCase() : "";
+      if (timelineVal === "asap") {
+        window.location.href = "thank-you-high.html";
+      } else if (timelineVal === "medium" || timelineVal === "1-3-months" || timelineVal === "1-3months") {
+        window.location.href = "thank-you-medium.html";
+      } else {
+        window.location.href = "thank-you-low.html";
+      }
     } else {
-      console.error("❌ Proxy API Error:", result);
-      alert("There was an error submitting your form. Please try again.");
+      const errorData = await response.json().catch(() => ({}));
+      console.error("❌ HubSpot API Error:", response.status, errorData);
+      
+      let errorMsg = "There was an error submitting your form. Please try again.";
+      if (errorData.errors && errorData.errors.length > 0) {
+        errorMsg = "Submission Error: " + errorData.errors[0].message;
+      }
+      alert(errorMsg);
+      
       if (submitButton) {
         submitButton.disabled = false;
         if (submitButton.innerText) submitButton.innerText = originalButtonText;

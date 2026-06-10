@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You - Secure Your Spot | Interior Illusions</title>
+  <meta name="description" content="Confirm and schedule your discovery call with Interior Illusions. Secure your spot to discuss your luxury remodel project." />
+  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Shared Stylesheet for global nav interactions -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    :root {
+      --color-bg-primary: #0B0E14; /* Deep Navy */
+      --color-action: #1D4ED8;    /* Cobalt */
+      --color-accent: #93C5FD;    /* Azure */
+      --color-heading: #E7EAEE;   /* Off-white */
+      --color-body: #A3AAB4;      /* Slate */
+    }
+
+    body, html {
+      font-family: 'Satoshi', 'Inter', 'SF Pro Display', system-ui, sans-serif;
+      color: var(--color-body);
+      background: var(--color-bg-primary);
+      height: 100%;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Navigation / Fixed Topbar */
+    .fixed-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 30;
+      background: var(--color-bg-primary);
+    }
+
+    .fixed-topbar .logo-container img {
+      height: 120px;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .btn-call-now {
+      background: var(--color-action);
+      color: #FAF7F2;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-call-now:hover {
+      background: #1E40AF;
+      transform: translateY(-1px);
+    }
+
+    .btn-call-now:active {
+      transform: scale(0.97);
+    }
+
+    /* Main Container */
+    .thank-you-container {
+      padding: 140px 20px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    /* Circular Success Checkmark */
+    .icon-success {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    /* Premium Heading */
+    .heading-premium {
+      color: var(--color-heading);
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0 auto 16px;
+      max-width: 700px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Urgency Badge */
+    .badge-timeline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 1px solid rgba(147, 197, 253, 0.2);
+      border-radius: 8px;
+      background: rgba(29, 78, 216, 0.05);
+      margin: 12px auto 24px;
+      max-width: fit-content;
+    }
+
+    .badge-timeline span.icon-clock {
+      color: var(--color-accent);
+      font-size: 16px;
+    }
+
+    /* Description text */
+    .description {
+      color: var(--color-body);
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 580px;
+      margin: 0 auto 36px;
+    }
+
+    /* Calendly Iframe Wrapper */
+    .calendly-frame-wrapper {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(147, 197, 253, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 1060px;
+      margin: 0 auto 36px;
+      height: 1000px; /* ensure full height for Calendly widget */
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .calendly-inline-widget {
+      width: 100%;
+      height: 100%;
+    }
+
+    .calendly-inline-widget iframe {
+      width: 100%;
+      height: 100% !important;
+    }
+
+    /* Secure Footer */
+    .secure-footer {
+      padding: 20px 0 40px;
+      text-align: center;
+    }
+
+    .secure-footer p {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--color-body);
+      opacity: 0.8;
+      margin: 0;
+    }
+
+    .secure-footer p .icon-lock {
+      color: var(--color-accent);
+      font-size: 13px;
+    }
+
+    /* Custom Floating Cursor (matching other pages) */
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: rgba(147, 197, 253, 0.6);
+      border: 2px solid rgba(147, 197, 253, 0.8);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba(147, 197, 253, 0.3);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      background: rgba(147, 197, 253, 0.1);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    body.cursor-hover .cursor {
+      transform: scale(1.5);
+      background: rgba(147, 197, 253, 0.3);
+      border: 2px solid rgba(147, 197, 253, 1);
+      box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
+    }
+
+    body.cursor-click .cursor {
+      transform: scale(0.8);
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    body.cursor-text .cursor {
+      transform: scaleX(0.3) scaleY(1.5);
+      background: rgba(147, 197, 253, 0.4);
+      border: 1px solid rgba(147, 197, 253, 0.9);
+      border-radius: 2px;
+    }
+
+    body.cursor-view .cursor {
+      transform: scale(2);
+      background: rgba(147, 197, 253, 0.2);
+      border: 2px solid rgba(147, 197, 253, 0.8);
+    }
+
+    * {
+      cursor: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .fixed-topbar {
+        padding: 0 20px;
+      }
+      .fixed-topbar .logo-container img {
+        height: 80px;
+      }
+      .btn-call-now {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      .thank-you-container {
+        padding: 110px 16px 40px;
+      }
+      .cursor, .cursor-follower {
+        display: none;
+      }
+      * {
+        cursor: auto !important;
+      }
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0F0X2TWW4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z0F0X2TWW4');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1273059444474707');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1273059444474707&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- Prevent Calendly auto-scroll on page load -->
+  <script>
+    (function() {
+      let isLocked = true;
+      function unlock() {
+        if (isLocked) {
+          isLocked = false;
+          window.removeEventListener('scroll', lockScroll);
+          window.removeEventListener('wheel', unlock);
+          window.removeEventListener('touchmove', unlock);
+          window.removeEventListener('keydown', unlock);
+          window.removeEventListener('mousedown', unlock);
+        }
+      }
+      function lockScroll() {
+        if (isLocked && window.scrollY > 0) {
+          window.scrollTo(0, 0);
+        }
+      }
+      window.addEventListener('scroll', lockScroll, { passive: false });
+      window.addEventListener('wheel', unlock, { passive: true });
+      window.addEventListener('touchmove', unlock, { passive: true });
+      window.addEventListener('keydown', unlock, { passive: true });
+      window.addEventListener('mousedown', unlock, { passive: true });
+      window.scrollTo(0, 0);
+      window.addEventListener('load', () => window.scrollTo(0, 0));
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Custom Floating Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Header Section -->
+  <header class="fixed-topbar">
+    <div class="logo-container">
+      <a href="../index.html">
+        <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions Construction" />
+      </a>
+    </div>
+    <a href="tel:+19723704873" class="btn-call-now">
+      <i class="fa-solid fa-phone"></i> Call Now
+    </a>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="thank-you-container">
+    
+    <!-- Circular Checkmark SVG -->
+    <div class="icon-success">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" stroke="#1D4ED8" stroke-width="2.5"/>
+        <path d="M20 32L28 40L44 24" stroke="#93C5FD" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h1 class="heading-premium">You're In!<br />Let's Secure Your Spot.</h1>
+    
+    <!-- Isolated Urgency Badge (Scope removed) -->
+    <div class="badge-timeline">
+      <span class="icon-clock"><i class="fa-regular fa-clipboard"></i></span>
+      <span style="color: var(--color-accent); font-weight: 500;">Timeline:</span>
+      <span style="color: var(--color-heading); font-weight: 700;">ASAP</span>
+    </div>
+
+    <p class="description">
+      We limit active projects to guarantee on-time delivery and clean work environments. 
+      Book your discovery call below to lock in your timeline.
+    </p>
+
+    <!-- Calendly Embedded Frame Container -->
+    <div class="calendly-frame-wrapper">
+      <!-- Calendly inline widget begin -->
+      <div class="calendly-inline-widget" 
+           data-url="https://calendly.com/contact-interiorillusionsconstruction/30min?background_color=0b0e14&text_color=e7eaee&primary_color=1d4ed8&hide_landing_page_details=1&hide_event_type_details=1&hide_gdpr_banner=1" 
+           style="min-width:320px;height:1000px;">
+      </div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <!-- Calendly inline widget end -->
+    </div>
+
+  </main>
+
+  <!-- Secure Footer -->
+  <footer class="secure-footer">
+    <p>
+      <span class="icon-lock"><i class="fa-solid fa-lock"></i></span> Your information is secure and confidential.
+    </p>
+  </footer>
+
+  <!-- Custom Floating Cursor JS (mirrors index.html) -->
+  <script>
+    (function() {
+      const cursor = document.querySelector('.cursor');
+      const cursorFollower = document.querySelector('.cursor-follower');
+      if (!cursor || !cursorFollower) return;
+
+      let mouseX = 0, mouseY = 0;
+      let cursorX = 0, cursorY = 0;
+      let followerX = 0, followerY = 0;
+
+      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+
+      function animateCursor() {
+        const ease = 0.2;
+        cursorX += (mouseX - cursorX) * ease;
+        cursorY += (mouseY - cursorY) * ease;
+        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+        requestAnimationFrame(animateCursor);
+      }
+      function animateFollower() {
+        const ease = 0.15;
+        followerX += (mouseX - followerX) * ease;
+        followerY += (mouseY - followerY) * ease;
+        cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+        requestAnimationFrame(animateFollower);
+      }
+      animateCursor();
+      animateFollower();
+
+      const hoverElements = document.querySelectorAll('a, button');
+      const textElements = document.querySelectorAll('h1, h2, h3, p, span');
+      const clickableElements = document.querySelectorAll('button, .btn-call-now');
+
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      });
+      clickableElements.forEach(el => {
+        el.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
+        el.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
+      });
+      textElements.forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text'));
+      });
+
+      document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; cursorFollower.style.opacity = '0'; });
+      document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; cursorFollower.style.opacity = '1'; });
+    })();
+  </script>
+</body>
+</html>
