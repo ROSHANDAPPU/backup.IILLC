@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You - Medium Urgency | Interior Illusions</title>
+  <meta name="description" content="Your medium‑urgency remodel request has been received. Schedule your discovery call below to lock in your timeline." />
+  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    :root {
+      --color-bg-primary: #0B0E14; /* Deep Navy */
+      --color-action: #1D4ED8;    /* Cobalt */
+      --color-accent: #93C5FD;    /* Azure */
+      --color-heading: #E7EAEE;   /* Off‑white */
+      --color-body: #A3AAB4;      /* Slate */
+    }
+    body, html {
+      font-family: 'Satoshi', 'Inter', 'SF Pro Display', system-ui, sans-serif;
+      color: var(--color-body);
+      background: var(--color-bg-primary);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .fixed-topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: var(--color-bg-primary);
+      z-index: 30;
+    }
+    .fixed-topbar .logo-container img { height: 120px; }
+    .btn-call-now {
+      background: var(--color-action);
+      color: #FAF7F2;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      transition: all .3s ease;
+    }
+    .thank-you-container {
+      padding: 140px 20px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .heading-premium {
+      color: var(--color-heading);
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0 auto 16px;
+      max-width: 700px;
+    }
+    .badge-timeline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 1px solid rgba(147,197,253,.2);
+      border-radius: 8px;
+      background: rgba(29,78,216,.05);
+      margin: 12px auto 24px;
+    }
+    .badge-timeline .icon-clock { color: var(--color-accent); font-size: 16px; }
+    .description { color: var(--color-body); font-size: 17px; max-width: 580px; margin: 0 auto 36px; }
+    .calendly-frame-wrapper { background: rgba(255,255,255,.01); border:1px solid rgba(147,197,253,.1); border-radius:16px; overflow:hidden; max-width:1060px; margin:0 auto 36px; height:1000px; }
+    .calendly-inline-widget { width:100%; height:100%; }
+    .calendly-inline-widget iframe { width:100%; height:100% !important; }
+    .secure-footer { padding:20px 0 40px; text-align:center; }
+    .secure-footer p { display:inline-flex; align-items:center; gap:6px; font-size:14px; color:var(--color-body); opacity:.8; margin:0; }
+    .secure-footer p .icon-lock { color:var(--color-accent); font-size:13px; }
+    .medium-image { max-width:100%; height:auto; border-radius:12px; margin: 24px 0; }
+    @media (max-width: 768px) {
+      .fixed-topbar { padding:0 20px; }
+      .fixed-topbar .logo-container img { height:80px; }
+      .btn-call-now { padding:8px 16px; font-size:14px; }
+      .thank-you-container { padding:110px 16px 40px; }
+    }
+  </style>
+  <script>
+    // Prevent Calendly auto‑scroll on load (same as high‑urgency page)
+    (function(){
+      let locked = true;
+      const unlock = () => { if (locked) { locked = false; window.removeEventListener('scroll', lockScroll); } };
+      const lockScroll = () => { if (locked && window.scrollY>0) window.scrollTo(0,0); };
+      window.addEventListener('scroll', lockScroll, {passive:false});
+      window.addEventListener('wheel', unlock, {passive:true});
+      window.addEventListener('touchmove', unlock, {passive:true});
+      window.addEventListener('keydown', unlock, {passive:true});
+      window.addEventListener('mousedown', unlock, {passive:true});
+      window.scrollTo(0,0);
+      window.addEventListener('load',()=>window.scrollTo(0,0));
+    })();
+  </script>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <header class="fixed-topbar">
+    <div class="logo-container">
+      <a href="../index.html"><img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions" /></a>
+    </div>
+    <a href="tel:+19723704873" class="btn-call-now"><i class="fa-solid fa-phone"></i> Call Now</a>
+  </header>
+  <main class="thank-you-container">
+    <div class="icon-success">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" stroke="#1D4ED8" stroke-width="2.5"/>
+        <path d="M20 32L28 40L44 24" stroke="#93C5FD" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1 class="heading-premium">You're In!<br/>Let’s Secure Your Spot.</h1>
+    <div class="badge-timeline">
+      <span class="icon-clock"><i class="fa-regular fa-clipboard"></i></span>
+      <span style="color: var(--color-accent); font-weight:500;">Timeline:</span>
+      <span style="color: var(--color-heading); font-weight:700;">Next 1‑3 Months</span>
+    </div>
+    <p class="description">
+      We limit active projects to guarantee on‑time delivery and a clean work environment. Book your discovery call below to lock in your timeline.
+    </p>
+    <!-- Replaced Envelope button with a bathroom remodel image -->
+    <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG" alt="Bathroom Remodel" class="medium-image"/>
+    <div class="calendly-frame-wrapper">
+      <div class="calendly-inline-widget"
+        data-url="https://calendly.com/contact-interiorillusionsconstruction/30min?background_color=0b0e14&text_color=e7eaee&primary_color=1d4ed8&hide_landing_page_details=1&hide_event_type_details=1&hide_gdpr_banner=1"
+        style="min-width:320px;height:100%;">
+      </div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
+  </main>
+  <footer class="secure-footer">
+    <p><span class="icon-lock"><i class="fa-solid fa-lock"></i></span> Your information is secure and confidential.</p>
+  </footer>
+  <script>
+    // Custom floating cursor (same as other pages)
+    (function(){
+      const cursor=document.querySelector('.cursor');
+      const follower=document.querySelector('.cursor-follower');
+      if(!cursor||!follower) return;
+      let mx=0,my=0,cx=0,cy=0,fx=0,fy=0;
+      document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+      function animate(){
+        cx+= (mx-cx)*0.2; cy+= (my-cy)*0.2;
+        follower.style.transform=`translate(${fx-20}px,${fy-20}px)`;
+        cursor.style.transform=`translate(${cx-10}px,${cy-10}px)`;
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>
