@@ -490,6 +490,16 @@
       return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
     };
 
+    const getParameterByName = (name, url) => {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+      const results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return "";
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
+
     const getCookie = (name) => {
       const value = "; " + document.cookie;
       const parts = value.split("; " + name + "=");
