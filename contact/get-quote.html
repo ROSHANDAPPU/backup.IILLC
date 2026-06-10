@@ -1469,11 +1469,14 @@
           { name: "fbc", value: fbc }
         ];
 
+        const hutk = getCookie("hubspotutk");
         const context = {
-          hutk: getCookie("hubspotutk"),
           pageUri: window.location.href,
           pageName: document.title
         };
+        if (hutk) {
+          context.hutk = hutk;
+        }
 
         const payload = {
           fields: fields,
@@ -1482,24 +1485,31 @@
 
         const portalId = '51388633';
         const formGuid = 'f47c4f3d-4891-4c48-a1a1-80a4240f5b51';
-        const accessToken = 'pat-na1-92f05fa5-2818-4e52-a7b8-e9b4b43d9674';
-        const endpoint = `https://api.hsforms.com/submissions/v3/integration/secure/submit/${portalId}/${formGuid}`;
+        // Use the public submission endpoint for client-side requests to avoid CORS/Token issues
+        const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
 
         fetch(endpoint, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${accessToken}`
+            "Content-Type": "application/json"
           },
           body: JSON.stringify(payload),
           keepalive: true
         })
-        .then(res => {
+        .then(async res => {
           if (res.ok) {
             window.location.href = "https://interiorillusionsconstruction.com/thank-you";
           } else {
-            console.error("HubSpot Submission error status:", res.status);
-            alert("There was an issue sending your request. Please check details and try again.");
+            const errorData = await res.json().catch(() => ({}));
+            console.error("HubSpot Submission error:", res.status, errorData);
+            
+            // Provide more specific feedback if available
+            let errorMsg = "There was an issue sending your request. Please check details and try again.";
+            if (errorData.errors && errorData.errors.length > 0) {
+              errorMsg = `Submission Error: ${errorData.errors[0].message}`;
+            }
+            
+            alert(errorMsg);
             setIsSubmitting(false);
           }
         })

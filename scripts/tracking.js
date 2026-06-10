@@ -89,27 +89,32 @@
         context: context
       };
 
-      // Construct API submission endpoint URL
-      var endpoint = "https://api.hsforms.com/submissions/v3/integration/secure/submit/" + portalId + "/" + formGuid;
+      // Construct API submission endpoint URL (Public endpoint for client-side JS)
+      var endpoint = "https://api.hsforms.com/submissions/v3/integration/submit/" + portalId + "/" + formGuid;
 
       // Execute Secure API Transport
       fetch(endpoint, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + accessToken
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(payload),
         keepalive: true
       })
-      .then(function(response) {
+      .then(async function(response) {
         if (response.ok) {
           console.log("Success! Lead data sent to HubSpot.");
           // Execute redirect to approved thank-you page copy
           window.location.href = "https://interiorillusionsconstruction.com/thank-you";
         } else {
-          console.error("HubSpot API Submission Error status code:", response.status);
-          alert("There was an issue sending your request. Please try again.");
+          const errorData = await response.json().catch(() => ({}));
+          console.error("HubSpot API Submission Error status code:", response.status, errorData);
+          
+          let errorMsg = "There was an issue sending your request. Please try again.";
+          if (errorData.errors && errorData.errors.length > 0) {
+            errorMsg = "Submission Error: " + errorData.errors[0].message;
+          }
+          alert(errorMsg);
         }
       })
       .catch(function(error) {
