@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You for Your Interest | Interior Illusions</title>
+  <meta name="description" content="Thank you for reaching out to Interior Illusions. Explore our process and services while you plan your next remodel." />
+  <link rel="icon" type="image/x-icon" href="../assets/images/06_Favicon/favicon-high.png" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    :root {
+      --color-bg-primary: #0B0E14;
+      --color-action: #1D4ED8;
+      --color-accent: #93C5FD;
+      --color-heading: #E7EAEE;
+      --color-body: #A3AAB4;
+    }
+
+    body, html {
+      font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
+      color: var(--color-body);
+      background: var(--color-bg-primary);
+      margin: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Topbar */
+    .fixed-topbar {
+      position: fixed; top: 0; left: 0; right: 0; height: 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; background: var(--color-bg-primary); z-index: 30;
+    }
+    .fixed-topbar .logo-container img { height: 120px; width: auto; }
+    .btn-call-now {
+      background: var(--color-action); color: #FAF7F2; border: none; border-radius: 8px;
+      padding: 10px 20px; font-weight: 600; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    .btn-call-now:hover { background: #1E40AF; transform: translateY(-1px); }
+
+    /* Main Container */
+    .thank-you-container {
+      padding: 140px 20px 80px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Sketch Illustration Placeholder */
+    .sketch-header {
+      margin-bottom: 32px;
+      opacity: 0.8;
+    }
+    .sketch-header svg {
+      width: 120px;
+      height: auto;
+      color: var(--color-accent);
+    }
+
+    .heading-premium {
+      color: var(--color-heading);
+      font-size: clamp(36px, 6vw, 48px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .description {
+      color: var(--color-body);
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 540px;
+      margin: 0 auto 48px;
+    }
+
+    /* Navigational Cards */
+    .nav-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+    }
+
+    .nav-card {
+      display: grid;
+      grid-template-columns: 80px 1fr 140px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(147, 197, 253, 0.1);
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .nav-card:hover {
+      background: rgba(29, 78, 216, 0.05);
+      border-color: rgba(147, 197, 253, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: var(--color-accent);
+    }
+
+    .card-content {
+      padding: 24px 10px;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--color-heading);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .card-title i.fa-chevron-right {
+      font-size: 12px;
+      color: var(--color-action);
+      transition: transform 0.3s ease;
+    }
+    .nav-card:hover .fa-chevron-right {
+      transform: translateX(4px);
+    }
+
+    .card-desc {
+      color: var(--color-body);
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .card-image {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .nav-card:hover .card-image img {
+      transform: scale(1.1);
+    }
+
+    /* Custom Floating Cursor */
+    .cursor {
+      position: fixed; width: 20px; height: 20px; background: rgba(147, 197, 253, 0.6);
+      border: 2px solid rgba(147, 197, 253, 0.8); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .cursor-follower {
+      position: fixed; width: 40px; height: 40px; border: 2px solid rgba(147, 197, 253, 0.3);
+      border-radius: 50%; pointer-events: none; z-index: 9998; background: rgba(147, 197, 253, 0.1);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    body.cursor-hover .cursor { transform: scale(1.5); background: rgba(147, 197, 253, 0.3); border: 2px solid rgba(147, 197, 253, 1); }
+    * { cursor: none !important; }
+
+    @media (max-width: 640px) {
+      .fixed-topbar { padding: 0 20px; }
+      .fixed-topbar .logo-container img { height: 80px; }
+      .nav-card { grid-template-columns: 60px 1fr; }
+      .card-image { display: none; }
+      .thank-you-container { padding-top: 110px; }
+      .cursor, .cursor-follower { display: none; }
+      * { cursor: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <header class="fixed-topbar">
+    <div class="logo-container">
+      <a href="../index.html">
+        <img src="../assets/images/01-02_logo_mark/SVGs/cobalt.no-background.svg" alt="Interior Illusions" />
+      </a>
+    </div>
+    <a href="tel:+19723704873" class="btn-call-now">
+      <i class="fa-solid fa-phone"></i> Call Now
+    </a>
+  </header>
+
+  <main class="thank-you-container">
+    <div class="sketch-header">
+      <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 50L50 10L90 50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 50V35L50 15L80 35V50" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <path d="M10 50H90" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <h1 class="heading-premium">Thank You for<br/>Your Interest</h1>
+    
+    <p class="description">
+      We're excited to help when the time is right. In the meantime, explore how we transform everyday spaces into intentional, light-shaping interiors.
+    </p>
+
+    <div class="nav-cards">
+      <!-- Our Process Card -->
+      <a href="../our-process.html" class="nav-card">
+        <div class="card-icon">
+          <i class="fa-solid fa-pen-ruler"></i>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Our Process <i class="fa-solid fa-chevron-right"></i></div>
+          <p class="card-desc">Discover our thoughtful, collaborative approach from concept to completion.</p>
+        </div>
+        <div class="card-image">
+          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7209.JPG" alt="Modern Stairs Process">
+        </div>
+      </a>
+
+      <!-- Our Services Card -->
+      <a href="../index.html#services" class="nav-card">
+        <div class="card-icon">
+          <i class="fa-solid fa-house-chimney-window"></i>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Our Services <i class="fa-solid fa-chevron-right"></i></div>
+          <p class="card-desc">Explore our full range of architectural and interior design services.</p>
+        </div>
+        <div class="card-image">
+          <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG" alt="Luxury Kitchen Services">
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      const cursor = document.querySelector('.cursor');
+      const follower = document.querySelector('.cursor-follower');
+      if (!cursor || !follower) return;
+      let mx = 0, my = 0, cx = 0, cy = 0, fx = 0, fy = 0;
+      document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+      function animate() {
+        cx += (mx - cx) * 0.2; cy += (my - cy) * 0.2;
+        fx += (mx - fx) * 0.1; fy += (my - fy) * 0.1;
+        cursor.style.transform = `translate(${cx - 10}px, ${cy - 10}px)`;
+        follower.style.transform = `translate(${fx - 20}px, ${fy - 20}px)`;
+        requestAnimationFrame(animate);
+      }
+      animate();
+      const interactive = document.querySelectorAll('a, button');
+      interactive.forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      });
+      document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; follower.style.opacity = '0'; });
+      document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; follower.style.opacity = '1'; });
+    })();
+  </script>
+</body>
+</html>

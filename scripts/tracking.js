@@ -126,21 +126,17 @@ async function submitFormToHubSpot(e) {
       body: JSON.stringify(payload),
     });
 
-    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-    const isMockSuccess = !response.ok && isLocalhost && (response.status === 404 || response.status === 405);
-
-    if (response.ok || isMockSuccess) {
-      if (isMockSuccess) {
-        console.warn("HubSpot API not reachable on local static server. Simulating success redirect.");
-      }
+    if (response.ok) {
       console.log("✅ HubSpot submission success:", response.status);
       const timelineVal = timeline ? timeline.toLowerCase() : "";
+      const serviceParam = service ? `?service=${service}` : "";
+      
       if (timelineVal === "asap") {
-        window.location.href = "thank-you-high.html";
-      } else if (timelineVal === "medium" || timelineVal === "1-3-months" || timelineVal === "1-3months") {
-        window.location.href = "thank-you-medium.html";
+        window.location.href = `thank-you-high.html${serviceParam}`;
+      } else if (timelineVal.includes("medium") || timelineVal.includes("1-3")) {
+        window.location.href = `thank-you-medium.html${serviceParam}`;
       } else {
-        window.location.href = "thank-you-low.html";
+        window.location.href = `thank-you-low.html${serviceParam}`;
       }
     } else {
       const errorData = await response.json().catch(() => ({}));
@@ -160,11 +156,24 @@ async function submitFormToHubSpot(e) {
     }
   } catch (error) {
     console.error("❌ Network Error:", error);
-    alert("Network error. Please check your connection and try again.");
-    if (submitButton) {
-      submitButton.disabled = false;
-      if (submitButton.innerText) submitButton.innerText = originalButtonText;
-      else submitButton.value = originalButtonText;
+    // Fallback redirect for local testing
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      console.warn("Local testing: Redirecting despite fetch error.");
+      const timelineVal = timeline ? timeline.toLowerCase() : "";
+      if (timelineVal === "asap") {
+        window.location.href = "thank-you-high.html";
+      } else if (timelineVal.includes("medium") || timelineVal.includes("1-3")) {
+        window.location.href = "thank-you-medium.html";
+      } else {
+        window.location.href = "thank-you-low.html";
+      }
+    } else {
+      alert("Network error. Please check your connection and try again.");
+      if (submitButton) {
+        submitButton.disabled = false;
+        if (submitButton.innerText) submitButton.innerText = originalButtonText;
+        else submitButton.value = originalButtonText;
+      }
     }
   }
 }

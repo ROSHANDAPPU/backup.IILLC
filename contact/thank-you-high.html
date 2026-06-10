@@ -92,6 +92,26 @@
       margin-bottom: 24px;
     }
 
+    /* Premium Service Image Styling */
+    .service-image-container {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(147, 197, 253, 0.15);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      background: #0B0E14;
+    }
+    .service-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .service-image-container:hover .service-image {
+      transform: scale(1.05);
+    }
+
     /* Premium Heading */
     .heading-premium {
       color: var(--color-heading);
@@ -324,12 +344,9 @@
   <!-- Main Content Container -->
   <main class="thank-you-container">
     
-    <!-- Circular Checkmark SVG -->
-    <div class="icon-success">
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="32" cy="32" r="30" stroke="#1D4ED8" stroke-width="2.5"/>
-        <path d="M20 32L28 40L44 24" stroke="#93C5FD" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <!-- Dynamic Service Image -->
+    <div class="service-image-container">
+      <img id="service-image" src="../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG" alt="Luxury Remodel by Interior Illusions" class="service-image"/>
     </div>
 
     <h1 class="heading-premium">You're In!<br />Let's Secure Your Spot.</h1>
@@ -358,6 +375,28 @@
     </div>
 
   </main>
+
+  <script>
+    // Dynamic Image Logic based on Service Selection
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const service = urlParams.get('service');
+      const imgElement = document.getElementById('service-image');
+      
+      if (!service || !imgElement) return;
+
+      const serviceImages = {
+        'bathroom': '../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG',
+        'kitchen': '../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG',
+        'full-home-remodel': '../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG',
+        'interior-upgrades': '../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG'
+      };
+
+      if (serviceImages[service]) {
+        imgElement.src = serviceImages[service];
+      }
+    })();
+  </script>
 
   <!-- Secure Footer -->
   <footer class="secure-footer">

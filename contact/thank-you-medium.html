@@ -73,14 +73,122 @@
       margin: 12px auto 24px;
     }
     .badge-timeline .icon-clock { color: var(--color-accent); font-size: 16px; }
-    .description { color: var(--color-body); font-size: 17px; max-width: 580px; margin: 0 auto 36px; }
-    .calendly-frame-wrapper { background: rgba(255,255,255,.01); border:1px solid rgba(147,197,253,.1); border-radius:16px; overflow:hidden; max-width:1060px; margin:0 auto 36px; height:1000px; }
-    .calendly-inline-widget { width:100%; height:100%; }
-    .calendly-inline-widget iframe { width:100%; height:100% !important; }
-    .secure-footer { padding:20px 0 40px; text-align:center; }
-    .secure-footer p { display:inline-flex; align-items:center; gap:6px; font-size:14px; color:var(--color-body); opacity:.8; margin:0; }
-    .secure-footer p .icon-lock { color:var(--color-accent); font-size:13px; }
-    .medium-image { max-width:100%; height:auto; border-radius:12px; margin: 24px 0; }
+    /* Description text */
+    .description {
+      color: var(--color-body);
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+
+    /* Open Email App Button */
+    .btn-email {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 400px;
+      padding: 18px;
+      background: transparent;
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      border-radius: 12px;
+      color: var(--color-heading);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      margin-bottom: 24px;
+    }
+    .btn-email:hover {
+      background: rgba(29, 78, 216, 0.1);
+      border-color: var(--color-accent);
+      transform: translateY(-2px);
+    }
+    .btn-email i {
+      color: var(--color-accent);
+      font-size: 20px;
+    }
+
+    /* Secure Footer */
+    .secure-footer {
+      padding: 40px 0 60px;
+      text-align: center;
+    }
+
+    .secure-footer p {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--color-body);
+      opacity: 0.6;
+      margin: 0;
+    }
+
+    .secure-footer p .icon-lock {
+      color: var(--color-accent);
+      font-size: 13px;
+    }
+
+    /* Custom Floating Cursor */
+    .medium-image-container {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(147, 197, 253, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .medium-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .medium-image-container:hover .medium-image {
+      transform: scale(1.05);
+    }
+
+    /* Custom Floating Cursor */
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: rgba(147, 197, 253, 0.6);
+      border: 2px solid rgba(147, 197, 253, 0.8);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .cursor-follower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba(147, 197, 253, 0.3);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      background: rgba(147, 197, 253, 0.1);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    body.cursor-hover .cursor {
+      transform: scale(1.5);
+      background: rgba(147, 197, 253, 0.3);
+      border: 2px solid rgba(147, 197, 253, 1);
+      box-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
+    }
+    body.cursor-click .cursor { transform: scale(0.8); background: rgba(0, 0, 0, 0.8); }
+    body.cursor-text .cursor {
+      transform: scaleX(0.3) scaleY(1.5);
+      background: rgba(147, 197, 253, 0.4);
+      border: 1px solid rgba(147, 197, 253, 0.9);
+      border-radius: 2px;
+    }
+    * { cursor: none !important; }
+
     @media (max-width: 768px) {
       .fixed-topbar { padding:0 20px; }
       .fixed-topbar .logo-container img { height:80px; }
@@ -114,31 +222,51 @@
     <a href="tel:+19723704873" class="btn-call-now"><i class="fa-solid fa-phone"></i> Call Now</a>
   </header>
   <main class="thank-you-container">
-    <div class="icon-success">
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="32" cy="32" r="30" stroke="#1D4ED8" stroke-width="2.5"/>
-        <path d="M20 32L28 40L44 24" stroke="#93C5FD" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <!-- Dynamic Service Image -->
+    <div class="medium-image-container">
+      <img id="service-image" src="../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG" alt="Luxury Remodel by Interior Illusions" class="medium-image"/>
     </div>
-    <h1 class="heading-premium">You're In!<br/>Let’s Secure Your Spot.</h1>
+
+    <h1 class="heading-premium">Your Custom Estimate<br/>is on the Way!</h1>
+    
     <div class="badge-timeline">
       <span class="icon-clock"><i class="fa-regular fa-clipboard"></i></span>
       <span style="color: var(--color-accent); font-weight:500;">Timeline:</span>
       <span style="color: var(--color-heading); font-weight:700;">Next 1‑3 Months</span>
     </div>
+    
     <p class="description">
-      We limit active projects to guarantee on‑time delivery and a clean work environment. Book your discovery call below to lock in your timeline.
+      We have sent a detailed breakdown to your email. Check your inbox to review the next steps for your upcoming project.
     </p>
-    <!-- Replaced Envelope button with a bathroom remodel image -->
-    <img src="../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG" alt="Bathroom Remodel" class="medium-image"/>
-    <div class="calendly-frame-wrapper">
-      <div class="calendly-inline-widget"
-        data-url="https://calendly.com/contact-interiorillusionsconstruction/30min?background_color=0b0e14&text_color=e7eaee&primary_color=1d4ed8&hide_landing_page_details=1&hide_event_type_details=1&hide_gdpr_banner=1"
-        style="min-width:320px;height:100%;">
-      </div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-    </div>
+
+    <a href="mailto:" class="btn-email">
+      <i class="fa-solid fa-envelope"></i>
+      Open Email App
+    </a>
   </main>
+
+  <script>
+    // Dynamic Image Logic based on Service Selection
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const service = urlParams.get('service');
+      const imgElement = document.getElementById('service-image');
+      
+      if (!service || !imgElement) return;
+
+      const serviceImages = {
+        'bathroom': '../assets/images/PORTFOLIO/FINALS1/IMG_7207.JPG',
+        'kitchen': '../assets/images/PORTFOLIO/FINALS1/IMG_7383.JPG',
+        'full-home-remodel': '../assets/images/PORTFOLIO/FINALS1/IMG_7585.JPG',
+        'interior-upgrades': '../assets/images/PORTFOLIO/FINALS1/IMG_7855.JPG'
+      };
+
+      if (serviceImages[service]) {
+        imgElement.src = serviceImages[service];
+      }
+    })();
+  </script>
+
   <footer class="secure-footer">
     <p><span class="icon-lock"><i class="fa-solid fa-lock"></i></span> Your information is secure and confidential.</p>
   </footer>
