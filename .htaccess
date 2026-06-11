@@ -44,13 +44,20 @@ Options -Indexes
   Require all denied
 </FilesMatch>
 # -------------------------------
-# CLEAN URLS — Strip .html extension
+# CLEAN URLS — Strip .html extension (root & subdirectories)
 # -------------------------------
-# Redirect /page.html → /page (301 permanent)
-RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
-RewriteRule ^ /%1 [NC,L,R=301]
 
-# Serve /page as /page.html internally
+# Redirect index.html → / (clean homepage)
+RewriteCond %{THE_REQUEST} ^[A-Z]+\ /index\.html [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Redirect any /path/page.html → /path/page (301 permanent)
+# Covers root pages AND subdirectory pages (contact/, services/, portfolio/, etc.)
+RewriteCond %{THE_REQUEST} \ /(.+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Internally serve /path/page as /path/page.html (no redirect, transparent)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $1.html [NC,L]
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
