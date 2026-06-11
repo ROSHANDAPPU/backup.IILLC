@@ -638,15 +638,13 @@
 
         const portalId = '51388633';
         const formGuid = 'c5de09b0-5b5f-470d-83ac-b133359eec01';
-        const accessToken = 'pat-na1-92f05fa5-2818-4e52-a7b8-e9b4b43d9674';
-        // Secure HubSpot Submissions API with Bearer token auth
-        const endpoint = `https://api.hsforms.com/submissions/v3/integration/secure/submit/${portalId}/${formGuid}`;
+        // Public HubSpot Forms API — correct endpoint for browser-side submissions (handles CORS)
+        const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
 
         fetch(endpoint, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${accessToken}`
+            "Content-Type": "application/json"
           },
           body: JSON.stringify(payload)
         })
