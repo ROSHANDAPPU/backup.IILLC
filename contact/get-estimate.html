@@ -515,10 +515,24 @@
         firstName: "",
         lastName: "",
         email: "",
-        phone: ""
+        phone: "",
+        fbp: "",
+        fbc: "",
+        fbclid: ""
       });
       const [errors, setErrors] = useState({});
       const [isSubmitting, setIsSubmitting] = useState(false);
+
+      // Populate tracking fields from cookies / URL on mount
+      useEffect(() => {
+        const fbpVal = getCookie("_fbp") || "";
+        let fbcVal = getCookie("_fbc") || "";
+        const fbclidVal = getParameterByName("fbclid") || "";
+        if (fbclidVal && !fbcVal) {
+          fbcVal = "fb.1." + Date.now() + "." + fbclidVal;
+        }
+        setFormData(prev => ({ ...prev, fbp: fbpVal, fbc: fbcVal, fbclid: fbclidVal }));
+      }, []);
 
       const scopes = [
         { id: "bathroom_remodel", name: "Bathroom Remodel", icon: <BathroomIcon /> },
@@ -595,16 +609,16 @@
         }
 
         const fields = [
-          { name: "firstname", value: formData.firstName },
-          { name: "lastname", value: formData.lastName },
-          { name: "email", value: formData.email },
-          { name: "phone", value: formData.phone },
-          { name: "service_scope", value: formData.service },
-          { name: "urgency", value: formData.timeline },
-          { name: "fbp", value: fbp || "" },
-          { name: "fbc", value: fbc || "" },
-          { name: "fbclid_raw", value: fbclid || "" },
-          { name: "book_meeting", value: "no" },
+          { name: "firstname",          value: formData.firstName },
+          { name: "lastname",           value: formData.lastName },
+          { name: "email",              value: formData.email },
+          { name: "phone",              value: formData.phone },
+          { name: "service_scope",      value: formData.service },
+          { name: "urgency",            value: formData.timeline },
+          { name: "fbp",               value: formData.fbp || fbp || "" },
+          { name: "fbc",               value: formData.fbc || fbc || "" },
+          { name: "fbclid_raw",         value: formData.fbclid || fbclid || "" },
+          { name: "book_meeting",       value: "no" },
           { name: "service_form_filled", value: "no" }
         ];
 
@@ -837,6 +851,15 @@
           {/* Step 3: Contact Info */}
           {step === 3 && (
             <form onSubmit={handleSubmit} className="animate-fade-in">
+              {/* Hidden Fields — synced with React state, sent to HubSpot */}
+              <input type="hidden" id="fbp_field"          name="fbp"                value={formData.fbp || ""} readOnly />
+              <input type="hidden" id="fbc_field"          name="fbc"                value={formData.fbc || ""} readOnly />
+              <input type="hidden" id="fbclid_raw"         name="fbclid_raw"         value={formData.fbclid || ""} readOnly />
+              <input type="hidden" id="book_meeting"       name="book_meeting"       value="no" readOnly />
+              <input type="hidden" id="service_form_filled" name="service_form_filled" value="no" readOnly />
+              <input type="hidden" id="service_scope"      name="service_scope"      value={formData.service} readOnly />
+              <input type="hidden" id="urgency"            name="urgency"            value={formData.timeline} readOnly />
+
               <h2 className="text-[#E7EAEE] text-3xl sm:text-4xl font-bold text-center mb-2 tracking-tight">
                 Where should we send your custom design guide and estimate?
               </h2>
